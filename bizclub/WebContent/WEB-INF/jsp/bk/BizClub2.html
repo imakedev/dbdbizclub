@@ -1,0 +1,206 @@
+<html>
+<head>
+<title>BizClub2</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="robots" content="all">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="css/nav.css">
+<link rel="stylesheet" type="text/css" href="css/style.css"  />
+<script src="libraries/RGraph.common.core.js" ></script>
+<script src="libraries/RGraph.line.js" ></script>
+<script src="js/jquery.js"></script>
+<!--[if lt IE 9]><script src="excanvas/excanvas.js"></script><![endif]-->
+
+<script src="js/modernizr.js"></script>
+<script>
+(function($){		
+	//cache nav
+	var nav = $("#topNav");		
+	//add indicator and hovers to submenu parents
+	nav.find("li").each(function() {
+		if ($(this).find("ul").length > 0) {
+			$("<span>").text("^").appendTo($(this).children(":first"));
+
+			//show subnav on hover
+			$(this).mouseenter(function() {
+				$(this).find("ul").stop(true, true).slideDown();
+			});
+			
+			//hide submenus on exit
+			$(this).mouseleave(function() {
+				$(this).find("ul").stop(true, true).slideUp();
+			});
+		}
+	});
+})(jQuery);
+</script>
+<script>
+	$(document).ready(function ()
+	{
+		var line = new RGraph.Line({
+			id: 'cvs',
+			data: [
+				   [7.0,6.9,9.5,14.5,18.2,21.5,25.2,26.5,23.3,18.3,13.9,9.6],
+				   [0.2,0.8,5.7,11.3,17.0,22.0,24.8,24.1,20.1,14.1,8.6, 2.5]
+				  ],
+			options: {
+				labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+				shadow: false,
+				noxaxis: true,
+				noyaxis: true,
+				background: {
+					grid: {
+						autofit: {
+							numvlines: 11
+						}
+					}
+				},
+				colors: ['#0f0','#76D0FF'],
+				tickmarks: function (obj, data, value, index, x, y, color, prevX, prevY)
+						   {
+							   obj.context.beginPath()
+							   obj.context.lineWidth = 2;
+							   obj.context.strokeStyle = 'black'
+							   obj.context.arc(x, y, 4, 0, RGraph.TWOPI, false)
+							   obj.context.fill()
+							   obj.context.stroke()
+						   },
+				linewidth: 3,
+				text: {
+					color: '#eee'
+				}
+			}
+		}).on('beforedraw', function (obj)
+		{
+			RGraph.clear(obj.canvas, 'black');
+		}).trace2({frames: 15})
+	})
+</script>
+</head>
+<body >
+<div class="main-slide clearfix">
+<nav id="topNav" >
+    <ul>
+        <li style="border-left:none;"><span class="fui-home"></span><a href="#" title="หน้าแรก"> หน้าแรก</a></li>
+        <li><span ></span><a href="#" title="ข้อมูลทางการค้า">ข้อมูลทางการค้า</a></li>
+      <li><span ></span><a href="#" title="Nav Link 1">ข่าวสารและประชาสัมพันธ์</a></li>
+      <li><span ></span><a href="#" title="Nav Link 1">ระบบรายงาน</a></li>
+      <li><span ></span><a href="#" title="Nav Link 1">ระบบสมาชิก</a></li>
+      <li style="border-right:none;"><span ></span><a href="#" title="Nav Link 1">ติดต่อเรา</a></li>
+  </ul>
+</nav>
+
+<div class="box-content-inner">
+    <div id="temperature">
+        <div style="position:absolute; height:45px; background:#FFF; width:100%;">
+            <div  class="box_logo">
+            <div  class="logo"><img src="images/logo.png" ></div>
+            <div  class="social"><img src="images/member.gif" ><img src="images/mail.gif" ></div>
+            </div>
+        </div>
+        <div  class="banner"><img src="images/BizClub2_01.jpg" ></div>
+    </div>
+</div>
+
+</div>
+
+<div>
+	<div style="width:970px; height:250px;margin:0 auto; padding:40px 0 40px 0;">
+    	<div style="text-align:center; font-weight:600; font-size:28px; color:#505058; padding:15px 0 15px 0;">ข้อมูลทางการค้าผลิตภัณฑ์ และบริการ</div>
+        <div style="font-size:20px;">ข้อมูลการค้าที่ยังไม่รู้จักกันโดยทั่วไปหรือยังเข้าถึงไม่ได้ในหมู่บุคคล ซึ่งโดยปกติแล้วบุคคลที่เข้าถึงได้จะต้องเกี่ยวข้องกับข้อมูลดังกล่าว 
+โดยเป็นข้อมูลที่มีประโยชน์ในเชิงพาณิชย์เนื่องจากการเป็นความลับ และเป็นข้อมูลที่ผู้ควบคุมความลับทางการค้าได้ใช้มาตรการที่เหมาะสม
+เพื่อรักษาไว้เป็นความลับ[1] ความลับทางการค้าอาจอยู่ในรูปแบบของ สูตร วิธีการ กรรมวิธี การออกแบบ เครื่องมือ แบบแผน 
+หรือการรวบรวมข้อมูลข่าวสารที่ใช้ในการทำธุรกิจ เพื่อเพิ่มความได้เปรียบเหนือคู่แข่งหรือกลุ่มลูกค้า</div>
+    </div>
+</div>
+<div id="content">
+    <div style="width:970px; margin:0 auto; padding:40px 0 40px 0;">
+        <div style="border-bottom:solid 3px #505058;" class="clearfix">
+            <div style="text-align:left;font-weight:600; font-size:28px; color:#505058; width:400px; float:left;">ข่าวสารและประชาสัมพันธ์</div>
+            <div style="float:right;width:100px; text-align:right;">
+            	<a href="#"><img src="images/btn_pre.gif"></a><a href="#"><img src="images/btn_next.gif"></a>
+            </div>
+        </div>
+        <div class="clear" style="padding-top:15px;">
+            <div class="box_news">
+                <div><img src="images/news01.jpg"></div>
+                <div class="news_topic">KIP Awards 2013</div>
+                <div>
+                    <article style="width:80%;">ร่วมเป็นคณะกรรมการตัดสินการประกวดของดีเมืองโคราช (KIP Awades 2013)  วันที่ 11 ธันวาคม 2556  ณ หอการค้าจังหวัดนครราชสีมา</article>
+                    <div id="btn_news"  class="clear">
+                        <div  class="btn_newsl"><img src="images/btn_more.png" style="margin-top:3px;"></div>
+                        <div  class="btn_newsr" onClick="document.location='BizClub2.html'">อ่านต่อ</div>
+                    </div>
+                </div>
+            </div>
+            <div  class="box_c">&nbsp;</div>
+            <div class="box_news">
+                <div><img src="images/news01.jpg"></div>
+                <div class="news_topic">KIP Awards 2013</div>
+                <div>
+                    <article style="width:80%;">ร่วมเป็นคณะกรรมการตัดสินการประกวดของดีเมืองโคราช (KIP Awades 2013)  วันที่ 11 ธันวาคม 2556  ณ หอการค้าจังหวัดนครราชสีมา</article>
+                    <div id="btn_news"  class="clear">
+                        <div  class="btn_newsl"><img src="images/btn_more.png" style="margin-top:3px;"></div>
+                        <div  class="btn_newsr" onClick="document.location='BizClub2.html'">อ่านต่อ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div style="background:#CF8323;">
+	<div style="width:970px; margin:0 auto;" class="clearfix">
+		<div style="width:250px; float:left;">
+        	<div style="color:#FFF; font-size:26px;padding-top:20px;font-weight:600;" class="clear">
+            <div style="width:50px; float:left;"><img src="images/ico_g.png"></div>
+            <div style="width:200px; float:left; padding-top:10px;">ระบบรายงาน</div></div>
+            <div>รายงานการถือหลักทรัพย์ของผู้บริหาร
+            และผู้สอบบัญชี มีวัตถุประสงค์เพื่อให้
+            ผู้ลงทุนสามารถติดตามความเคลื่อนไหว
+            ของการถือหลักทรัพย์ของผู้บริหารและ
+            ผู้สอบบัญชีเนื่องจากผู้บริหารและผู้สอบ
+            บัญชีเป็นผู้ที่ใกล้ชิดกับข้อมูลภายในบริษัท</div>
+        </div>
+    	<div style="background:#FFF;float:right;width:580px;height:350px;">
+        	<div style="width:500px; margin:0  auto; padding-top:40px;">
+        	<canvas id="cvs" width="500" height="250" style="border-radius: 5px; box-shadow: 3px 3px 3px #ccc">[No canvas support]</canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="width:970px; margin:0 auto; padding:40px 0 40px 0;">
+    <div style="border-bottom:solid 3px #505058;" class="clearfix">
+        <div style="text-align:left;font-weight:600; font-size:28px; color:#505058; width:400px; float:left;">ติดต่อเรา</div>        
+    </div>
+    <div  >
+        <div  class="topic_contact">สำนักพัฒนาผู้ประกอบธุรกิจ กรมพัฒนาธุรกิจการค้า กระทรวงพาณิชย์</div>
+        <div>เลขที่ 44/100 ถนน นนทบุรี 1 ต.บางกระสอ อ.เมือง จ.นททบุรี 11000</div>
+        <div>โทรศัพท์: 02-547-5962</div>
+        <div>โทรสาร: 02-547-5963-64</div>
+        <div>email: training@dbd.go.th</div>
+        <div class="topic_contact">หรือ</div>
+        <div id="box_mail" class="clearfix">
+            <form >
+                <div class="clearfix">
+                    <div  class="b_mail1">
+                        <input type="text" class="form-control" placeholder="ชื่อ-นามสกุล">
+                    </div>
+                    <div  class="b_mail2">
+                        <input type="text" class="form-control" placeholder="e-mail">
+                    </div>
+                </div>
+                <div class="b_mail3">
+                    <textarea class="form-control2" rows="3" style="height:50px;" placeholder="ข้อความ"></textarea>                
+                </div>
+                <div class="btn_contact" >ส่งข้อความ</div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="footer">
+	<div id="footer_body">Copyright 2015 ฺBiz Club All Rights Reserved.</div>
+</div>
+</div>
+</body>
+</html>
