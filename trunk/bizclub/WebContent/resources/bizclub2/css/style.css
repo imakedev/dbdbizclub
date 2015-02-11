@@ -1,0 +1,177 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+    font-family: 'th_k2d_july8regular';
+    src: url('th_k2d_july8-webfont.eot');
+    src: url('th_k2d_july8-webfont.eot?#iefix') format('embedded-opentype'),
+         url('th_k2d_july8-webfont.woff2') format('woff2'),
+         url('th_k2d_july8-webfont.woff') format('woff'),
+         url('th_k2d_july8-webfont.ttf') format('truetype');
+    font-weight: normal;font-style: normal;
+}
+@font-face {
+  font-family: 'Flat-UI-Icons';
+
+  src: url('flat-ui-icons-regular.eot');
+  src: url('flat-ui-icons-regular.eot?#iefix') format('embedded-opentype'), 
+  url('flat-ui-icons-regular.woff') format('woff'), 
+  url('flat-ui-icons-regular.ttf') format('truetype'), 
+  url('flat-ui-icons-regular.svg#flat-ui-icons-regular') format('svg');
+  }
+body{ background:#F6F2F1;padding:0; margin:0; font-family: 'th_k2d_july8regular';font-size:18px;}
+ul, ol {    list-style: outside none none;}
+a {    text-decoration: none;color:#000000;}
+[class^="fui-"], [class*="fui-"] {
+    font-family: "Flat-UI-Icons";
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-transform: none;
+}
+.fui-home:before {
+content: "\e62e";
+}
+.clear:before,.clear:after {   content: " ";display: table;}
+.clear:after {  clear: both;}
+.clearfix:after { content: "."; visibility: hidden; display: block;height: 0;clear: both;}
+.news_topic{ font-size:25px; font-weight:700; color:#821F4E; margin:15px 0 15px 0;}
+.main-slide {
+    margin-bottom: 450px;
+    position: relative;
+}
+.box_logo{970px; margin:0 auto; position:relative;}
+.logo{position:relative;left:90; width:200px;}
+.social{position:absolute;left:1000; top:5; width:100px;}
+.banner{width:1287px;height:458px;}
+.box-content-inner {
+    position: relative;
+}
+#temperature {
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 1287px;
+    z-index: 1;
+}
+
+.box_news{width:45%;float:left;}
+.box_c{width:10%;float:left;}
+#btn_news {
+  background: #821F4E; margin-top:10px; cursor:pointer;
+  background-image: -webkit-linear-gradient(top, #821F4E, #821F4E);
+  background-image: -moz-linear-gradient(top, #821F4E, #821F4E);
+  background-image: -ms-linear-gradient(top, #821F4E, #821F4E);
+  background-image: -o-linear-gradient(top, #821F4E, #821F4E);
+  background-image: linear-gradient(to bottom, #821F4E, #821F4E);
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px; width:100px;
+  color: #ffffff;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+}
+#btn_news:hover {
+  background: #925EA9;
+  text-decoration: none;
+}
+.btn_newsl{float:left; width:15px;}
+.btn_newsr{float:left; width:80px;padding-left:5px;font-size:18px;margin-top:3px;font-weight:500;}
+
+/*====footer========*/
+#footer{height:70px; background:#333333;color: #FFFFFF;}
+#footer_body{width:970px; margin:0 auto; padding-top:30px; font-size:18px;text-align:center; }
+.box_contact{ color:#000;}
+.topic_contact{font-size:22px;font-weight:500;}
+#box_mail{}
+.b_mail1{float:left; width:220px;}
+.b_mail2{float:left; margin-left:10px; width:250px;}
+.b_mail3{margin-top:5px; width:100%;}
+.form-control {
+    background-color: #D78989;
+    background-image: none;
+    border: 1px solid #D78989;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #FFFFFF;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+.form-control:focus {
+    border-color: #F690A5;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+    outline: 0 none;
+}
+.form-control::-moz-placeholder {
+    color: #FFFFFF;
+    opacity: 1;
+}
+.form-control2 {
+    background-color: #D78989;
+    background-image: none;
+    border: 1px solid #D78989;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #FFFFFF;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width:480px;
+}
+.form-control2:focus {
+    border-color: #F690A5;color: #FFFFFF;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+    outline: 0 none;
+}
+.form-control2::-moz-placeholder {
+    color: #FFFFFF;
+    opacity: 1;
+}
+.btn_contact {
+	-moz-box-shadow:inset 0px -3px 7px 0px #821F4E;margin-top:5px;
+	-webkit-box-shadow:inset 0px -3px 7px 0px #821F4E;
+	box-shadow:inset 0px -3px 7px 0px #821F4E;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #821F4E), color-stop(1, #821F4E));
+	background:-moz-linear-gradient(top, #821F4E 5%, #821F4E 100%);
+	background:-webkit-linear-gradient(top, #821F4E 5%, #821F4E 100%);
+	background:-o-linear-gradient(top, #821F4E 5%, #821F4E 100%);
+	background:-ms-linear-gradient(top, #821F4E 5%, #821F4E 100%);
+	background:linear-gradient(to bottom, #821F4E 5%, #821F4E 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#821F4E', endColorstr='#821F4E',GradientType=0);
+	background-color:#821F4E;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #821F4E;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	padding:9px 23px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #263666;
+}
+.btn_contact:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #DE4563), color-stop(1, #DE4563));
+	background:-moz-linear-gradient(top, #DE4563 5%, #DE4563 100%);
+	background:-webkit-linear-gradient(top, #DE4563 5%, #DE4563 100%);
+	background:-o-linear-gradient(top, #DE4563 5%, #DE4563 100%);
+	background:-ms-linear-gradient(top, #DE4563 5%, #DE4563 100%);
+	background:linear-gradient(to bottom, #DE4563 5%, #DE4563 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#DE4563', endColorstr='#DE4563',GradientType=0);
+	background-color:#DE4563;
+}
+.btn_contact:active {
+	position:relative;
+	top:1px;
+}
