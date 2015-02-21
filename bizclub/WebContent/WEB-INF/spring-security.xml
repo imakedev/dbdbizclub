@@ -17,43 +17,25 @@
 	<http auto-config="true"  use-expressions="true">
 		<intercept-url pattern="/login" access="permitAll"/>
 		<intercept-url pattern="/logout" access="permitAll"/>
-		<intercept-url pattern="/reportExport/**" access="permitAll"/>
 		<intercept-url pattern="/checksession/**" access="permitAll"/>  
 		
 		<intercept-url pattern="/denied" access="hasRole('ROLE_USER')"/>
-		<intercept-url pattern="/" access="hasRole('ROLE_USER')"/> 
+		<!-- 
+		<intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
+		 --> 
+		<intercept-url pattern="/" access="permitAll"/>
+		<intercept-url pattern="/register" access="permitAll"/>
 		<intercept-url pattern="/user" access="hasRole('ROLE_USER')"/>
 		<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
-	    <intercept-url pattern="/finwiz/**" access="isAuthenticated()" />
-	    
+	   	<intercept-url pattern="/page/**" access="isAuthenticated()" />
+	   <!--  
 	    <intercept-url pattern="/reportmanagement/**" access="isAuthenticated()" />	    
 	    <intercept-url pattern="/survey/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/test/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/upload/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/getfile/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/template/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/sendmailToApprove/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/getmailToApprove/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/series/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/role/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/result/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/paper/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/manual/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/miss/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/company/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/candidate/**" access="isAuthenticated()" />
-	    <intercept-url pattern="/reportUpload/**" access="isAuthenticated()" />
+	   --> 
 	    
 	    
 		
-		<!-- <form-login login-page="/login" 
-			authentication-failure-url="/login/failure" 
-			default-target-url="/"/> -->
-			<!-- <form-login login-page="/login" 
-			authentication-failure-url="/login/failure" 
-			default-target-url="/checking"/>  -->
-			
-			<form-login login-page="/login" 
+		<form-login login-page="/login" 
 			authentication-failure-url="/login/failure" 
 			authentication-failure-handler-ref="myAuthErrorHandler"
 			default-target-url="/checking"/>  
@@ -73,7 +55,7 @@
 	
 	<authentication-manager>
 	        <authentication-provider user-service-ref="customUserDetailsService">
-	        		<password-encoder hash="sha-256"/>
+	        		<!--  <password-encoder hash="sha-256"/>  -->
 	        </authentication-provider>
 	</authentication-manager>
 </beans:beans>

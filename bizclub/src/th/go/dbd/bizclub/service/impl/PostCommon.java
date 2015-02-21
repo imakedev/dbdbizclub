@@ -12,9 +12,10 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.gl.finwiz.core.xstream.common.FinWizResultMessage;
-import com.gl.finwiz.core.xstream.common.FinWizXML;
-import com.gl.finwiz.core.xstream.common.Paging;
+import th.go.dbd.bizclub.xstream.common.ImakeResultMessage;
+import th.go.dbd.bizclub.xstream.common.ImakeXML;
+import th.go.dbd.bizclub.xstream.common.Paging;
+
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.Dom4JDriver;
 /*import th.co.vlink.utils.Pagging;
@@ -24,7 +25,7 @@ import th.co.vlink.xstream.common.VServiceXML;
  
 public class PostCommon {
 	public static final int PAGE_SIZE = 5; 
-	public FinWizResultMessage postMessage(FinWizXML vserviceXML,@SuppressWarnings("rawtypes") Class[] className,String endPoint,boolean isReturn) {
+	public ImakeResultMessage postMessage(ImakeXML vserviceXML,@SuppressWarnings("rawtypes") Class[] className,String endPoint,boolean isReturn) {
 		//HttpPost httppost = new HttpPost(ServiceConstant.hostReference+endPoint); 
 		//HttpPost httppost = new HttpPost("http://localhost:3003/v1/"+endPoint);
 		HttpPost httppost = new HttpPost("http://192.168.1.199:3000/v1/"+endPoint);
@@ -72,17 +73,17 @@ public class PostCommon {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-				FinWizResultMessage  vresultMessage = null; 
+				ImakeResultMessage  vresultMessage = null; 
 				InputStream in = null;
 			if (isReturn) {
 			 if (resEntity != null) {
 			
 					try {
 						in = resEntity.getContent();
-						xstream.processAnnotations(FinWizResultMessage.class); 
+						xstream.processAnnotations(ImakeResultMessage.class); 
 						Object obj = xstream.fromXML(in);
 						if(obj!=null){
-							vresultMessage = (FinWizResultMessage)obj; 
+							vresultMessage = (ImakeResultMessage)obj; 
 							 
 							int maxRow = 0;
 							if(vresultMessage.getMaxRow()!=null && vresultMessage.getMaxRow().length()!=0)
@@ -110,7 +111,7 @@ public class PostCommon {
 				httpclient.getConnectionManager().shutdown();
 				return    vresultMessage ;
 	}
-	public FinWizResultMessage postMessage(FinWizXML vserviceXML,String className,String endPoint,boolean isReturn) {
+	public ImakeResultMessage postMessage(ImakeXML vserviceXML,String className,String endPoint,boolean isReturn) {
 		@SuppressWarnings("rawtypes")
 		Class c  = null;
 		try {

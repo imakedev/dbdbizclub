@@ -23,7 +23,7 @@ import th.go.dbd.bizclub.service.BizClubService;
 @RequestMapping
 public class AccessController {
 	@Autowired
-	@Qualifier("bizClubService")
+	@Qualifier("bizClubServiceImpl")
 	private BizClubService bizClubService;
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request,HttpServletResponse response,Model model, @RequestParam(required=false) String message) {

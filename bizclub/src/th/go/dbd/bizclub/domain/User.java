@@ -1,112 +1,370 @@
 package th.go.dbd.bizclub.domain;
 
-//Decompiled by DJ v3.12.12.96 Copyright 2011 Atanas Neshkov  Date: 5/27/2012 12:11:59 AM
-//Home Page: http://members.fortunecity.com/neshkov/dj.html  http://www.neshkov.com/dj.html - Check often for new version!
-//Decompiler options: packimports(3) 
-//Source File Name:   User.java
-
+import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
-//Referenced classes of package th.co.aoe.makedev.missconsult.exam.domain:
-//         Role
+/**
+ * The persistent class for the USER database table.
+ * 
+ */
+@Entity
+@Table(name="USER")
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-@Entity(name="user")
-public class User
-{
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="USER_ID")
+	private Integer userId;
 
- public User()
- {
- }
+	@Column(name="ADDRESS_DISTRICT")
+	private String addressDistrict;
 
- public Long getId()
- {
-     return id;
- }
+	@Column(name="ADDRESS_NAME")
+	private String addressName;
 
- public void setId(Long id)
- {
-     this.id = id;
- }
+	@Column(name="ADDRESS_NO")
+	private String addressNo;
 
- public String getFirstName()
- {
-     return firstName;
- }
+	@Column(name="ADDRESS_POST_CODE")
+	private String addressPostCode;
 
- public void setFirstName(String firstName)
- {
-     this.firstName = firstName;
- }
+	@Column(name="ADDRESS_PROVINCE")
+	private String addressProvince;
 
- public String getLastName()
- {
-     return lastName;
- }
+	@Column(name="ADDRESS_SUB_DISTRICT")
+	private String addressSubDistrict;
 
- public void setLastName(String lastName)
- {
-     this.lastName = lastName;
- }
+	@Column(name="CARD_ID")
+	private String cardId;
 
- public String getUsername()
- {
-     return username;
- }
+	@Column(name="CORP_ID")
+	private String corpId;
 
- public void setUsername(String username)
- {
-     this.username = username;
- }
+	@Column(name="CREATED_BY")
+	private String createdBy;
 
- public String getPassword()
- {
-     return password;
- }
+	@Column(name="CREATED_DATE")
+	private Timestamp createdDate;
 
- public void setPassword(String password)
- {
-     this.password = password;
- }
+	private String email;
 
-/* public Role getRole()
- {
-     return role;
- }
+	@Column(name="FIRST_NAME")
+	private String firstName;
 
- public void setRole(Role role)
- {
-     this.role = role;
- }*/
+	@Column(name="IS_CORP")
+	private String isCorp;
 
- @Id
- private Long id;
- /*public Set<Role> getRole() {
-		return role;
-	}
+	@Column(name="LAST_NAME")
+	private String lastName;
 
-	public void setRole(Set<Role> role) {
-		this.role = role;
-	}
+	@Column(name="MOBILE_PHONE")
+	private String mobilePhone;
+
+	@Column(name="CORP_GROUP_ID")
+	private String corpGroupId;
+	
+	@Column(name="CORP_GROUP_DESC")
+	private String corpGroupDesc;
+	
+	private String password;
+
+	@Column(name="UPDATED_BY")
+	private String updatedBy;
+
+	@Column(name="UPDATED_DATE")
+	private Timestamp updatedDate;
+
+	@Column(name="USER_NAME")
+	private String userName;
+	
+	@Column(name="CORP_NAME")
+	private String corpName;
+	
+	@Column(name="CORP_DESC")
+	private String corpDesc;
+	
+	@Column(name="CORP_CONCERNED")
+	private String corpConcerned;
+	
+	@Column(name="SERVICES")
+	private String services;
+	
+	@Column(name="WEBSITE")
+	private String website;
+	
+	@Column(name="LINE_ID")
+	private String lineId;
+
+	/*//bi-directional many-to-one association to BizclubAsset
+	@OneToMany(mappedBy="user")
+	private List<BizclubAsset> bizclubAssets;
 */
+	//bi-directional many-to-one association to BizclubRegister
+	@ManyToOne
+	@JoinColumn(name="BR_ID")
+	private BizclubRegister bizclubRegister;
+
+	//bi-directional many-to-one association to Role
+	@ManyToOne
+	@JoinColumn(name="ROLE_ID")
+	private Role role;
+
+	public User() {
+	}
+
+	public Integer getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public String getAddressDistrict() {
+		return this.addressDistrict;
+	}
+
+	public void setAddressDistrict(String addressDistrict) {
+		this.addressDistrict = addressDistrict;
+	}
+
+	public String getAddressName() {
+		return this.addressName;
+	}
+
+	public void setAddressName(String addressName) {
+		this.addressName = addressName;
+	}
+
+	public String getAddressNo() {
+		return this.addressNo;
+	}
+
+	public void setAddressNo(String addressNo) {
+		this.addressNo = addressNo;
+	}
+
+	public String getAddressPostCode() {
+		return this.addressPostCode;
+	}
+
+	public void setAddressPostCode(String addressPostCode) {
+		this.addressPostCode = addressPostCode;
+	}
+
+	public String getAddressProvince() {
+		return this.addressProvince;
+	}
+
+	public void setAddressProvince(String addressProvince) {
+		this.addressProvince = addressProvince;
+	}
+
+	public String getAddressSubDistrict() {
+		return this.addressSubDistrict;
+	}
+
+	public void setAddressSubDistrict(String addressSubDistrict) {
+		this.addressSubDistrict = addressSubDistrict;
+	}
+
+	public String getCardId() {
+		return this.cardId;
+	}
+
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
+	}
+
+	public String getCorpId() {
+		return this.corpId;
+	}
+
+	public void setCorpId(String corpId) {
+		this.corpId = corpId;
+	}
+
+	public String getCreatedBy() {
+		return this.createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getCreatedDate() {
+		return this.createdDate;
+	}
+
+	public void setCreatedDate(Timestamp createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getIsCorp() {
+		return this.isCorp;
+	}
+
+	public void setIsCorp(String isCorp) {
+		this.isCorp = isCorp;
+	}
+
+	public String getLastName() {
+		return this.lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getMobilePhone() {
+		return this.mobilePhone;
+	}
+
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUpdatedBy() {
+		return this.updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Timestamp getUpdatedDate() {
+		return this.updatedDate;
+	}
+
+	public void setUpdatedDate(Timestamp updatedDate) {
+		this.updatedDate = updatedDate;
+	}
+
+	public String getUserName() {
+		return this.userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	
 
-private String firstName;
- private String lastName;
- @Column(unique=true)
- private String username;
- private String password;
-/*  @OneToOne(mappedBy="user", cascade={javax.persistence.CascadeType.ALL})
- private Role role;*/
- /*
-  @OneToMany(mappedBy="user")
- 
-	private Set<Role> role;
-	 */
- 
-/*	@OneToOne(mappedBy="mcontactUsername", cascade={CascadeType.ALL})
- private MissContact missContact;*/
+	public BizclubRegister getBizclubRegister() {
+		return this.bizclubRegister;
+	}
+
+	public void setBizclubRegister(BizclubRegister bizclubRegister) {
+		this.bizclubRegister = bizclubRegister;
+	}
+
+	public Role getRole() {
+		return this.role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public String getCorpGroupId() {
+		return corpGroupId;
+	}
+
+	public void setCorpGroupId(String corpGroupId) {
+		this.corpGroupId = corpGroupId;
+	}
+
+	public String getCorpGroupDesc() {
+		return corpGroupDesc;
+	}
+
+	public void setCorpGroupDesc(String corpGroupDesc) {
+		this.corpGroupDesc = corpGroupDesc;
+	}
+
+	public String getCorpName() {
+		return corpName;
+	}
+
+	public void setCorpName(String corpName) {
+		this.corpName = corpName;
+	}
+
+	public String getCorpDesc() {
+		return corpDesc;
+	}
+
+	public void setCorpDesc(String corpDesc) {
+		this.corpDesc = corpDesc;
+	}
+
+	public String getCorpConcerned() {
+		return corpConcerned;
+	}
+
+	public void setCorpConcerned(String corpConcerned) {
+		this.corpConcerned = corpConcerned;
+	}
+
+	public String getServices() {
+		return services;
+	}
+
+	public void setServices(String services) {
+		this.services = services;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public String getLineId() {
+		return lineId;
+	}
+
+	public void setLineId(String lineId) {
+		this.lineId = lineId;
+	}
+
 }

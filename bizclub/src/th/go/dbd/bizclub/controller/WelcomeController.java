@@ -12,20 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import th.go.dbd.bizclub.service.BizClubService;
-
-import com.gl.finwiz.core.xstream.common.FinWizResultMessage;
-import com.gl.finwiz.core.xstream.common.Paging;
 
 @Controller 
 //@SessionAttributes(value={"UserMissContact","welcomeForm"})
@@ -38,7 +33,8 @@ public class WelcomeController
 	    @RequestMapping(value={"/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
 	    public String getNewForm(HttpServletRequest request,HttpServletResponse response,  Model model)
 	    {
-	        return "bizclub/bizclub7";
+	       // return "bizclub/bizclub7m";
+	    	 return "bizclub/index";
 	    }
 	    @RequestMapping(value={"/bizclub7"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
 	    public String bizclub7(HttpServletRequest request,HttpServletResponse response,  Model model)
@@ -54,6 +50,11 @@ public class WelcomeController
 	    public String bizclub2(HttpServletRequest request,HttpServletResponse response,  Model model)
 	    {	
 	        return "bizclub/bizclub2";
+	    }
+	    @RequestMapping(value={"/page/{page}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+	    public String dispatch(HttpServletRequest request,HttpServletResponse response,  Model model,@PathVariable("page")  String page)
+	    {	
+	        return "bizclub/"+page;
 	    }
      
     private String genToken(){
@@ -78,7 +79,7 @@ public class WelcomeController
     private static SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
   
     @Autowired
-    @Qualifier("bizClubService")
+    @Qualifier("bizClubServiceImpl")
     private BizClubService bizClubService;
 
 }

@@ -14,6 +14,7 @@ public class MyUser implements Serializable{
 	}
 
 	private String fullName;
+	private Integer userid;
 	//private th.co.aoe.makedev.missconsult.xstream.MissContact missContact;
 
 
@@ -24,5 +25,13 @@ public class MyUser implements Serializable{
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
+	}
+
+	public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
 	}
 }
