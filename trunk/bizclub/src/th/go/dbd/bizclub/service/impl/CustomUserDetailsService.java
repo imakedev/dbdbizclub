@@ -1,7 +1,10 @@
 package th.go.dbd.bizclub.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +17,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import th.go.dbd.bizclub.constant.ServiceConstant;
+import th.go.dbd.bizclub.domain.MyUser;
+import th.go.dbd.bizclub.domain.MyUserDetails;
 import th.go.dbd.bizclub.domain.User;
+import th.go.dbd.bizclub.repository.UserRepository;
 import th.go.dbd.bizclub.service.BizClubService;
 
-import com.gl.finwiz.core.constant.ServiceConstant;
 
 
 /**
@@ -28,11 +34,11 @@ import com.gl.finwiz.core.constant.ServiceConstant;
 @Transactional(readOnly = true)
 public class CustomUserDetailsService implements UserDetailsService {
 	private static final Logger logger = Logger.getLogger(ServiceConstant.LOG_APPENDER);
-	/* @Autowired
+	 @Autowired
 	private UserRepository userRepository;
-	*/
+	
 	@Autowired
-	@Qualifier("bizClubService")
+	@Qualifier("bizClubServiceImpl")
 	private BizClubService bizClubService;
 	/*@PersistenceContext
 	private EntityManager em;*/
@@ -47,7 +53,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		logger.debug(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx into loadUserByUsername "+username);
 		try {
-	      User domainUserContact = null;// userRepository.findByUsername(username);
+	      User domainUserContact =  userRepository.findByUserName(username);
 			logger.debug(" xxxxxxxxxxxxxxxxxxxxxxxxxxxx affter loadUserByUsername "+domainUserContact);
 			
 			boolean enabled = true;
@@ -80,8 +86,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 				em.close();
 			} 
           
-         
-			MyUserDetails user=new MyUserDetails(domainUserContact.getUsername(),  
+        */ 
+			MyUserDetails user=new MyUserDetails(domainUserContact.getUserName(),  
 					domainUserContact.getPassword().toLowerCase(),
 					enabled,
 					accountNonExpired,
@@ -91,12 +97,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 					//getAuthorities(domainUserContact.getRole()));
 					getAuthorities(getRolesMapping(rcId,isAdmin)));
 			MyUser myUser=new MyUser(domainUserContact.getFirstName()+" "+domainUserContact.getLastName());
-			th.co.aoe.makedev.missconsult.xstream.MissContact missContact= null;//bizClubService.findMissContactByUsername(domainUserContact.getUsername());
-			myUser.setMissContact(missContact);
+			myUser.setUserid(domainUserContact.getUserId());
 			user.setMyUser(myUser);
 		return user;
-		*/
-			return null;
+		
 		}else
 			return null;
 					
@@ -106,13 +110,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 			throw new RuntimeException(e);
 		}
 	}
-/*	public  Set<th.co.aoe.makedev.missconsult.xstream.RoleType> getRolesMapping(Long rcId,boolean isAdmin){
-		  Set<th.co.aoe.makedev.missconsult.xstream.RoleType> role =new HashSet<th.co.aoe.makedev.missconsult.xstream.RoleType>();
-		th.co.aoe.makedev.missconsult.xstream.RoleType defualt= new th.co.aoe.makedev.missconsult.xstream.RoleType();
+	public  Set<th.go.dbd.bizclub.domain.RoleType> getRolesMapping(Long rcId,boolean isAdmin){
+		  Set<th.go.dbd.bizclub.domain.RoleType> role =new HashSet<th.go.dbd.bizclub.domain.RoleType>();
+		  th.go.dbd.bizclub.domain.RoleType defualt= new th.go.dbd.bizclub.domain.RoleType();
 		   defualt.setRole("ROLE_USER");
 		   role.add(defualt); 
 		   if(isAdmin){
-				th.co.aoe.makedev.missconsult.xstream.RoleType admin= new th.co.aoe.makedev.missconsult.xstream.RoleType();
+			   th.go.dbd.bizclub.domain.RoleType admin= new th.go.dbd.bizclub.domain.RoleType();
 				admin.setRole("ROLE_ADMIN");
 				role.add(admin);
 		   }
@@ -122,10 +126,10 @@ public class CustomUserDetailsService implements UserDetailsService {
      //      if(roleContact!=null && roleContact.getRcId()!=null ){
 		     if(rcId!=null){
         	  @SuppressWarnings("unchecked")
-			List<th.co.aoe.makedev.missconsult.xstream.RoleType> roles= null;//bizClubService.listRoleTypeByRcId(rcId);
+			List<th.go.dbd.bizclub.domain.RoleType> roles= null;//bizClubService.listRoleTypeByRcId(rcId);
         	  logger.debug("zzzzzzzzzzzzzzzzzzzzzzzzzzz "+roles);
         	  if(roles!=null && roles.size()>0){
-        		  for (th.co.aoe.makedev.missconsult.xstream.RoleType roleType : roles) {
+        		  for (th.go.dbd.bizclub.domain.RoleType roleType : roles) {
         			  role.add(roleType);
 				}
         	  }
@@ -133,20 +137,20 @@ public class CustomUserDetailsService implements UserDetailsService {
         	 
            }
 		return role;
-	}*/
+	}
 	/**
 	 * Retrieves a collection of {@link GrantedAuthority} based on a numerical role
 	 * @param role the numerical role
 	 * @return a collection of {@link GrantedAuthority
 	 */
-	/*public Collection<? extends GrantedAuthority> getAuthorities(Set<Role> role) {
+	/*	public Collection<? extends GrantedAuthority> getAuthorities(Set<Role> role) {
 		List<GrantedAuthority> authList = getGrantedAuthorities(getRoles(role));
 		return authList;
 	}*/
-/*	public Collection<? extends GrantedAuthority> getAuthorities(Set<th.co.aoe.makedev.missconsult.xstream.RoleType> role) {
+	public Collection<? extends GrantedAuthority> getAuthorities(Set<th.go.dbd.bizclub.domain.RoleType> role) {
 		List<GrantedAuthority> authList = getGrantedAuthorities(getRoles(role));
 		return authList;
-	}*/
+	}
 	
 	/**
 	 * Converts a numerical role to an equivalent list of roles
@@ -161,15 +165,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 		}
 		return roles;
 	}*/
-	/*public List<String> getRoles(Set<th.co.aoe.makedev.missconsult.xstream.RoleType> role) {
+	public List<String> getRoles(Set<th.go.dbd.bizclub.domain.RoleType> role) {
 		List<String> roles = new ArrayList<String>();
 		if(role!=null && role.size()>0)
-		for (th.co.aoe.makedev.missconsult.xstream.RoleType key : role) {
+		for (th.go.dbd.bizclub.domain.RoleType key : role) {
 			roles.add(key.getRole());
 		}
 		return roles;
 	}
-	*/
+	
 	/**
 	 * Wraps {@link String} roles to {@link SimpleGrantedAuthority} objects
 	 * @param roles {@link String} of roles

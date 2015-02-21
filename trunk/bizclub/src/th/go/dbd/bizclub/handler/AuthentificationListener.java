@@ -11,7 +11,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-import com.gl.finwiz.core.constant.ServiceConstant;
+import th.go.dbd.bizclub.constant.ServiceConstant;
+
 
 public class AuthentificationListener  implements AuthenticationFailureHandler{
 	private static final Logger logger = Logger.getLogger(ServiceConstant.LOG_APPENDER);

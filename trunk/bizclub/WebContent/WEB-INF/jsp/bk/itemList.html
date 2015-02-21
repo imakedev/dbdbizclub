@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="all">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<link href="WEB-INF/css/bootstrap.min.css" rel="stylesheet">
+<link href="WEB-INF/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="WEB-INF/css/style.css" media="all" />
+<link href="WEB-INF/material/css/ripples.min.css" rel="stylesheet">
+<link href="WEB-INF/material/css/material-wfont.min.css" rel="stylesheet">
+<title>Bizclub</title>
+</head>
+<body>
+<div id="top_menu">
+	<div id="box_top">
+		<div class="row">
+    	<div class="col-md-2" style="padding:10px 0 0 50px;"><img src="WEB-INF/images/logo.png"></div>
+        <div class="col-md-7" style="z-index: 9; position: relative;">                
+        	<nav id="nav" role="navigation">
+                <a href="#nav" title="Show navigation">Show navigation</a>
+                <a href="#" title="Hide navigation">Hide navigation</a>
+                <ul >
+                    <li><a href="#">หน้าแรก</a></li>
+                    <li>
+                        <a href="#" aria-haspopup="true"><span>ข้อมูลทางการค้า </span></a>
+                        <ul>
+                            <li><a href="#">ผลิตภัณฑ์</a></li>
+                            <li><a href="#">บริการ</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#" >ข่าวประชาสัมพันธ์</a></li>
+                    <li><a href="#">ระบบรายงาน</a></li>
+                    <li><a href="#">ระบบสมาชิก</a></li>
+                    <li><a href="#">ติดต่อเรา</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+	<div class="col-md-6 col-md-offset-3 visible-xs" style="margin-top: -30px; margin-left: 60px; z-index: 99; position: relative;">
+		<div class="form-group">
+		    <div class="input-group">
+		        <input class="form-control textsize" id="inputWarning" type="text" placeholder="Search" style="background-color: #fff;">
+		        <span class="input-group-btn">
+		            <button class="btn btn-material-indigo" type="button" style="padding: 2px 10px 2px 10px; font-weight: bold; font-size: 18px; margin-left: -5px; ">Search</button>
+		        </span>
+		    </div>
+		</div>
+	</div>
+    <div class="col-md-6 col-md-offset-3 hidden-xs">
+		<div class="form-group">
+		    <div class="input-group style-5">
+		        <input type="search" placeholder="search">
+		        <span class="input-group-btn">
+					<button type="submit" class="btn btn-material-indigo" style="font-weight: bold; font-size: 22px; margin-top: -15px;">Search</button>
+				</span>
+		    </div>
+		</div>
+	</div>
+</div>
+</div>
+<!-- ------------------------------------------- END MENU/ BEGIN BODY ----------------------------------------------------------------------- -->
+
+<div style="background:#5E3752; padding:20px 0 20px 0;">
+	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
+		<form class="form-inline" role="form" style="margin-bottom: 50px;">
+		    <fieldset>
+		    	<div class="row">
+		    		<div class="col-md-4">
+				    	<div class="btn-group" role="group" style="margin-top: 0px; border: 1px solid #663399">
+						  <button type="button" class="btn btn-default" style="font-size: 16px; color: purple;">สินค้าทั้งหมด</button>
+						  <button type="button" class="btn btn-default" style="font-size: 16px; color: purple;">สินค้าขายดี</button>
+						  <button type="button" class="btn btn-default" style="font-size: 16px; color: purple;">ขายล่าสุด</button>
+						</div>
+		        	</div>
+			        <div class="col-md-4">
+				        <div class="form-group">
+				            <label for="select" class="col-md-4 col-md-offset-5 control-label">เรียงตาม:</label>
+				            <div class="col-md-1">
+				                <select class="form-control textsize" id="select">
+				                	<option>ทั้งหมด</option>
+				                	<option>ชื่อสินค้า</option>
+				                    <option>วันที่เสนอขายสินค้า</option>
+				                </select>
+				            </div>
+				        </div>
+			        </div>
+			        <div class="col-md-4">
+				        <div class="form-group has-warning">
+						    <div class="input-group col-md-offset-2">
+						        <input class="form-control input-lg textsize" id="search" placeholder="คำที่ต้องการค้นหา" type="text">
+						        <span class="input-group-btn">
+						            <button class="btn btn-material-amber btn-flat" type="button" style="padding: 5px 10px"><i class="mdi-action-search"></i></button>
+						        </span>
+						    </div>
+						</div>
+					</div>
+				</div>
+	        </fieldset>
+	      </form>
+	      <div class="col-md-4 col-md-offset-8">
+	      	<a href="#" class="btn btn-white" style="padding: 0px;"><img src="WEB-INF/images/fb.png" width="30px" height="30px"/></a>
+	      	<a href="#" class="btn btn-white" style="padding: 0px;"><img src="WEB-INF/images/tw.png" width="30px" height="30px"/></a>
+	      	<a href="#" class="btn btn-white" style="padding: 0px;"><img src="WEB-INF/images/gp.png" width="30px" height="30px"/></a>
+	      	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#item-popup" style="font-size: 16px; color: orange; border: 1px solid orange; padding: 5px 10px 5px 10px;"><i class="mdi-content-add"></i> เพิ่มสินค้าใหม่ </button>
+	      </div>
+	      <div class="row">
+	      	<div class="span8 offset2">
+		      <div class="jumbotron">
+		      	<div class="row">
+		      		<div class="col-md-12">
+		      			<div class="list-group">
+		      				<div class="row">
+			      				<div class="col-md-9" style="margin: 10px 0px 10px 0px; padding-left: 30px;">
+								    <div class="list-group-item" style="margin-left: 10px;">
+								        <div class="row-picture">
+								            <img class="square" src="" alt="icon">
+								        </div>
+								        <div class="row-content">
+								            <h4 class="list-group-item-heading">VERY OLD LADIES 9CT GOLD WATCH - CLORIS - 20 GRAMS</h4>
+								            <p class="list-group-item-text" style="margin-bottom: 5px;">บจ. ดรีมจ๊อคกี้</p>
+								            <span>รับผลิตสื่อวิดีทัศน์, สื่อประชาสัมพันธ์-โฆษณาครบวงจร</span>						        
+								        </div>
+								    </div>
+							    </div>
+							    <div class="col-md-3" style="margin: 10px 0px 0px 0px;">
+								    <span style="float: right;">
+								    	<button class="btn btn-success btn-flat bton" data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+										<button class="btn btn-danger btn-flat bton" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
+								    </span>
+							    	<span class="rating">
+								        <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1"/>
+								        <label for="rating-input-1-5" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-4" name="rating-input-1"/>
+								        <label for="rating-input-1-4" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-3" name="rating-input-1"/>
+								        <label for="rating-input-1-3" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-2" name="rating-input-1"/>
+								        <label for="rating-input-1-2" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-1" name="rating-input-1"/>
+								        <label for="rating-input-1-1" class="rating-star"></label>
+									</span>
+									<br>
+									<br>
+									<button class="btn btn-material-amber" type="button" style="padding: 5px 7px; float: right;"><i class="mdi-action-loyalty">Promotion</i></button>
+						    	</div>
+					    	</div>
+						    <div class="list-group-separator"></div>
+						     <div class="row">
+			      				<div class="col-md-9" style="margin: 10px 0px 10px 0px; padding-left: 30px;">
+								    <div class="list-group-item" style="margin-left: 10px;">
+								        <div class="row-picture">
+								            <img class="square" src="" alt="icon">
+								        </div>
+								        <div class="row-content">
+								            <h4 class="list-group-item-heading">ANTIQUE SOLID SILVER ART DECO WATCH set STONES & ENAMEL</h4>
+								            <p class="list-group-item-text" style="margin-bottom: 5px;">บจ. เอาท์ดอร์อินโนเวชั่น</p>
+								            <span>อุปกรณ์แค้มปิ้ง ,กระเป๋ากันน้ำ,อุปกรณ์ยังชีพ</span>						        
+								        </div>
+								    </div>
+							    </div>
+							    <div class="col-md-3" style="margin: 10px 0px 0px 0px;">
+							    	<span style="float: right;">
+								    	<button class="btn btn-success btn-flat bton" data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+										<button class="btn btn-danger btn-flat bton" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
+								    </span>
+							    	<span class="rating">
+								        <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1"/>
+								        <label for="rating-input-1-5" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-4" name="rating-input-1"/>
+								        <label for="rating-input-1-4" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-3" name="rating-input-1"/>
+								        <label for="rating-input-1-3" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-2" name="rating-input-1"/>
+								        <label for="rating-input-1-2" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-1" name="rating-input-1"/>
+								        <label for="rating-input-1-1" class="rating-star"></label>
+									</span>
+									<br>
+									<br>
+									<br>
+									<button class="btn btn-material-amber" type="button" style="padding: 5px 7px; float: right;"><i class="mdi-action-loyalty">Promotion</i></button>
+						    	</div>
+					    	</div>
+					    	<div class="list-group-separator"></div>
+						    <div class="row">
+			      				<div class="col-md-9" style="margin: 10px 0px 10px 0px; padding-left: 30px;">
+								    <div class="list-group-item" style="margin-left: 10px;">
+								        <div class="row-picture">
+								            <img class="square" src="" alt="icon">
+								        </div>
+								        <div class="row-content">
+								            <h4 class="list-group-item-heading">VERY OLD SILVER & ENAMEL WATCH - VERY PRETTY DESIGN - RARE - L@@K</h4>
+								            <p class="list-group-item-text" style="margin-bottom: 5px;">หจ. แม็กซิม่าครีเอชั่น</p>
+								            <span>เครื่องประดับอัญมณีสังเคราะห์</span>						        
+								        </div>
+								    </div>
+							    </div>
+							    <div class="col-md-3" style="margin: 10px 0px 0px 0px;">
+							    	<span style="float: right;">
+								    	<button class="btn btn-success btn-flat bton" data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+										<button class="btn btn-danger btn-flat bton" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
+								    </span>
+							    	<span class="rating">
+								        <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1"/>
+								        <label for="rating-input-1-5" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-4" name="rating-input-1"/>
+								        <label for="rating-input-1-4" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-3" name="rating-input-1"/>
+								        <label for="rating-input-1-3" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-2" name="rating-input-1"/>
+								        <label for="rating-input-1-2" class="rating-star"></label>
+								        <input type="radio" class="rating-input" id="rating-input-1-1" name="rating-input-1"/>
+								        <label for="rating-input-1-1" class="rating-star"></label>
+									</span>
+									<br>
+									<br>
+									<br>
+									<button class="btn btn-material-amber" type="button" style="padding: 5px 7px; float: right;"><i class="mdi-action-loyalty">Promotion</i></button>
+						    	</div>
+					    	</div>
+						    <div class="list-group-separator"></div>
+						</div>
+		      		</div>
+		      	</div>
+		      </div>
+	      	</div>
+	      </div>
+	      <ul class="pager">
+		    <li class="previous disabled"><a href="javascript:void(0)">← Older</a></li>
+		    <li class="next"><a href="javascript:void(0)">Newer →</a></li>
+		</ul>
+  		</div>
+	</div>
+<!-- ----------------------------------------------------ADD/EDIT ITEM------------------------------------------------------------------- -->
+<div id="item-popup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-md-12">
+      			<form class="form-horizontal">
+				    <fieldset>
+				    	<div>
+				    		<h4 class="col-md-6 col-md-offset-5" style="color:purple;">เพิ่มสินค้าใหม่</h4>
+				    	</div>
+				        <div class="form-group">
+				        	<label class="col-md-4 control-label" style="color:purple;">ชื่อสินค้า: </label>
+				            <div class="col-md-6">
+				                <input class="form-control textsize" id="member" type="text">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-4 control-label" style="color:purple;">ภาพสินค้า: </label>
+				            <div class="col-md-6">
+				                <input readonly="" class="form-control floating-label" placeholder="Browse..." type="text">
+                				<input id="inputFile" multiple="" type="file">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-4 control-label" style="color:purple;">ราคา: </label>
+				            <div class="col-md-6">
+				                <input class="form-control textsize" id="name" type="text">
+				            </div>
+				            <label class="control-label" style="color:purple;"> บาท</label>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-4 control-label" style="color:purple;">รายละเอียดสินค้า: </label>
+				            <div class="col-md-6">
+				                <textarea rows="3" cols="" class="form-control textsize"></textarea>
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<div class="col-md-8 col-md-offset-3">
+					        	<button type="reset" class="btn btn-white" style="font-weight: bold; font-size: 22px;">cancel</button>
+					        	<button type="submit" class="btn btn-material-indigo" style="font-weight: bold; font-size: 22px;">Submit</button>
+				        	</div>
+				        </div>
+			        </fieldset>
+		        </form>
+      		</div>
+      	</div>
+      </div>
+  	</div>
+ </div>
+</div>
+ 	<!-- ----------------------------------delete-popup------------------------------------------------------------- -->
+<div id="delete-popup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<form class="form-horizontal">
+			<fieldset>
+	          	<div class="form-group">
+		            <label class="col-lg-10 col-md-offset-1 control-label" style="text-align: center; font-size: 18px;">Are you sure?</label>
+	        	</div>
+	      	</fieldset>
+	      </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-material-blue-700 btn-xs" data-dismiss="modal">Yes</button>
+        <button class="btn btn-material-grey-100 btn-xs" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+<div id="footer">
+	<div class="container">
+	<div id="footer_body" class="clear">
+        <div  class="box_contact">
+            <div  class="topic_contact">สำนักพัฒนาผู้ประกอบธุรกิจ กรมพัฒนาธุรกิจการค้า กระทรวงพาณิชย์</div>
+            <div>เลขที่ 44/100 ถนน นนทบุรี 1 ต.บางกระสอ อ.เมือง จ.นททบุรี 11000</div>
+            <div>โทรศัพท์: 02-547-5962</div>
+            <div>โทรสาร: 02-547-5963-64</div>
+            <div>email: training@dbd.go.th</div>
+        </div>
+        <div style="float:right;width:300px;" >
+        	<div  style="text-align:right;">
+            	<a href="#"><img src="WEB-INF/images/btn_f.png"></a>&nbsp;<a href="#"><img src="WEB-INF/images/btn_t.png"></a>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- --------------------------------------------------------------------------- -->
+<script src="WEB-INF/js/jquery.min.js"></script>
+<script src="WEB-INF/js/bootstrap.min.js"></script>
+<script src="WEB-INF/material/js/ripples.min.js"></script>
+<script src="WEB-INF/material/js/material.min.js"></script>
+<script>
+      $(document).ready(function() {
+          $.material.init();
+      });
+</script>
+<style>
+body{
+	font-family: 'th_k2d_july8regular';
+}
+.bton {
+    padding: 2px;
+    margin: 0px;
+  }
+</style>
+</body>
+</html>

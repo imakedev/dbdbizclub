@@ -5,17 +5,39 @@
 
 package th.go.dbd.bizclub.service;
 
-import com.gl.finwiz.core.model.UserLoginM;
+import java.util.List;
 
+import th.go.dbd.bizclub.model.BizclubAssetM;
+import th.go.dbd.bizclub.model.BizclubPictureM;
+import th.go.dbd.bizclub.model.BizclubRegisterM;
+import th.go.dbd.bizclub.model.UserM;
 
 
 public interface BizClubService {
-	// public findByUsername;
-	/*public abstract int saveOrUpdateMissTestResult(MissTestResult missTestResult);
-	public abstract int startMissTestResult(MissTestResult missTestResult); 
-	public abstract int processMissTestResult(MissTestResult missTestResult);
-	public abstract int saveOrUpdateMissTodo(MissTodo missTodo);
-	 */
-	public abstract UserLoginM login(UserLoginM userLoginM);
+	// User
+	public Integer saveUser(UserM userM) ;
+	public Integer updateUser(UserM userM) ;
+	public Integer deleteUser(UserM userM);
+	public UserM findUserById(Integer userId);
+	public List<UserM> searchUser(UserM userM) ;
+
+	// 
+	public Integer saveBizclubRegister(BizclubRegisterM bizclubRegisterM) ;
+	public Integer updateBizclubRegister(BizclubRegisterM bizclubRegisterM) ;
+	public Integer deleteBizclubRegister(BizclubRegisterM bizclubRegisterM);
+	public BizclubRegisterM findBizclubRegisterById(Integer brId);
+	public List<BizclubRegisterM> searchBizclubRegister(BizclubRegisterM bizclubRegisterM) ;
+	
+	public Integer saveBizclubPicture(BizclubPictureM bizclubPictureM) ;
+	public Integer updateBizclubPicture(BizclubPictureM bizclubPictureM) ;
+	public Integer deleteBizclubPicture(BizclubPictureM bizclubPictureM);
+	public BizclubPictureM findBizclubPictureById(Integer bpId);
+	public List<BizclubPictureM> searchBizclubPicture(BizclubPictureM bizclubPictureM) ;
+	
+	public Integer saveBizclubAsset(BizclubAssetM bizclubAssetM) ;
+	public Integer updateBizclubAsset(BizclubAssetM bizclubAssetM) ;
+	public Integer deleteBizclubAsset(BizclubAssetM bizclubAssetM);
+	public BizclubAssetM findBizclubAssetById(Integer baId);
+	public List<BizclubAssetM> searchBizclubAsset(BizclubAssetM bizclubAssetM) ;
 	
 }

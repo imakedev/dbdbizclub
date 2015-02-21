@@ -7,7 +7,7 @@ package th.go.dbd.bizclub.form;
 
 import java.io.Serializable;
 
-import com.gl.finwiz.core.xstream.common.Paging;
+import th.go.dbd.bizclub.xstream.common.Paging;
 
 public class CommonForm
     implements Serializable
