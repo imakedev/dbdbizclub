@@ -11,290 +11,443 @@
 <link rel="stylesheet" type="text/css" href="WEB-INF/css/style.css" media="all" />
 <link href="WEB-INF/material/css/ripples.min.css" rel="stylesheet">
 <link href="WEB-INF/material/css/material-wfont.min.css" rel="stylesheet">
+<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <title>Bizclub</title>
 </head>
 <body>
 <div id="top_menu">
 	<div id="box_top">
 		<div class="row">
-    	<div class="col-md-2" style="padding:10px 0 0 50px;"><img src="WEB-INF/images/logo.png"></div>
-        <div class="col-md-7" style="z-index: 9; position: relative;">                
-        	<nav id="nav" role="navigation">
-                <a href="#nav" title="Show navigation">Show navigation</a>
-                <a href="#" title="Hide navigation">Hide navigation</a>
-                <ul >
-                    <li><a href="#">หน้าแรก</a></li>
-                    <li>
-                        <a href="#" aria-haspopup="true"><span>ข้อมูลทางการค้า </span></a>
-                        <ul>
-                            <li><a href="#">ผลิตภัณฑ์</a></li>
-                            <li><a href="#">บริการ</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#" >ข่าวประชาสัมพันธ์</a></li>
-                    <li><a href="#">ระบบรายงาน</a></li>
-                    <li><a href="#">ระบบสมาชิก</a></li>
-                    <li><a href="#">ติดต่อเรา</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="col-md-1 col-md-offset-1 dropdown hidden-xs" id="menuLogin" style="margin-left: 220px; margin-top: -10px;">
-        	<button class="dropdown-toggle btn btn-white btn-xs textbtn" data-toggle="dropdown" id="navLogin">Login</button>
-            <div class="dropdown-menu" style="padding: 10px; margin-left: -60px;">
-              <form class="form" id="formLogin"> 
-                <input name="username" id="username" class="form-control textinput" placeholder="Username" type="text"> 
-                <input name="password" id="password" class="form-control textinput" placeholder="Password" type="password"><br>
-                <button type="button" id="btnLogin" class="btn btn-xs" style="float: right;">Login</button>
-              </form>
-            </div>
-        </div>
-        <div class="col-md-1 dropdown visible-xs" id="menuLogin" style="margin-top: -150px; float: right;">
-        	<button class="dropdown-toggle btn btn-white btn-xs textbtn" data-toggle="dropdown" id="navLogin">Login</button>
-            <div class="dropdown-menu" style="padding: 10px; margin-left: -60px;">
-              <form class="form" id="formLogin"> 
-                <input name="username" id="username" class="form-control textinput" placeholder="Username" type="text"> 
-                <input name="password" id="password" class="form-control textinput" placeholder="Password" type="password"><br>
-                <button type="button" id="btnLogin" class="btn btn-xs" style="float: right;">Login</button>
-              </form>
-            </div>
-        </div>
-    </div>
-	<div class="col-md-6 col-md-offset-3 visible-xs" style="margin-top: -30px; margin-left: 60px; z-index: 99; position: relative;">
-		<div class="form-group">
-		    <div class="input-group">
-		        <input class="form-control textsize" id="inputWarning" type="text" placeholder="Search" style="background-color: #fff;">
-		        <span class="input-group-btn">
-		            <button class="btn btn-material-indigo" type="button" style="padding: 2px 10px 2px 10px; font-weight: bold; font-size: 18px; margin-left: -5px; ">Search</button>
-		        </span>
-		    </div>
+	    	<div class="col-md-2" style="padding:5px 0 0 50px;"><img src="WEB-INF/images/logo.png"></div>
+	        <div class="col-md-10" style="z-index: 9; position: relative;">                
+				<div id='cssmenu' style="font-size: 18px;">
+					<ul>
+					   <li class='active'><a href='#'>หน้าแรก</a></li>
+					   <li><a href='#'>ต่อยอดธุรกิจ</a></li>
+					   <li><a href='#'>ข้อมูลเครือข่าย</a></li>
+					   <li><a href='#'>ข่าวประชาสัมพันธ์</a></li>
+					   <li><a href='#'>ระบบสมาชิก</a></li>
+					   <li><a href='#'>ระบบรายงาน</a></li>
+					   <li><a href='#'>อนุมัติผู้ใช้งาน</a></li>
+					   <li><a href='#'>ติดต่อเรา</a></li>
+					   <li><a href='#'>ตั้งค่าระบบ</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-	</div>
-    <div class="col-md-6 col-md-offset-3 hidden-xs">
-		<div class="form-group">
-		    <div class="input-group style-5">
-		        <input type="search" placeholder="search">
-		        <span class="input-group-btn">
-					<button type="submit" class="btn btn-material-indigo" style="font-weight: bold; font-size: 22px; margin-top: -15px;">Search</button>
-				</span>
-		    </div>
+		<div class="col-md-6 col-md-offset-3 visible-xs" style="margin-top: -40px; margin-right:80px; z-index: 99; position: relative;">
+			<div class="form-group">
+			    <div class="input-group">
+			        <input class="form-control textsize" id="inputWarning" type="text" placeholder="Search" style="background-color: #fff;">
+			        <span class="input-group-btn">
+			            <button class="btn btn-material-indigo" type="button" style="padding: 2px 10px 2px 10px; font-weight: bold; font-size: 18px; margin-left: -5px; ">Search</button>
+			        </span>
+			    </div>
+			</div>
+		</div>
+	    <div class="col-md-6 col-md-offset-3 hidden-xs" style="margin-top: -25px;">
+			<div class="form-group">
+			    <div class="input-group style-5">
+			        <input type="search" placeholder="search">
+			        <span class="input-group-btn">
+						<button type="submit" class="btn btn-material-indigo" style="font-weight: bold; font-size: 18px; margin-top: -17px;">Search</button>
+					</span>
+			    </div>
+			</div>
 		</div>
 	</div>
 </div>
-</div>
-<!-- -------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- -------------------------------------------------BODY------------------------------------------------------------------------------- -->
 
-<div style="background:#5E3752; padding:20px 0 20px 0;">
-	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
-		<form class="form-horizontal">
-		    <fieldset>
-		    	<legend style="font-weight: bold; font-size: 32px;">สมัครสมาชิก</legend>
-		    	<div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">เลขบัตรประชาชน: <span style="color: red;">*</span></label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" id="id" placeholder="เลขบัตรประชาชน" type="text">
-		            </div>
-		           	<button>check</button>
-<!-- 		           	  if(เลขบัตรประชาชนถูกต้อง){ -->
-<!-- 			           	<span style="color: green;"><i class="mdi-navigation-check"></i></span> -->
-<!-- 			           	}else{ -->
-<!-- 			           	<span style="color: red;"><i class="mdi-navigation-close"></i></span> -->
-<!-- 			           	} -->
+<div style="background:#58047d; padding:20px 0 20px 0;">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1" style="padding-top: 40px; padding-bottom: 40px;">
+			<div class="col-md-12" style="background-color: #fbcb04; box-shadow: 5px 5px 10px #000; ">
+				<div style="text-align: left;  color: #fff; font-size: 35px; font-weight: bold;">สมัครสมาชิก</div>
+			</div>
+			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
+				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
+					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
+	          	</div>
+          	</div>
+          	<div class="col-md-12" style="background-color: #fff; box-shadow: 5px 5px 10px #000;">
+				<div class="col-md-8" style="padding-top: 40px;">
+					<form class="form-horizontal">
+				    	<fieldset>
+					    	<div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เลขบัตรประชาชน: <span style="color: red;">*</span></label>
+					            <div class="col-md-7" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="id" placeholder="เลขบัตรประชาชน" type="text">
+					            </div>
+					           	<button>check</button>
+			<!-- 		           	  if(เลขบัตรประชาชนถูกต้อง){ -->
+			<!-- 			           	<span style="color: green;"><i class="mdi-navigation-check"></i></span> -->
+			<!-- 			           	}else{ -->
+			<!-- 			           	<span style="color: red;"><i class="mdi-navigation-close"></i></span> -->
+			<!-- 			           	} -->
+				            </div>
+				            <div class="form-group">
+					            <div class="col-md-10 col-md-offset-2">
+					            	<span style="color: red; font-weight:bold; float: left;">*</span>
+					            	<div class="col-md-2 radio radio-primary">
+									    <label class="radio-inline">
+									      <input name="chk1" value="option1" checked="" type="radio">
+									      <span style="margin-top: -5px; margin-left: 20px;">นาย</span>
+									    </label>
+								    </div>
+								    <div class="col-md-2 radio radio-primary">
+									    <label class="radio-inline">
+									      <input name="chk1" value="option1" type="radio">
+									      <span style="margin-top: -5px; margin-left: 20px;">นาง</span>
+									    </label>
+									</div>
+									<div class="col-md-2 radio radio-primary">
+									    <label class="radio-inline">
+									      <input name="chk1" value="option1" type="radio">
+									      <span style="margin-top: -5px; margin-left: 20px;">นางสาว</span>
+									    </label>
+								    </div>
+								    <div class="col-md-2 radio radio-primary">
+									    <label class="radio-inline">
+									      <input name="chk1" value="option1" type="radio">
+									      <span style="margin-top: -5px; margin-left: 20px; text-align: right;">อื่นๆ(ระบุ)</span>
+									    </label>
+								    </div>
+								    <div class="col-md-3"> 
+									    <input class="form-control textsize" id="id" placeholder="" type="text">
+									</div>
+							    </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="name" placeholder="ชื่อ-สกุล" type="text">
+					            </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อเล่น: </label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="Nname" placeholder="ชื่อเล่น" type="text">
+					            </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">วัน เดือน ปีเกิด: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="Birth" placeholder="วัน เดือน ปีเกิด" type="date">
+					            </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์ (มือถือ): <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="Birth" placeholder="เบอร์โทรศัพท์ (มือถือ)" type="text">
+					            </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">E-mail: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="Birth" placeholder="E-mail" type="text">
+					            </div>
+				            </div>
+				            <div class="form-group">
+				            	<div class="row">
+				            		<div class="col-md-5 col-md-offset-2">
+							            <label class="col-md-5 control-label" style="padding-bottom: 10px;">Line ID:</label>
+							            <div class="col-md-7" style="padding-bottom: 10px;">
+							                <input class="form-control textsize" id="lineID" placeholder="Line ID" type="text">
+							            </div>
+						            </div>
+						            <div class="col-md-5">
+						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">Line Name: </label>
+							            <div class="col-md-7" style="padding-bottom: 10px;">
+							                <input class="form-control textsize" id="LineName" placeholder="Line Name" type="text">
+							            </div>
+						            </div>
+					            </div>
+				            </div>
+				            <div class="form-group">
+				            	<div class="row">
+				            		<div class="col-md-7">
+							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">ที่อยู่ที่สามารถติดต่อได้: <span style="color: red;">*</span></label>
+							            <div class="col-md-5" style="padding-bottom: 10px;">
+							                <input class="form-control textsize" id="adID" placeholder="บ้านเลขที่" type="text">
+							            </div>
+						            </div>
+						            <div class="col-md-5">
+						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">ถนน/ซอย: </label>
+							            <div class="col-md-7" style="padding-bottom: 10px;">
+							                <input class="form-control textsize" id="adRoad" placeholder="ถนน/ซอย" type="text">
+							            </div>
+						            </div>
+					            </div>
+				            </div>
+				            <div class="form-group">
+				            	<div class="row">
+				            		<div class="col-md-7">
+							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">จังหวัด: <span style="color: red;">*</span></label>
+							            <div class="col-md-5" style="padding-bottom: 10px;">
+							                <select class="form-control textsize" id="select">
+							                    <option>กรุงเทพมหานคร</option>
+							                    <option></option>
+							                    <option></option>
+							                </select>
+							            </div>
+						            </div>
+						            <div class="col-md-5">
+						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">อำเภอ/เขต: <span style="color: red;">*</span></label>
+							            <div class="col-md-7" style="padding-bottom: 10px;">
+							                <select class="form-control textsize" id="select">
+							                    <option>อำเภอ/เขต</option>
+							                    <option></option>
+							                    <option></option>
+							                </select>
+							            </div>
+						            </div>
+					            </div>
+				            </div>
+				            <div class="form-group">
+				            	<div class="row">
+				            		<div class="col-md-7">
+							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">ตำบล/แขวง: <span style="color: red;">*</span></label>
+							            <div class="col-md-5" style="padding-bottom: 10px;">
+							                <select class="form-control textsize" id="select">
+							                    <option>ตำบล/แขวง</option>
+							                    <option></option>
+							                    <option></option>
+							                </select>
+							            </div>
+						            </div>
+						            <div class="col-md-5">
+						            	<label class="col-md-6 control-label" style="padding-bottom: 10px;">รหัสไปรษณีย์: <span style="color: red;">*</span></label>
+							            <div class="col-md-6" style="padding-bottom: 10px;">
+							                <input class="form-control textsize" id="adRoad" placeholder="รหัสไปรษณีย์" type="text">
+							            </div>
+						            </div>
+					            </div>
+				            </div>
+			            </fieldset>
+		            </form>
 	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" id="fname" placeholder="ชื่อ-สกุล" type="text">
-		            </div>
+<!-- ---------------------------------------------------- ADD PIX --------------------------------------------------------- -->            
+	            <div class="col-md-4" style="padding:20px 0px 0px 100px;">
+	            	<img class="img-thumbnail" id="profile" src="WEB-INF/images/icon.png" alt="WEB-INF/images/icon.png" data-src="holder.js"/>
+	            	<input type='file' onchange="readURL(this);" style="font-size: 10px; "/>
 	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">วัน เดือน ปีเกิด: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" id="" placeholder="วัน เดือน ปีเกิด" type="date">
-		            </div>
+			</div>
+<!-- -------------------------------------- กรณี เป็นบุคคลธรรมดา/ผู้ประกอบกิจการ(ทั่วไป) ---------------------------------------------------- -->			
+<div hidden="">
+			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
+				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
+					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-action-assignment-ind"></i> เกี่ยวข้องกับธุรกิจ</p>
+	          	</div>
+          	</div>
+          	<div class="col-md-12" style="background-color: #fff; padding-top: 40px; box-shadow: 5px 5px 10px #000; ">
+				<form class="form-horizontal">
+			    	<fieldset>
+				    	<div class="form-group">
+				            <div class="col-md-10 col-md-offset-2">
+				            	<span style="color: red; font-weight:bold; float: left;">*</span>
+				            	<div class="col-md-3 radio radio-primary">
+								    <label class="radio-inline">
+								      <input name="chk1" value="option1" checked="" type="radio">
+								      <span style="margin-top: -5px; margin-left: 20px; width: 100px;">เจ้าของธุรกิจ</span>
+								    </label>
+							    </div>
+							    <div class="col-md-3 radio radio-primary">
+								    <label class="radio-inline">
+								      <input name="chk1" value="option1" type="radio">
+								      <span style="margin-top: -5px; margin-left: 20px; width: 100px;">ทายาทธุรกิจ</span>
+								    </label>
+								</div>
+							    <div class="col-md-1 radio radio-primary">
+								    <label class="radio-inline">
+								      <input name="chk1" value="option1" type="radio">
+								      <span style="margin-top: -5px; margin-left: 20px; text-align: right;">อื่นๆ </span>
+								    </label>
+							    </div>
+							    <div class="col-md-3">
+								    <input class="form-control textsize" id="" placeholder="ระบุ" type="text">
+								</div>
+						    </div>
+			            </div>
+			            <div class="form-group">
+				            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ตำแหน่ง: <span style="color: red;">*</span></label>
+				            <div class="col-md-4" style="padding-bottom: 10px;">
+				                <input class="form-control textsize" id="id" placeholder="ตำแหน่ง" type="text">
+				            </div>
+			            </div>
+		            </fieldset>
+	            </form>
+            </div>
+</div>
+<!-- ==================================================== ข้อมูลการประกอบธุรกิจ =================================================================== -->
+			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
+				<div class="col-md-3" style="border: 1px solid #fbb100; padding-top: 10px;">
+					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
+	          	</div>
+          	</div>
+          	<div class="col-md-12" style="background-color: #fff; box-shadow: 5px 5px 10px #000; ">
+				<div class="col-md-8" style="padding-top: 40px;">
+					<form class="form-horizontal">
+				    	<fieldset>
+<!-- ----------------------------------- กรณี เป็นนิติบุคคล ------------------------------------------------------------- -->
+    					<div>
+					    	<div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เลขทะเบียนนิติบุคคล: <span style="color: red;">*</span></label>
+					            <div class="col-md-7" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="id" placeholder="เลขทะเบียนนิติบุคคล" type="text">
+					            </div>
+					           	<button>check</button>
+			<!-- 		           	  if(เลขทะเบียนนิติบุคคล){ -->
+			<!-- 			           	<span style="color: green;"><i class="mdi-navigation-check"></i></span> -->
+			<!-- 			           	}else{ -->
+			<!-- 			           	<span style="color: red;"><i class="mdi-navigation-close"></i></span> -->
+			<!-- 			           	} -->
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อนิติบุคคล: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="" placeholder="ชื่อนิติบุคคล" type="text">
+					            </div>
+				            </div>
+            			</div>
+<!-- ----------------------------------- กรณี เป็นบุคคลธรรมดา/ผู้ประกอบธุรกิจ(จดทะเบียนพาณิชย์) ------------------------------------------------------------- -->
+				    	<div hidden="">
+					    	<div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เลขทะเบียนพาณิชย์: <span style="color: red;">*</span></label>
+					            <div class="col-md-7" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="id" placeholder="เลขทะเบียนพาณิชย์" type="text">
+					            </div>
+					           	<button>check</button>
+			<!-- 		           	  if(เลขทะเบียนพาณิชย์){ -->
+			<!-- 			           	<span style="color: green;"><i class="mdi-navigation-check"></i></span> -->
+			<!-- 			           	}else{ -->
+			<!-- 			           	<span style="color: red;"><i class="mdi-navigation-close"></i></span> -->
+			<!-- 			           	} -->
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="BCname" placeholder="ชื่อธุรกิจ" type="text">
+					            </div>
+				            </div>
+			            </div>
+<!-- ----------------------------------- กรณี เป็นบุคคลธรรมดา/ผู้ประกอบธุรกิจ(ทั่วไป) ------------------------------------------------------------- -->
+				    	<div hidden="">
+				            <div class="form-group" style="margin-top: 20px;">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="" placeholder="ชื่อธุรกิจ" type="text">
+					            </div>
+				            </div>
+			            </div>
+<!-- ------------------------------------------------------------------------------------------------------------------------ -->
+			            
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">สินค้า/บริการ: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="id" placeholder="สินค้า/บริการ" type="text">
+					            </div>
+				            </div>
+			            </fieldset>
+		            </form>
 	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">ที่อยู่: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <textarea class="form-control textsize" rows="3" id="textArea" placeholder="ที่อยู่"></textarea>
-		            </div>
+	            <!-- ---------------------------------- IMG LOGO --------------------------------- -->
+        	    <div class="col-md-4" style="padding:20px 0px 1px 100px;">
+	            	<img class="img-thumbnail" id="logo" src="WEB-INF/images/img_logo.png" alt="WEB-INF/images/icon.png" data-src="holder.js"/>
+	            	<input type='file' onchange="readURL1(this);" style="font-size: 10px; "/>
 	            </div>
-	            <div class="form-group">
-					  <div class="col-md-2 col-md-offset-2 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox">
-					    </label>
-					    <label class="control-label" style="font-weight: bold;"> นิติบุคคล</label>
-					  </div>
+	            <!-- ---------------------------------------------------------------------------- -->
+	            <div class="col-md-11 col-md-offset-1">
+		            <form class="form-horizontal">
+				    	<fieldset>
+					    	<div class="form-group">
+						    	<label class="col-md-2 control-label" style="padding-bottom: 10px; margin-left: -15px;">ประเภทธุรกิจ: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <div class="col-md-3 checkbox checkbox-primary">
+									  	<label>
+									      <input type="checkbox"> ผู้ผลิต
+									    </label>
+						            </div>
+						            <div class="col-md-3 checkbox checkbox-primary">
+									  	<label>
+									      <input type="checkbox"> ธุรกิจบริการ
+									    </label>
+						            </div>
+						            <div class="col-md-3 checkbox checkbox-primary">
+									  	<label>
+									      <input type="checkbox"> ค้าส่ง
+									    </label>
+						            </div>
+					            	<div class="col-md-3 checkbox checkbox-primary">
+									  	<label>
+									      <input type="checkbox"> ค้าปลีก
+									    </label>
+						            </div>
+						            <div class="col-md-3 checkbox checkbox-primary">
+									  	<label>
+									      <input type="checkbox"> นำเข้า
+									    </label>
+						            </div>
+						            <div class="col-md-3 checkbox checkbox-primary">
+									  	<label>
+									      <input type="checkbox"> ส่งออก
+									    </label>
+						            </div>
+						            <div class="col-md-2 checkbox checkbox-primary">
+									  	<label>
+									      <input type="checkbox"> อื่นๆ
+									    </label>
+						            </div>
+					            </div>
+				            </div>
+				    	</fieldset>
+			    	</form>
+		    	</div>
+	            <div class="col-md-8">
+					<form class="form-horizontal">
+				    	<fieldset>
+					    	<div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Facebook: </label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="Facebook" placeholder="Facebook" type="text">
+					            </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Website: </label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="Website" placeholder="Website" type="text">
+					            </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์: </label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="phone2" placeholder="เบอร์โทรศัพท์" type="text">
+					            </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ศูนย์เครือข่ายธุรกิจ BizClub: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <select class="form-control textsize" id="select">
+					                    <option> 36 จังหวัด</option>
+					                    <option></option>
+					                    <option></option>
+					                </select>
+					            </div>
+				            </div>
+			            </fieldset>
+		            </form>
 	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">เลขทะเบียนนิติบุคคล: <span style="color: red;">*</span></label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" id="" placeholder="เลขทะเบียนนิติบุคคล" type="text">
-		            </div>
-        		    <button>check</button>
-<!-- 		           	  if(เลขทะเบียนนิติบุคคลถูกต้อง){ -->
-<!-- 			           	<span style="color: green;"><i class="mdi-navigation-check"></i></span> -->
-<!-- 			           	}else{ -->
-<!-- 			           	<span style="color: red;"><i class="mdi-navigation-close"></i></span> -->
-<!-- 			           	} -->
+	            
+	            <div class="form-group" style="padding-top: 50px;">
+	            <div class="col-md-10 col-md-offset-4">
+	                <button type="reset" class="btn btn-default" style="font-weight: bold; font-size: 24px;">ยกเลิก</button>
+	                <button type="submit" class="btn btn-material-purple" style="font-weight: bold; font-size: 22px;">ลงทะเบียน</button>
 	            </div>
-         	    <div class="form-group">
-		            <label class="col-md-3 col-md-offset-1 control-label" style="padding-bottom: 10px;">ชื่อนิติบุคคล/ชื่อทางการค้า: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" id="" placeholder="ชื่อนิติบุคคล/ชื่อทางการค้า" type="text">
-	                </div>
-	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">สินค้า/บริการ: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" placeholder="สินค้า/บริการ"></input>
-		            </div>
-	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">ประเภทธุรกิจ: </label>
-		            <div class="col-md-2 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> ผู้ผลิต
-					    </label>
-		            </div>
-		            <div class="col-md-2 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> ธุรกิจบริการ
-					    </label>
-		            </div>
-		            <div class="col-md-2 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> ค้าส่ง
-					    </label>
-		            </div>
-	            	<div class="col-md-2 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> ค้าปลีก
-					    </label>
-		            </div>
-		            <div class="col-md-2 col-md-offset-4 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> นำเข้า
-					    </label>
-		            </div>
-		            <div class="col-md-2 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> ส่งออก
-					    </label>
-		            </div>
-		            <div class="col-md-2 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> อื่นๆ
-					    </label>
-		            </div>
-	            </div>
-	            <div class="form-group">
-		            <label for="select" class="col-md-2 col-md-offset-2 control-label">ความเกี่ยวข้องกับธุรกิจ: </label>
-		            <div class="col-lg-3" style="padding-top: 10px;">
-		                <select class="form-control textsize" id="select">
-		                    <option>เจ้าของธุรกิจ</option>
-		                    <option>ทายาทธุรกิจ</option>
-		                    <option>กรรมการ</option>
-		                    <option>หุ้นส่วน</option>
-		                    <option>อื่นๆ (ระบุ)</option>
-		                </select>
-		            </div>
-		            <div class="col-md-3" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" placeholder="อื่นๆ (ระบุ)"></input><span style="color: red;"> (กรณีอื่นๆ โปรดระบุ)</span>
-		            </div>
-		        </div>
-		        <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">ตำแหน่ง: </label>
-		            <div class="col-md-3" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" id="" placeholder="ตำแหน่ง" type="text">
-	                </div>
-	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">กลุ่มธุรกิจ (Custer): </label>
-		            <div class="col-md-2 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> Trader
-					    </label>
-		            </div>
-		            <div class="col-md-2 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> ธุรกิจบริการ
-					    </label>
-		            </div>
-		            <div class="col-md-2 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> แฟชั่น
-					    </label>
-		            </div>
-	            	<div class="col-md-2 col-md-offset-4 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> สุขภาพและความงาม
-					    </label>
-		            </div>
-		            <div class="col-md-3 checkbox checkbox-primary">
-					  	<label>
-					      <input type="checkbox"> ท่องเที่ยว+ร้านอาหาร+โรงแรม
-					    </label>
-		            </div>
-	            </div>
-	            <br><br>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">ชื่อเล่น: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" placeholder="ชื่อเล่น"></input>
-		            </div>
-	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">รูปประจำตัว: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input readonly="" class="form-control floating-label" placeholder="Browse..." type="text">
-                		<input id="inputFile" multiple="" type="file">
-		            </div>
-	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">Website: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" placeholder="Website"></input>
-		            </div>
-	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" placeholder="เบอร์โทรศัพท์"></input>
-		            </div>
-	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">Email: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" placeholder="Email"></input>
-		            </div>
-	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">Facebook: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" placeholder=Facebook></input>
-		            </div>
-	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">ID Line: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" placeholder="ID Line"></input>
-		            </div>
-	            </div>
-	            <div class="form-group">
-		            <label class="col-md-2 col-md-offset-2 control-label" style="padding-bottom: 10px;">ชื่อ Line: </label>
-		            <div class="col-md-4" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" placeholder="ชื่อ Line"></input>
-		            </div>
-	            </div>
-	            <div class="form-group">
-		            <div class="col-lg-10 col-lg-offset-4">
-		                <button class="btn btn-default" style="font-weight: bold; font-size: 24px;">ยกเลิก</button>
-		                <button type="submit" class="btn btn-material-purple" style="font-weight: bold; font-size: 22px;">ลงทะเบียน</button>
-		            </div>
-		        </div>
-		    </fieldset>
-		</form>
+	        </div> 
+	            
+            </div>
+                   
+		</div>
 	</div>
 </div>
 <div id="footer">
@@ -320,14 +473,49 @@
 <script src="WEB-INF/js/bootstrap.min.js"></script>
 <script src="WEB-INF/material/js/ripples.min.js"></script>
 <script src="WEB-INF/material/js/material.min.js"></script>
+<script type="text/javascript" src="WEB-INF/js/script.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 <script>
       $(document).ready(function() {
           $.material.init();
       });
 </script>
+<script>
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#profile')
+                .attr('src', e.target.result)
+                .width(170)
+                .height(180);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+<script>
+function readURL1(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#logo')
+                .attr('src', e.target.result)
+                .width(150)
+                .height(150);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 <style>
 body{
 	font-family: 'th_k2d_july8regular';
+	font-size: 20px;
 }
 </style>
 </body>
