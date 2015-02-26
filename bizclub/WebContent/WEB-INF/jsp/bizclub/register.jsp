@@ -304,7 +304,7 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อนิติบุคคล: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:input path="bizclubRegisterM.corpName" cssClass="form-control textsize"
+					              <form:input path="bizclubRegisterM.corpName" id="corpName" cssClass="form-control textsize"
 		                 placeholder="ชื่อนิติบุคคล"  />  
 					            </div>
 				            </div>
@@ -493,7 +493,7 @@ $(document).ready(function() {
 function getCrop(corpType){
 	var corpId="";
 	if(corpType=='1'){
-		corpId=jQuery.trim($("$corpId").val());
+		corpId=jQuery.trim($("#corpId").val());
 		if(corpId.length!=13){
 			alert(" กรุณากรอก เลขทะเบียนนิติบุคคล 13 หลัก ");
 			$("$corpId").focus();
@@ -501,7 +501,7 @@ function getCrop(corpType){
 		}
 	}
 	else {
-		corpId=jQuery.trim($("taxesId").val());
+		corpId=jQuery.trim($("#taxesId").val());
 		if(corpId.length!=13){
 			alert(" กรุณากรอก เลขทะเบียนพาณิชย์ 13 หลัก ");
 			$("$corpId").focus();
@@ -522,6 +522,21 @@ function getCrop(corpType){
 				    $("#taxesCorpName").val(msg.corpName);
 			  }
 			  $("#services").val(msg.corpServices);
+			  var corpBizTypes=msg.corpBizType.split("-");
+			  $("input[name=corpGroupIds]").each(function() { 
+				  var  corpGroupId_value=$(this).val();
+				  //alert(corpGroupId_value)
+				   for(var i=0;i<corpBizTypes.length;i++){
+					//   alert("inner->"+corpBizTypes[i])
+					   if(corpBizTypes[i]==corpGroupId_value){
+						  // corpBizTypes[i].checked=true;
+						  
+						   $(this).attr("checked","true");
+						//   alert( $(this).attr("checked"));
+					   }
+				   }
+				});
+			
 		
 		  });
 	//  data-toggle="modal" data-target="#member-popup"
