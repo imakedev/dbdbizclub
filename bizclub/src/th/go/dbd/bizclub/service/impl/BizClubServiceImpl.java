@@ -307,9 +307,9 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 
 
 	@Override
-	public BizclubCorpWM findBizclubCorpWById(String corpId) {
+	public BizclubCorpWM findBizclubCorpWById(String corpId,String corpType) {
 		// TODO Auto-generated method stub
-		BizclubCorpW bizclubCorp= bizClubRepository.findBizclubCorpWById(corpId);
+		BizclubCorpW bizclubCorp= bizClubRepository.findBizclubCorpWById(corpId,corpType);
 		BizclubCorpWM bizclubCorpWM=new BizclubCorpWM();
 		BeanUtils.copyProperties(bizclubCorp,bizclubCorpWM );
 		return bizclubCorpWM;

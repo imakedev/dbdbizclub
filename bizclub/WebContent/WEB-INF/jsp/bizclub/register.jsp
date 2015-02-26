@@ -291,10 +291,10 @@
 					    	<div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เลขทะเบียนนิติบุคคล: <span style="color: red;">*</span></label>
 					            <div class="col-md-7" style="padding-bottom: 10px;">
-					              <form:input path="bizclubRegisterM.corpId" cssClass="form-control textsize"
+					              <form:input path="bizclubRegisterM.corpId" id="corpId" cssClass="form-control textsize"
 		                 placeholder="เลขทะเบียนนิติบุคคล"  /> 
 					            </div>
-					           	<button type="button">check</button>
+					           	<button type="button" onclick="getCrop('1')">check</button>
 			<!-- 		           	  if(เลขทะเบียนนิติบุคคล){ -->
 			<!-- 			           	<span style="color: green;"><i class="mdi-navigation-check"></i></span> -->
 			<!-- 			           	}else{ -->
@@ -305,7 +305,7 @@
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อนิติบุคคล: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 					              <form:input path="bizclubRegisterM.corpName" cssClass="form-control textsize"
-		                 placeholder="ชื่อนิติบุคคล"  /> 
+		                 placeholder="ชื่อนิติบุคคล"  />  
 					            </div>
 				            </div>
             			</div>
@@ -314,10 +314,10 @@
 					    	<div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เลขทะเบียนพาณิชย์: <span style="color: red;">*</span></label>
 					            <div class="col-md-7" style="padding-bottom: 10px;">
-					              <form:input path="bizclubRegisterM.taxesId" cssClass="form-control textsize"
+					              <form:input path="bizclubRegisterM.taxesId" id="taxesId" cssClass="form-control textsize"
 		                 placeholder="เลขทะเบียนพาณิชย์"  /> 
 					            </div>
-					           	<button type="button">check</button>
+					           	<button type="button" onclick="getCrop('2')">check</button>
 			<!-- 		           	  if(เลขทะเบียนพาณิชย์){ -->
 			<!-- 			           	<span style="color: green;"><i class="mdi-navigation-check"></i></span> -->
 			<!-- 			           	}else{ -->
@@ -327,7 +327,7 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:input path="bizclubRegisterM.taxesCorpName" cssClass="form-control textsize"
+					              <form:input path="bizclubRegisterM.taxesCorpName" id="taxesCorpName" cssClass="form-control textsize"
 		                 placeholder="ชื่อธุรกิจ"  /> 
 					            </div>
 				            </div>
@@ -337,7 +337,7 @@
 				            <div class="form-group" style="margin-top: 20px;">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:input path="bizclubRegisterM.personCorpName" cssClass="form-control textsize"
+					              <form:input path="bizclubRegisterM.personCorpName" id="personCorpName" cssClass="form-control textsize"
 		                 placeholder="ชื่อธุรกิจ"  /> 
 					            </div>
 				            </div>
@@ -347,7 +347,7 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">สินค้า/บริการ: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:input path="bizclubRegisterM.services" cssClass="form-control textsize"
+					              <form:input path="bizclubRegisterM.services" id="services" cssClass="form-control textsize"
 		                 placeholder="สินค้า/บริการ"  /> 
 					            </div>
 				            </div>
@@ -490,7 +490,42 @@ $(document).ready(function() {
 			checkCardId();
 	});
 });
-
+function getCrop(corpType){
+	var corpId="";
+	if(corpType=='1'){
+		corpId=jQuery.trim($("$corpId").val());
+		if(corpId.length!=13){
+			alert(" กรุณากรอก เลขทะเบียนนิติบุคคล 13 หลัก ");
+			$("$corpId").focus();
+			return false;
+		}
+	}
+	else {
+		corpId=jQuery.trim($("taxesId").val());
+		if(corpId.length!=13){
+			alert(" กรุณากรอก เลขทะเบียนพาณิชย์ 13 หลัก ");
+			$("$corpId").focus();
+			return false;
+		}
+	}
+	
+	  $.ajax({
+		  type: "GET",
+		  contentType : 'application/json; charset=utf-8',
+		  url: "ws/corp/"+corpId+"/"+corpType,
+		  dataType : 'json'
+		})
+		  .done(function( msg ) {
+			  if(corpType=='1'){
+					$("#corpName").val(msg.corpName);
+			  }else{
+				    $("#taxesCorpName").val(msg.corpName);
+			  }
+			  $("#services").val(msg.corpServices);
+		
+		  });
+	//  data-toggle="modal" data-target="#member-popup"
+}
 function checkID(id) {
 	
     if(id.length != 13) return false;

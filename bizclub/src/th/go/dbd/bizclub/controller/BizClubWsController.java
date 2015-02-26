@@ -16,10 +16,10 @@ import th.go.dbd.bizclub.service.BizClubService;
 public class BizClubWsController {
 	@Autowired
     private BizClubService bizClubService;
-	@RequestMapping(value={"/corp/{corpId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody BizclubCorpWM getBizclubCorpWById(@PathVariable String corpId,Model model)
+	@RequestMapping(value={"/corp/{corpId}/{corpType}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody BizclubCorpWM getBizclubCorpWById(@PathVariable String corpId,@PathVariable String corpType,Model model)
 	    {
-		 return bizClubService.findBizclubCorpWById(corpId) ;
+		 return bizClubService.findBizclubCorpWById(corpId,corpType) ;
 	    }
 	
 }

@@ -291,8 +291,17 @@ public class BizClubRepository {
 		query.setParameter("rtId", rtId);
 		return query.getResultList();
 	}
-	public BizclubCorpW findBizclubCorpWById(String corpId) {
-		return entityManager.find(BizclubCorpW.class,corpId );
+	public BizclubCorpW findBizclubCorpWById(String corpId,String corpType) {
+		//return entityManager.find(BizclubCorpW.class,corpId );
+		StringBuffer sb=new StringBuffer("select u from BizclubCorpW u where u.corpId=:corpId and u.corpType=:corpType ");
+		Query query=entityManager.createQuery( sb.toString(), BizclubCorpW.class);
+		query.setParameter("corpId", corpId);
+		query.setParameter("corpType", corpType);
+		Object obj=query.getSingleResult();
+		if(obj!=null)
+			return (BizclubCorpW)obj;
+		else
+			return null;
 	}
 	
 }
