@@ -1,25 +1,39 @@
 package th.go.dbd.bizclub.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import th.go.dbd.bizclub.domain.BizclubAsset;
+import th.go.dbd.bizclub.domain.BizclubCorpW;
 import th.go.dbd.bizclub.domain.BizclubPicture;
 import th.go.dbd.bizclub.domain.BizclubRegister;
+import th.go.dbd.bizclub.domain.Role;
+import th.go.dbd.bizclub.domain.RoleType;
 import th.go.dbd.bizclub.domain.User;
 import th.go.dbd.bizclub.model.BizclubAssetM;
+import th.go.dbd.bizclub.model.BizclubCorpWM;
 import th.go.dbd.bizclub.model.BizclubPictureM;
 import th.go.dbd.bizclub.model.BizclubRegisterM;
+import th.go.dbd.bizclub.model.RoleM;
 import th.go.dbd.bizclub.model.UserM;
 import th.go.dbd.bizclub.repository.BizClubRepository;
 import th.go.dbd.bizclub.service.BizClubService;
+import th.go.dbd.bizclub.utils.MapUtils;
 
 @Service("bizClubServiceImpl")
 public class BizClubServiceImpl extends PostCommon implements BizClubService {
+	private static SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+	private static SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
+	private Map<String, String> corpGroupIdMap = MapUtils.asMap(MapUtils.entry("1", "ผู้ผลิต"), MapUtils.entry("2", "ธุรกิจบริการ"),
+			 MapUtils.entry("3", "ค้าส่ง"), MapUtils.entry("4", "ค้าปลีก"), MapUtils.entry("5", "นำเข้า"), MapUtils.entry("6", "ส่งออก")
+			 ,MapUtils.entry("7", "อื่นๆ"));
 	@Autowired
 	private BizClubRepository bizClubRepository;
 
@@ -32,6 +46,11 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		// TODO Auto-generated method stub
 		User user=new User();
 		BeanUtils.copyProperties(userM , user,"id");
+		if(userM.getRole()!=null && userM.getRole().getRoleId()!=null){
+			Role role =new Role();
+			role.setRoleId(userM.getRole().getRoleId());
+			user.setRole(role);
+		}
 		return bizClubRepository.saveUser(user);
 	}
 
@@ -40,6 +59,11 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		// TODO Auto-generated method stub
 		User user=new User();
 		BeanUtils.copyProperties(userM , user,"id");
+		if(userM.getRole()!=null && userM.getRole().getRoleId()!=null){
+			Role role =new Role();
+			role.setRoleId(userM.getRole().getRoleId());
+			user.setRole(role);
+		}
 		return bizClubRepository.updateUser(user);
 	}
 
@@ -57,6 +81,13 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		User user = bizClubRepository.findUserById(userId);
 		UserM userM=new UserM();
 		BeanUtils.copyProperties(user , userM);
+		
+		if(user.getRole()!=null){
+			RoleM roleM=new RoleM();
+			BeanUtils.copyProperties(user.getRole() , roleM);
+			userM.setRole(roleM);
+		}
+		System.out.println("role=>"+user.getRole());
 		return userM;
 	}
 
@@ -82,7 +113,16 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 	public Integer saveBizclubRegister(BizclubRegisterM bizclubRegisterM) {
 		// TODO Auto-generated method stub
 		BizclubRegister bizclubRegister=new BizclubRegister();
+		
 		BeanUtils.copyProperties(bizclubRegisterM , bizclubRegister);
+		if(bizclubRegisterM.getDateOfBirthStr() != null && bizclubRegisterM.getDateOfBirthStr().trim().length() > 0)
+			try {
+				bizclubRegister.setDateOfBirth(format2.parse(bizclubRegisterM.getDateOfBirthStr()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		return bizClubRepository.saveBizclubRegister(bizclubRegister);
 	}
 
@@ -108,6 +148,18 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		BizclubRegister bizclubRegister = bizClubRepository.findBizclubRegisterById(brId);
 		BizclubRegisterM bizclubRegisterM=new BizclubRegisterM();
 		BeanUtils.copyProperties(bizclubRegister , bizclubRegisterM);
+		if(bizclubRegister.getDateOfBirth() != null)
+				bizclubRegisterM.setDateOfBirthStr(format1.format(bizclubRegister.getDateOfBirth()));
+		StringBuffer sb=new StringBuffer();
+		if(bizclubRegister.getCorpGroupId()!=null && bizclubRegister.getCorpGroupId().length()>0){
+			String[] corpGroupIds=bizclubRegister.getCorpGroupId().split("-");
+			if(corpGroupIds!=null && corpGroupIds.length>0){
+				for (int i = 0; i < corpGroupIds.length; i++) {
+					sb.append(corpGroupIdMap.get(corpGroupIds[i])+" ");
+				}
+			}
+		}
+		bizclubRegisterM.setCorpGroupId(sb.toString());
 		return bizclubRegisterM;
 	}
 
@@ -180,17 +232,33 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 	@Override
 	public Integer saveBizclubAsset(BizclubAssetM bizclubAssetM) {
 		// TODO Auto-generated method stub
-		BizclubAsset BizclubAsset=new BizclubAsset();
-		BeanUtils.copyProperties(bizclubAssetM , BizclubAsset);
-		return bizClubRepository.saveBizclubAsset(BizclubAsset);
+		BizclubAsset bizclubAsset=new BizclubAsset();
+		BeanUtils.copyProperties(bizclubAssetM , bizclubAsset);
+		System.out.println("user->"+bizclubAssetM.getUser());
+		 
+		 if(bizclubAssetM!=null && bizclubAssetM.getUser()!=null){
+		 
+			User u=new User();
+			u.setUserId(bizclubAssetM.getUser().getUserId());
+			bizclubAsset.setUser(u);
+		}
+		
+		return bizClubRepository.saveBizclubAsset(bizclubAsset);
 	}
 
 	@Override
 	public Integer updateBizclubAsset(BizclubAssetM bizclubAssetM) {
 		// TODO Auto-generated method stub
-		BizclubAsset BizclubAsset=new BizclubAsset();
-		BeanUtils.copyProperties(bizclubAssetM , BizclubAsset);
-		return bizClubRepository.updateBizclubAsset(BizclubAsset);
+		BizclubAsset bizclubAsset=new BizclubAsset();
+		BeanUtils.copyProperties(bizclubAssetM , bizclubAsset);
+		if(bizclubAssetM!=null && bizclubAssetM.getUser()!=null){
+			 
+			User u=new User();
+			u.setUserId(bizclubAssetM.getUser().getUserId());
+			bizclubAsset.setUser(u);
+		}
+		System.out.println("id->"+bizclubAssetM.getBaId());
+		return bizClubRepository.updateBizclubAsset(bizclubAsset);
 	}
 
 	@Override
@@ -228,6 +296,23 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 			bizclubAssetModelList.add(bizclubAssetModel);
 		}
 		return bizclubAssetModelList;
+	}
+
+
+	@Override
+	public List<RoleType> listRoleType(Integer rtId) {
+		// TODO Auto-generated method stub
+		return bizClubRepository.listRoleType(rtId);
+	}
+
+
+	@Override
+	public BizclubCorpWM findBizclubCorpWById(String corpId) {
+		// TODO Auto-generated method stub
+		BizclubCorpW bizclubCorp= bizClubRepository.findBizclubCorpWById(corpId);
+		BizclubCorpWM bizclubCorpWM=new BizclubCorpWM();
+		BeanUtils.copyProperties(bizclubCorp,bizclubCorpWM );
+		return bizclubCorpWM;
 	}
 
 }

@@ -62,7 +62,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 			boolean accountNonLocked = true;
 		 
 			  boolean isAdmin=false;
-			  Long rcId=null;
+			  Integer rtId=null;
 		if(domainUserContact!=null){
 			/*
 			//logger.debug("  getMcontactName "+domainUser.getMissContact().getMcontactName());
@@ -86,7 +86,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 				em.close();
 			} 
           
-        */ 
+        */
+			if(domainUserContact.getRole()!=null && domainUserContact.getRole().getRoleId()!=null)
+					rtId=domainUserContact.getRole().getRoleId();
 			MyUserDetails user=new MyUserDetails(domainUserContact.getUserName(),  
 					domainUserContact.getPassword().toLowerCase(),
 					enabled,
@@ -95,7 +97,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 					accountNonLocked,
 					//getAuthorities(domainUser.getRole().getRole()));
 					//getAuthorities(domainUserContact.getRole()));
-					getAuthorities(getRolesMapping(rcId,isAdmin)));
+					getAuthorities(getRolesMapping(rtId,isAdmin)));
 			MyUser myUser=new MyUser(domainUserContact.getFirstName()+" "+domainUserContact.getLastName());
 			myUser.setUserid(domainUserContact.getUserId());
 			user.setMyUser(myUser);
@@ -110,7 +112,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 			throw new RuntimeException(e);
 		}
 	}
-	public  Set<th.go.dbd.bizclub.domain.RoleType> getRolesMapping(Long rcId,boolean isAdmin){
+	public  Set<th.go.dbd.bizclub.domain.RoleType> getRolesMapping(Integer rtId,boolean isAdmin){
 		  Set<th.go.dbd.bizclub.domain.RoleType> role =new HashSet<th.go.dbd.bizclub.domain.RoleType>();
 		  th.go.dbd.bizclub.domain.RoleType defualt= new th.go.dbd.bizclub.domain.RoleType();
 		   defualt.setRole("ROLE_USER");
@@ -124,9 +126,9 @@ public class CustomUserDetailsService implements UserDetailsService {
                    
 //     	  logger.debug("yyyyyyyyyyyyyyyyyyyyyyy "+roleContact.getRcId());
      //      if(roleContact!=null && roleContact.getRcId()!=null ){
-		     if(rcId!=null){
+		     if(rtId!=null){
         	  @SuppressWarnings("unchecked")
-			List<th.go.dbd.bizclub.domain.RoleType> roles= null;//bizClubService.listRoleTypeByRcId(rcId);
+			List<th.go.dbd.bizclub.domain.RoleType> roles= bizClubService.listRoleType(rtId);
         	  logger.debug("zzzzzzzzzzzzzzzzzzzzzzzzzzz "+roles);
         	  if(roles!=null && roles.size()>0){
         		  for (th.go.dbd.bizclub.domain.RoleType roleType : roles) {

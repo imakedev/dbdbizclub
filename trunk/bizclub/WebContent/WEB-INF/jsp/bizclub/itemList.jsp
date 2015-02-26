@@ -5,7 +5,8 @@
 
 <div style="background:#5E3752; padding:20px 0 20px 0;">
 	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
-		<form:form   id="productForm" name="productForm" modelAttribute="productForm"    method="post" action="/bizclub/product/search"
+<c:url var="search_url"  value="/product/search" />
+		<form:form   id="productForm" name="productForm" modelAttribute="productForm"    method="post" action="${search_url}"
 		cssClass="form-inline" role="form" style="margin-bottom: 50px;">
 		    <fieldset>
 		    	<div class="row">
@@ -35,7 +36,7 @@
 						    <div class="input-group col-md-offset-2">
 						        <form:input class="form-control input-lg textsize" path="keyword" placeholder="คำที่ต้องการค้นหา" type="text"/>
 						        <span class="input-group-btn">
-						            <button class="btn btn-material-amber btn-flat" type="submit" style="padding: 5px 10px"><i class="mdi-action-search"></i></button>
+						            <button class="btn btn-material-amber btn-flat" type="button" style="padding: 5px 10px"><i class="mdi-action-search"></i></button>
 						        </span>
 						    </div>
 						</div>
@@ -44,10 +45,12 @@
 	        </fieldset>
 	      </form:form>
 	      <div class="col-md-4 col-md-offset-8">
+	      	<c:if test="${isAuthen==true}">
 	      	<a href="#" class="btn btn-white" style="padding: 0px;"><img src="<c:url value="/resources/register/images/fb.png" />" width="30px" height="30px"/></a>
 	      	<a href="#" class="btn btn-white" style="padding: 0px;"><img src="<c:url value="/resources/register/images/tw.png" />" width="30px" height="30px"/></a>
 	      	<a href="#" class="btn btn-white" style="padding: 0px;"><img src="<c:url value="/resources/register/images/gp.png" />" width="30px" height="30px"/></a>
 	      	<button type="button" class="btn btn-default" data-toggle="modal" onclick="showAdd()" style="font-size: 16px; color: orange; border: 1px solid orange; padding: 5px 10px 5px 10px;"><i class="mdi-content-add"></i> เพิ่มสินค้าใหม่ </button>
+	      </c:if>
 	      </div>
 	      <div class="row">
 	      	<div class="span8 offset2">
@@ -76,9 +79,10 @@
 								    	<button class="btn btn-success btn-flat bton" data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
 										<button class="btn btn-danger btn-flat bton" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
 										 --%>
+										 	<c:if test="${isAuthen==true}">
 										 <button class="btn btn-success btn-flat bton" type="button" onclick="editProductItem('${bizclubAsset.baId}')"><i class="mdi-image-edit"></i></button>
 										<button class="btn btn-danger btn-flat bton" type="button"  onclick="showDelete('${bizclubAsset.baId}')"><i class="mdi-action-delete"></i></button>
-										
+										</c:if>
 								    </span>
 							    	<span class="rating">
 								        <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1"/>
@@ -93,8 +97,10 @@
 								        <label for="rating-input-1-1" class="rating-star"></label>
 									</span>
 									<br>
+									   	<c:if test="${isAuthen==true}">
 									<br>
 									<button class="btn btn-material-amber" type="button" style="padding: 5px 7px; float: right;"><i class="mdi-action-loyalty">Promotion</i></button>
+									</c:if>
 						    	</div>
 					    	</div>
 						    <div class="list-group-separator"></div>
@@ -119,10 +125,14 @@
       <div class="modal-body">
       	<div class="row">
       		<div class="col-md-12">
-      			 <form:form cssClass="form-horizontal"  id="productItemAddForm" name="productItemAddForm"  modelAttribute="productItemAddForm"    method="POST" action="add">
+      		<c:url var="post_add_url"  value="/product/add" />
+      		<c:url var="post_update_url"  value="/product/update" />
+      			 <form:form cssClass="form-horizontal"  id="productItemAddForm" name="productItemAddForm"  modelAttribute="productItemAddForm"    method="POST" action="${post_add_url}">
 				    <fieldset>
 				    	<div>
+				    
 				    		<h4 class="col-md-6 col-md-offset-5" style="color:purple;">เพิ่มสินค้าใหม่</h4>
+				    		
 				    	</div>
 				        <div class="form-group">
 				        	<label class="col-md-4 control-label" style="color:purple;">ชื่อสินค้า: </label>
@@ -213,12 +223,12 @@
     			 $("#baTitle").val(msg.baTitle);
     			  $("#baDetail").val(msg.baDetail);
     			  $("#baPrice").val(msg.baPrice);
-    			  $("#action").val("update");
+    			  $("#action").val('${post_update_url}');
     			  $("#item-popup").modal('show')
     		  });
       }
       function showAdd(){
-    	  $("#action").val("add");
+    	  $("#action").val('${post_add_url}');
 
 		  $("#baId").val("")
 		 $("#baTitle").val("");

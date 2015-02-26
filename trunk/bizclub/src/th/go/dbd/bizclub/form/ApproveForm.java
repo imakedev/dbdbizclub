@@ -12,6 +12,8 @@ public class ApproveForm extends CommonForm implements Serializable {
 	private static final long serialVersionUID = 1L;
     private BizclubRegisterM bizclubRegisterM;
     private String approveStatus;
+    private String approveCondition;
+    private Integer approveRole;
     private String roleModal;
     private Integer brId;
 	public ApproveForm() {
@@ -45,5 +47,17 @@ public class ApproveForm extends CommonForm implements Serializable {
 	}
 	public void setBrId(Integer brId) {
 		this.brId = brId;
+	}
+	public String getApproveCondition() {
+		return approveCondition;
+	}
+	public void setApproveCondition(String approveCondition) {
+		this.approveCondition = approveCondition;
+	}
+	public Integer getApproveRole() {
+		return approveRole;
+	}
+	public void setApproveRole(Integer approveRole) {
+		this.approveRole = approveRole;
 	}
 }

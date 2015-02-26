@@ -21,7 +21,7 @@
 <div id="top_menu">
 	<div id="box_top">
 		<div class="row">
-    	<div class="col-md-2" style="padding:10px 0 0 50px;"><img src="<c:url value="/resources/register/images/logo.png" />"></div>
+    	<div class="col-md-2" style="padding:10px 0 0 50px;"><a href="<c:url value="/" />"><img src="<c:url value="/resources/register/images/logo.png" />"></a></div>
 	</div>
 </div>
 </div>
@@ -57,7 +57,7 @@
 				        	<a href="#" style="float: left; color: #fff;">forget your password?</a>
 				        </div>
 				        <div class="col-md-4">
-				        	<a href="#" style="float: right; color: #fff; text-align: right;">Sing Up</a>
+				        	<a href="<c:url value="/register" />" style="float: right; color: #fff; text-align: right;">Sing Up</a>
 				        </div>
 				        <div class="col-md-1">
 				        	<a href="#" style="text-decoration: none; float: right;"><span class="mdi-action-info-outline" style="color: #fff;"></span></a>

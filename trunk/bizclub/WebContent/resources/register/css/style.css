@@ -15,7 +15,7 @@ a {    text-decoration: none;}
 .clear:before,.clear:after {   content: " ";display: table;}
 .clear:after {  clear: both;}
 .clearfix:after { content: "."; visibility: hidden; display: block;height: 0;clear: both;}
-#top_menu{background:#E9E2D2; height:140px;border-bottom:inset 2px #C1A053;margin-top:0px;
+#top_menu{background:#E9E2D2; height:100px;border-bottom:inset 2px #C1A053;margin-top:0px;
 }
 .news_topic{color:#FFFFFF;font-size:24px;font-weight:600;}
 #box_top{ width:100%; margin:0 auto;}
@@ -236,7 +236,7 @@ input[type="search"]:focus {
   outline: none;
 }
 .style-5 input[type="search"] {
-  padding: 10px;
+  padding: 5px;
   border: solid 1px #fff;
   box-shadow: inset 1px 1px 2px 0 #707070;
   transition: box-shadow 0.3s;
@@ -312,6 +312,257 @@ input[type="search"]:focus {
 .textinput{
 	font-size: 16px;
 }
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a,
+#cssmenu #menu-button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+  line-height: 1;
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#cssmenu:after,
+#cssmenu > ul:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+#cssmenu #menu-button {
+  display: none;
+}
+#cssmenu {
+  width: auto;
+  line-height: 1;
+}
+#cssmenu > ul > li {
+  float: left;
+  cursor: pointer;
+  -webkit-perspective: 1000px;
+  -moz-perspective: 1000px;
+  perspective: 1000px;
+}
+#cssmenu.align-center > ul {
+  font-size: 0;
+  text-align: center;
+}
+#cssmenu.align-center > ul > li {
+  display: inline-block;
+  float: none;
+}
+#cssmenu.align-right > ul > li {
+  float: right;
+}
+#cssmenu > ul > li > a {
+  padding: 16px 20px;
+  color: #f2e6f7;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight:bold;
+  background: #5b0483;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s;
+  -webkit-transform-origin: 50% 0;
+  -moz-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+#cssmenu > ul > li.active > a {
+  color: #fff;
+  background-color: #fbcb04;
+}
+#cssmenu > ul > li:hover > a,
+#cssmenu > ul > li > a:hover {
+  color: #fff;
+  -webkit-transform: rotateX(90deg) translateY(-23px);
+  -moz-transform: rotateX(90deg) translateY(-23px);
+  transform: rotateX(90deg) translateY(-23px);
+  -ms-transform: none;
+}
+#cssmenu > ul > li > a::before {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: -1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 16px 20px;
+  color: #fff;
+  background: #4a046a;
+  content: attr(data-title);
+  -webkit-transition: background 0.3s;
+  -moz-transition: background 0.3s;
+  transition: background 0.3s;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+  -webkit-transform-origin: 50% 0;
+  -moz-transform-origin: 50% 0;
+  transform-origin: 50% 0;
+  -ms-transform: translateY(- -18px);
+}
+#cssmenu > ul > li:hover > a::before,
+#cssmenu > ul > li > a:hover::before {
+  background: #fbcb04;
+}
+#cssmenu.small-screen {
+  width: 100%;
+}
+#cssmenu.small-screen > ul,
+#cssmenu.small-screen.align-center > ul {
+/*   width: 100%; */
+/*   text-align: left; */
+  height: auto;display: none;position: absolute;left: 0;right: 0;
+}
+/* #cssmenu.small-screen > ul > li{	width: 100%;float: none;text-align: left;} */
+/* 					#cssmenu.small-screen > ul > li > a */
+/* 					{height: auto;text-align: left;padding: 0 0.833em;text-decoration:none;	} */
+/* 						#cssmenu.small-screen > ul > li:not( :last-child ) > a */
+/* 						{border-right: none;border-bottom: 1px solid #8C4DB5;text-decoration:none;} */
+/* 				/* second level */ */
+/* 				#cssmenu.small-screen li ul	{position: static;/*padding: 1.25em;*/padding-top: 0;} */
+#cssmenu.small-screen:target > ul{display: block;}
+#cssmenu.small-screen > ul > li,
+#cssmenu.small-screen.align-center {
+  float: none;
+  display: block;
+  border-top: 1px solid rgba(100, 100, 100, 0.1);
+}
+#cssmenu.small-screen > ul > li:hover > a,
+#cssmenu.small-screen > ul > li > a:hover {
+  color: #fff;
+  font-weight:bold;
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+  -ms-transform: none;
+}
+#cssmenu.small-screen > ul > li > a::before {
+  display: none;
+}
+#cssmenu.small-screen #menu-button {
+  display: block;
+  padding: 16px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: #5b0483;
+}
+#cssmenu.small-screen #menu-button:after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 17px;
+  display: block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border-top: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  width: 22px;
+  height: 3px;
+}
+#cssmenu.small-screen #menu-button.menu-opened:after {
+  border-top: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+}
+#cssmenu.small-screen #menu-button:before {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 27px;
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #ffffff;
+}
+#cssmenu.small-screen #menu-button.menu-opened:before {
+  background: #5b0483;
+}
+
+
+#cssmenu.small-screen.align-center > ul li ui{
+  width: 100%;
+  text-align: left;
+}
+#cssmenu.small-screen > ul > li:hover > a,
+#cssmenu.small-screen > ul > li > ul > li a:hover {
+  color: #fff;
+  font-weight:bold;
+  -webkit-transform: none;
+  -moz-transform: none;
+  transform: none;
+  -ms-transform: none;
+}
+#cssmenu.small-screen > ul > li > ul > li a::before {
+  display: none;
+}
+#cssmenu.small-screen > ul > li > ul > li a.active {
+  background-color: #fbcb04;
+}
+
+#cssmenu ul li ul {
+  padding: 10;
+  position: absolute;
+  text-decoration:none;
+  width: 140px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
+}
+#cssmenu ul li ul li { 
+  background: #5b0483; 
+  display: block; 
+  color: #fff;
+}
+#cssmenu ul li ul li:hover { 
+	background: #7e06b4; 
+}
+#cssmenu ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+#cssmenu ul li ul li:hover a {
+  color: #fff;
+}
+#cssmenu > ul > li > ul > li > a {
+  padding: 16px 5px;
+  color: #e5cdf0;
+  letter-spacing: 1px;
+  text-transform: uppercase; 
+  text-decoration: none;
+  font-weight:bold;
+  background: #5b0483;
+} 
 /*====footer========*/
 #footer{height:240px; background:#817F80;color: #FFFFFF;}
 #footer_body{padding-top:30px; padding-bottom:30px; }

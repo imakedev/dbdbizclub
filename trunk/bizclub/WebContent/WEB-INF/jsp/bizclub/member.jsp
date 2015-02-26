@@ -34,16 +34,22 @@
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" id="fname" value="${memberForm.userM.firstName} ${memberForm.userM.lastName}" type="text" disabled="disabled">
-		            </div>
+		                <form:input path="userM.firstName" cssClass="form-control textsize"
+		                 placeholder="ชื่อ"  /> - 
+		                     <form:input path="userM.lastName" cssClass="form-control textsize"
+		                 placeholder="นามสกุล"  />
+					        
+					   </div>
 	            </div>
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Password </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
-		             <form:password path="userM.password" cssClass="form-control textsize"/>
-		               <%-- <input class="form-control textsize" id="bd" value="" type="date">  --%>
+		              <input type="password" id="userM.password" name="userM.password"  value="${userM.password}" class="form-control textsize"/>
+		           <%--   <form: path="userM.password" value="${userM.password}" cssClass="form-control textsize"/>
+		               <input class="form-control textsize" id="bd" value="" type="date">  --%>
 		            </div>
 	            </div>
+	            <%--
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ที่อยู่: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
@@ -53,6 +59,8 @@
 		                </textarea>
 		            </div>
 	            </div>
+	             --%>
+	             <%--
 	            <div class="form-group">
 					  <div class="col-md-3 checkbox checkbox-primary">
 					  	<label>
@@ -77,9 +85,7 @@
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">สินค้า/บริการ: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
 		                <form:input path="userM.services" cssClass="form-control textsize"/>
-		                <%--
-		                <input class="form-control textsize" value="" disabled="disabled"></input>
-		                 --%>
+
 		            </div>
 	            </div>
 	            <div class="form-group">
@@ -170,12 +176,14 @@
 		            </div>
 	            </div>
 	            <br><br>
+	            --%>
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อเล่น: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
-		                <input class="form-control textsize"  value="" disabled="disabled"></input>
+		                  <form:input path="userM.brNickName" cssClass="form-control textsize"/>
 		            </div>
 	            </div>
+	            <%--
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">รูปประจำตัว: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
@@ -183,6 +191,7 @@
                 		<input id="inputFile" multiple="" type="file" disabled="disabled">
 		            </div>
 	            </div>
+	             --%>
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Website: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
@@ -207,7 +216,7 @@
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Facebook: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" value="" disabled="disabled"></input>
+		                  <form:input path="userM.facebook" cssClass="form-control textsize"/>
 		            </div>
 	            </div>
 	            <div class="form-group">
@@ -220,12 +229,12 @@
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ Line: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" value="" disabled="disabled"></input>
-		            </div>
+		                <form:input path="userM.lineName" cssClass="form-control textsize"/></div>
 	            </div>
+	          
 	            <div class="form-group">
 		            <div class="col-lg-10">
-		                <button class="btn btn-default" style="font-weight: bold; font-size: 24px;"><i class="mdi-content-reply"></i>กลับหน้าหลัก</button>
+		                <button  type="button" class="btn btn-default" style="font-weight: bold; font-size: 24px;"><i class="mdi-content-reply"></i>กลับหน้าหลัก</button>
 		                <button type="submit" class="btn btn-material-red" style="font-weight: bold; font-size: 22px;">แก้ไขข้อมูล</button>
 		            </div>
 		        </div>
@@ -248,6 +257,7 @@
       $(document).ready(function() {
           $.material.init();
       });
+     
 </script>
 <style>
 body{

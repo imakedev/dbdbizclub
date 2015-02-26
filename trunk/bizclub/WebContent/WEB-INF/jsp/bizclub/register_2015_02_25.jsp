@@ -1,185 +1,144 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="all">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-<link href="WEB-INF/css/bootstrap.min.css" rel="stylesheet">
-<link href="WEB-INF/css/bootstrap-responsive.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="WEB-INF/css/style.css" media="all" />
-<link href="WEB-INF/material/css/ripples.min.css" rel="stylesheet">
-<link href="WEB-INF/material/css/material-wfont.min.css" rel="stylesheet">
-<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-<title>Bizclub</title>
-</head>
-<body>
-<div id="top_menu">
-	<div id="box_top">
-		<div class="row">
-	    	<div class="col-md-2" style="padding:5px 0 0 50px;"><img src="WEB-INF/images/logo.png"></div>
-	        <div class="col-md-10" style="z-index: 9; position: relative;">                
-				<div id='cssmenu' style="font-size: 18px;">
-					<ul>
-					   <li class='active'><a href='#'>หน้าแรก</a></li>
-					   <li><a href='#'>ต่อยอดธุรกิจ</a></li>
-					   <li><a href='#'>ข้อมูลเครือข่าย</a></li>
-					   <li><a href='#'>ข่าวประชาสัมพันธ์</a></li>
-					   <li><a href='#'>ระบบสมาชิก</a></li>
-					   <li><a href='#'>ระบบรายงาน</a></li>
-					   <li><a href='#'>อนุมัติผู้ใช้งาน</a></li>
-					   <li><a href='#'>ติดต่อเรา</a></li>
-					   <li><a href='#'>ตั้งค่าระบบ</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6 col-md-offset-3 visible-xs" style="margin-top: -40px; margin-right:80px; z-index: 99; position: relative;">
-			<div class="form-group">
-			    <div class="input-group">
-			        <input class="form-control textsize" id="inputWarning" type="text" placeholder="Search" style="background-color: #fff;">
-			        <span class="input-group-btn">
-			            <button class="btn btn-material-indigo" type="button" style="padding: 2px 10px 2px 10px; font-weight: bold; font-size: 18px; margin-left: -5px; ">Search</button>
-			        </span>
-			    </div>
-			</div>
-		</div>
-	    <div class="col-md-6 col-md-offset-3 hidden-xs" style="margin-top: -25px;">
-			<div class="form-group">
-			    <div class="input-group style-5">
-			        <input type="search" placeholder="search">
-			        <span class="input-group-btn">
-						<button type="submit" class="btn btn-material-indigo" style="font-weight: bold; font-size: 18px; margin-top: -17px;">Search</button>
-					</span>
-			    </div>
-			</div>
-		</div>
-	</div>
-</div>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/jsp/includes.jsp" %>
+
+<%@ include file="/WEB-INF/jsp/common/headerUnauthen.jsp" %>
 <!-- -------------------------------------------------BODY------------------------------------------------------------------------------- -->
 
 <div style="background:#58047d; padding:20px 0 20px 0;">
 	<div class="row">
+	<c:url var="post_url"  value="/register/action" />
+	
+		<form:form   id="registerForm" name="registerForm" modelAttribute="registerForm"    method="post" action="${post_url}"
+		>
 		<div class="col-md-10 col-md-offset-1" style="padding-top: 40px; padding-bottom: 40px;">
-			<div class="col-md-12" style="background-color: #fbcb04;">
-				<div style="text-align: left;  color: #fff; font-size: 35px; font-weight: bold;">สมัครสมาชิก</div>
-			</div>
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;">
 				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
 					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-communication-contacts"></i> สถานะทางธุรกิจ</p>
 	          	</div>
-          	</div>
+          	</div> 
           	<div class="col-md-12" style="background-color: #fff; padding-top: 40px;">
-				<form class="form-horizontal">
+				<form class="form-horizontal"> 
 			    	<fieldset>
 			    		<div class="form-group">
 				            <div class="col-md-12">
-				            	<div class="col-md-2 col-md-offset-1 radio radio-primary">
+				            	<div class="col-md-2 col-md-offset-1 radio radio-primary" style="margin-top: -5px">
 				            	<span style="color: red; font-weight:bold; float: left;">*</span>
 								    <label class="radio-inline">
-								      <input name="chk1" value="option1" checked="" type="radio">
+								    <%--   --%>
+								    <form:radiobutton path="bizclubRegisterM.corpType" value="1" checked="" /> 
+								    <%--
+								       <input name="chk1" value="option1" checked="" type="radio">
+								        --%>
 								      <span style="margin-top: -5px; margin-left: 20px;">นิติบุคคล</span>
 								    </label>
 							    </div>
 							    <div class="col-md-3 radio radio-primary">
 								    <label class="radio-inline">
-								      <input name="chk1" value="option1" type="radio">
+								      <form:radiobutton path="bizclubRegisterM.corpType" value="2" /> 
 								      <span style="margin-top: -5px; margin-left: 20px; width: 250px;">บุคคลธรรมดา(จดทะเบียนพาณิชย์)</span>
 								    </label>
 								</div>
 								<div class="col-md-3 radio radio-primary">
 								    <label class="radio-inline">
-								      <input name="chk1" value="option1" type="radio">
+								      <form:radiobutton path="bizclubRegisterM.corpType" value="3" /> 
 								      <span style="margin-top: -5px; margin-left: 20px; width: 200px;">บุคคลธรรมดา(ผู้สนใจทั่วไป)</span>
 								    </label>
 							    </div>
 						    </div>
 			            </div>
 			    	</fieldset>
-		    	</form>
+		    	  </form> 
 	    	</div>
-			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;">
+			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
 				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
 					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
 	          	</div>
           	</div>
-          	<div class="col-md-12" style="background-color: #fff;">
+          	<div class="col-md-12" style="background-color: #fff; box-shadow: 5px 5px 10px #000;">
 				<div class="col-md-8" style="padding-top: 40px;">
 					<form class="form-horizontal">
 				    	<fieldset>
 					    	<div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เลขบัตรประชาชน: <span style="color: red;">*</span></label>
 					            <div class="col-md-7" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="id" placeholder="เลขบัตรประชาชน" type="text">
+					                 <form:input path="bizclubRegisterM.cardId" cssClass="form-control textsize"
+		                 placeholder="เลขบัตรประชาชน"  />
+					              
 					            </div>
 					           	<button>check</button>
-			<!-- 		           	  if(เลขบัตรประชาชนถูกต้อง){ -->
-			<!-- 			           	<span style="color: green;"><i class="mdi-navigation-check"></i></span> -->
-			<!-- 			           	}else{ -->
-			<!-- 			           	<span style="color: red;"><i class="mdi-navigation-close"></i></span> -->
-			<!-- 			           	} -->
 				            </div>
 				            <div class="form-group">
 					            <div class="col-md-10 col-md-offset-2">
 					            	<span style="color: red; font-weight:bold; float: left;">*</span>
 					            	<div class="col-md-2 radio radio-primary">
 									    <label class="radio-inline">
-									      <input name="chk1" value="option1" checked="" type="radio">
-									      <span style="margin-top: -5px; margin-left: 20px;">นาย</span>
+									     <form:radiobutton path="bizclubRegisterM.titleType" value="1"  checked=""  />									      <span style="margin-top: -5px; margin-left: 20px;">นาย</span>
 									    </label>
 								    </div>
 								    <div class="col-md-2 radio radio-primary">
 									    <label class="radio-inline">
-									      <input name="chk1" value="option1" type="radio">
+									       <form:radiobutton path="bizclubRegisterM.titleType" value="2" />		
 									      <span style="margin-top: -5px; margin-left: 20px;">นาง</span>
 									    </label>
 									</div>
 									<div class="col-md-2 radio radio-primary">
 									    <label class="radio-inline">
-									      <input name="chk1" value="option1" type="radio">
+									       <form:radiobutton path="bizclubRegisterM.titleType" value="3" />		
 									      <span style="margin-top: -5px; margin-left: 20px;">นางสาว</span>
 									    </label>
 								    </div>
 								    <div class="col-md-2 radio radio-primary">
 									    <label class="radio-inline">
-									      <input name="chk1" value="option1" type="radio">
+									       <form:radiobutton path="bizclubRegisterM.titleType" value="4" />		
 									      <span style="margin-top: -5px; margin-left: 20px; text-align: right;">อื่นๆ(ระบุ)</span>
 									    </label>
 								    </div>
 								    <div class="col-md-3"> 
-									    <input class="form-control textsize" id="id" placeholder="" type="text">
+								      <form:input path="bizclubRegisterM.titleName" cssClass="form-control textsize"
+		                 placeholder=""  /> 
+									 
 									</div>
 							    </div>
 				            </div>
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="name" placeholder="ชื่อ-สกุล" type="text">
+					               <form:input path="bizclubRegisterM.brFirstName" cssClass="form-control textsize"
+		                 placeholder="ชื่อ"  /> - 
+		                     <form:input path="bizclubRegisterM.brLastName" cssClass="form-control textsize"
+		                 placeholder="นามสกุล"  />
 					            </div>
 				            </div>
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อเล่น: </label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="Nname" placeholder="ชื่อเล่น" type="text">
+					              <form:input path="bizclubRegisterM.brNickName" cssClass="form-control textsize"
+		                 placeholder="ชื่อเล่น"  /> 
+					             
 					            </div>
 				            </div>
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">วัน เดือน ปีเกิด: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
+					           <%--  <form:input path="bizclubRegisterM.birthday" cssClass="form-control textsize"
+		                 placeholder="ชื่อเล่น"  />
+		                  --%> 
 					                <input class="form-control textsize" id="Birth" placeholder="วัน เดือน ปีเกิด" type="date">
 					            </div>
 				            </div>
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์ (มือถือ): <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="Birth" placeholder="เบอร์โทรศัพท์ (มือถือ)" type="text">
+					              <form:input path="bizclubRegisterM.mobilePhone" cssClass="form-control textsize"
+		                 placeholder="เบอร์โทรศัพท์ (มือถือ)"  /> 
+					               
 					            </div>
 				            </div>
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">E-mail: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="Birth" placeholder="E-mail" type="text">
+					              <form:input path="bizclubRegisterM.email" cssClass="form-control textsize"
+		                 placeholder="E-mail"  /> 
 					            </div>
 				            </div>
 				            <div class="form-group">
@@ -187,13 +146,15 @@
 				            		<div class="col-md-5 col-md-offset-2">
 							            <label class="col-md-5 control-label" style="padding-bottom: 10px;">Line ID:</label>
 							            <div class="col-md-7" style="padding-bottom: 10px;">
-							                <input class="form-control textsize" id="lineID" placeholder="Line ID" type="text">
+							              <form:input path="bizclubRegisterM.lineId" cssClass="form-control textsize"
+		                 placeholder="Line ID"  /> 
 							            </div>
 						            </div>
 						            <div class="col-md-5">
 						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">Line Name: </label>
 							            <div class="col-md-7" style="padding-bottom: 10px;">
-							                <input class="form-control textsize" id="LineName" placeholder="Line Name" type="text">
+							              <form:input path="bizclubRegisterM.lineName" cssClass="form-control textsize"
+		                 placeholder="Line Name"  /> 
 							            </div>
 						            </div>
 					            </div>
@@ -203,13 +164,16 @@
 				            		<div class="col-md-7">
 							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">ที่อยู่ที่สามารถติดต่อได้: <span style="color: red;">*</span></label>
 							            <div class="col-md-5" style="padding-bottom: 10px;">
-							                <input class="form-control textsize" id="adID" placeholder="บ้านเลขที่" type="text">
+							              <form:input path="bizclubRegisterM.addressNo" cssClass="form-control textsize"
+		                 placeholder="บ้านเลขที่"  /> 
 							            </div>
 						            </div>
 						            <div class="col-md-5">
 						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">ถนน/ซอย: </label>
 							            <div class="col-md-7" style="padding-bottom: 10px;">
-							                <input class="form-control textsize" id="adRoad" placeholder="ถนน/ซอย" type="text">
+							              <form:input path="bizclubRegisterM.addressName" cssClass="form-control textsize"
+		                 placeholder="ถนน/ซอย"  /> 
+							             
 							            </div>
 						            </div>
 					            </div>
@@ -219,21 +183,17 @@
 				            		<div class="col-md-7">
 							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">จังหวัด: <span style="color: red;">*</span></label>
 							            <div class="col-md-5" style="padding-bottom: 10px;">
-							                <select class="form-control textsize" id="select">
-							                    <option>กรุงเทพมหานคร</option>
-							                    <option></option>
-							                    <option></option>
-							                </select>
+							                <form:select path="bizclubRegisterM.addressProvince" cssClass="form-control textsize">
+							                	<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
+							                </form:select>
 							            </div>
 						            </div>
 						            <div class="col-md-5">
 						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">อำเภอ/เขต: <span style="color: red;">*</span></label>
 							            <div class="col-md-7" style="padding-bottom: 10px;">
-							                <select class="form-control textsize" id="select">
-							                    <option>อำเภอ/เขต</option>
-							                    <option></option>
-							                    <option></option>
-							                </select>
+							              <form:select path="bizclubRegisterM.addressDistrict" cssClass="form-control textsize">
+							                	<form:option value="อำเภอ/เขต">อำเภอ/เขต</form:option>
+							                </form:select>
 							            </div>
 						            </div>
 					            </div>
@@ -243,17 +203,16 @@
 				            		<div class="col-md-7">
 							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">ตำบล/แขวง: <span style="color: red;">*</span></label>
 							            <div class="col-md-5" style="padding-bottom: 10px;">
-							                <select class="form-control textsize" id="select">
-							                    <option>ตำบล/แขวง</option>
-							                    <option></option>
-							                    <option></option>
-							                </select>
+							            <form:select path="bizclubRegisterM.addressSubDistrict" cssClass="form-control textsize">
+							                	<form:option value="ตำบล/แขวง">ตำบล/แขวง</form:option>
+							                </form:select>
 							            </div>
 						            </div>
 						            <div class="col-md-5">
 						            	<label class="col-md-6 control-label" style="padding-bottom: 10px;">รหัสไปรษณีย์: <span style="color: red;">*</span></label>
 							            <div class="col-md-6" style="padding-bottom: 10px;">
-							                <input class="form-control textsize" id="adRoad" placeholder="รหัสไปรษณีย์" type="text">
+							              <form:input path="bizclubRegisterM.addressPostCode" cssClass="form-control textsize"
+		                 placeholder="รหัสไปรษณีย์"  /> 
 							            </div>
 						            </div>
 					            </div>
@@ -263,18 +222,18 @@
 	            </div>
 <!-- ---------------------------------------------------- ADD PIX --------------------------------------------------------- -->            
 	            <div class="col-md-4" style="padding:20px 0px 0px 100px;">
-	            	<img class="img-thumbnail" id="profile" src="WEB-INF/images/icon.png" alt="WEB-INF/images/icon.png" data-src="holder.js"/>
+	            	<img class="img-thumbnail" id="profile" src="<c:url value="/resources/register/images/icon.png" />" alt="<c:url value="/resources/register/images/icon.png" />" data-src="holder.js"/>
 	            	<input type='file' onchange="readURL(this);" style="font-size: 10px; "/>
 	            </div>
 			</div>
 <!-- -------------------------------------- กรณี เป็นบุคคลธรรมดา/ผู้ประกอบกิจการ(ทั่วไป) ---------------------------------------------------- -->			
 <div hidden="">
-			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;">
+			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
 				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
 					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-action-assignment-ind"></i> เกี่ยวข้องกับธุรกิจ</p>
 	          	</div>
           	</div>
-          	<div class="col-md-12" style="background-color: #fff; padding-top: 40px;">
+          	<div class="col-md-12" style="background-color: #fff; padding-top: 40px; box-shadow: 5px 5px 10px #000; ">
 				<form class="form-horizontal">
 			    	<fieldset>
 				    	<div class="form-group">
@@ -282,31 +241,34 @@
 				            	<span style="color: red; font-weight:bold; float: left;">*</span>
 				            	<div class="col-md-3 radio radio-primary">
 								    <label class="radio-inline">
-								      <input name="chk1" value="option1" checked="" type="radio">
+								        <form:radiobutton path="bizclubRegisterM.corpConcerned" value="1"   checked=""/>		
 								      <span style="margin-top: -5px; margin-left: 20px; width: 100px;">เจ้าของธุรกิจ</span>
 								    </label>
 							    </div>
 							    <div class="col-md-3 radio radio-primary">
 								    <label class="radio-inline">
-								      <input name="chk1" value="option1" type="radio">
+								        <form:radiobutton path="bizclubRegisterM.corpConcerned" value="2"  />	
 								      <span style="margin-top: -5px; margin-left: 20px; width: 100px;">ทายาทธุรกิจ</span>
 								    </label>
 								</div>
 							    <div class="col-md-1 radio radio-primary">
 								    <label class="radio-inline">
-								      <input name="chk1" value="option1" type="radio">
+								         <form:radiobutton path="bizclubRegisterM.corpConcerned" value="3"  />	
 								      <span style="margin-top: -5px; margin-left: 20px; text-align: right;">อื่นๆ </span>
 								    </label>
 							    </div>
 							    <div class="col-md-3">
-								    <input class="form-control textsize" id="" placeholder="ระบุ" type="text">
+							    <form:input path="bizclubRegisterM.corpConcernedName" cssClass="form-control textsize"
+		                 placeholder="รหัสระบุ"  /> 
+								   
 								</div>
 						    </div>
 			            </div>
 			            <div class="form-group">
 				            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ตำแหน่ง: <span style="color: red;">*</span></label>
 				            <div class="col-md-4" style="padding-bottom: 10px;">
-				                <input class="form-control textsize" id="id" placeholder="ตำแหน่ง" type="text">
+				               <form:input path="bizclubRegisterM.position" cssClass="form-control textsize"
+		                 placeholder="ตำแหน่ง"  /> 
 				            </div>
 			            </div>
 		            </fieldset>
@@ -314,12 +276,12 @@
             </div>
 </div>
 <!-- ==================================================== ข้อมูลการประกอบธุรกิจ =================================================================== -->
-			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;">
+			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
 				<div class="col-md-3" style="border: 1px solid #fbb100; padding-top: 10px;">
 					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
 	          	</div>
           	</div>
-          	<div class="col-md-12" style="background-color: #fff;">
+          	<div class="col-md-12" style="background-color: #fff; box-shadow: 5px 5px 10px #000; ">
 				<div class="col-md-8" style="padding-top: 40px;">
 					<form class="form-horizontal">
 				    	<fieldset>
@@ -328,7 +290,8 @@
 					    	<div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เลขทะเบียนนิติบุคคล: <span style="color: red;">*</span></label>
 					            <div class="col-md-7" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="id" placeholder="เลขทะเบียนนิติบุคคล" type="text">
+					              <form:input path="bizclubRegisterM.corpId" cssClass="form-control textsize"
+		                 placeholder="เลขทะเบียนนิติบุคคล"  /> 
 					            </div>
 					           	<button>check</button>
 			<!-- 		           	  if(เลขทะเบียนนิติบุคคล){ -->
@@ -340,7 +303,8 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อนิติบุคคล: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="" placeholder="ชื่อนิติบุคคล" type="text">
+					              <form:input path="bizclubRegisterM.corpName" cssClass="form-control textsize"
+		                 placeholder="ชื่อนิติบุคคล"  /> 
 					            </div>
 				            </div>
             			</div>
@@ -349,7 +313,8 @@
 					    	<div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เลขทะเบียนพาณิชย์: <span style="color: red;">*</span></label>
 					            <div class="col-md-7" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="id" placeholder="เลขทะเบียนพาณิชย์" type="text">
+					              <form:input path="bizclubRegisterM.taxesId" cssClass="form-control textsize"
+		                 placeholder="เลขทะเบียนพาณิชย์"  /> 
 					            </div>
 					           	<button>check</button>
 			<!-- 		           	  if(เลขทะเบียนพาณิชย์){ -->
@@ -361,7 +326,8 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="BCname" placeholder="ชื่อธุรกิจ" type="text">
+					              <form:input path="bizclubRegisterM.taxesCorpName" cssClass="form-control textsize"
+		                 placeholder="ชื่อธุรกิจ"  /> 
 					            </div>
 				            </div>
 			            </div>
@@ -370,7 +336,8 @@
 				            <div class="form-group" style="margin-top: 20px;">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="" placeholder="ชื่อธุรกิจ" type="text">
+					              <form:input path="bizclubRegisterM.personCorpName" cssClass="form-control textsize"
+		                 placeholder="ชื่อธุรกิจ"  /> 
 					            </div>
 				            </div>
 			            </div>
@@ -379,7 +346,8 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">สินค้า/บริการ: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="id" placeholder="สินค้า/บริการ" type="text">
+					              <form:input path="bizclubRegisterM.services" cssClass="form-control textsize"
+		                 placeholder="สินค้า/บริการ"  /> 
 					            </div>
 				            </div>
 			            </fieldset>
@@ -387,7 +355,7 @@
 	            </div>
 	            <!-- ---------------------------------- IMG LOGO --------------------------------- -->
         	    <div class="col-md-4" style="padding:20px 0px 1px 100px;">
-	            	<img class="img-thumbnail" id="logo" src="WEB-INF/images/img_logo.png" alt="WEB-INF/images/icon.png" data-src="holder.js"/>
+	            	<img class="img-thumbnail" id="logo" src="<c:url value="/resources/register/images/img_logo.png" />" alt="<c:url value="/resources/register/images/icon.png" />" data-src="holder.js"/>
 	            	<input type='file' onchange="readURL1(this);" style="font-size: 10px; "/>
 	            </div>
 	            <!-- ---------------------------------------------------------------------------- -->
@@ -396,40 +364,40 @@
 				    	<fieldset>
 					    	<div class="form-group">
 						    	<label class="col-md-2 control-label" style="padding-bottom: 10px; margin-left: -15px;">ประเภทธุรกิจ: <span style="color: red;">*</span></label>
-					            <div class="col-md-8" style="padding-bottom: 10px;">
+					            <div class="col-md-9" style="padding-bottom: 10px;">
 					                <div class="col-md-3 checkbox checkbox-primary">
 									  	<label>
-									      <input type="checkbox"> ผู้ผลิต
+									  	  <form:checkbox path="corpGroupIds" value="1"/> ผู้ผลิต
 									    </label>
 						            </div>
 						            <div class="col-md-3 checkbox checkbox-primary">
 									  	<label>
-									      <input type="checkbox"> ธุรกิจบริการ
+									      <form:checkbox path="corpGroupIds" value="2"/> ธุรกิจบริการ
 									    </label>
 						            </div>
 						            <div class="col-md-3 checkbox checkbox-primary">
 									  	<label>
-									      <input type="checkbox"> ค้าส่ง
+									       <form:checkbox path="corpGroupIds" value="3"/> ค้าส่ง
 									    </label>
 						            </div>
 					            	<div class="col-md-3 checkbox checkbox-primary">
 									  	<label>
-									      <input type="checkbox"> ค้าปลีก
+									       <form:checkbox path="corpGroupIds" value="4"/> ค้าปลีก
 									    </label>
 						            </div>
 						            <div class="col-md-3 checkbox checkbox-primary">
 									  	<label>
-									      <input type="checkbox"> นำเข้า
+									       <form:checkbox path="corpGroupIds" value="5"/> นำเข้า
 									    </label>
 						            </div>
 						            <div class="col-md-3 checkbox checkbox-primary">
 									  	<label>
-									      <input type="checkbox"> ส่งออก
+									       <form:checkbox path="corpGroupIds" value="6"/> ส่งออก
 									    </label>
 						            </div>
 						            <div class="col-md-2 checkbox checkbox-primary">
 									  	<label>
-									      <input type="checkbox"> อื่นๆ
+									       <form:checkbox path="corpGroupIds" value="7"/> อื่นๆ
 									    </label>
 						            </div>
 					            </div>
@@ -443,29 +411,32 @@
 					    	<div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Facebook: </label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="Facebook" placeholder="Facebook" type="text">
+					              <form:input path="bizclubRegisterM.facebook" cssClass="form-control textsize"
+		                 placeholder="Facebook"  /> 
+					               
 					            </div>
 				            </div>
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Website: </label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="Website" placeholder="Website" type="text">
+					              <form:input path="bizclubRegisterM.website" cssClass="form-control textsize"
+		                 placeholder="Website"  /> 
 					            </div>
 				            </div>
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์: </label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <input class="form-control textsize" id="phone2" placeholder="เบอร์โทรศัพท์" type="text">
+					              <form:input path="bizclubRegisterM.corpMobile" cssClass="form-control textsize"
+		                 placeholder="เบอร์โทรศัพท์"  /> 
+					               
 					            </div>
 				            </div>
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ศูนย์เครือข่ายธุรกิจ BizClub: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <select class="form-control textsize" id="select">
-					                    <option> 36 จังหวัด</option>
-					                    <option></option>
-					                    <option></option>
-					                </select>
+					              <form:select path="bizclubRegisterM.bizclubGroup" cssClass="form-control textsize">
+							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
+							      </form:select>
 					            </div>
 				            </div>
 			            </fieldset>
@@ -482,33 +453,12 @@
             </div>
                    
 		</div>
+		</form:form>
 	</div>
 </div>
-<div id="footer">
-	<div class="container">
-	<div id="footer_body" class="clear">
-        <div  class="box_contact">
-            <div  class="topic_contact">สำนักพัฒนาผู้ประกอบธุรกิจ กรมพัฒนาธุรกิจการค้า กระทรวงพาณิชย์</div>
-            <div>เลขที่ 44/100 ถนน นนทบุรี 1 ต.บางกระสอ อ.เมือง จ.นททบุรี 11000</div>
-            <div>โทรศัพท์: 02-547-5962</div>
-            <div>โทรสาร: 02-547-5963-64</div>
-            <div>email: training@dbd.go.th</div>
-        </div>
-        <div style="float:right;width:300px;" >
-        	<div  style="text-align:right;">
-            	<a href="#"><img src="WEB-INF/images/btn_f.png"></a>&nbsp;<a href="#"><img src="WEB-INF/images/btn_t.png"></a>
-            </div>
-        </div>
-    </div>
-    </div>
-</div>
+
 <!-- --------------------------------------------------------------------------- -->
-<script src="WEB-INF/js/jquery.min.js"></script>
-<script src="WEB-INF/js/bootstrap.min.js"></script>
-<script src="WEB-INF/material/js/ripples.min.js"></script>
-<script src="WEB-INF/material/js/material.min.js"></script>
-<script type="text/javascript" src="WEB-INF/js/script.js"></script>
-<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script>
       $(document).ready(function() {
           $.material.init();

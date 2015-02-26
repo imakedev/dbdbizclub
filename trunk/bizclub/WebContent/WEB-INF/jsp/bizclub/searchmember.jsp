@@ -12,7 +12,7 @@
 		cssClass="form-inline" role="form" style="margin-bottom: 50px;">
 		    <fieldset>
 		    	<div class="row">
-		    		<div class="col-md-4">
+		    		<div class="col-md-3">
 				    	<div class="form-group col-md-offset-1">
 				            <label for="select" class="col-md-7 col control-label">ประเภทธุรกิจ:</label>
 				            <div class="col-md-5"> 
@@ -30,7 +30,7 @@
 				            </div>
 				        </div>
 		        	</div>
-			        <div class="col-md-4">
+			        <div class="col-md-3">
 				        <div class="form-group">
 				            <label for="select" class="col-md-5 col-md-offset-3 control-label">ค้นหาจาก:</label>
 				            <div class="col-md-3">
@@ -46,13 +46,21 @@
 				            </div>
 				        </div>
 			        </div>
-			        <div class="col-md-4">
+			        <div class="col-md-3">
 				        <div class="form-group has-warning">
 						    <div class="input-group col-md-offset-4">
 						        <form:input  class="form-control input-lg textsize" path="keyword" placeholder="คำที่ต้องการค้นหา" type="text"/>
 						        <span class="input-group-btn">
 						            <button class="btn btn-material-amber btn-flat" type="submit" style="padding: 5px 10px"><i class="mdi-action-search"></i></button>
 						        </span>
+						    </div>
+						</div>
+					</div>
+					  <div class="col-md-3">
+				        <div class="form-group has-warning">
+						    <div class="input-group">
+						       
+						       <a href='<c:url value="/bizmem" />'>แก้ใขข้อมูลส่วนตัว</a>
 						    </div>
 						</div>
 					</div>
@@ -100,7 +108,7 @@
 									<br>
 									<br>
 									<br>
-									<a href="#" style="color: orange; float: right;" data-toggle="modal" data-target="#member-popup">more<i class="mdi-av-play-circle-fill"></i></a>
+									<a href="#" style="color: orange; float: right;" onclick="showMemeber('${user.userId}')" >more<i class="mdi-av-play-circle-fill"></i></a>
 						    	</div>
 					    	</div>
 						     <div class="list-group-separator"></div>
@@ -198,69 +206,72 @@
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">เลขที่สมาชิก: </label>
 				            <div class="col-md-5">
-				                <input class="form-control textsize" id="member" type="text" value="000001" disabled="disabled">
+				                <input class="form-control textsize" id="userId_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">เลชบัตรประชาชน: </label>
 				            <div class="col-md-5">
-				                <input class="form-control textsize" id="name" type="text" value="3100600886101" disabled="disabled">
+				                <input class="form-control textsize" id="cardId_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">ชื่อ-สกุล: </label>
 				            <div class="col-md-5">
-				                <input class="form-control textsize" id="name" type="text" value="นพทัต บุณยเกียรติ" disabled="disabled">
+				                <input class="form-control textsize" id="fullName_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
+				        <%--
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">ลักษณะธุรกิจ: </label>
 				            <div class="col-md-5">
 				                <input class="form-control textsize" id="type" type="text" value="นิติบุคคล" disabled="disabled">
 				            </div>
 				        </div>
+				         --%>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">เลขทะเบียนนิติบุคคล: </label>
 				            <div class="col-md-5">
-				                <input class="form-control textsize" id="idperson" type="text" value="0105553116201" disabled="disabled">
+				                <input class="form-control textsize" id="corpId_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">ชื่อนิติบุคคล/ชื่อทางการค้า: </label>
 				            <div class="col-md-5">
-				                <input class="form-control textsize" id="bcName" type="text" value="บจ. ดรีมจ๊อคกี้ " disabled="disabled">
+				                <input class="form-control textsize" id="corpName_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">สินค้า/บริการ: </label>
 				            <div class="col-md-5">
-				                <textarea rows="2" cols="" class="form-control textsize" disabled="disabled">รับผลิตสื่อวิดีทัศน์, สื่อประชาสัมพันธ์-โฆษณาครบวงจร</textarea>
+				                <textarea rows="2" cols="" id="services_modal" class="form-control textsize" disabled="disabled"></textarea>
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">Website: </label>
 				            <div class="col-md-5">
-				                <input class="form-control textsize" id="Website" type="text" value="http://www.dreamjockey.co.th" disabled="disabled">
+				                <input class="form-control textsize" id="website_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">Email: </label>
 				            <div class="col-md-5">
-				                <input class="form-control textsize" id="Email" type="text" value="filmbug@hotmail.com" disabled="disabled">
+				                <input class="form-control textsize" id="email_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">เบอร์โทรศัพท์: </label>
 				            <div class="col-md-5">
-				                <input class="form-control textsize" id="phone" type="text" value="081 567 5403" disabled="disabled">
+				                <input class="form-control textsize" id="mobilePhone_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">Line: </label>
 				            <div class="col-md-5">
-				                <input class="form-control textsize" id="line" type="text" value="Tode Dream Jockey" disabled="disabled">
+				                <input class="form-control textsize" id="lineId_modal" type="text" value="Tode Dream Jockey" disabled="disabled">
 				            </div>
 				        </div>
+				        <%--
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">ประเภทธุรกิจ: </label>
 				            <div class="col-md-5">
@@ -285,6 +296,7 @@
 				                <input class="form-control textsize" id="" type="text" value="กรุงเทพมหานคร" disabled="disabled">
 				            </div>
 				        </div>
+				         --%>
 			        </fieldset>
 		        </form>
       		</div>
@@ -299,6 +311,36 @@
       $(document).ready(function() {
           $.material.init();
       });
+      function showMemeber(uid){
+    	  $.ajax({
+    		  type: "GET",
+    		  contentType : 'application/json; charset=utf-8',
+    		  url: "bizmem/item/"+uid,
+    		  dataType : 'json'
+    		})
+    		  .done(function( msg ) {
+    		   // alert( "Data Saved: " + msg.addressDistrict );
+    		    $("#userId_modal").val(msg.userId);
+    		    $("#cardId_modal").val(msg.cardId);
+    		    $("#fullName_modal").val(msg.firstName+" "+msg.lastName);
+    		    $("#corpId_modal").val(msg.corpId);
+    		    $("#corpName_modal").val(msg.corpName);
+    		    $("#services_modal").val(msg.services);
+    		    $("#website_modal").val(msg.website);
+    		    $("#email_modal").val(msg.email);
+    		    $("#mobilePhone_modal").val(msg.mobilePhone);
+    		    $("#lineId_modal").val(msg.lineId);
+			       
+    		          
+    		   //  $("#brId").val(brId);
+    		    //$("#cardId_modal").val(msg.cardId);
+    		  
+    		             $("#member-popup").modal('show')
+    		           
+    		  });
+    	//  data-toggle="modal" data-target="#member-popup"
+      }
+      
 </script>
 <style>
 body{

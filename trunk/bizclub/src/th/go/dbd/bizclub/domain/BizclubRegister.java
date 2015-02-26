@@ -2,6 +2,7 @@ package th.go.dbd.bizclub.domain;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -59,6 +62,10 @@ public class BizclubRegister implements Serializable {
 
 	@Column(name="BR_LAST_NAME")
 	private String brLastName;
+	   
+	@Temporal( TemporalType.DATE)
+	@Column(name="DATE_OF_BIRTH")
+	private Date dateOfBirth;
 
 	@Column(name="BR_PASSWORD")
 	private String brPassword;
@@ -106,6 +113,8 @@ public class BizclubRegister implements Serializable {
 	@Column(name="CORP_CONCERNED")
 	private String corpConcerned;
 	
+	@Column(name="CORP_CONCERNED_NAME")
+	private String corpConcernedName;
 	@Column(name="SERVICES")
 	private String services;
 	
@@ -114,12 +123,168 @@ public class BizclubRegister implements Serializable {
 	
 	@Column(name="LINE_ID")
 	private String lineId;
+	
+	@Column(name="BR_TYPE")
+	private Integer brType;
+	
+	@Column(name="LINE_NAME")
+	private String lineName;
+
+	@Column(name="BR_NICK_NAME")
+	private String brNickName;
+	
+	@Column(name="CORP_TYPE")
+	private String corpType;
+	
+	@Column(name="CORP_MOBILE")
+	private String corpMobile;
+	
+	@Column(name="CORP_ADDRESS")
+	private String cropAddress;
+	
+	@Column(name="BIZCLUB_GROUP")
+	private String bizclubGroup;
+	
+	@Column(name="TITLE_TYPE")
+	private String titleType;
+	
+	@Column(name="TITLE_NAME")
+	private String titleName;
+	
+	@Column(name="POSITION")
+	private String position;
+	
+	@Column(name="FACEBOOK")
+	private String facebook;
+	
+	@Column(name="TAXES_ID")
+	private String taxesId;
+	
+	@Column(name="TAXES_CORP_NAME")
+	private String taxesCorpName;
+	
+	@Column(name="PERSON_CORP_NAME")
+	private String personCorpName;
+	
+	
 
 	/*//bi-directional many-to-one association to User
 	@OneToMany(mappedBy="bizclubRegister")
 	private List<User> users;*/
 
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
+	}
+
+	public String getTaxesId() {
+		return taxesId;
+	}
+
+	public void setTaxesId(String taxesId) {
+		this.taxesId = taxesId;
+	}
+
+	public String getTaxesCorpName() {
+		return taxesCorpName;
+	}
+
+	public void setTaxesCorpName(String taxesCorpName) {
+		this.taxesCorpName = taxesCorpName;
+	}
+
+	public String getPersonCorpName() {
+		return personCorpName;
+	}
+
+	public void setPersonCorpName(String personCorpName) {
+		this.personCorpName = personCorpName;
+	}
+
 	public BizclubRegister() {
+	}
+
+	public Integer getBrType() {
+		return brType;
+	}
+
+	public void setBrType(Integer brType) {
+		this.brType = brType;
+	}
+
+	public String getLineName() {
+		return lineName;
+	}
+
+	public void setLineName(String lineName) {
+		this.lineName = lineName;
+	}
+
+	public String getBrNickName() {
+		return brNickName;
+	}
+
+	public void setBrNickName(String brNickName) {
+		this.brNickName = brNickName;
+	}
+
+	public String getCorpType() {
+		return corpType;
+	}
+
+	public void setCorpType(String corpType) {
+		this.corpType = corpType;
+	}
+
+	public String getCorpMobile() {
+		return corpMobile;
+	}
+
+	public void setCorpMobile(String corpMobile) {
+		this.corpMobile = corpMobile;
+	}
+
+	public String getCropAddress() {
+		return cropAddress;
+	}
+
+	public void setCropAddress(String cropAddress) {
+		this.cropAddress = cropAddress;
+	}
+
+	public String getBizclubGroup() {
+		return bizclubGroup;
+	}
+
+	public void setBizclubGroup(String bizclubGroup) {
+		this.bizclubGroup = bizclubGroup;
+	}
+
+	public String getTitleType() {
+		return titleType;
+	}
+
+	public void setTitleType(String titleType) {
+		this.titleType = titleType;
+	}
+
+	public String getTitleName() {
+		return titleName;
+	}
+
+	public void setTitleName(String titleName) {
+		this.titleName = titleName;
 	}
 
 	public Integer getBrId() {
@@ -370,5 +535,23 @@ public class BizclubRegister implements Serializable {
 	public void setLineId(String lineId) {
 		this.lineId = lineId;
 	}
+
+	public String getCorpConcernedName() {
+		return corpConcernedName;
+	}
+
+	public void setCorpConcernedName(String corpConcernedName) {
+		this.corpConcernedName = corpConcernedName;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+
 
 }

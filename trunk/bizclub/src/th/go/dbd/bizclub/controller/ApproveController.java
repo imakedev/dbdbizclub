@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import th.go.dbd.bizclub.form.ApproveForm;
 import th.go.dbd.bizclub.mail.MailRunnable;
 import th.go.dbd.bizclub.model.BizclubRegisterM;
+import th.go.dbd.bizclub.model.RoleM;
 import th.go.dbd.bizclub.model.UserM;
 import th.go.dbd.bizclub.service.BizClubService;
 @Controller 
@@ -28,7 +30,8 @@ import th.go.dbd.bizclub.service.BizClubService;
 public class ApproveController {
 	@Autowired
     private BizClubService bizClubService;
-	@RequestMapping(value={"/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+	
+	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public String list(Model model,SecurityContextHolderAwareRequestWrapper srequest)
     {
 		BizclubRegisterM bizclubRegisterM =new BizclubRegisterM();
@@ -63,12 +66,23 @@ public class ApproveController {
     public String doApprove(HttpServletRequest request, @ModelAttribute(value="approveForm") ApproveForm approveForm, BindingResult result, Model model)
     {
 		BizclubRegisterM bizclubRegister =bizClubService.findBizclubRegisterById(approveForm.getBrId());;
-		
-		if(approveForm.getApproveStatus().equals("1")){ // approved
+		String subject="";
+		String content="";
+		if(approveForm.getApproveStatus().equals("1") || approveForm.getApproveStatus().equals("2")){ // approved
 			
 			UserM user=new UserM();
-			String username=genToken(8);
-			String password=genToken(4);
+			BeanUtils.copyProperties(bizclubRegister , user);
+			String corpType=bizclubRegister.getCorpType();
+			String username="";
+			if(corpType.equals("1")){ // 
+				username=bizclubRegister.getCorpId();
+			}else if(corpType.equals("2")){ // 
+				username=bizclubRegister.getTaxesId();
+			}else if(corpType.equals("3")){ // 
+				username=bizclubRegister.getCardId();
+			}
+			
+			String password=genToken(8);
 			user.setUserName(username);
 			user.setPassword(password);
 			user.setAddressDistrict(bizclubRegister.getAddressDistrict());;
@@ -92,24 +106,39 @@ public class ApproveController {
 			user.setServices(bizclubRegister.getServices());
 			user.setWebsite(bizclubRegister.getWebsite());
 			user.setLineId(bizclubRegister.getLineId());
+			RoleM role =new RoleM();
+			role.setRoleId(approveForm.getApproveRole());
+			user.setRole(role);
 			bizClubService.saveUser(user);
-			List recipients =new ArrayList();
 			
-			recipients.add(bizclubRegister.getEmail());
-			MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","chatchai@lansingbs.com","chatchai2012","1",
-					recipients,"ยินดีต้อนรับสู่สมาชิก BizClub Online",
-					"Welcome to BizClub <br/> UserName / Password <br/> "+username+" / "+password+""
-					+ "<br/> go to www.dbdbizclub.com ",
-					"99","BizClub","587",null,null,null,"1");	
-		
-			Thread mailThread = new Thread(mailRunnable);
-			mailThread.start(); 
+			subject="ยินดีต้อนรับสู่สมาชิก BizClub Online";
+			content=	"Welcome to BizClub <br/> UserName / Password <br/> "+username+" / "+password+""
+					+ "<br/> go to www.dbdbizclub.com ";
+			if(approveForm.getApproveStatus().equals("2"))
+				content=	"Welcome to BizClub <br/> UserName / Password <br/> "+username+" / "+password+""
+						+ "<br/> <b style=\"color: red;\">"+approveForm.getApproveCondition()+"</b>"
+						+ "<br/> go to www.dbdbizclub.com ";
+			
 			//bizclubRegister.setApproveStatus("1");
+		}else{
+			subject="ไม่อนุมัติเข้าใช้งาน BizClub Online";
+			content=	" ข้อมูลของท่านไม่ผ่านการอนุมัติจากเจ้าหน้าที่ ";
+	
 		}
+		List recipients =new ArrayList();
+		recipients.add(bizclubRegister.getEmail());
+		MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdcentralbizclub2015@gmail.com","bizclub2015","1",
+				recipients,subject,
+			    content,
+				"99","BizClub","587",null,null,null,"1");	
+	
+		Thread mailThread = new Thread(mailRunnable);
+		mailThread.start(); 
 		bizclubRegister.setApproveStatus(approveForm.getApproveStatus());
 		bizClubService.updateBizclubRegister(bizclubRegister);
         model.addAttribute("bizclubRegisters", bizClubService.searchBizclubRegister(bizclubRegister)); 
         model.addAttribute("approveForm", approveForm);
-        return "bizclub/approveList";
+        //return "bizclub/approveList"; 
+        return "redirect:/approve";
     }
 }
