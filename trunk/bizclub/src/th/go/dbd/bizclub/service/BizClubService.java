@@ -42,6 +42,6 @@ public interface BizClubService {
 	public BizclubAssetM findBizclubAssetById(Integer baId);
 	public List<BizclubAssetM> searchBizclubAsset(BizclubAssetM bizclubAssetM) ;
 	
-	public BizclubCorpWM findBizclubCorpWById(String corpId) ;
+	public BizclubCorpWM findBizclubCorpWById(String corpId,String corpType) ;
 	
 }
