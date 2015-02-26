@@ -8,12 +8,14 @@ package th.go.dbd.bizclub.service;
 import java.util.List;
 
 import th.go.dbd.bizclub.model.BizclubAssetM;
+import th.go.dbd.bizclub.model.BizclubCorpWM;
 import th.go.dbd.bizclub.model.BizclubPictureM;
 import th.go.dbd.bizclub.model.BizclubRegisterM;
 import th.go.dbd.bizclub.model.UserM;
 
 
 public interface BizClubService {
+	public List<th.go.dbd.bizclub.domain.RoleType> listRoleType(Integer rtId);
 	// User
 	public Integer saveUser(UserM userM) ;
 	public Integer updateUser(UserM userM) ;
@@ -39,5 +41,7 @@ public interface BizClubService {
 	public Integer deleteBizclubAsset(BizclubAssetM bizclubAssetM);
 	public BizclubAssetM findBizclubAssetById(Integer baId);
 	public List<BizclubAssetM> searchBizclubAsset(BizclubAssetM bizclubAssetM) ;
+	
+	public BizclubCorpWM findBizclubCorpWById(String corpId) ;
 	
 }

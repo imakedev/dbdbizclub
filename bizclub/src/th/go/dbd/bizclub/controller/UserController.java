@@ -21,7 +21,7 @@ import th.go.dbd.bizclub.service.BizClubService;
 public class UserController {
 	@Autowired
     private BizClubService bizClubService;
-	@RequestMapping(value={"/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public String list(Model model,SecurityContextHolderAwareRequestWrapper srequest)
     {
     	model.addAttribute("users", bizClubService.searchUser(null)); 

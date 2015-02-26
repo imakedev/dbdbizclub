@@ -30,7 +30,7 @@ public class WelcomeController
 	private ApplicationContext ctx;*/
 	private static int PAGE_SIZE=20;
 	
-	    @RequestMapping(value={"/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+	    @RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
 	    public String getNewForm(HttpServletRequest request,HttpServletResponse response,  Model model)
 	    {
 	       // return "bizclub/bizclub7m";

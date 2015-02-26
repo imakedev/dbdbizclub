@@ -60,13 +60,155 @@ public class UserM implements Serializable {
 	private String corpName;
 	private String corpDesc;
 	private String corpConcerned;
+	private String corpConcernedName;
+	public String getCorpConcernedName() {
+		return corpConcernedName;
+	}
+
+	public void setCorpConcernedName(String corpConcernedName) {
+		this.corpConcernedName = corpConcernedName;
+	}
+
 	private String services;
 	private String website;
 	private String lineId;
 	
+	private Integer brType;
+	private String lineName;
+	private String brNickName;
+	private String corpType;
+	private String corpMobile;
+	private String cropAddress;
+	private String bizclubGroup;
+	private String titleType;
+	private String titleName;		
+	private String position;
+	private String facebook;
+	private String taxesId;
+	private String taxesCorpName;
+	private String personCorpName;
+	public String getDateOfBirthStr() {
+		return dateOfBirthStr;
+	}
 
-	
+	public void setDateOfBirthStr(String dateOfBirthStr) {
+		this.dateOfBirthStr = dateOfBirthStr;
+	}
+
+	private String dateOfBirthStr;
+	public String getTaxesId() {
+		return taxesId;
+	}
+
+	public void setTaxesId(String taxesId) {
+		this.taxesId = taxesId;
+	}
+
+	public String getTaxesCorpName() {
+		return taxesCorpName;
+	}
+
+	public void setTaxesCorpName(String taxesCorpName) {
+		this.taxesCorpName = taxesCorpName;
+	}
+
+	public String getPersonCorpName() {
+		return personCorpName;
+	}
+
+	public void setPersonCorpName(String personCorpName) {
+		this.personCorpName = personCorpName;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
+	}
+
 	public UserM() {
+	}
+
+	public String getTitleType() {
+		return titleType;
+	}
+
+	public void setTitleType(String titleType) {
+		this.titleType = titleType;
+	}
+
+	public String getTitleName() {
+		return titleName;
+	}
+
+	public void setTitleName(String titleName) {
+		this.titleName = titleName;
+	}
+
+	public Integer getBrType() {
+		return brType;
+	}
+
+	public void setBrType(Integer brType) {
+		this.brType = brType;
+	}
+
+	public String getLineName() {
+		return lineName;
+	}
+
+	public void setLineName(String lineName) {
+		this.lineName = lineName;
+	}
+
+	public String getBrNickName() {
+		return brNickName;
+	}
+
+	public void setBrNickName(String brNickName) {
+		this.brNickName = brNickName;
+	}
+
+	public String getCorpType() {
+		return corpType;
+	}
+
+	public void setCorpType(String corpType) {
+		this.corpType = corpType;
+	}
+
+	public String getCorpMobile() {
+		return corpMobile;
+	}
+
+	public void setCorpMobile(String corpMobile) {
+		this.corpMobile = corpMobile;
+	}
+
+	public String getCropAddress() {
+		return cropAddress;
+	}
+
+	public void setCropAddress(String cropAddress) {
+		this.cropAddress = cropAddress;
+	}
+
+	public String getBizclubGroup() {
+		return bizclubGroup;
+	}
+
+	public void setBizclubGroup(String bizclubGroup) {
+		this.bizclubGroup = bizclubGroup;
 	}
 
 	public Integer getUserId() {

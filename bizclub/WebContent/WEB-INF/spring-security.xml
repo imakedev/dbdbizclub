@@ -49,7 +49,9 @@
 			logout-url="/logout"/>
 		 
 		 <session-management  session-authentication-error-url="/login/duplicate?error=alreadyLogin"  invalid-session-url="/login" >
+		     <!-- 
        		 <concurrency-control max-sessions="1"  error-if-maximum-exceeded="true"/>
+       		  -->
     	</session-management>
 	</http>
 	

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -33,7 +35,7 @@ import com.google.gson.Gson;
 public class ProductController {
 	@Autowired
     private BizClubService bizClubService;
-	@RequestMapping(value={"/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public String list(Model model,SecurityContextHolderAwareRequestWrapper srequest)
     {
 		/*// Ok
@@ -45,17 +47,22 @@ public class ProductController {
 		// Not Ok
 		//SecurityContextHolder.getContext().setAuthentication(SecurityContextHolder.getContext().getAuthentication());
 		*/
-		MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		System.out.println(user.getUsername()); 
-		
 		BizclubAssetM bizclubAssetM =new BizclubAssetM();
-		UserM u=new UserM();
-		u.setUserId(user.getMyUser().getUserid());
-		bizclubAssetM.setUser(u);
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		System.out.println(authentication.getPrincipal());
+		if(authentication.isAuthenticated() && authentication.getPrincipal()!=null && !authentication.getPrincipal().equals("anonymousUser")){
+			MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			System.out.println(user.getUsername()); 
+			UserM u=new UserM();
+			u.setUserId(user.getMyUser().getUserid());
+			bizclubAssetM.setUser(u);
+		}
+		
+		
 		//bizclubAssetM.setApproveStatus("0");
     	model.addAttribute("bizclubAssets", bizClubService.searchBizclubAsset(bizclubAssetM)); 
         model.addAttribute("productForm",new ProductForm() );
-        model.addAttribute("itemForm",new ItemForm() );
+        model.addAttribute("productItemAddForm",new ItemForm());
         return "bizclub/itemList";
     }
 	@RequestMapping(value={"/search"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
@@ -189,6 +196,13 @@ public class ProductController {
 			bizClubService.updateBizclubAsset(bizclubAssetM);
 			 return "redirect:/product/";
 	    }
-		
+	 @RequestMapping(value={"/delete/{baId}"},method = RequestMethod.GET)
+	 public String deleteItem(@PathVariable Integer baId) {
+		 System.out.println("delete->"+baId);
+		 BizclubAssetM bizclubAssetM =new BizclubAssetM();
+		 bizclubAssetM.setBaId(baId);
+	     bizClubService.deleteBizclubAsset(bizclubAssetM);
+	     return "redirect:/product/";
+	 }	
 	 //model.addAttribute("itemForm",new ItemForm() );
 }

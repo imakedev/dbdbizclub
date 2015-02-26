@@ -11,7 +11,7 @@ public class RegisterForm extends CommonForm implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private BizclubRegisterM bizclubRegisterM;
-	
+    private String[] corpGroupIds;	
 	public RegisterForm() {
 		super();
 		bizclubRegisterM=new BizclubRegisterM();
@@ -26,6 +26,12 @@ public class RegisterForm extends CommonForm implements Serializable {
 	}
 	public void setBizclubRegisterM(BizclubRegisterM bizclubRegisterM) {
 		this.bizclubRegisterM = bizclubRegisterM;
+	}
+	public String[] getCorpGroupIds() {
+		return corpGroupIds;
+	}
+	public void setCorpGroupIds(String[] corpGroupIds) {
+		this.corpGroupIds = corpGroupIds;
 	}
 	
 }

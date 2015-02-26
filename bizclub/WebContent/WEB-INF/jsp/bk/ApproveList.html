@@ -11,69 +11,67 @@
 <link rel="stylesheet" type="text/css" href="WEB-INF/css/style.css" media="all" />
 <link href="WEB-INF/material/css/ripples.min.css" rel="stylesheet">
 <link href="WEB-INF/material/css/material-wfont.min.css" rel="stylesheet">
+<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 <title>Bizclub</title>
 </head>
 <body>
 <div id="top_menu">
 	<div id="box_top">
 		<div class="row">
-    	<div class="col-md-2" style="padding:10px 0 0 50px;"><img src="WEB-INF/images/logo.png"></div>
-        <div class="col-md-7" style="z-index: 9; position: relative;">                
-        	<nav id="nav" role="navigation">
-                <a href="#nav" title="Show navigation">Show navigation</a>
-                <a href="#" title="Hide navigation">Hide navigation</a>
-                <ul >
-                    <li><a href="#">หน้าแรก</a></li>
-                    <li>
-                        <a href="#" aria-haspopup="true"><span>ข้อมูลทางการค้า </span></a>
-                        <ul>
-                            <li><a href="#">ผลิตภัณฑ์</a></li>
-                            <li><a href="#">บริการ</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#" >ข่าวประชาสัมพันธ์</a></li>
-                    <li><a href="#">ระบบรายงาน</a></li>
-                    <li><a href="#">ระบบสมาชิก</a></li>
-                    <li><a href="#">ติดต่อเรา</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-	<div class="col-md-6 col-md-offset-3 visible-xs" style="margin-top: -30px; margin-left: 60px; z-index: 99; position: relative;">
-		<div class="form-group">
-		    <div class="input-group">
-		        <input class="form-control textsize" id="inputWarning" type="text" placeholder="Search" style="background-color: #fff;">
-		        <span class="input-group-btn">
-		            <button class="btn btn-material-indigo" type="button" style="padding: 2px 10px 2px 10px; font-weight: bold; font-size: 18px; margin-left: -5px; ">Search</button>
-		        </span>
-		    </div>
+	    	<div class="col-md-2" style="padding:5px 0 0 50px;"><img src="WEB-INF/images/logo.png"></div>
+	        <div class="col-md-10" style="z-index: 9; position: relative;">                
+				<div id='cssmenu' style="font-size: 18px;">
+					<ul>
+					   <li class='active'><a href='#'>หน้าแรก</a></li>
+					   <li><a href='#'>ต่อยอดธุรกิจ</a></li>
+					   <li><a href='#'>ข้อมูลเครือข่าย</a></li>
+					   <li><a href='#'>ข่าวประชาสัมพันธ์</a></li>
+					   <li><a href='#'>ระบบสมาชิก</a></li>
+					   <li><a href='#'>ระบบรายงาน</a></li>
+					   <li><a href='#'>อนุมัติผู้ใช้งาน</a></li>
+					   <li><a href='#'>ติดต่อเรา</a></li>
+					   <li><a href='#'>ตั้งค่าระบบ</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-md-offset-3 visible-xs" style="margin-top: -40px; margin-right:80px; z-index: 99; position: relative;">
+			<div class="form-group">
+			    <div class="input-group">
+			        <input class="form-control textsize" id="inputWarning" type="text" placeholder="Search" style="background-color: #fff;">
+			        <span class="input-group-btn">
+			            <button class="btn btn-material-indigo" type="button" style="padding: 2px 10px 2px 10px; font-weight: bold; font-size: 18px; margin-left: -5px; ">Search</button>
+			        </span>
+			    </div>
+			</div>
+		</div>
+	    <div class="col-md-6 col-md-offset-3 hidden-xs" style="margin-top: -25px;">
+			<div class="form-group">
+			    <div class="input-group style-5">
+			        <input type="search" placeholder="search">
+			        <span class="input-group-btn">
+						<button type="submit" class="btn btn-material-indigo" style="font-weight: bold; font-size: 18px; margin-top: -17px;">Search</button>
+					</span>
+			    </div>
+			</div>
 		</div>
 	</div>
-    <div class="col-md-6 col-md-offset-3 hidden-xs">
-		<div class="form-group">
-		    <div class="input-group style-5">
-		        <input type="search" placeholder="search">
-		        <span class="input-group-btn">
-					<button type="submit" class="btn btn-material-indigo" style="font-weight: bold; font-size: 22px; margin-top: -15px;">Search</button>
-				</span>
-		    </div>
-		</div>
-	</div>
-</div>
 </div>
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
 
 <div style="background:#5E3752; padding:20px 0 20px 0;">
 	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
-		<h3 style="text-align: center;">คำร้องขอทั้งหมด</h3><br>
 	      <div class="row">
 	      	<div class="span8 offset2">
 		      <div class="jumbotron">
 		      	<div class="row">
+			      	<div class="col-md-4" style="background-color: #fbcb04; box-shadow: 1px 7px 15px #000; ">
+						<div style="text-align: left;  color: #fff; font-size: 28px; font-weight: bold;">คำร้องขอทั้งหมด</div>
+					</div>
 		      		<div class="col-md-12">
 		      			<div class="list-group">
 		      				<div class="row">
-			      				<div class="col-md-9" style="margin: 10px 0px 10px 0px; padding-left: 30px;">
+			      				<div class="col-md-9" style="margin: 20px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="row-picture">
 								            <img class="circle" src="WEB-INF/images/5.png" alt="icon">
@@ -141,124 +139,351 @@
 			</ul>
   		</div>
 	</div>
-	      <!-- ------------------------------------------------------ -->
+	      <!-- ------------------------ member-popup ------------------------------------- -->
 <div id="member-popup" class="modal fade" tabindex="-1">
-  <div class="modal-dialog modal-md">
-    <div class="modal-content">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="border: 5px solid #fbb819;">
+      <div class="modal-header" style="background-color: #fbb819">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <p class="modal-title" style="font-size: 26px; font-weight: bold; padding-bottom: 20px;">ข้อมูลผู้ขอลงทะเบียน</p>
+      </div>
       <div class="modal-body">
       	<div class="row">
-      		<div class="col-md-11 col-md-offset-1">
-      			<form class="form-horizontal">
-				    <fieldset>
-				    	<div class="form-group">
-				        	<label class="col-md-5 control-label">เลชบัตรประชาชน: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="name" type="text" value="3430300428554" disabled="disabled">
+      		<div class="col-md-12">
+      			<div class="col-md-6" style="padding-left: 200px;">
+      				<img class="img-thumbnail" id="profile" src="WEB-INF/images/icon.png" alt="" data-src="holder.js"/>
+      			</div>
+      			<div class="col-md-6" style="padding-left: 0px;">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">เลขบัตรประชาชน: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="id" placeholder="เลขบัตรประชาชน" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">ชื่อ-สกุล: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="name" type="text" value="คมสันต์ จันทหาร" disabled="disabled">
+			            </fieldset>
+		            </form>
+	            </div>
+      			<div class="col-md-6" style="padding-left: 0px;">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">ชื่อ-นามสกุล: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="name" placeholder="ชื่อ-นามสกุล" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">ลักษณะธุรกิจ: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="type" type="text" value="นิติบุคคล" disabled="disabled">
+			            </fieldset>
+		            </form>
+	            </div>
+      			<div class="col-md-6" style="padding-left: 0px;">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">ชื่อเล่น: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="" placeholder="ชื่อเล่น" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">เลขทะเบียนนิติบุคคล: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="idperson" type="text" value="0105555086970" disabled="disabled">
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6" style="padding-left: 0px;">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">วัน เดือน ปีเกิด: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="" placeholder="วัน เดือน ปีเกิด" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">ชื่อนิติบุคคล/ชื่อทางการค้า: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="bcName" type="text" value="บจ. เคเค อินเตอร์แบรนด์" disabled="disabled">
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6" style="padding-left: 0px;">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์(มือถือ): </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="" placeholder="เบอร์โทรศัพท์(มือถือ)" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">สินค้า/บริการ: </label>
-				            <div class="col-md-5">
-				                <textarea rows="2" cols="" class="form-control textsize" disabled="disabled">กระเป๋าแฟชั่นและเครื่องหนังแฟชั่น</textarea>
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6" style="padding-left: 0px;">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">E-mail: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="" placeholder="E-mail" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">Website: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="Website" type="text" value="www.kkinterbrand.com" disabled="disabled">
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6" style="padding-left: 0px;">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">Line ID: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="" placeholder="Line ID" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">Email: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="Email" type="text" value="gosmenida@gmail.com" disabled="disabled">
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6" style="padding-left: 0px;">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">Line Name: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+					                <input class="form-control textsize" id="" placeholder="Line Name" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">เบอร์โทรศัพท์: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="phone" type="text" value="080 808 7070" disabled="disabled">
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-12">
+		            <div class="col-md-6">
+		            	<form class="form-horizontal">
+			    			<fieldset>
+			    				<div class="form-group">
+						            <label class="col-md-5 control-label" style="padding-bottom: 10px;">ที่อยู่ที่สามารถติดต่อได้: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+										<textarea class="form-control textsize" rows="2" cols="3" disabled="disabled"></textarea>
+						            </div>
+					            </div>
+				            </fieldset>
+			            </form>
+		            </div>
+	            </div>
+<!-- ------------------------ กรณี เป็นบุคคลธรรมดา/ผู้ประกอบกิจการ(ทั่วไป) ------------------------------- -->
+			<div hidden="">
+	            <div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">ความเกี่ยวข้องกับธุรกิจ: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="ความเกี่ยวข้องกับธุรกิจ" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">Line: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="line" type="text" value="M Hamann" disabled="disabled">
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">ตำแหน่ง: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="ตำแหน่ง" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">ประเภทธุรกิจ: </label>
-				            <div class="col-md-5">
-				            	<textarea rows="2" cols="" class="form-control textsize" disabled="disabled">ผู้ผลิต</textarea>
+			            </fieldset>
+		            </form>
+	            </div>
+    		</div>
+<!-- -------------------------- LOGO ----------------------------------------------------------- -->
+				<div class="col-md-6" style="padding-left: 230px; padding-bottom: 10px;">
+      				<img class="img-thumbnail" id="logo" src="WEB-INF/images/img_logo.png" alt="" data-src="holder.js"/>
+      			</div>
+<!-- ----------------- ข้อมูลการประกอบธุรกิจ ==> กรณี เป็นนิติบุคคล ----------------------------------------- -->
+			<div>
+				<div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">เลขทะเบียนนิติบุคคล: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="เลขทะเบียนนิติบุคคล" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">เกี่ยวข้องในธุรกิจ: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="" type="text" value="เจ้าของธุรกิจ ตำแหน่งประธานกรรมการ" disabled="disabled">
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">ชื่อนิติบุคคล: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="ชื่อนิติบุคคล" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">ที่อยู่: </label>
-				            <div class="col-md-5">
-				            	<textarea rows="2" cols="" class="form-control textsize" disabled="disabled">49/113 ซอยนิมิตใหม่ 40 ถนนนิมิตใหม่ แขวงสามวาตะวันออก เขตคลองสามวา</textarea>
+			            </fieldset>
+		            </form>
+	            </div>
+            </div>
+<!-- ----------------- ข้อมูลการประกอบธุรกิจ ==> กรณี เป็นบุคคลธรรมดา/ผู้ประกอบธุรกิจ(จดทะเบียนพาณิชย์) ----------------------------------------- -->
+			<div hidden="">
+				<div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">เลขทะเบียนพาณิชย์: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="เลขทะเบียนพาณิชย์" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label">จังหวัด: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="" type="text" value="กรุงเทพมหานคร" disabled="disabled">
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="ชื่อธุรกิจ" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				    	<div class="form-group">
-				            <label for="select" class="col-md-5 control-label">กำหนดสิทธิ์:</label>
-				            <div class="col-md-5">
-				                <select class="form-control textsize" id="select">
-				                	<option>เจ้าหน้าที่</option>
-				                    <option>สมาชิก</option>
-				                </select>
+			            </fieldset>
+		            </form>
+	            </div>
+            </div>
+<!-- ----------------- ข้อมูลการประกอบธุรกิจ ==> กรณี เป็นบุคคลธรรมดา/ผู้ประกอบธุรกิจ(ทั่วไป) ----------------------------------------- -->
+			<div hidden="">
+				<div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="ชื่อธุรกิจ" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-				        <div class="form-group">
-				            <div class="col-md-10 col-lg-offset-2">
-				                <button type="submit" class="btn btn-material-green btn_popup">อนุมัติ</button>
-				                <button type="submit" class="btn btn-material-amber btn_popup">อนุมัติแบบมีเงื่อนไข</button>
-				                <button class="btn btn-material-red btn_popup">ไม่อนุมัติ</button>
+			            </fieldset>
+		            </form>
+	            </div>
+            </div>
+<!-- ---------------------------------------------------------------------------------------------------------------------- -->
+				<div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">สินค้า/บริการ: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="สินค้า/บริการ" type="text" disabled="disabled">
+					            </div>
 				            </div>
-				        </div>
-			        </fieldset>
-		        </form>
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">ประเภทธุรกิจ: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="ประเภทธุรกิจ" type="text" disabled="disabled">
+					            </div>
+				            </div>
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">Facebook: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="Facebook" type="text" disabled="disabled">
+					            </div>
+				            </div>
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">Website: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="Website" type="text" disabled="disabled">
+					            </div>
+				            </div>
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="เบอร์โทรศัพท์" type="text" disabled="disabled">
+					            </div>
+				            </div>
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">ศูนย์เครือข่ายธุรกิจ BizClub: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+									<input class="form-control textsize" id="" placeholder="ศูนย์เครือข่ายธุรกิจ BizClub" type="text" disabled="disabled">
+					            </div>
+				            </div>
+			            </fieldset>
+		            </form>
+	            </div>
+				<div class="col-md-12">
+	      			<form class="form-horizontal">
+					    <fieldset>
+					        <div class="form-group">
+					            <div class="col-md-9 col-md-offset-3">
+					                <button type="submit" class="btn btn-material-green btn_popup">อนุมัติ</button>
+					                <button type="submit" class="btn btn-material-amber btn_popup" data-toggle="modal" data-target="#case-popup">อนุมัติแบบมีเงื่อนไข</button>
+					                <button class="btn btn-material-red btn_popup">ไม่อนุมัติ</button>
+					            </div>
+					        </div>
+				        </fieldset>
+			        </form>
+		        </div>
       		</div>
       	</div>
       </div>
   	</div>
  </div>
 </div>
-
+<!-- ------------------------------------------ case-popup --------------------------------------------------------- -->
+<div id="case-popup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: green; color: #fff;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <p class="modal-title" style="font-size: 24px; font-weight: bold; padding-bottom: 20px;">อนุมัติแบบมีเงื่อนไข</p>
+      </div>
+      <div class="modal-body">
+      	<div class="col-md-12">
+           	<form class="form-horizontal">
+    			<fieldset>
+    				<div class="form-group">
+			            <label class="col-md-2 control-label" style="padding-bottom: 10px;">เงื่อนไข: </label>
+			            <div class="col-md-9" style="padding-bottom: 10px;">
+							<textarea class="form-control textsize" rows="" cols=""></textarea>
+			            </div>
+		            </div>
+	            </fieldset>
+            </form>
+         </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-material-green btn-md btn_popup" type="submit" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ----------------------------------------------------------------------------------------------------------- -->
 <div id="footer">
 	<div class="container">
 	<div id="footer_body" class="clear">
@@ -282,6 +507,8 @@
 <script src="WEB-INF/js/bootstrap.min.js"></script>
 <script src="WEB-INF/material/js/ripples.min.js"></script>
 <script src="WEB-INF/material/js/material.min.js"></script>
+<script type="text/javascript" src="WEB-INF/js/script.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
 <script>
       $(document).ready(function() {
           $.material.init();

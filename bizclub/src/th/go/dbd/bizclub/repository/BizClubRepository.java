@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import th.go.dbd.bizclub.domain.BizclubAsset;
+import th.go.dbd.bizclub.domain.BizclubCorpW;
 import th.go.dbd.bizclub.domain.BizclubPicture;
 import th.go.dbd.bizclub.domain.BizclubRegister;
+import th.go.dbd.bizclub.domain.RoleType;
 import th.go.dbd.bizclub.domain.User;
 @Repository("bizClubRepository")
 @Transactional
@@ -161,7 +163,7 @@ public class BizClubRepository {
 		// TODO Auto-generated method stub
 		entityManager.persist(bizclubRegister);
 		entityManager.flush();
-		return null;
+		return bizclubRegister.getBrId();
 	}
 
 	
@@ -254,9 +256,11 @@ public class BizClubRepository {
 	
 	public Integer deleteBizclubAsset(BizclubAsset bizclubAsset) {
 		// TODO Auto-generated method stub
-		entityManager.remove(bizclubAsset);
-		entityManager.flush();
-		return null;
+		
+			Query query=	entityManager.createQuery( "delete from BizclubAsset where baId =:baId ");
+			query.setParameter("baId",bizclubAsset.getBaId());
+	     
+			return Integer.valueOf(query.executeUpdate());
 	}
 
 	
@@ -280,7 +284,15 @@ public class BizClubRepository {
 		Query query=entityManager.createQuery( sb.toString(), BizclubAsset.class);
 		return query.getResultList();
 	}
-
-	
+	public List<RoleType> listRoleType(Integer rtId) {
+		// TODO Auto-generated method stub
+		StringBuffer sb=new StringBuffer("select u from RoleType u where u.rtId=:rtId");
+		Query query=entityManager.createQuery( sb.toString(), RoleType.class);
+		query.setParameter("rtId", rtId);
+		return query.getResultList();
+	}
+	public BizclubCorpW findBizclubCorpWById(String corpId) {
+		return entityManager.find(BizclubCorpW.class,corpId );
+	}
 	
 }
