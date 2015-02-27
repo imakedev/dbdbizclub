@@ -8,8 +8,7 @@
 	<div class="row">
 	<c:url var="post_url"  value="/register/action" />
 	
-		<form:form   id="registerForm" name="registerForm" modelAttribute="registerForm"    method="post" action="${post_url}"
-		>
+		<form:form   id="registerForm" name="registerForm" modelAttribute="registerForm"    method="post" action="${post_url}" enctype="multipart/form-data">
 		<div class="col-md-10 col-md-offset-1" style="padding-top: 40px; padding-bottom: 40px;">
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;">
 				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
@@ -224,7 +223,8 @@
 <!-- ---------------------------------------------------- ADD PIX --------------------------------------------------------- -->            
 	            <div class="col-md-4" style="padding:20px 0px 0px 100px;">
 	            	<img class="img-thumbnail" id="profile" src="<c:url value="/resources/register/images/icon.png" />" alt="<c:url value="/resources/register/images/icon.png" />" data-src="holder.js"/>
-	            	<input type='file' onchange="readURL(this);" style="font-size: 10px; "/>
+	            	 <input type='file' id="profile_upload" name="profile_upload" onchange="readURL(this);" style="font-size: 10px; "/>
+	            	<%--  <input id="profile_upload" type="file" name="userfile" multiple>   --%>
 	            </div>
 			</div>
 <!-- -------------------------------------- กรณี เป็นบุคคลธรรมดา/ผู้ประกอบกิจการ(ทั่วไป) ---------------------------------------------------- -->			
@@ -357,7 +357,8 @@
 	            <!-- ---------------------------------- IMG LOGO --------------------------------- -->
         	    <div class="col-md-4" style="padding:20px 0px 1px 100px;">
 	            	<img class="img-thumbnail" id="logo" src="<c:url value="/resources/register/images/img_logo.png" />" alt="<c:url value="/resources/register/images/icon.png" />" data-src="holder.js"/>
-	            	<input type='file' onchange="readURL1(this);" style="font-size: 10px; "/>
+	            	<input type='file' id="corp_upload" name="corp_upload" onchange="readURL1(this);" style="font-size: 10px; "/>
+	            	<%-- <input id="corp_upload" type="file" name="userfile" multiple>   --%>
 	            </div>
 	            <!-- ---------------------------------------------------------------------------- -->
 	            <div class="col-md-11 col-md-offset-1">

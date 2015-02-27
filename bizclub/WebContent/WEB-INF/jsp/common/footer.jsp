@@ -6,6 +6,9 @@
 <script src="<c:url value="/resources/register/material/js/material.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/register/js/script.js" />"></script>
 <script src="<c:url value="/resources/register/js/jquery-ui.min.js" />"></script>
+<script type="text/javascript" src="<c:url value='/resources/fileupload/js/vendor/jquery.ui.widget.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/resources/fileupload/js/jquery.iframe-transport.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/resources/fileupload/js/jquery.fileupload.js'/>"></script>  
 <div id="footer">
 	<div class="container">
 	<div id="footer_body" class="clear">

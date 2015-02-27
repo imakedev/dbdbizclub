@@ -87,7 +87,7 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 			BeanUtils.copyProperties(user.getRole() , roleM);
 			userM.setRole(roleM);
 		}
-		System.out.println("role=>"+user.getRole());
+	//	System.out.println("role=>"+user.getRole());
 		return userM;
 	}
 

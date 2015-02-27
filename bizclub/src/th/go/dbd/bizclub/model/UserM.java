@@ -61,6 +61,43 @@ public class UserM implements Serializable {
 	private String corpDesc;
 	private String corpConcerned;
 	private String corpConcernedName;
+	
+	private String logoPath;
+	private String profilePath;
+	private String logoFileName;
+	private String profileFileName;
+	public String getLogoFileName() {
+		return logoFileName;
+	}
+
+	public void setLogoFileName(String logoFileName) {
+		this.logoFileName = logoFileName;
+	}
+
+	public String getProfileFileName() {
+		return profileFileName;
+	}
+
+	public void setProfileFileName(String profileFileName) {
+		this.profileFileName = profileFileName;
+	}
+
+	public String getLogoPath() {
+		return logoPath;
+	}
+
+	public void setLogoPath(String logoPath) {
+		this.logoPath = logoPath;
+	}
+
+	public String getProfilePath() {
+		return profilePath;
+	}
+
+	public void setProfilePath(String profilePath) {
+		this.profilePath = profilePath;
+	}
+
 	public String getCorpConcernedName() {
 		return corpConcernedName;
 	}

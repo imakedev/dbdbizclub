@@ -57,14 +57,7 @@ public class WelcomeController
 	        return "bizclub/"+page;
 	    }
      
-    private String genToken(){
-  		StringBuffer sb = new StringBuffer();
-  	    for (int i = 36; i > 0; i -= 12) {
-  	      int n = Math.min(12, Math.abs(i));
-  	      sb.append(org.apache.commons.lang3.StringUtils.leftPad(Long.toString(Math.round(Math.random() * Math.pow(36, n)), 36), n, '0'));
-  	    }
-  	    return sb.toString();
-   }
+    
 
     @RequestMapping(value={"/checksession"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public @ResponseBody String checksession()
