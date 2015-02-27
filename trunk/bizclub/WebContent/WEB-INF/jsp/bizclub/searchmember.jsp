@@ -78,8 +78,17 @@
 		      				<div class="row">
 			      				<div class="col-md-9" style="margin: 10px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
-								        <div class="row-picture">
-								            <img class="circle" src="<c:url value="/resources/register/images/5.png" />" alt="icon">
+								        <div class="row-picture">  
+								          <c:if test="${not empty user.profileFileName}">
+								            <img class="circle"  width="56" height="56" src="getfile/profile/${user.userId}/xxx" alt="icon">
+								            </c:if>
+								            <c:if test="${ empty user.profileFileName}">
+								              <img class="circle"  width="56" height="56"  src="<c:url value="/resources/register/images/5.png" />" alt="icon">
+								            </c:if>
+								            <%--
+								            
+								            <img id="candidate_photo" width="128" height="128" src="getfile/candidateImg/${candidateForm.missCandidate.mcaId}/${candidateForm.missCandidate.mcaPictureHotlink}" />
+						--%>
 								        </div>
 								        <div class="row-content">
 								            <h4 class="list-group-item-heading">${user.firstName}  ${user.lastName}

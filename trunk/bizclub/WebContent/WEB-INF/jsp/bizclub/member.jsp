@@ -12,7 +12,14 @@
 	</div>
 		<div class="row">
 		<div class="col-md-3 col-md-offset-1">
-			<img src="<c:url value="/resources/register/images/5.png" />" class="img-thumbnail" >
+		 <c:if test="${not empty memberForm.userM.profileFileName}">
+			<img class="img-thumbnail"  width="259" height="259" src="<c:url value="/getfile/profile/${memberForm.userM.userId}/xx" />">
+		</c:if>
+		<c:if test="${ empty memberForm.userM.profileFileName}">
+			<img class="img-thumbnail" width="259" height="259"  src="<c:url value="/resources/register/images/5.png" />" >
+		</c:if>
+		<%-- /bizclub/getfile/profile/${memberForm.userM.userId}/xxx	<img src="<c:url value="/resources/register/images/5.png" />" class="img-thumbnail" >
+		 --%>
 		</div>
 		<div class="col-md-8">
 		

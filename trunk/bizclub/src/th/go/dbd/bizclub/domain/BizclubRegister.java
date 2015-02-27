@@ -166,11 +166,51 @@ public class BizclubRegister implements Serializable {
 	@Column(name="PERSON_CORP_NAME")
 	private String personCorpName;
 	
+	@Column(name="LOGO_PATH")
+	private String logoPath;
+	@Column(name="PROFILE_PATH")
+	private String profilePath;
 	
+	@Column(name="LOGO_FILE_NAME")
+	private String logoFileName;
+	@Column(name="PROFILE_FILE_NAME")
+	private String profileFileName;	
 
 	/*//bi-directional many-to-one association to User
 	@OneToMany(mappedBy="bizclubRegister")
 	private List<User> users;*/
+
+	public String getLogoPath() {
+		return logoPath;
+	}
+
+	public void setLogoPath(String logoPath) {
+		this.logoPath = logoPath;
+	}
+
+	public String getProfilePath() {
+		return profilePath;
+	}
+
+	public void setProfilePath(String profilePath) {
+		this.profilePath = profilePath;
+	}
+
+	public String getLogoFileName() {
+		return logoFileName;
+	}
+
+	public void setLogoFileName(String logoFileName) {
+		this.logoFileName = logoFileName;
+	}
+
+	public String getProfileFileName() {
+		return profileFileName;
+	}
+
+	public void setProfileFileName(String profileFileName) {
+		this.profileFileName = profileFileName;
+	}
 
 	public String getPosition() {
 		return position;

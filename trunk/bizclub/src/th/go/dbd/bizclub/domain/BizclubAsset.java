@@ -59,7 +59,9 @@ public class BizclubAsset implements Serializable {
 
 	@Column(name="UPDATED_DATE")
 	private Timestamp updatedDate;
-
+	
+	
+	
 	//bi-directional many-to-one association to User
 	@ManyToOne
 	@JoinColumn(name="USER_ID")

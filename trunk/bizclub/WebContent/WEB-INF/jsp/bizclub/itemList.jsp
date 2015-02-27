@@ -64,7 +64,13 @@
 			      				<div class="col-md-9" style="margin: 10px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="row-picture">
-								            <img class="square" src="" alt="icon">
+								         <c:if test="${not empty bizclubAsset.baPictureName}">
+												<img class="square"   width="100" height="100" src="<c:url value="/getfile/product/${bizclubAsset.baId}/xx" />">
+										</c:if>
+										<c:if test="${ empty bizclubAsset.baPictureName}">
+												 <img class="square"   width="100" height="100"  src="" alt="icon">
+										</c:if>
+								           <%-- getfile/product/${bizclubAsset.baId}/xxx"  --%>
 								        </div>
 								        <div class="row-content">
 								            <h4 class="list-group-item-heading">${bizclubAsset.baTitle}</h4>
@@ -127,7 +133,7 @@
       		<div class="col-md-12">
       		<c:url var="post_add_url"  value="/product/add" />
       		<c:url var="post_update_url"  value="/product/update" />
-      			 <form:form cssClass="form-horizontal"  id="productItemAddForm" name="productItemAddForm"  modelAttribute="productItemAddForm"    method="POST" action="${post_add_url}">
+      			 <form:form cssClass="form-horizontal"  id="productItemAddForm" name="productItemAddForm"  modelAttribute="productItemAddForm"    method="POST" action="${post_add_url}"  enctype="multipart/form-data">
 				    <fieldset>
 				    	<div>
 				    
@@ -146,7 +152,7 @@
 				        	<label class="col-md-4 control-label" style="color:purple;">ภาพสินค้า: </label>
 				            <div class="col-md-6">
 				                <input readonly="" class="form-control floating-label" placeholder="Browse..." type="text">
-                				<input id="inputFile" multiple="" type="file">
+                				<input id="productFile" name="productFile"  type="file" multiple>
 				            </div>
 				        </div>
 				        <div class="form-group">
@@ -214,7 +220,7 @@
     	  $.ajax({
     		  type: "GET",
     		  contentType : 'application/json; charset=utf-8',
-    		  url: "item/"+itemID,
+    		  url: "/bizclub/product/item/"+itemID,
     		  dataType : 'json'
     		})
     		  .done(function( msg ) {
@@ -243,10 +249,11 @@
       function deleteProductItem(){
     	  	//alert(itemID);
     	  	var itemID=$("#item_delete").val();
-    	  	  document.getElementById('productItemForm').action="delete/"+itemID;
+    	  	  document.getElementById('productItemForm').action="/bizclub/product/delete/"+itemID;
      		  document.getElementById('productItemForm').submit();
     	  	
       }
+     
 </script>
 <style>
 body{
