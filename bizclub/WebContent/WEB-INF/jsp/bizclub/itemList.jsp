@@ -46,7 +46,7 @@
 	      </form:form>
 	      <div class="col-md-4 col-md-offset-8">
 	      	<c:if test="${isAuthen==true}">
-	      	<a href="#" class="btn btn-white" style="padding: 0px;"><img src="<c:url value="/resources/register/images/fb.png" />" width="30px" height="30px"/></a>
+	      	<a href="https://m.facebook.com/dbdbizclubthailand" class="btn btn-white" style="padding: 0px;"><img src="<c:url value="/resources/register/images/fb.png" />" width="30px" height="30px"/></a>
 	      	<a href="#" class="btn btn-white" style="padding: 0px;"><img src="<c:url value="/resources/register/images/tw.png" />" width="30px" height="30px"/></a>
 	      	<a href="#" class="btn btn-white" style="padding: 0px;"><img src="<c:url value="/resources/register/images/gp.png" />" width="30px" height="30px"/></a>
 	      	<button type="button" class="btn btn-default" data-toggle="modal" onclick="showAdd()" style="font-size: 16px; color: orange; border: 1px solid orange; padding: 5px 10px 5px 10px;"><i class="mdi-content-add"></i> เพิ่มสินค้าใหม่ </button>
@@ -77,6 +77,9 @@
 								            <p class="list-group-item-text" style="margin-bottom: 5px;">${bizclubAsset.baDetail}</p>
 								         						        
 								        </div>
+								        <div>
+								            	<a href="#" onclick="showMemeber('${bizclubAsset.user.userId}')" style="font-size: 20px;">สนใจติดต่อ..</a>						        
+								        	</div>
 								    </div>
 							    </div>
 							    <div class="col-md-3" style="margin: 10px 0px 0px 0px;">
@@ -126,7 +129,7 @@
 	</div>
 <!-- ----------------------------------------------------ADD/EDIT ITEM------------------------------------------------------------------- -->
 <div id="item-popup" class="modal fade" tabindex="-1">
-  <div class="modal-dialog modal-md">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-body">
       	<div class="row">
@@ -204,12 +207,257 @@
     </div>
   </div>
 </div>
+<div id="member-popup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-md-11 col-md-offset-1">
+      			<form class="form-horizontal">
+				    <fieldset>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">เลขที่สมาชิก: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="userId_modal" type="text" value="" disabled="disabled">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">เลชบัตรประชาชน: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="cardId_modal" type="text" value="" disabled="disabled">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">ชื่อ-สกุล: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="fullName_modal" type="text" value="" disabled="disabled">
+				            </div>
+				        </div>
+				        <%--
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">ลักษณะธุรกิจ: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="type" type="text" value="นิติบุคคล" disabled="disabled">
+				            </div>
+				        </div>
+				         --%>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">เลขทะเบียนนิติบุคคล: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="corpId_modal" type="text" value="" disabled="disabled">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">ชื่อนิติบุคคล/ชื่อทางการค้า: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="corpName_modal" type="text" value="" disabled="disabled">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">สินค้า/บริการ: </label>
+				            <div class="col-md-5">
+				                <textarea rows="2" cols="" id="services_modal" class="form-control textsize" disabled="disabled"></textarea>
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">Website: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="website_modal" type="text" value="" disabled="disabled">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">Email: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="email_modal" type="text" value="" disabled="disabled">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">เบอร์โทรศัพท์: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="mobilePhone_modal" type="text" value="" disabled="disabled">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">Line: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="lineId_modal" type="text" value="Tode Dream Jockey" disabled="disabled">
+				            </div>
+				        </div>
+				        <%--
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">ประเภทธุรกิจ: </label>
+				            <div class="col-md-5">
+				            	<textarea rows="2" cols="" class="form-control textsize" disabled="disabled">ธุรกิจบริการ</textarea>
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">เกี่ยวข้องในธุรกิจ: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="" type="text" value="เจ้าของธุรกิจ ตำแหน่งกรรมการผู้จัดการ" disabled="disabled">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">ที่อยู่: </label>
+				            <div class="col-md-5">
+				            	<textarea rows="2" cols="" class="form-control textsize" disabled="disabled">542/36 ซ.สหการประมูล (สถานทูตลาว) ถนนประชาอุทิศ แขวงวังทองหลาง เขตวังทองหลาง</textarea>
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">จังหวัด: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="" type="text" value="กรุงเทพมหานคร" disabled="disabled">
+				            </div>
+				        </div>
+				         --%>
+			        </fieldset>
+		        </form>
+      		</div>
+      	</div>
+      </div>
+  	</div>
+ </div>
+</div>
+
+<div id="member-popup2" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<div class="row">
+		<div class="col-md-3 col-md-offset-1">
+			<img class="img-thumbnail" id="profile" width="259" height="259"  src="<c:url value="/resources/register/images/5.png" />" >
+		</div>
+		
+		<div class="col-md-8">
+		<%--    <fieldset>  --%>
+		    	<div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">เลขที่สมาชิก: </label>
+		            <div class="col-md-5" style="padding-bottom: 10px;">
+		                <input class="form-control textsize" id="id_member" type="text" value="" disabled="disabled">
+		            </div>
+	            </div>
+	            <%-- 
+		    	<div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">เลขบัตรประชาชน: <span style="color: red;">*</span></label>
+		            <div class="col-md-5" style="padding-bottom: 10px;">
+		                <input class="form-control textsize" id="mcardId" value="" type="text" disabled="disabled">
+		            </div>   
+	            </div>
+	            --%>
+	            <div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: </label>
+		            <div class="col-md-5" style="padding-bottom: 10px;">
+		              <input class="form-control textsize" id="mfirstName" value="" type="text" disabled="disabled">
+		          
+					   </div>
+	            </div>
+	            
+	            <div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อเล่น: </label>
+		            <div class="col-md-5" style="padding-bottom: 10px;">
+		                 <input class="form-control textsize" id="mnickName" value="" type="text" disabled="disabled">
+		            </div>
+	            </div>
+	        
+	            <div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Website: </label>
+		            <div class="col-md-5" style="padding-bottom: 10px;">
+		             <input class="form-control textsize" id="mwebsite" value="" type="text" disabled="disabled">
+		           
+		            </div>
+	            </div>
+	            <div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์: </label>
+		            <div class="col-md-5" style="padding-bottom: 10px;">
+		            <input class="form-control textsize" id="mmobile" value="" type="text" disabled="disabled">
+		          
+		            </div>
+	            </div>
+	            <div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Email: </label>
+		            <div class="col-md-5" style="padding-bottom: 10px;">
+		                <input class="form-control textsize" id="memail" value="" type="text" disabled="disabled">
+		               
+		            </div>
+	            </div>
+	            <div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Facebook: </label>
+		            <div class="col-md-5" style="padding-bottom: 10px;">
+		                  <input class="form-control textsize" id="mfacebook" value="" type="text" disabled="disabled">
+		            </div>
+	            </div> 
+	            <div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ID Line: </label>
+		            <div class="col-md-5" style="padding-bottom: 10px;">
+		              <input class="form-control textsize" id="mlineID" value="" type="text" disabled="disabled">
+		          
+		            </div>
+	            </div>
+	            <div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ Line: </label>
+		            <div class="col-md-5" style="padding-bottom: 10px;">
+		                 <input class="form-control textsize" id="mlineName" value="" type="text" disabled="disabled">
+		                </div>
+	            </div>
+	          
+	           
+<!-- ----------------------------------EDIT MODE---------------------------------------------- -->	            
+<!-- 	            <div class="form-group"> -->
+<!-- 		            <div class="col-lg-10"> -->
+<!-- 		                <button class="btn btn-default" style="font-weight: bold; font-size: 24px;">ยกเลิก</button> -->
+<!-- 		                <button type="submit" class="btn btn-material-green" style="font-weight: bold; font-size: 22px;">บันทึก</button> -->
+<!-- 		            </div> -->
+<!-- 		        </div> -->
+<!-- ----------------------------------------------------------------------------------------- -->
+		<%--    </fieldset>  --%>
+	
+		</div>
+	
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- --------------------------------------------------------------------------------------------------------------- -->
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script>
       $(document).ready(function() {
           $.material.init();
       });
+      function showMemeber(uid){
+    	  $.ajax({
+    		  type: "GET",
+    		  contentType : 'application/json; charset=utf-8',
+    		  url: "bizmem/item/"+uid,
+    		  dataType : 'json'
+    		})
+    		  .done(function( msg ) {
+    		   // alert( "Data Saved: " + msg.addressDistrict );
+    		    $("#id_member").val(msg.userId);
+    		    $("#mfacebook").val(msg.facebook);
+    		    $("#mfirstName").val(msg.firstName +" "+msg.lastName);
+    		   // $("#mlastName").val(msg.lastName);
+    		    $("#mnickName").val(msg.nickName);
+    		  //  $("#corpId_modal").val(msg.corpId);
+    		//    $("#corpName_modal").val(msg.corpName);
+    		  //  $("#services_modal").val(msg.services);
+    		    $("#mwebsite").val(msg.website);
+    		    $("#memail").val(msg.email);
+    		    $("#mmobile").val(msg.mobilePhone);
+    		    $("#mlineID").val(msg.lineId);
+    		    $("#mlineName").val(msg.lineName);
+    		           
+    		    if(msg.profileFileName!=null && msg.profileFileName.length>0){
+   		    	 $("#profile").attr("src","getfile/profile/"+msg.userId+"/xxx");
+   		     }
+   		    
+    		   //  $("#brId").val(brId);
+    		    //$("#cardId_modal").val(msg.cardId);
+    		  
+    		             $("#member-popup2").modal('show')
+    		           
+    		  });
+    	//  data-toggle="modal" data-target="#member-popup"
+      }
       function doAction(){
     	  var action=$("#action").val();
     	  document.getElementById('productItemAddForm').action=action;

@@ -7,11 +7,16 @@ package th.go.dbd.bizclub.service;
 
 import java.util.List;
 
+import th.go.dbd.bizclub.model.AmphurM;
 import th.go.dbd.bizclub.model.BizclubAssetM;
 import th.go.dbd.bizclub.model.BizclubCorpWM;
 import th.go.dbd.bizclub.model.BizclubPictureM;
+import th.go.dbd.bizclub.model.BizclubProvinceCenterM;
 import th.go.dbd.bizclub.model.BizclubRegisterM;
+import th.go.dbd.bizclub.model.DistrictM;
+import th.go.dbd.bizclub.model.ProvinceM;
 import th.go.dbd.bizclub.model.UserM;
+import th.go.dbd.bizclub.model.ZipcodeM;
 
 
 public interface BizClubService {
@@ -44,4 +49,9 @@ public interface BizClubService {
 	
 	public BizclubCorpWM findBizclubCorpWById(String corpId,String corpType) ;
 	
+	public List<BizclubProvinceCenterM> listProvinceCenter() ;
+	public List<ProvinceM> listProvince() ;
+	public List<AmphurM> listAmphur(Integer provinceId) ;
+	public List<DistrictM> listDistrict(Integer amphurId) ;
+	public List<ZipcodeM> listZipcode(String districtId) ;
 }

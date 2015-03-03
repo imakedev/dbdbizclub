@@ -19,7 +19,13 @@
 			      				<div class="col-md-9" style="margin: 20px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="row-picture">
-								            <img class="circle" src="<c:url value="/resources/register/images/5.png" />" alt="icon">
+    		     							<c:if test="${not empty bizclubRegister.profileFileName}">
+								            	<img class="circle"  width="56" height="56" src="getfile/profile/${bizclubRegister.brId}/register" alt="icon">
+								            </c:if>
+								            <c:if test="${ empty bizclubRegister.profileFileName}">
+								              	<img class="circle"  width="56" height="56"  src="<c:url value="/resources/register/images/5.png" />" alt="icon">
+								            </c:if>
+								            
 								        </div>
 								        <div class="row-content">
 								            <h4 class="list-group-item-heading">${bizclubRegister.brFirstName}  ${bizclubRegister.brLastName}
@@ -64,7 +70,7 @@
       	<div class="row">
       		<div class="col-md-12">
       			<div class="col-md-6" style="padding-left: 200px;">
-      				<img class="img-thumbnail" id="profile" src="<c:url value="/resources/register/images/icon.png" />" alt="" />
+      				<img class="img-thumbnail" width="180" height="190"  id="profile" src="<c:url value="/resources/register/images/icon.png" />" alt="" />
       			</div>
       			<div class="col-md-6" style="padding-left: 0px;">
 	            	<form class="form-horizontal">
@@ -206,7 +212,7 @@
     		</div>
 <!-- -------------------------- LOGO ----------------------------------------------------------- -->
 				<div class="col-md-6" style="padding-left: 230px; padding-bottom: 10px;">
-      				<img class="img-thumbnail" id="logo" src="<c:url value="/resources/register/images/img_logo.png" />" alt="" />
+      				<img class="img-thumbnail" width="160" height="160"  id="logo" src="<c:url value="/resources/register/images/img_logo.png" />" alt="" />
       			</div>
 <!-- ----------------- ข้อมูลการประกอบธุรกิจ ==> กรณี เป็นนิติบุคคล ----------------------------------------- -->
 			<div id="bizclubtype_1" hidden="">
@@ -461,8 +467,9 @@
     		            $("#lineid_modal").val(msg.lineId);
     		           $("#linename_modal").val(msg.lineName) ;
     		            $("#mobilePhone_modal").val(msg.mobilePhone);
-    		            	
-    		             $("#address_modal").val(msg.addressNo+" "+msg.addressName+" "+msg.addressSubDistrict+" "+msg.addressDistrict+" "+msg.addressProvince+" "+msg.addressPostCode);
+    		        
+    		        	
+    		             $("#address_modal").val(msg.addressNo+" "+msg.addressName+" "+msg.addressSubDistrictShow+" "+msg.addressDistrictShow+" "+msg.addressProvinceShow+" "+msg.addressPostCodeShow);
     		              $("#corpConcerned_modal").val(msg.corpConcerned);
     		              $("#corpConcernedName_modal").val(msg.corpConcernedName);
     		               $("#corpConcerned_show_modal").val(msg.corpConcerned);
@@ -473,8 +480,14 @@
     		     $("#corpGroupId_show_modal").val(msg.corpGroupId);
     		     $("#facebook_modal").val(msg.facebook);
     		     $("#corpMobile_modal").val(msg.corpMobile);
-    		     $("#bizclubGroup_modal").val(msg.bizclubGroup);
-    		     
+    		     $("#bizclubGroup_modal").val(msg.bizclubProvinceShow);
+    		   
+    		     if(msg.profileFileName!=null && msg.profileFileName.length>0){
+    		    	 $("#profile").attr("src","getfile/profile/"+brId+"/register");
+    		     }
+    		     if(msg.logoFileName!=null && msg.logoFileName.length>0){
+    		    	 $("#logo").attr("src","getfile/logo/"+brId+"/register");
+    		     }
     		             $("#member-popup").modal('show')
     		             $("#bizclubtype_"+msg.corpType).show();
     		  });

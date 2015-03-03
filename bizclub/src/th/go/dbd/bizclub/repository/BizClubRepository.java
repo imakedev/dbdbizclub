@@ -1,5 +1,6 @@
 package th.go.dbd.bizclub.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,12 +11,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import th.go.dbd.bizclub.domain.Amphur;
 import th.go.dbd.bizclub.domain.BizclubAsset;
 import th.go.dbd.bizclub.domain.BizclubCorpW;
 import th.go.dbd.bizclub.domain.BizclubPicture;
+import th.go.dbd.bizclub.domain.BizclubProvinceCenter;
 import th.go.dbd.bizclub.domain.BizclubRegister;
+import th.go.dbd.bizclub.domain.District;
+import th.go.dbd.bizclub.domain.Province;
 import th.go.dbd.bizclub.domain.RoleType;
 import th.go.dbd.bizclub.domain.User;
+import th.go.dbd.bizclub.domain.Zipcode;
 @Repository("bizClubRepository")
 @Transactional
 public class BizClubRepository {
@@ -104,6 +110,9 @@ public class BizClubRepository {
 	
 	public Integer saveUser(User user) {
 		// TODO Auto-generated method stub
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		user.setUpdatedDate(now);
+		user.setCreatedDate(now);
 		entityManager.persist(user);
 		entityManager.flush();
 		return null;
@@ -112,23 +121,49 @@ public class BizClubRepository {
 	
 	public Integer updateUser(User user) {
 		// TODO Auto-generated method stub
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		user.setUpdatedDate(now);
 		entityManager.merge(user);
 		entityManager.flush();
 		return null;
 	}
 
 	
-	public Integer deleteUser(User user) {
+	public Integer deleteUser(User userId) {
 		// TODO Auto-generated method stub
-		entityManager.remove(user);
-		entityManager.flush();
-		return null;
+	
+		Query query=	entityManager.createQuery( "delete from User where userId =:userId ");
+		query.setParameter("userId",userId.getUserId());
+		return Integer.valueOf(query.executeUpdate());
+	
 	}
 
 	
 	public User findUserById(Integer userId) {
 		// TODO Auto-generated method stub
-		return entityManager.find(User.class,userId );
+		User user =entityManager.find(User.class,userId );
+		if(user.getBizclubProvince()!=null && user.getBizclubProvince().length()>0){
+			BizclubProvinceCenter bizclubProvinceCenter = entityManager.find(BizclubProvinceCenter.class,Integer.valueOf(user.getBizclubProvince()));
+			user.setBizclubProvinceShow(bizclubProvinceCenter.getProvinceName());
+		}
+		if(user.getAddressProvince()!=null && user.getAddressProvince().length()>0){
+			Province province = entityManager.find(Province.class,Integer.valueOf(user.getAddressProvince()));
+			user.setAddressProvinceShow(province.getProvinceName());
+		}
+		if(user.getAddressDistrict()!=null && user.getAddressDistrict().length()>0){
+			Amphur amphur = entityManager.find(Amphur.class,Integer.valueOf(user.getAddressDistrict()));
+			user.setAddressDistrictShow(amphur.getAmphurName());
+		}
+		if(user.getAddressSubDistrict()!=null && user.getAddressSubDistrict().length()>0){
+			District district = entityManager.find(District.class,Integer.valueOf(user.getAddressSubDistrict()));
+			user.setAddressSubDistrictShow(district.getDistrictName());
+		}
+		if(user.getAddressPostCode()!=null && user.getAddressPostCode().length()>0){
+			Zipcode zipcode = entityManager.find(Zipcode.class,Integer.valueOf(user.getAddressPostCode()));
+			user.setAddressPostCodeShow(zipcode.getZipcode());
+		}
+		
+		return user;
 	}
 
 	
@@ -152,7 +187,7 @@ public class BizClubRepository {
 				sb.append(" and u.services like '%"+user.getServices().trim()+"%'");
 			}
 		}
-	
+		sb.append(" order by u.updatedDate desc ");
 		Query query=entityManager.createQuery(sb.toString(), User.class);
 		
 		return query.getResultList();
@@ -161,6 +196,9 @@ public class BizClubRepository {
 	
 	public Integer saveBizclubRegister(BizclubRegister bizclubRegister) {
 		// TODO Auto-generated method stub
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		bizclubRegister.setUpdatedDate(now);
+		bizclubRegister.setCreatedDate(now);
 		entityManager.persist(bizclubRegister);
 		entityManager.flush();
 		return bizclubRegister.getBrId();
@@ -169,6 +207,8 @@ public class BizClubRepository {
 	
 	public Integer updateBizclubRegister(BizclubRegister bizclubRegister) {
 		// TODO Auto-generated method stub
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		bizclubRegister.setUpdatedDate(now);
 		entityManager.merge(bizclubRegister);
 		entityManager.flush();
 		return null;
@@ -185,7 +225,28 @@ public class BizClubRepository {
 	
 	public BizclubRegister findBizclubRegisterById(Integer brId) {
 		// TODO Auto-generated method stub
-		return entityManager.find(BizclubRegister.class,brId );
+		BizclubRegister user = entityManager.find(BizclubRegister.class,brId );
+		if(user.getBizclubProvince()!=null && user.getBizclubProvince().length()>0){
+			BizclubProvinceCenter bizclubProvinceCenter = entityManager.find(BizclubProvinceCenter.class,Integer.valueOf(user.getBizclubProvince()));
+			user.setBizclubProvinceShow(bizclubProvinceCenter.getProvinceName());
+		}
+		if(user.getAddressProvince()!=null && user.getAddressProvince().length()>0){
+			Province province = entityManager.find(Province.class,Integer.valueOf(user.getAddressProvince()));
+			user.setAddressProvinceShow(province.getProvinceName());
+		}
+		if(user.getAddressDistrict()!=null && user.getAddressDistrict().length()>0){
+			Amphur amphur = entityManager.find(Amphur.class,Integer.valueOf(user.getAddressDistrict()));
+			user.setAddressDistrictShow(amphur.getAmphurName());
+		}
+		if(user.getAddressSubDistrict()!=null && user.getAddressSubDistrict().length()>0){
+			District district = entityManager.find(District.class,Integer.valueOf(user.getAddressSubDistrict()));
+			user.setAddressSubDistrictShow(district.getDistrictName());
+		}
+		if(user.getAddressPostCode()!=null && user.getAddressPostCode().length()>0){
+			Zipcode zipcode = entityManager.find(Zipcode.class,Integer.valueOf(user.getAddressPostCode()));
+			user.setAddressPostCodeShow(zipcode.getZipcode());
+		}
+		return user;
 		
 	}
 
@@ -193,7 +254,7 @@ public class BizClubRepository {
 	public List<BizclubRegister> searchBizclubRegister(
 			BizclubRegister bizclubRegister) {
 		// TODO Auto-generated method stub
-		Query query=entityManager.createQuery("select u from BizclubRegister u where u.approveStatus is null "
+		Query query=entityManager.createQuery("select u from BizclubRegister u where u.approveStatus is null order by u.updatedDate desc "
 				+ "", BizclubRegister.class);
 		return query.getResultList();
 	}
@@ -201,6 +262,9 @@ public class BizClubRepository {
 	
 	public Integer saveBizclubPicture(BizclubPicture bizclubPicture) {
 		// TODO Auto-generated method stub
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		bizclubPicture.setUpdatedDate(now);
+		bizclubPicture.setCreatedDate(now);
 		entityManager.persist(bizclubPicture);
 		entityManager.flush();
 		return null;
@@ -209,6 +273,8 @@ public class BizClubRepository {
 	
 	public Integer updateBizclubPicture(BizclubPicture bizclubPicture) {
 		// TODO Auto-generated method stub
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		bizclubPicture.setUpdatedDate(now);
 		entityManager.merge(bizclubPicture);
 		entityManager.flush();
 		return null;
@@ -232,7 +298,7 @@ public class BizClubRepository {
 	public List<BizclubPicture> searchBizclubPicture(
 			BizclubPicture bizclubPicture) {
 		// TODO Auto-generated method stub
-		Query query=entityManager.createQuery("select u from BizclubPicture u  "
+		Query query=entityManager.createQuery("select u from BizclubPicture u order by  u.updatedDate desc   "
 				+ "", BizclubPicture.class);
 		return query.getResultList();
 	}
@@ -240,6 +306,9 @@ public class BizClubRepository {
 	
 	public Integer saveBizclubAsset(BizclubAsset bizclubAsset) {
 		// TODO Auto-generated method stub
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		bizclubAsset.setUpdatedDate(now);
+		bizclubAsset.setCreatedDate(now);
 		entityManager.persist(bizclubAsset);
 		entityManager.flush();
 		return null;
@@ -248,6 +317,8 @@ public class BizClubRepository {
 	
 	public Integer updateBizclubAsset(BizclubAsset bizclubAsset) {
 		// TODO Auto-generated method stub
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		bizclubAsset.setUpdatedDate(now);
 		entityManager.merge(bizclubAsset);
 		entityManager.flush();
 		return null;
@@ -281,6 +352,7 @@ public class BizClubRepository {
 			sb.append((haveWhere?"and":"where")+" ( u.baTitle like '%"+bizclubAsset.getBaTitle().trim()+"%' or "
 					+ " u.baDetail like '%"+bizclubAsset.getBaDetail().trim()+"%' ) ");
 		}
+		sb.append(" order by u.updatedDate desc ");
 		Query query=entityManager.createQuery( sb.toString(), BizclubAsset.class);
 		return query.getResultList();
 	}
@@ -302,6 +374,40 @@ public class BizClubRepository {
 			return (BizclubCorpW)obj;
 		else
 			return null;
+	}
+	
+	public List<BizclubProvinceCenter> listProvinceCenter() {
+		// TODO Auto-generated method stub
+		StringBuffer sb=new StringBuffer("select u from BizclubProvinceCenter u order by u.provinceName ");
+		Query query=entityManager.createQuery( sb.toString(), BizclubProvinceCenter.class);
+		return query.getResultList();
+	}
+	public List<Province> listProvince() {
+		// TODO Auto-generated method stub
+		StringBuffer sb=new StringBuffer("select u from Province u order by u.provinceName ");
+		Query query=entityManager.createQuery( sb.toString(), Province.class);
+		return query.getResultList();
+	}
+	public List<Amphur> listAmphur(Integer provinceId) {
+		// TODO Auto-generated method stub
+		StringBuffer sb=new StringBuffer("select u from Amphur u where u.provinceId=:provinceId  order by u.amphurName ");
+		Query query=entityManager.createQuery( sb.toString(), Amphur.class);
+		query.setParameter("provinceId", provinceId);
+		return query.getResultList();
+	}
+	public List<District> listDistrict(Integer amphurId)  {
+		// TODO Auto-generated method stub
+		StringBuffer sb=new StringBuffer("select u from District u where u.amphurId=:amphurId order by u.districtName  ");
+		Query query=entityManager.createQuery( sb.toString(), District.class);
+		query.setParameter("amphurId", amphurId);
+		return query.getResultList();
+	}
+	public List<Zipcode> listZipcode(String districtId)  {
+		// TODO Auto-generated method stub
+		StringBuffer sb=new StringBuffer("select u from Zipcode u  where u.districtId=:districtId ");
+		Query query=entityManager.createQuery( sb.toString(), Zipcode.class);
+		query.setParameter("districtId", districtId);
+		return query.getResultList();
 	}
 	
 }

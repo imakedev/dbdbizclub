@@ -26,7 +26,7 @@
 <link href="<c:url value="/resources/register/material/css/material-wfont.min.css" />" rel="stylesheet">
 <link href="<c:url value='/resources/fileupload/css/jquery.fileupload.css'/>" type="text/css"  rel="stylesheet" /> 
 
-<title>Bizclub ${isAuthen}</title>
+<title>Bizclub</title>
 </head>
 <body>
 <div id="top_menu">

@@ -1,6 +1,7 @@
 package th.go.dbd.bizclub.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 
@@ -21,6 +22,22 @@ public class BizclubCorpW implements Serializable {
 	@Column(name="CORP_BIZ_TYPE")
 	private String corpBizType;
 
+	public String getBtCode() {
+		return btCode;
+	}
+
+	public void setBtCode(String btCode) {
+		this.btCode = btCode;
+	}
+
+	public String getBtDesc() {
+		return btDesc;
+	}
+
+	public void setBtDesc(String btDesc) {
+		this.btDesc = btDesc;
+	}
+
 	@Column(name="CORP_NAME")
 	private String corpName;
 
@@ -29,7 +46,10 @@ public class BizclubCorpW implements Serializable {
 
 	@Column(name="CORP_TYPE")
 	private String corpType;
-
+	@Column(name="BT_CODE")
+	private String btCode;
+	@Column(name="BT_DESC")
+	private String btDesc;
 	public BizclubCorpW() {
 	}
 

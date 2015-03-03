@@ -17,7 +17,7 @@
   <%-- 
   <link rel="stylesheet" href="<spring:url value="/styles/petclinic.css" htmlEscape="true" />" type="text/css"/>
    --%> 
-    <title>GL</title>
+    <title>Bizclub</title>
     <link rel="shortcut icon" href="<c:url value="/resources/images/icon.ico" />" type="image/x-icon">
 	<script src="<c:url value="/resources/js/jquery-latest.min.js" />"></script>
 	

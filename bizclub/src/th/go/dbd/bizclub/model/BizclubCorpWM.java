@@ -2,6 +2,8 @@ package th.go.dbd.bizclub.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+
 
 public class BizclubCorpWM implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -15,6 +17,24 @@ public class BizclubCorpWM implements Serializable {
 	private String corpServices;
 
 	private String corpType;
+	private String btCode;
+	public String getBtCode() {
+		return btCode;
+	}
+
+	public void setBtCode(String btCode) {
+		this.btCode = btCode;
+	}
+
+	public String getBtDesc() {
+		return btDesc;
+	}
+
+	public void setBtDesc(String btDesc) {
+		this.btDesc = btDesc;
+	}
+
+	private String btDesc;
 
 	public BizclubCorpWM() {
 	}
