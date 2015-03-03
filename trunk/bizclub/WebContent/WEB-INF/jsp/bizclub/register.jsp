@@ -48,12 +48,12 @@
 			    	</fieldset>
 		    	  </span> 
 	    	</div>
-			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
+			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
 				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
 					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
 	          	</div>
           	</div>
-          	<div class="col-md-12" style="background-color: #fff; box-shadow: 5px 5px 10px #000;">
+          	<div class="col-md-12" style="background-color: #fff; ">
 				<div class="col-md-8" style="padding-top: 40px;">
 					<span class="form-horizontal">
 				    	<fieldset>
@@ -183,16 +183,17 @@
 				            		<div class="col-md-7">
 							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">จังหวัด: <span style="color: red;">*</span></label>
 							            <div class="col-md-5" style="padding-bottom: 10px;">
-							                <form:select path="bizclubRegisterM.addressProvince" cssClass="form-control textsize">
-							                	<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
+							                <form:select path="bizclubRegisterM.addressProvince" id="addressProvince" cssClass="form-control textsize" onchange="loadAddressAmphur(this.value)" >
+							                	<%-- <form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>  --%>
+							                	<form:options items="${provinces}" itemValue="provinceId" itemLabel="provinceName"/>
 							                </form:select>
 							            </div>
 						            </div>
 						            <div class="col-md-5">
 						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">อำเภอ/เขต: <span style="color: red;">*</span></label>
-							            <div class="col-md-7" style="padding-bottom: 10px;">
-							              <form:select path="bizclubRegisterM.addressDistrict" cssClass="form-control textsize">
-							                	<form:option value="อำเภอ/เขต">อำเภอ/เขต</form:option>
+							            <div class="col-md-7" style="padding-bottom: 10px;" id="addressDistrictElement">
+							              <form:select path="bizclubRegisterM.addressDistrict" id="addressDistrict" onchange="loadAddressDistrict(this.value)" cssClass="form-control textsize">
+							                	
 							                </form:select>
 							            </div>
 						            </div>
@@ -202,17 +203,20 @@
 				            	<div class="row">
 				            		<div class="col-md-7">
 							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">ตำบล/แขวง: <span style="color: red;">*</span></label>
-							            <div class="col-md-5" style="padding-bottom: 10px;">
-							            <form:select path="bizclubRegisterM.addressSubDistrict" cssClass="form-control textsize">
-							                	<form:option value="ตำบล/แขวง">ตำบล/แขวง</form:option>
+							            <div class="col-md-5" style="padding-bottom: 10px;"  id="addressSubDistrictElement">
+							            	<form:select path="bizclubRegisterM.addressSubDistrict" id="addressSubDistrict" onchange="loadAddressZipcode(this)" cssClass="form-control textsize">
+							                	
 							                </form:select>
 							            </div>
 						            </div>
 						            <div class="col-md-5">
 						            	<label class="col-md-6 control-label" style="padding-bottom: 10px;">รหัสไปรษณีย์: <span style="color: red;">*</span></label>
-							            <div class="col-md-6" style="padding-bottom: 10px;">
-							              <form:input path="bizclubRegisterM.addressPostCode" cssClass="form-control textsize"
-		                 placeholder="รหัสไปรษณีย์"  /> 
+							            <div class="col-md-6" style="padding-bottom: 10px;"  id="addressPostCodeElement">
+							             <%-- <form:input path="bizclubRegisterM.addressPostCode" cssClass="form-control textsize"
+		                 placeholder="รหัสไปรษณีย์"  />  --%> 
+		                 				<form:select path="bizclubRegisterM.addressPostCode" id="addressPostCode" cssClass="form-control textsize">
+							                	
+							                </form:select>
 							            </div>
 						            </div>
 					            </div>
@@ -229,12 +233,17 @@
 			</div>
 <!-- -------------------------------------- กรณี เป็นบุคคลธรรมดา/ผู้ประกอบกิจการ(ทั่วไป) ---------------------------------------------------- -->			
 <div hidden="">
-			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
+			<!--   <div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
+			-->
+			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; ">
 				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
 					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-action-assignment-ind"></i> เกี่ยวข้องกับธุรกิจ</p>
 	          	</div>
           	</div>
+          	<!-- 
           	<div class="col-md-12" style="background-color: #fff; padding-top: 40px; box-shadow: 5px 5px 10px #000; ">
+          	 -->
+          	 	<div class="col-md-12" style="background-color: #fff; padding-top: 40px;">
 				<span class="form-horizontal">
 			    	<fieldset>
 				    	<div class="form-group">
@@ -256,6 +265,7 @@
 								    <label class="radio-inline">
 								         <form:radiobutton path="bizclubRegisterM.corpConcerned" value="3"  />	
 								      <span style="margin-top: -5px; margin-left: 20px; text-align: right;">อื่นๆ </span>
+								      
 								    </label>
 							    </div>
 							    <div class="col-md-3">
@@ -277,12 +287,12 @@
             </div>
 </div>
 <!-- ==================================================== ข้อมูลการประกอบธุรกิจ =================================================================== -->
-			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
+			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
 				<div class="col-md-3" style="border: 1px solid #fbb100; padding-top: 10px;">
 					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
 	          	</div>
           	</div>
-          	<div class="col-md-12" style="background-color: #fff; box-shadow: 5px 5px 10px #000; ">
+          	<div class="col-md-12" style="background-color: #fff;  ">
 				<div class="col-md-8" style="padding-top: 40px;">
 					<span class="form-horizontal">
 				    	<fieldset>
@@ -351,9 +361,25 @@
 		                 placeholder="สินค้า/บริการ"  /> 
 					            </div>
 				            </div>
+				              <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">รหัสหมวดธุรกิจ: <span style="color: red;"></span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <form:input path="bizclubRegisterM.btCode" id="btCode" cssClass="form-control textsize"/>
+					            </div>
+							 </div>
+							 <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">รายละเอียดหมวดธุรกิจ: <span style="color: red;"></span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					                <form:textarea path="bizclubRegisterM.btDesc"  id="btDesc" cssClass="form-control textsize" rows="2" cols="3"/>
+					                
+					            </div>
+							 </div>
+							 
+						           
 			            </fieldset>
 		            </span>
 	            </div>
+	          
 	            <!-- ---------------------------------- IMG LOGO --------------------------------- -->
         	    <div class="col-md-4" style="padding:20px 0px 1px 100px;">
 	            	<img class="img-thumbnail" id="logo" src="<c:url value="/resources/register/images/img_logo.png" />" alt="<c:url value="/resources/register/images/icon.png" />" data-src="holder.js"/>
@@ -397,9 +423,16 @@
 									       <form:checkbox path="corpGroupIds" value="6"/> ส่งออก
 									    </label>
 						            </div>
-						            <div class="col-md-2 checkbox checkbox-primary">
+						            <div class="col-md-3 checkbox checkbox-primary">
 									  	<label>
 									       <form:checkbox path="corpGroupIds" value="7"/> อื่นๆ
+									      
+									    </label>
+						            </div>
+						             <div class="col-md-3 checkbox checkbox-primary">
+									  	<label>
+									      <form:input path="bizclubRegisterM.corpGroupDesc" cssClass="form-control textsize"
+		                 placeholder="ระบุ" />
 									    </label>
 						            </div>
 					            </div>
@@ -432,12 +465,33 @@
 		                 placeholder="เบอร์โทรศัพท์"  /> 
 					               
 					            </div>
-				            </div>
+				            </div>	
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ศูนย์เครือข่ายธุรกิจ BizClub: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:select path="bizclubRegisterM.bizclubGroup" cssClass="form-control textsize">
+					              <form:select path="bizclubRegisterM.bizclubProvince" cssClass="form-control textsize">
+					             	 <form:options items="${provinceCenters}" itemValue="provinceId" itemLabel="provinceName"/>
+							                		<%--	<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
+							                		<form:option value="เชียงใหม่">เชียงใหม่</form:option>
+							                		<form:option value="พิษณุโลก">พิษณุโลก</form:option>
+							                		<form:option value="ชัยนาท">ชัยนาท</form:option>
+							                		<form:option value="ขอนแก่น">ขอนแก่น</form:option>
+							                		<form:option value="เพชรบุรี">เพชรบุรี</form:option>
+							                		<form:option value="สงขลา">สงขลา</form:option>
+							                		<form:option value="นนทบุรี">นนทบุรี</form:option>
+							                		<form:option value="เชียงราย">เชียงราย</form:option>
+							                		<form:option value="พิจิตร">พิจิตร</form:option>
+							                		<form:option value="นครราชสีมา">นครราชสีมา</form:option>
+							                		<form:option value="กาญจนบุรี">กาญจนบุรี</form:option>
+							                		<form:option value="ชลบุรี">ชลบุรี</form:option>
+							                	
 							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
+							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
+							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
+							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
+							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
+							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
+							                		  --%>
 							      </form:select>
 					            </div>
 				            </div>
@@ -490,7 +544,82 @@ $(document).ready(function() {
 	    if(dInput.length==13)
 			checkCardId();
 	});
+	loadAddressAmphur($("#addressProvince").val());
 });
+function loadAddressAmphur(provinceId){
+	//alert(provinceId)
+	  $.ajax({
+		  type: "GET",
+		  contentType : 'application/json; charset=utf-8',
+		  url: "ws/addr/amphur/"+provinceId,
+		  dataType : 'json'
+		})
+		  .done(function( msg ) {
+			 // alert(msg)
+			  var listAmphur=msg;
+			  var first_id="";
+			  var str="<select id=\"addressDistrict\" name=\"bizclubRegisterM.addressDistrict\" class=\"form-control textsize\" onchange=\"loadAddressDistrict(this.value)\">";
+			  for(var i=0;i<listAmphur.length;i++){
+				  str=str+"<option value=\""+listAmphur[i].amphurId+"\">"+listAmphur[i].amphurName+"</option>";
+				  if(i==0)
+					  first_id=listAmphur[i].amphurId;
+			  }
+			  str=str+"</select>";
+			//  alert(str)
+			  $("#addressDistrictElement").html(str);
+			  loadAddressDistrict(first_id)
+			  /*amphurId;
+				 amphurName;
+				 */
+		
+		  });
+}
+function loadAddressDistrict(districtId){
+	  $.ajax({
+		  type: "GET",
+		  contentType : 'application/json; charset=utf-8',
+		  url: "ws/addr/district/"+districtId,
+		  dataType : 'json'
+		})
+		  .done(function( msg ) {
+			  var listDistrict=msg;
+			  var str="<select id=\"addressSubDistrict\" name=\"bizclubRegisterM.addressSubDistrict\" class=\"form-control textsize\" onchange=\"loadAddressZipcode(this.value)\">";
+			  var first_id="";
+			  for(var i=0;i<listDistrict.length;i++){
+				  
+				  str=str+"<option value=\""+listDistrict[i].districtId+"\">"+listDistrict[i].districtName+"</option>";
+				  if(i==0)
+					  first_id=listDistrict[i].districtId;
+			  }
+			  str=str+"</select>";
+			  $("#addressSubDistrictElement").html(str);
+			  loadAddressZipcode(first_id)
+			  /*
+				private Integer districtId;
+				private String districtName;	
+		   */
+		  });
+}
+function loadAddressZipcode(districtId){
+	  $.ajax({
+		  type: "GET",
+		  contentType : 'application/json; charset=utf-8',
+		  url: "ws/addr/zipcode/"+districtId,
+		  dataType : 'json'
+		})
+		  .done(function( msg ) {
+			  var listZipcode=msg;
+			  var str="<select id=\"addressPostCode\" name=\"bizclubRegisterM.addressPostCode\" class=\"form-control textsize\" >";
+			  for(var i=0;i<listZipcode.length;i++){
+				  
+				  str=str+"<option value=\""+listZipcode[i].zipcodeId+"\">"+listZipcode[i].zipcode+"</option>";
+			  }
+			  str=str+"</select>";
+			  $("#addressPostCodeElement").html(str);
+			
+		  });
+}
+
 function getCrop(corpType){
 	var corpId="";
 	if(corpType=='1'){
@@ -523,6 +652,8 @@ function getCrop(corpType){
 				    $("#taxesCorpName").val(msg.corpName);
 			  }
 			  $("#services").val(msg.corpServices);
+			  $("#btCode").val(msg.btCode);
+			  $("#btDesc").val(msg.btDesc);
 			  var corpBizTypes=msg.corpBizType.split("-");
 			  $("input[name=corpGroupIds]").each(function() { 
 				  var  corpGroupId_value=$(this).val();
@@ -566,8 +697,22 @@ function resetbizclubtype(){
 	for(var i=0;i<size;i++)
 		$("#bizclubtype_"+(i+1)).hide();
 }
+function resetFormBizclubType(){
+	  $("input[name=corpGroupIds]").each(function() { 
+		//  var  corpGroupId_value=$(this).val();
+		  $(this).attr("checked",false);
+		});
+	  $("#corpId").val("");
+	  $("#corpName").val("");
+	  $("#services").val("");
+	  $("#btCode").val("");
+	  $("#btDesc").val("");
+	  $("#taxesCorpName").val("");
+	  $("#personCorpName").val("");
+}
 function showbizclubtype(type){
 	resetbizclubtype();
+	resetFormBizclubType();
 	$("#bizclubtype_"+type).show();
 }
 function readURL1(input) {

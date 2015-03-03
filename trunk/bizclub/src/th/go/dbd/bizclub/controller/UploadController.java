@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import th.go.dbd.bizclub.domain.BizclubAsset;
 import th.go.dbd.bizclub.model.BizclubAssetM;
+import th.go.dbd.bizclub.model.BizclubRegisterM;
 import th.go.dbd.bizclub.model.UserM;
 import th.go.dbd.bizclub.service.BizClubService;
 @Controller
@@ -41,13 +42,26 @@ public class UploadController {
 	    	String ndPathFileGen="";
 	    	//path+"/"+ndPathFileGen
 	    	if(module.equals("profile")){
-	    		UserM userM= bizClubService.findUserById(Integer.valueOf(id));
-	    		ndPathFileGen=path+userM.getProfilePath();
-	    		filename=userM.getProfileFileName();
+	    		if(hotlink.equals("register")){
+	    			BizclubRegisterM bizclubRegisterM= bizClubService.findBizclubRegisterById(Integer.valueOf(id));
+		    		ndPathFileGen=path+bizclubRegisterM.getProfilePath();
+		    		filename=bizclubRegisterM.getProfileFileName();
+	    		}else{
+	    			UserM userM= bizClubService.findUserById(Integer.valueOf(id));
+		    		ndPathFileGen=path+userM.getProfilePath();
+		    		filename=userM.getProfileFileName();
+	    		}
+	    		
 			}else if(module.equals("logo")){
-				UserM userM= bizClubService.findUserById(Integer.valueOf(id));
-		    	ndPathFileGen=path+userM.getLogoPath();
-		    	filename=userM.getLogoFileName();
+				if(hotlink.equals("register")){
+	    			BizclubRegisterM bizclubRegisterM= bizClubService.findBizclubRegisterById(Integer.valueOf(id));
+		    		ndPathFileGen=path+bizclubRegisterM.getLogoPath();
+		    		filename=bizclubRegisterM.getLogoFileName();
+	    		}else{
+	    			UserM userM= bizClubService.findUserById(Integer.valueOf(id));
+	    			ndPathFileGen=path+userM.getLogoPath();	
+	    			filename=userM.getLogoFileName();
+	    		}
 			}else if(module.equals("product")){
 				BizclubAssetM bizclubAsset= bizClubService.findBizclubAssetById(Integer.valueOf(id));
 		    	ndPathFileGen=path+bizclubAsset.getBaPicturePath();

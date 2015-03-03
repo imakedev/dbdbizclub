@@ -57,7 +57,9 @@
 				        	<a href="#" style="float: left; color: #fff;">forget your password?</a>
 				        </div>
 				        <div class="col-md-4">
-				        	<a href="<c:url value="/register" />" style="float: right; color: #fff; text-align: right;">Sing Up</a>
+				        <button type="button" onclick="goRegister()" class="btn btn-material-orange btn_popup" 
+				        style="float: right; color: #fff; text-align: right; padding: 0px 10px 0px 10px; margin-top: -5px;">Sing Up</button>
+				        <%--	<a href="<c:url value="/register" />" style="float: right; color: #fff; text-align: right;">Sing Up</a>  --%>
 				        </div>
 				        <div class="col-md-1">
 				        	<a href="#" style="text-decoration: none; float: right;"><span class="mdi-action-info-outline" style="color: #fff;"></span></a>
@@ -69,12 +71,15 @@
 	</div>
 </div>
 </div>
-
+<c:url value="/register" var="registerUrl" />"
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script>
       $(document).ready(function() {
           $.material.init();
       });
+      function goRegister(){
+    	  window.location.href="${registerUrl}";
+      }
 </script>
 <style>
 body{

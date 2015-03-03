@@ -65,7 +65,40 @@ public class UserM implements Serializable {
 	private String logoPath;
 	private String profilePath;
 	private String logoFileName;
+	
 	private String profileFileName;
+	
+	private String addressDistrictShow;
+	private String addressProvinceShow;
+	private String addressSubDistrictShow;
+	private String bizclubProvinceShow;
+	private String btCode;
+	private String btDesc;
+	public String getBtCode() {
+		return btCode;
+	}
+
+	public void setBtCode(String btCode) {
+		this.btCode = btCode;
+	}
+
+	public String getBtDesc() {
+		return btDesc;
+	}
+
+	public void setBtDesc(String btDesc) {
+		this.btDesc = btDesc;
+	}
+
+	public String getAddressPostCodeShow() {
+		return addressPostCodeShow;
+	}
+
+	public void setAddressPostCodeShow(String addressPostCodeShow) {
+		this.addressPostCodeShow = addressPostCodeShow;
+	}
+
+	private String addressPostCodeShow;
 	public String getLogoFileName() {
 		return logoFileName;
 	}
@@ -117,6 +150,8 @@ public class UserM implements Serializable {
 	private String corpMobile;
 	private String cropAddress;
 	private String bizclubGroup;
+	private String bizclubProvince;
+	private String bizclubType;
 	private String titleType;
 	private String titleName;		
 	private String position;
@@ -508,6 +543,54 @@ public class UserM implements Serializable {
 
 	public void setLineId(String lineId) {
 		this.lineId = lineId;
+	}
+
+	public String getBizclubProvince() {
+		return bizclubProvince;
+	}
+
+	public void setBizclubProvince(String bizclubProvince) {
+		this.bizclubProvince = bizclubProvince;
+	}
+
+	public String getBizclubType() {
+		return bizclubType;
+	}
+
+	public void setBizclubType(String bizclubType) {
+		this.bizclubType = bizclubType;
+	}
+
+	public String getAddressDistrictShow() {
+		return addressDistrictShow;
+	}
+
+	public void setAddressDistrictShow(String addressDistrictShow) {
+		this.addressDistrictShow = addressDistrictShow;
+	}
+
+	public String getAddressProvinceShow() {
+		return addressProvinceShow;
+	}
+
+	public void setAddressProvinceShow(String addressProvinceShow) {
+		this.addressProvinceShow = addressProvinceShow;
+	}
+
+	public String getAddressSubDistrictShow() {
+		return addressSubDistrictShow;
+	}
+
+	public void setAddressSubDistrictShow(String addressSubDistrictShow) {
+		this.addressSubDistrictShow = addressSubDistrictShow;
+	}
+
+	public String getBizclubProvinceShow() {
+		return bizclubProvinceShow;
+	}
+
+	public void setBizclubProvinceShow(String bizclubProvinceShow) {
+		this.bizclubProvinceShow = bizclubProvinceShow;
 	}
 
 }

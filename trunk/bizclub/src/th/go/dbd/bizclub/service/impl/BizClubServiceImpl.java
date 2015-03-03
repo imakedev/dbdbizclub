@@ -10,19 +10,29 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import th.go.dbd.bizclub.domain.Amphur;
 import th.go.dbd.bizclub.domain.BizclubAsset;
 import th.go.dbd.bizclub.domain.BizclubCorpW;
 import th.go.dbd.bizclub.domain.BizclubPicture;
+import th.go.dbd.bizclub.domain.BizclubProvinceCenter;
 import th.go.dbd.bizclub.domain.BizclubRegister;
+import th.go.dbd.bizclub.domain.District;
+import th.go.dbd.bizclub.domain.Province;
 import th.go.dbd.bizclub.domain.Role;
 import th.go.dbd.bizclub.domain.RoleType;
 import th.go.dbd.bizclub.domain.User;
+import th.go.dbd.bizclub.domain.Zipcode;
+import th.go.dbd.bizclub.model.AmphurM;
 import th.go.dbd.bizclub.model.BizclubAssetM;
 import th.go.dbd.bizclub.model.BizclubCorpWM;
 import th.go.dbd.bizclub.model.BizclubPictureM;
+import th.go.dbd.bizclub.model.BizclubProvinceCenterM;
 import th.go.dbd.bizclub.model.BizclubRegisterM;
+import th.go.dbd.bizclub.model.DistrictM;
+import th.go.dbd.bizclub.model.ProvinceM;
 import th.go.dbd.bizclub.model.RoleM;
 import th.go.dbd.bizclub.model.UserM;
+import th.go.dbd.bizclub.model.ZipcodeM;
 import th.go.dbd.bizclub.repository.BizClubRepository;
 import th.go.dbd.bizclub.service.BizClubService;
 import th.go.dbd.bizclub.utils.MapUtils;
@@ -293,6 +303,11 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		for (BizclubAsset bizclubAssetDomain : bizclubAssets) {
 			BizclubAssetM bizclubAssetModel=new BizclubAssetM();
 			BeanUtils.copyProperties(bizclubAssetDomain , bizclubAssetModel,"user");
+			if(bizclubAssetDomain.getUser()!=null && bizclubAssetDomain.getUser().getUserId()!=null){
+				UserM userM=new UserM();
+				userM.setUserId(bizclubAssetDomain.getUser().getUserId());
+				bizclubAssetModel.setUser(userM);
+			}
 			bizclubAssetModelList.add(bizclubAssetModel);
 		}
 		return bizclubAssetModelList;
@@ -313,6 +328,76 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		BizclubCorpWM bizclubCorpWM=new BizclubCorpWM();
 		BeanUtils.copyProperties(bizclubCorp,bizclubCorpWM );
 		return bizclubCorpWM;
+	}
+
+
+	@Override
+	public List<BizclubProvinceCenterM> listProvinceCenter() {
+		// TODO Auto-generated method stub
+		List<BizclubProvinceCenter>  provinces= bizClubRepository.listProvinceCenter();
+		List<BizclubProvinceCenterM>  provinceMList=new ArrayList<BizclubProvinceCenterM>(provinces.size());
+		for (BizclubProvinceCenter province : provinces) {
+			BizclubProvinceCenterM provinceM=new BizclubProvinceCenterM();
+			BeanUtils.copyProperties( province, provinceM);
+			provinceMList.add(provinceM);
+		}
+		return provinceMList;
+	}
+	
+
+	@Override
+	public List<ProvinceM> listProvince() {
+		// TODO Auto-generated method stub
+		List<Province>  provinces= bizClubRepository.listProvince();
+		List<ProvinceM>  provinceMList=new ArrayList<ProvinceM>(provinces.size());
+		for (Province province : provinces) {
+			ProvinceM provinceM=new ProvinceM();
+			BeanUtils.copyProperties( province, provinceM);
+			provinceMList.add(provinceM);
+		}
+		return provinceMList;
+	}
+
+
+	@Override
+	public List<AmphurM> listAmphur(Integer provinceId) {
+		// TODO Auto-generated method stub
+		List<Amphur>  amphurMs= bizClubRepository.listAmphur(provinceId);
+		List<AmphurM>  amphurMList=new ArrayList<AmphurM>(amphurMs.size());
+		for (Amphur amphur : amphurMs) {
+			AmphurM amphurM=new AmphurM();
+			BeanUtils.copyProperties( amphur, amphurM);
+			amphurMList.add(amphurM);
+		}
+		return amphurMList;
+	}
+
+
+	@Override
+	public List<DistrictM> listDistrict(Integer amphurId) {
+		// TODO Auto-generated method stub
+		List<District>  districts= bizClubRepository.listDistrict(amphurId);
+		List<DistrictM>  districtMList=new ArrayList<DistrictM>(districts.size());
+		for (District district : districts) {
+			DistrictM districtM=new DistrictM();
+			BeanUtils.copyProperties( district, districtM);
+			districtMList.add(districtM);
+		}
+		return districtMList;
+	}
+
+
+	@Override
+	public List<ZipcodeM> listZipcode(String districtId) {
+		// TODO Auto-generated method stub
+		List<Zipcode>  zipcodes= bizClubRepository.listZipcode(districtId);
+		List<ZipcodeM>  zipcodeMList=new ArrayList<ZipcodeM>(zipcodes.size());
+		for (Zipcode zipcode : zipcodes) {
+			ZipcodeM zipcodeM=new ZipcodeM();
+			BeanUtils.copyProperties( zipcode, zipcodeM);
+			zipcodeMList.add(zipcodeM);
+		}
+		return zipcodeMList;
 	}
 
 }

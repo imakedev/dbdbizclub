@@ -92,6 +92,14 @@
 								        </div>
 								        <div class="row-content">
 								            <h4 class="list-group-item-heading">${user.firstName}  ${user.lastName}
+								             <c:if test="${isAuthen==true}">
+								                 <c:if test="${isAdmin}">
+								                 <%--
+								             	<button class="btn btn-success btn-flat bton" type="button" onclick="editProductItem('${user.userId}')"><i class="mdi-image-edit"></i></button>
+								             	 --%>
+												<button class="btn btn-danger btn-flat bton" type="button"  onclick="showDelete('${user.userId}')"><i class="mdi-action-delete"></i></button>
+								            	</c:if>
+								             </c:if>
 								            <c:if test="${user.isCorp=='1'}"> 
 								            	<span style="color: #a8a6a5;">(นิติบุคคล)</span>
 								            </c:if>
@@ -315,11 +323,40 @@
  </div>
 </div>
 
+
+<div id="delete-popup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<form:form   id="memberItemForm" name="memberItemForm"   method="GET" action=""
+		cssClass="form-horizontal">
+		     <input type="hidden" id="item_delete">
+			<fieldset>
+	          	<div class="form-group">
+		            <label class="col-lg-10 col-md-offset-1 control-label" style="text-align: center; font-size: 18px;">Are you sure?</label>
+	        	</div>
+	      	</fieldset>
+	      </form:form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" onclick="deleteMemberItem()" class="btn btn-material-blue-700 btn-xs" data-dismiss="modal">Yes</button>
+        <button class="btn btn-material-grey-100 btn-xs" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script>
       $(document).ready(function() {
           $.material.init();
       });
+      function deleteMemberItem(){
+  	  	//alert(itemID);
+  	  	var itemID=$("#item_delete").val();
+  	  	  document.getElementById('memberItemForm').action="/bizclub/member/delete/"+itemID;
+   		  document.getElementById('memberItemForm').submit();
+  	  	
+    }
       function showMemeber(uid){
     	  $.ajax({
     		  type: "GET",
@@ -349,7 +386,10 @@
     		  });
     	//  data-toggle="modal" data-target="#member-popup"
       }
-      
+      function showDelete(itemID){
+    	  $("#item_delete").val(itemID)
+    	  $("#delete-popup").modal('show')
+      } 
 </script>
 <style>
 body{

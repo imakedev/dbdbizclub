@@ -392,11 +392,11 @@
 	<div class="container">
 	<div id="footer_body" class="clear">
         <div  class="box_contact">
-            <div  class="topic_contact">สำนักพัฒนาผู้ประกอบธุรกิจ กรมพัฒนาธุรกิจการค้า กระทรวงพาณิชย์</div>
-            <div>เลขที่ 44/100 ถนน นนทบุรี 1 ต.บางกระสอ อ.เมือง จ.นททบุรี 11000</div>
-            <div>โทรศัพท์: 02-547-5962</div>
-            <div>โทรสาร: 02-547-5963-64</div>
-            <div>email: training@dbd.go.th</div>
+            <div  class="topic_contact">กรมพัฒนาธุรกิจการค้า</div>
+            <div>เลขที่ 563 ถนน นนทบุรี ต.บางกระสอ อ.เมือง จ.นททบุรี 11000</div>
+            <div>โทรศัพท์: 02-547-5964</div>
+            <div>โทรสาร: 02-547-5963</div>
+            <div>email: dbdbizclub2015@gmail.com</div>
         </div>
         <div style="float:right;width:300px;" >
         	<div  style="text-align:right;">

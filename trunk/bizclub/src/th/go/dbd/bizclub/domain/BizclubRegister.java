@@ -13,6 +13,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 
 /**
@@ -144,6 +145,13 @@ public class BizclubRegister implements Serializable {
 	
 	@Column(name="BIZCLUB_GROUP")
 	private String bizclubGroup;
+
+
+	@Column(name="BIZCLUB_PROVINCE")
+	private String bizclubProvince;
+	
+	@Column(name="BIZCLUB_TYPE")
+	private String bizclubType;
 	
 	@Column(name="TITLE_TYPE")
 	private String titleType;
@@ -175,6 +183,47 @@ public class BizclubRegister implements Serializable {
 	private String logoFileName;
 	@Column(name="PROFILE_FILE_NAME")
 	private String profileFileName;	
+	@Transient
+	private String addressDistrictShow;
+	@Transient
+	private String addressProvinceShow;
+	@Transient
+	private String addressSubDistrictShow;
+	@Transient
+	private String addressPostCodeShow;
+	
+	@Column(name="BT_CODE")
+	private String btCode;
+	public String getBtCode() {
+		return btCode;
+	}
+
+	public void setBtCode(String btCode) {
+		this.btCode = btCode;
+	}
+
+	public String getBtDesc() {
+		return btDesc;
+	}
+
+	public void setBtDesc(String btDesc) {
+		this.btDesc = btDesc;
+	}
+
+	@Column(name="BT_DESC")
+	private String btDesc;
+
+	
+	public String getAddressPostCodeShow() {
+		return addressPostCodeShow;
+	}
+
+	public void setAddressPostCodeShow(String addressPostCodeShow) {
+		this.addressPostCodeShow = addressPostCodeShow;
+	}
+
+	@Transient
+	private String bizclubProvinceShow;
 
 	/*//bi-directional many-to-one association to User
 	@OneToMany(mappedBy="bizclubRegister")
@@ -590,6 +639,54 @@ public class BizclubRegister implements Serializable {
 
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getBizclubProvince() {
+		return bizclubProvince;
+	}
+
+	public void setBizclubProvince(String bizclubProvince) {
+		this.bizclubProvince = bizclubProvince;
+	}
+
+	public String getBizclubType() {
+		return bizclubType;
+	}
+
+	public void setBizclubType(String bizclubType) {
+		this.bizclubType = bizclubType;
+	}
+
+	public String getAddressDistrictShow() {
+		return addressDistrictShow;
+	}
+
+	public void setAddressDistrictShow(String addressDistrictShow) {
+		this.addressDistrictShow = addressDistrictShow;
+	}
+
+	public String getAddressProvinceShow() {
+		return addressProvinceShow;
+	}
+
+	public void setAddressProvinceShow(String addressProvinceShow) {
+		this.addressProvinceShow = addressProvinceShow;
+	}
+
+	public String getAddressSubDistrictShow() {
+		return addressSubDistrictShow;
+	}
+
+	public void setAddressSubDistrictShow(String addressSubDistrictShow) {
+		this.addressSubDistrictShow = addressSubDistrictShow;
+	}
+
+	public String getBizclubProvinceShow() {
+		return bizclubProvinceShow;
+	}
+
+	public void setBizclubProvinceShow(String bizclubProvinceShow) {
+		this.bizclubProvinceShow = bizclubProvinceShow;
 	}
 
 

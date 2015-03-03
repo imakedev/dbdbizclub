@@ -15,6 +15,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 
 /**
@@ -34,6 +35,23 @@ public class User implements Serializable {
 
 	@Column(name="ADDRESS_DISTRICT")
 	private String addressDistrict;
+	@Transient
+	private String addressDistrictShow;
+	@Transient
+	private String addressProvinceShow;
+	@Transient
+	private String addressSubDistrictShow;
+	@Transient
+	private String bizclubProvinceShow;
+	@Transient
+	private String addressPostCodeShow;
+	public String getAddressPostCodeShow() {
+		return addressPostCodeShow;
+	}
+
+	public void setAddressPostCodeShow(String addressPostCodeShow) {
+		this.addressPostCodeShow = addressPostCodeShow;
+	}
 
 	@Column(name="ADDRESS_NAME")
 	private String addressName;
@@ -46,10 +64,10 @@ public class User implements Serializable {
 
 	@Column(name="ADDRESS_PROVINCE")
 	private String addressProvince;
-
+	
 	@Column(name="ADDRESS_SUB_DISTRICT")
 	private String addressSubDistrict;
-
+	
 	@Column(name="CARD_ID")
 	private String cardId;
 
@@ -138,6 +156,29 @@ public class User implements Serializable {
 	
 	@Column(name="BIZCLUB_GROUP")
 	private String bizclubGroup;
+
+	
+	@Column(name="BIZCLUB_PROVINCE")
+	private String bizclubProvince;
+	
+	public String getBizclubProvince() {
+		return bizclubProvince;
+	}
+
+	public void setBizclubProvince(String bizclubProvince) {
+		this.bizclubProvince = bizclubProvince;
+	}
+
+	public String getBizclubType() {
+		return bizclubType;
+	}
+
+	public void setBizclubType(String bizclubType) {
+		this.bizclubType = bizclubType;
+	}
+
+	@Column(name="BIZCLUB_TYPE")
+	private String bizclubType;
 	
 	@Column(name="TITLE_TYPE")
 	private String titleType;
@@ -169,6 +210,27 @@ public class User implements Serializable {
 	private String logoFileName;
 	@Column(name="PROFILE_FILE_NAME")
 	private String profileFileName;
+	
+	@Column(name="BT_CODE")
+	private String btCode;
+	@Column(name="BT_DESC")
+	private String btDesc;
+	public String getBtCode() {
+		return btCode;
+	}
+
+	public void setBtCode(String btCode) {
+		this.btCode = btCode;
+	}
+
+	public String getBtDesc() {
+		return btDesc;
+	}
+
+	public void setBtDesc(String btDesc) {
+		this.btDesc = btDesc;
+	}
+
 	public String getLogoFileName() {
 		return logoFileName;
 	}
@@ -586,6 +648,38 @@ public class User implements Serializable {
 
 	public void setProfilePath(String profilePath) {
 		this.profilePath = profilePath;
+	}
+
+	public String getAddressDistrictShow() {
+		return addressDistrictShow;
+	}
+
+	public void setAddressDistrictShow(String addressDistrictShow) {
+		this.addressDistrictShow = addressDistrictShow;
+	}
+
+	public String getAddressProvinceShow() {
+		return addressProvinceShow;
+	}
+
+	public void setAddressProvinceShow(String addressProvinceShow) {
+		this.addressProvinceShow = addressProvinceShow;
+	}
+
+	public String getAddressSubDistrictShow() {
+		return addressSubDistrictShow;
+	}
+
+	public void setAddressSubDistrictShow(String addressSubDistrictShow) {
+		this.addressSubDistrictShow = addressSubDistrictShow;
+	}
+
+	public String getBizclubProvinceShow() {
+		return bizclubProvinceShow;
+	}
+
+	public void setBizclubProvinceShow(String bizclubProvinceShow) {
+		this.bizclubProvinceShow = bizclubProvinceShow;
 	}
 
 

@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import th.go.dbd.bizclub.form.UserForm;
@@ -28,6 +30,14 @@ public class UserController {
         model.addAttribute("userForm",new UserForm() );
         return "bizclub/searchmember";
     }
+	 @RequestMapping(value={"/delete/{userId}"},method = RequestMethod.GET)
+	 public String deleteItem(@PathVariable Integer userId) {
+		 System.out.println("delete->"+userId);
+		 UserM userM =new UserM();
+		 userM.setUserId(userId);
+	     bizClubService.deleteUser(userM);
+	     return "redirect:/member";
+	 }	
 	@RequestMapping(value={"/search"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
     public String doSearch(HttpServletRequest request, @ModelAttribute(value="userForm") UserForm userForm, BindingResult result, Model model)
     {

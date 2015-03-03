@@ -49,6 +49,8 @@ public class RegisterController {
     public String getNewForm(HttpServletRequest request,HttpServletResponse response,  Model model)
     {
 		model.addAttribute("registerForm", new RegisterForm());
+		model.addAttribute("provinces", bizClubService.listProvince());
+		model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
         return "bizclub/register";
     }
 	@RequestMapping(value={"/action"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
@@ -90,10 +92,10 @@ public class RegisterController {
 							  }
 							 String hotLink=current+""+genToken();
 							 String ndPathFileGen =hotLink+"."+extension; 
-							 pathFolder=pathFolder+"/"+ndPathFileGen;
+							 String pathFolder_profile=pathFolder+"/"+ndPathFileGen;
 							 profilePath=path+"/"+ndPathFileGen;
 							 fos = new FileOutputStream(profilePath);
-							 profilePath=pathFolder;
+							 profilePath=pathFolder_profile;
 							 System.out.println("path->"+profilePath);
 							 fos.write(filesize);
 							}
@@ -133,10 +135,10 @@ public class RegisterController {
 							  }
 							 String hotLink=current+""+genToken();
 							 String ndPathFileGen =hotLink+"."+extension; 
-							 pathFolder=pathFolder+"/"+ndPathFileGen;
+							 String pathFolder_logo=pathFolder+"/"+ndPathFileGen;
 							 logoPath=path+"/"+ndPathFileGen;
 							 fos = new FileOutputStream(logoPath);
-							 logoPath=pathFolder;
+							 logoPath=pathFolder_logo;
 							 System.out.println("path->"+logoPath);
 							 fos.write(filesize);
 							}
