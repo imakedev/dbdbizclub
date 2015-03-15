@@ -12,6 +12,7 @@ public class ProductForm extends CommonForm implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private BizclubAssetM bizclubAssetM;
 	private String keyword;
+	private String productType;
 	public ProductForm(BizclubAssetM bizclubAssetM) {
 		super();
 		this.bizclubAssetM = bizclubAssetM;
@@ -31,5 +32,11 @@ public class ProductForm extends CommonForm implements Serializable {
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	public String getProductType() {
+		return productType;
+	}
+	public void setProductType(String productType) {
+		this.productType = productType;
 	}
 }

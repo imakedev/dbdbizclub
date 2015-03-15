@@ -50,6 +50,11 @@ public class BizclubCorpW implements Serializable {
 	private String btCode;
 	@Column(name="BT_DESC")
 	private String btDesc;
+	
+	@Column(name="FIRST_NAME")
+	private String firstName;
+	@Column(name="LAST_NAME")
+	private String lastName;
 	public BizclubCorpW() {
 	}
 
@@ -83,6 +88,22 @@ public class BizclubCorpW implements Serializable {
 
 	public void setCorpServices(String corpServices) {
 		this.corpServices = corpServices;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getCorpType() {

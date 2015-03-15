@@ -159,6 +159,15 @@ public class UserM implements Serializable {
 	private String taxesId;
 	private String taxesCorpName;
 	private String personCorpName;
+	private String level;
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
 	public String getDateOfBirthStr() {
 		return dateOfBirthStr;
 	}

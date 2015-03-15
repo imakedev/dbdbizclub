@@ -169,7 +169,7 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 				}
 			}
 		}
-		bizclubRegisterM.setCorpGroupId(sb.toString());
+		bizclubRegisterM.setCorpGroupIdShow(sb.toString());
 		return bizclubRegisterM;
 	}
 
@@ -260,13 +260,13 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 	public Integer updateBizclubAsset(BizclubAssetM bizclubAssetM) {
 		// TODO Auto-generated method stub
 		BizclubAsset bizclubAsset=new BizclubAsset();
-		BeanUtils.copyProperties(bizclubAssetM , bizclubAsset);
-		if(bizclubAssetM!=null && bizclubAssetM.getUser()!=null){
-			 
-			User u=new User();
-			u.setUserId(bizclubAssetM.getUser().getUserId());
-			bizclubAsset.setUser(u);
+		BeanUtils.copyProperties(bizclubAssetM , bizclubAsset,"user");
+		if(bizclubAssetM.getUser()!=null && bizclubAssetM.getUser().getUserId()!=null){
+			User user=new User();
+			user.setUserId(bizclubAssetM.getUser().getUserId());
+			bizclubAsset.setUser(user);
 		}
+		System.out.println("getUser->"+bizclubAssetM.getUser());
 		System.out.println("id->"+bizclubAssetM.getBaId());
 		return bizClubRepository.updateBizclubAsset(bizclubAsset);
 	}
@@ -282,10 +282,16 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 	@Override
 	public BizclubAssetM findBizclubAssetById(Integer baId) {
 		// TODO Auto-generated method stub
-		BizclubAsset BizclubAsset = bizClubRepository.findBizclubAssetById(baId);
-		BizclubAssetM BizclubAssetM=new BizclubAssetM();
-		BeanUtils.copyProperties(BizclubAsset , BizclubAssetM);
-		return BizclubAssetM;
+		BizclubAsset bizclubAsset = bizClubRepository.findBizclubAssetById(baId);
+		BizclubAssetM bizclubAssetM=new BizclubAssetM();
+		BeanUtils.copyProperties(bizclubAsset , bizclubAssetM,"user");
+		//BeanUtils.copyProperties(BizclubAssetM , BizclubAsset,"user");
+		if(bizclubAsset.getUser()!=null && bizclubAsset.getUser().getUserId()!=null){
+			UserM user=new UserM();
+			user.setUserId(bizclubAsset.getUser().getUserId());
+			bizclubAssetM.setUser(user);
+		}
+		return bizclubAssetM;
 	}
 
 	@Override

@@ -2,6 +2,7 @@
 <%@ include file="/WEB-INF/jsp/includes.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
+
 <div style="background:#5E3752; padding:20px 0 20px 0;">
 	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
 	      <div class="row">
@@ -10,6 +11,13 @@
 		      	<div class="row">
 			      	<div class="col-md-4" style="background-color: #fbcb04; box-shadow: 1px 7px 15px #000; ">
 						<div style="text-align: left;  color: #fff; font-size: 28px; font-weight: bold;">คำร้องขอทั้งหมด</div>
+					</div>
+					<div class="col-md-4">
+					
+						<select id="type_select"  class="form-control textsize"  onchange="changeTypeSelect(this.value)">
+					            	<option value="2">สมาชิก</option>
+					            	<option  value="4">เจ้าหน้าที่</option>
+					    </select>
 					</div>
 		      		<div class="col-md-12">
 		      			<div class="list-group">
@@ -20,7 +28,7 @@
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="row-picture">
     		     							<c:if test="${not empty bizclubRegister.profileFileName}">
-								            	<img class="circle"  width="56" height="56" src="getfile/profile/${bizclubRegister.brId}/register" alt="icon">
+								            	<img class="circle"  width="56" height="56" src="/bizclub/getfile/profile/${bizclubRegister.brId}/register" alt="icon">
 								            </c:if>
 								            <c:if test="${ empty bizclubRegister.profileFileName}">
 								              	<img class="circle"  width="56" height="56"  src="<c:url value="/resources/register/images/5.png" />" alt="icon">
@@ -211,7 +219,7 @@
 	            </div>
     		</div>
 <!-- -------------------------- LOGO ----------------------------------------------------------- -->
-				<div class="col-md-6" style="padding-left: 230px; padding-bottom: 10px;">
+				<div id="bizPhoto" class="col-md-6" style="padding-left: 230px; padding-bottom: 10px;">
       				<img class="img-thumbnail" width="160" height="160"  id="logo" src="<c:url value="/resources/register/images/img_logo.png" />" alt="" />
       			</div>
 <!-- ----------------- ข้อมูลการประกอบธุรกิจ ==> กรณี เป็นนิติบุคคล ----------------------------------------- -->
@@ -269,7 +277,7 @@
 	            </div>
             </div>
 <!-- ----------------- ข้อมูลการประกอบธุรกิจ ==> กรณี เป็นบุคคลธรรมดา/ผู้ประกอบธุรกิจ(ทั่วไป) ----------------------------------------- -->
-			<div id="bizclubtype_3" hidden="">
+			<div id="bizclubtype_3" hidden=""> 
 				<div class="col-md-6">
 	            	<form class="form-horizontal">
 		    			<fieldset>
@@ -284,7 +292,7 @@
 	            </div>
             </div>
 <!-- ---------------------------------------------------------------------------------------------------------------------- -->
-				<div class="col-md-6">
+				<div id="product_elelment" class="col-md-6">
 	            	<form class="form-horizontal">
 		    			<fieldset>
 		    				<div class="form-group">
@@ -296,7 +304,7 @@
 			            </fieldset>
 		            </form>
 	            </div>
-	            <div class="col-md-6">
+	            <div id="biztype_element" class="col-md-6">
 	            	<form class="form-horizontal">
 		    			<fieldset>
 		    				<div class="form-group">
@@ -360,9 +368,26 @@
 	            	<form class="form-horizontal">
 		    			<fieldset>
 		    				<div class="form-group">
+					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">Level: </label>
+					            <div class="col-md-6" style="padding-bottom: 10px;">
+					            <select id="level_modal" class="form-control textsize">
+					             	<option  value="gold" selected="selected" >gold</option> 
+					             	 <option  value="silver">silver</option> 
+ 									 <option  value="bronze">bronze</option> 
+							      </select>
+									
+								</div>
+				            </div>
+			            </fieldset>
+		            </form>
+	            </div>
+	            <div class="col-md-6">
+	            	<form class="form-horizontal">
+		    			<fieldset>
+		    				<div class="form-group">
 					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">สิทธิ์การเข้าใช้งาน: </label>
 					            <div class="col-md-6" style="padding-bottom: 10px;">
-					            <select id="role_select" class="form-control textsize" >
+					            <select id="role_select" class="form-control textsize" disabled="disabled">
 					            	<option  value="2">เจ้าหน้าที่</option>
 					            	<option value="3">สมาชิก</option>
 					            </select>
@@ -377,6 +402,7 @@
 		    <form:hidden path="approveStatus" id="approveStatus"/>
 		   <form:hidden path="approveCondition" id="approveCondition"/> 
 		    <form:hidden path="approveRole" id="approveRole"/> 
+		    <form:hidden path="level" id="level"/> 
 		    <form:hidden path="brId" id="brId"/>
 					    <fieldset>
 					        <div class="form-group">
@@ -429,13 +455,19 @@
 <script>
       $(document).ready(function() {
           $.material.init();
+          $("#type_select").val('${approveForm.typeSelect}');
       });
+      function changeTypeSelect(type){
+    	  window.location.href="<c:url value='/approve/type/"+type+"'/>";
+      }
       function doApprove(status){
     	if(status=='2'){
     		$("#approveCondition").val($("#approveConditionPrepare").val())
     	}
     	//alert($("#role_select").val())
     	$("#approveRole").val($("#role_select").val())
+    	
+    	$("#level").val($("#level_modal").val())
        $("#approveStatus").val(status)
        document.getElementById('approveForm').submit();
       }
@@ -446,7 +478,7 @@
     	  $.ajax({
     		  type: "GET",
     		  contentType : 'application/json; charset=utf-8',
-    		  url: "approve/item/"+brId,
+    		  url: "/bizclub/approve/item/"+brId,
     		  dataType : 'json'
     		})
     		  .done(function( msg ) {
@@ -477,24 +509,44 @@
     		     $("#taxesId_modal").val(msg.taxesId);
     		     $("#taxesCorpName_modal").val(msg.taxesCorpName);
     		     $("#personCorpName_modal").val(msg.personCorpName);
-    		     $("#corpGroupId_show_modal").val(msg.corpGroupId);
+    		     $("#corpGroupId_show_modal").val(msg.corpGroupIdShow);
     		     $("#facebook_modal").val(msg.facebook);
     		     $("#corpMobile_modal").val(msg.corpMobile);
     		     $("#bizclubGroup_modal").val(msg.bizclubProvinceShow);
-    		   
+    		     if(msg.level!=null && msg.level.length>0)
+    		    	 $("#level_modal").val(msg.level);  
     		     if(msg.profileFileName!=null && msg.profileFileName.length>0){
-    		    	 $("#profile").attr("src","getfile/profile/"+brId+"/register");
+    		    	 $("#profile").attr("src","/bizclub/getfile/profile/"+brId+"/register");
     		     }
     		     if(msg.logoFileName!=null && msg.logoFileName.length>0){
-    		    	 $("#logo").attr("src","getfile/logo/"+brId+"/register");
+    		    	 $("#logo").attr("src","/bizclub/getfile/logo/"+brId+"/register");
     		     }
+    		     if(msg.corpType=='4'){
+    		    	 $("#role_select").val("2");
+    		     }else
+    		    	 $("#role_select").val("3");
+    		     //$("#role_select").attr("disable","true");
     		             $("#member-popup").modal('show')
     		             $("#bizclubtype_"+msg.corpType).show();
+    		             if(msg.corpType=='4'){
+    		         		showForStaft(false);
+    		         	}else
+    		         		showForStaft(true);      
     		  });
     	//  data-toggle="modal" data-target="#member-popup"
       }
       
-     
+           
+      var elements_staft=["biztype_element","product_elelment","bizclubtype_3","bizclubtype_2","bizclubtype_1","bizPhoto"];
+      function showForStaft(isShow){
+      	
+      	   for(var i=0;i<elements_staft.length;i++){
+      		   if(isShow)
+      		  	 $("#"+elements_staft[i]).show();
+      		   else
+      			 $("#"+elements_staft[i]).hide();
+      	   }
+      } 
 </script>
 <style>
 body{

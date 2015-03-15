@@ -172,13 +172,13 @@ public class BizClubRepository {
 		StringBuffer sb=new StringBuffer("select u from User u where u.userId!=1 ");
 		if(user!=null){
 			if(user.getCorpGroupDesc()!=null && user.getCorpGroupDesc().length()>0){
-				sb.append(" and u.corpGroupDesc like '%"+user.getCorpGroupDesc().trim()+"%'");
+				sb.append(" and u.corpGroupId like '%"+user.getCorpGroupDesc().trim()+"%'");
 			}
 			if(user.getCardId()!=null && user.getCardId().length()>0){
 				sb.append(" and u.cardId like '%"+user.getCardId().trim()+"%'");
 			}
 			if(user.getFirstName()!=null && user.getFirstName().length()>0){
-				sb.append(" and u.firstName like '%"+user.getFirstName().trim()+"%'");
+				sb.append(" and ( u.firstName like '%"+user.getFirstName().trim()+"%' or u.lastName like '%"+user.getFirstName().trim()+"%'  ) ");
 			}
 			if(user.getCorpName()!=null && user.getCorpName().length()>0){
 				sb.append(" and u.corpName like '%"+user.getCorpName().trim()+"%'");
@@ -187,6 +187,7 @@ public class BizClubRepository {
 				sb.append(" and u.services like '%"+user.getServices().trim()+"%'");
 			}
 		}
+		System.out.println(sb.toString());
 		sb.append(" order by u.updatedDate desc ");
 		Query query=entityManager.createQuery(sb.toString(), User.class);
 		
@@ -254,7 +255,16 @@ public class BizClubRepository {
 	public List<BizclubRegister> searchBizclubRegister(
 			BizclubRegister bizclubRegister) {
 		// TODO Auto-generated method stub
-		Query query=entityManager.createQuery("select u from BizclubRegister u where u.approveStatus is null order by u.updatedDate desc "
+		StringBuffer sb=new StringBuffer("select u from BizclubRegister u where u.approveStatus is null ");
+		if(bizclubRegister.getCorpType()!=null){
+			if(bizclubRegister.getCorpType().equals("4")){
+				sb.append(" and u.corpType='4'");
+			}else
+				sb.append(" and u.corpType!='4'");
+		}
+		System.out.println(sb.toString());
+		sb.append(" order by u.updatedDate desc ");
+		Query query=entityManager.createQuery(sb.toString()
 				+ "", BizclubRegister.class);
 		return query.getResultList();
 	}
@@ -345,13 +355,29 @@ public class BizClubRepository {
 		// TODO Auto-generated method stub
 		boolean haveWhere=false;
 		StringBuffer sb=new StringBuffer("select u from BizclubAsset u ");
-		if(bizclubAsset.getUser()!=null && bizclubAsset.getUser().getUserId()!=null){
-			sb.append(" where u.user.userId="+bizclubAsset.getUser().getUserId());
-			haveWhere=true;
-		}if(bizclubAsset.getBaTitle()!=null && bizclubAsset.getBaTitle().length()>0){
-			sb.append((haveWhere?"and":"where")+" ( u.baTitle like '%"+bizclubAsset.getBaTitle().trim()+"%' or "
-					+ " u.baDetail like '%"+bizclubAsset.getBaDetail().trim()+"%' ) ");
+		if(bizclubAsset.getBaStatus()!=null ){
+			if(bizclubAsset.getBaStatus().equals("1")){
+				sb.append((haveWhere?"and":"where")+" ( u.baStatus = '"+bizclubAsset.getBaStatus().trim()+"' ) ");
+				haveWhere=true;
+			}else if(bizclubAsset.getBaStatus().equals("0")){
+				if(bizclubAsset.getUser()!=null && bizclubAsset.getUser().getUserId()!=1){
+					if(bizclubAsset.getUser()!=null && bizclubAsset.getUser().getUserId()!=null){
+						sb.append((haveWhere?"and":"where")+"  u.user.userId="+bizclubAsset.getUser().getUserId());
+						haveWhere=true;
+					}else{
+						sb.append((haveWhere?"and":"where")+"  u.user.userId is null ");
+						haveWhere=true;
+					}
+				}
+				
+			}
 		}
+		if(bizclubAsset.getBaTitle()!=null && bizclubAsset.getBaTitle().length()>0){
+			sb.append((haveWhere?"and":"where")+" ( u.baTitle like '%"+bizclubAsset.getBaTitle().trim()+"%' or "
+					+ " u.baDetail like '%"+bizclubAsset.getBaTitle().trim()+"%' ) ");
+			haveWhere=true;
+		}
+		System.out.println(sb.toString());
 		sb.append(" order by u.updatedDate desc ");
 		Query query=entityManager.createQuery( sb.toString(), BizclubAsset.class);
 		return query.getResultList();

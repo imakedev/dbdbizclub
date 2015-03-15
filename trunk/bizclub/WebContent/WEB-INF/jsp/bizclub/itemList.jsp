@@ -10,15 +10,30 @@
 		cssClass="form-inline" role="form" style="margin-bottom: 50px;">
 		    <fieldset>
 		    	<div class="row">
-		    		<div class="col-md-4">
-		    		  <%--
+		    	 <div class="col-md-4">
+<%--	
 				    	<div class="btn-group" role="group" style="margin-top: 0px; border: 1px solid #663399">
 						  <button type="button" class="btn btn-default" style="font-size: 16px; color: purple;">สินค้าทั้งหมด</button>
 						  <button type="button" class="btn btn-default" style="font-size: 16px; color: purple;">สินค้าขายดี</button>
 						  <button type="button" class="btn btn-default" style="font-size: 16px; color: purple;">ขายล่าสุด</button>
 						</div>
-						 --%>
-		        	</div>
+					--%>	
+		        	</div> 
+		        	<div class="col-md-4">
+		        	 	<c:if test="${isAuthen==true}">
+				        <div class="form-group">
+				            <label for="select" class="col-md-4 col-md-offset-5 control-label"></label>
+				            <div class="col-md-1">
+				                <form:select path="productType" cssClass="form-control textsize" id="productType" onchange="doSearch()">
+				                	<option value="1">ข้อมูลเครือข่าย</option>
+				                	<option value="0">My Product</option>
+				                	
+				                </form:select>
+				            </div>
+				        </div>
+				        </c:if>
+			        </div>
+			        <%--
 			        <div class="col-md-4">
 				        <div class="form-group">
 				            <label for="select" class="col-md-4 col-md-offset-5 control-label">เรียงตาม:</label>
@@ -31,12 +46,13 @@
 				            </div>
 				        </div>
 			        </div>
+			         --%>
 			        <div class="col-md-4">
 				        <div class="form-group has-warning">
 						    <div class="input-group col-md-offset-2">
 						        <form:input class="form-control input-lg textsize" path="keyword" placeholder="คำที่ต้องการค้นหา" type="text"/>
 						        <span class="input-group-btn">
-						            <button class="btn btn-material-amber btn-flat" type="button" style="padding: 5px 10px"><i class="mdi-action-search"></i></button>
+						            <button class="btn btn-material-amber btn-flat" type="button" onclick="doSearch()" style="padding: 5px 10px"><i class="mdi-action-search"></i></button>
 						        </span>
 						    </div>
 						</div>
@@ -106,9 +122,9 @@
 								        <label for="rating-input-1-1" class="rating-star"></label>
 									</span>
 									<br>
-									   	<c:if test="${isAuthen==true}">
+									   	<c:if test="${isAuthen==true &&   productForm.productType=='0'}">
 									<br>
-									<button class="btn btn-material-amber" type="button" style="padding: 5px 7px; float: right;"><i class="mdi-action-loyalty">Promotion</i></button>
+									<button class="btn btn-material-amber" onclick="promoteProduct('${bizclubAsset.baId}')" type="button" style="padding: 5px 7px; float: right;"><i class="mdi-action-loyalty">Promotion</i></button>
 									</c:if>
 						    	</div>
 					    	</div>
@@ -320,7 +336,11 @@
 
 <div id="member-popup2" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal-content" style="border: 3px solid #fbb819;">
+    <div class="modal-header" style="background-color: #fbb819">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <p class="modal-title" style="font-size: 28px; font-weight: bold; padding-bottom: 10px;">สนใจติดต่อ</p>
+      </div>
       <div class="modal-body">
       	<div class="row">
 		<div class="col-md-3 col-md-offset-1">
@@ -328,14 +348,16 @@
 		</div>
 		
 		<div class="col-md-8">
+		<span class="form-horizontal">
+				    <fieldset>
 		<%--    <fieldset>  --%>
-		    	<div class="form-group">
+		    	 <%-- <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">เลขที่สมาชิก: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
 		                <input class="form-control textsize" id="id_member" type="text" value="" disabled="disabled">
 		            </div>
 	            </div>
-	            <%-- 
+	           
 		    	<div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">เลขบัตรประชาชน: <span style="color: red;">*</span></label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
@@ -345,46 +367,48 @@
 	            --%>
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: </label>
-		            <div class="col-md-5" style="padding-bottom: 10px;">
+		            <div class="col-md-6" style="padding-bottom: 10px;">
 		              <input class="form-control textsize" id="mfirstName" value="" type="text" disabled="disabled">
 		          
 					   </div>
 	            </div>
-	            
+	           <%--  
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อเล่น: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
 		                 <input class="form-control textsize" id="mnickName" value="" type="text" disabled="disabled">
 		            </div>
 	            </div>
-	        
+	        --%>
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Website: </label>
-		            <div class="col-md-5" style="padding-bottom: 10px;">
+		            <div class="col-md-6" style="padding-bottom: 10px;">
 		             <input class="form-control textsize" id="mwebsite" value="" type="text" disabled="disabled">
 		           
 		            </div>
 	            </div>
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์: </label>
-		            <div class="col-md-5" style="padding-bottom: 10px;">
+		            <div class="col-md-6" style="padding-bottom: 10px;">
 		            <input class="form-control textsize" id="mmobile" value="" type="text" disabled="disabled">
 		          
 		            </div>
 	            </div>
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Email: </label>
-		            <div class="col-md-5" style="padding-bottom: 10px;">
+		            <div class="col-md-6" style="padding-bottom: 10px;">
 		                <input class="form-control textsize" id="memail" value="" type="text" disabled="disabled">
 		               
 		            </div>
 	            </div>
+	            <%--
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Facebook: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
 		                  <input class="form-control textsize" id="mfacebook" value="" type="text" disabled="disabled">
 		            </div>
-	            </div> 
+	            </div>
+	             
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ID Line: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
@@ -399,7 +423,7 @@
 		                </div>
 	            </div>
 	          
-	           
+	           --%> 
 <!-- ----------------------------------EDIT MODE---------------------------------------------- -->	            
 <!-- 	            <div class="form-group"> -->
 <!-- 		            <div class="col-lg-10"> -->
@@ -409,7 +433,8 @@
 <!-- 		        </div> -->
 <!-- ----------------------------------------------------------------------------------------- -->
 		<%--    </fieldset>  --%>
-	
+	</fieldset>
+	</span>
 		</div>
 	
 </div>
@@ -422,33 +447,42 @@
 <script>
       $(document).ready(function() {
           $.material.init();
+          $("#productType").val('${productForm.productType}')
       });
+      function doSearch(){
+    	  document.getElementById('productForm').submit();
+      }
+      function promoteProduct(baId){
+    	  window.location.href="<c:url value='/product/promote/"+baId+"'/>";
+      }
       function showMemeber(uid){
     	  $.ajax({
     		  type: "GET",
     		  contentType : 'application/json; charset=utf-8',
-    		  url: "bizmem/item/"+uid,
+    		  url: "/bizclub/bizmem/item/"+uid,
     		  dataType : 'json'
     		})
     		  .done(function( msg ) {
     		   // alert( "Data Saved: " + msg.addressDistrict );
-    		    $("#id_member").val(msg.userId);
-    		    $("#mfacebook").val(msg.facebook);
+    		    // $("#id_member").val(msg.userId);
+    		  //  $("#mfacebook").val(msg.facebook);
     		    $("#mfirstName").val(msg.firstName +" "+msg.lastName);
     		   // $("#mlastName").val(msg.lastName);
-    		    $("#mnickName").val(msg.nickName);
+    		  //  $("#mnickName").val(msg.nickName);
     		  //  $("#corpId_modal").val(msg.corpId);
     		//    $("#corpName_modal").val(msg.corpName);
     		  //  $("#services_modal").val(msg.services);
     		    $("#mwebsite").val(msg.website);
     		    $("#memail").val(msg.email);
     		    $("#mmobile").val(msg.mobilePhone);
-    		    $("#mlineID").val(msg.lineId);
-    		    $("#mlineName").val(msg.lineName);
+    		    //$("#mlineID").val(msg.lineId);
+    		    //$("#mlineName").val(msg.lineName);
     		           
     		    if(msg.profileFileName!=null && msg.profileFileName.length>0){
-   		    	 $("#profile").attr("src","getfile/profile/"+msg.userId+"/xxx");
-   		     }
+   		    	 $("#profile").attr("src","/bizclub/getfile/logo/"+msg.userId+"/xxx");
+   		    	 }else{
+   		    		 $("#profile").attr("src",'<c:url value="/resources/register/images/img_logo.png" />');
+   		    	 }
    		    
     		   //  $("#brId").val(brId);
     		    //$("#cardId_modal").val(msg.cardId);

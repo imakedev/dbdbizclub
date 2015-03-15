@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -13,6 +14,7 @@ import javax.persistence.NamedQuery;
  * 
  */
 @Entity
+@Table(name="geography")
 @NamedQuery(name="Geography.findAll", query="SELECT g FROM Geography g")
 public class Geography implements Serializable {
 	private static final long serialVersionUID = 1L;

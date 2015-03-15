@@ -55,7 +55,15 @@ public class BizclubRegisterM implements Serializable {
 	private List<UserM> users;
 
 	private String corpGroupId;
-	
+	private String corpGroupIdShow;	
+	public String getCorpGroupIdShow() {
+		return corpGroupIdShow;
+	}
+
+	public void setCorpGroupIdShow(String corpGroupIdShow) {
+		this.corpGroupIdShow = corpGroupIdShow;
+	}
+
 	private String corpGroupDesc;
 	private String corpName;
 	private String corpDesc;
@@ -93,6 +101,7 @@ public class BizclubRegisterM implements Serializable {
 	private String addressPostCodeShow;
 	private String btCode;
 	private String btDesc;
+	private String level;
 	public String getBtCode() {
 		return btCode;
 	}
@@ -596,6 +605,14 @@ public class BizclubRegisterM implements Serializable {
 
 	public void setBizclubType(String bizclubType) {
 		this.bizclubType = bizclubType;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 }

@@ -45,9 +45,11 @@ public class UserController {
        String keyworkd=userForm.getKeyword();
        String searchForm= userForm.getSearchForm();
        String searchType= userForm.getSearchType();
+       System.out.println("searchForm->"+searchForm);
+       System.out.println("searchType->"+searchType);
        UserM userM=new UserM();
  
-       if(searchType!=null && searchType.length()>0){
+       if(searchType!=null && searchType.length()>0 ){
     	   userM.setCorpGroupDesc(searchType);  
        }
        

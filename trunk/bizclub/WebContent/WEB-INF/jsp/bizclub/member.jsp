@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/includes.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
+<sec:authorize access="hasAnyRole('ROLE_STAFF')" var="isStaff"/>
 <!-- -------------------------------------------------BODY------------------------------------------------------------------------------- -->
 <div style="background:#58047d; padding:20px 0 20px 0;">
 	<div class="row">
@@ -9,8 +10,8 @@
 		<form:form   id="memberForm" name="memberForm" modelAttribute="memberForm"    method="post" action="${post_url}" enctype="multipart/form-data">
 		<div class="col-md-10 col-md-offset-1" style="padding-top: 40px; padding-bottom: 40px;">
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;">
-				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
-					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-communication-contacts"></i> สถานะทางธุรกิจ</p>
+				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
+					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-communication-contacts"></i> สถานะทางธุรกิจ</p>
 	          	</div>
           	</div> 
           	<div class="col-md-12" style="background-color: #fff; padding-top: 40px;">
@@ -43,8 +44,8 @@
 		    	  </span> 
 	    	</div>
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
-				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
-					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
+				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
+					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
 	          	</div>
           	</div>
           	<div class="col-md-12" style="background-color: #fff; ">
@@ -102,6 +103,14 @@
 		                 placeholder="นามสกุล"  />
 					            </div>
 				            </div>
+				               <div class="form-group">
+		            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Password </label>
+		            <div class="col-md-8" style="padding-bottom: 10px;">
+		              <input type="password" id="userM.password" name="userM.password"  value="${userM.password}" class="form-control textsize"/>
+		           <%--   <form: path="userM.password" value="${userM.password}" cssClass="form-control textsize"/>
+		               <input class="form-control textsize" id="bd" value="" type="date">  --%>
+		            </div>
+	            </div>
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อเล่น: </label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
@@ -177,7 +186,9 @@
 				            		<div class="col-md-7">
 							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">จังหวัด: <span style="color: red;">*</span></label>
 							            <div class="col-md-5" style="padding-bottom: 10px;">
-							                <form:select path="userM.addressProvince" id="addressProvince" cssClass="form-control textsize" onchange="loadAddressAmphur(this.value)" >
+							          
+							            <input type="hidden" value="${memberForm.userM.addressProvince}" id="addressProvinceInit" />
+							                <form:select path="userM.addressProvince" id="addressProvince" cssClass="form-control textsize" onchange="loadAddressAmphur(this.value,false)" >
 							                	<%-- <form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>  --%>
 							                	<form:options items="${provinces}" itemValue="provinceId" itemLabel="provinceName"/>
 							                </form:select>
@@ -185,8 +196,10 @@
 						            </div>
 						            <div class="col-md-5">
 						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">อำเภอ/เขต: <span style="color: red;">*</span></label>
+							             <input type="hidden" value="${memberForm.userM.addressDistrict}" id="addressDistrictInit" />
+							              
 							            <div class="col-md-7" style="padding-bottom: 10px;" id="addressDistrictElement">
-							              <form:select path="userM.addressDistrict" id="addressDistrict" onchange="loadAddressDistrict(this.value)" cssClass="form-control textsize">
+							              <form:select path="userM.addressDistrict" id="addressDistrict" onchange="loadAddressDistrict(this.value,false)" cssClass="form-control textsize">
 							                	
 							                </form:select>
 							            </div>
@@ -197,14 +210,18 @@
 				            	<div class="row">
 				            		<div class="col-md-7">
 							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">ตำบล/แขวง: <span style="color: red;">*</span></label>
+							           <input type="hidden" value="${memberForm.userM.addressSubDistrict}" id="addressSubDistrictInit" />
+							            
 							            <div class="col-md-5" style="padding-bottom: 10px;"  id="addressSubDistrictElement">
-							            	<form:select path="userM.addressSubDistrict" id="addressSubDistrict" onchange="loadAddressZipcode(this)" cssClass="form-control textsize">
+							            	<form:select path="userM.addressSubDistrict" id="addressSubDistrict" onchange="loadAddressZipcode(this,false)" cssClass="form-control textsize">
 							                	
 							                </form:select>
 							            </div>
 						            </div>
 						            <div class="col-md-5">
 						            	<label class="col-md-6 control-label" style="padding-bottom: 10px;">รหัสไปรษณีย์: <span style="color: red;">*</span></label>
+							            
+							               <input type="hidden" value="${memberForm.userM.addressPostCode}" id="addressPostCodeInit" /> 
 							            <div class="col-md-6" style="padding-bottom: 10px;"  id="addressPostCodeElement">
 							             <%-- <form:input path="userM.addressPostCode" cssClass="form-control textsize"
 		                 placeholder="รหัสไปรษณีย์"  />  --%> 
@@ -233,8 +250,8 @@
 <div hidden="">
 			
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; ">
-				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
-					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-action-assignment-ind"></i> เกี่ยวข้องกับธุรกิจ</p>
+				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
+					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-action-assignment-ind"></i> เกี่ยวข้องกับธุรกิจ</p>
 	          	</div>
           	</div>
           	
@@ -283,8 +300,8 @@
 </div>
 <!-- ==================================================== ข้อมูลการประกอบธุรกิจ =================================================================== -->
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
-				<div class="col-md-3" style="border: 1px solid #fbb100; padding-top: 10px;">
-					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
+				<div class="col-md-3" style="border: 2px solid #FFB400; padding-top: 10px;">
+					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
 	          	</div>
           	</div>
           	<div class="col-md-12" style="background-color: #fff;  ">
@@ -389,6 +406,7 @@
 	            <!-- ---------------------------------------------------------------------------- -->
 	            <div class="col-md-11 col-md-offset-1">
 		            <span class="form-horizontal">
+		            <input type="hidden" id="corpGroupIdInit" value="${memberForm.userM.corpGroupId}">
 				    	<fieldset>
 					    	<div class="form-group">
 						    	<label class="col-md-2 control-label" style="padding-bottom: 10px; margin-left: -15px;">ประเภทธุรกิจ: <span style="color: red;">*</span></label>
@@ -466,13 +484,31 @@
 					               
 					            </div>
 				            </div>	
+				           
 				            <div class="form-group">
-					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ศูนย์เครือข่ายธุรกิจ BizClub: <span style="color: red;">*</span></label>
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ศูนย์เครือข่ายธุรกิจ BizClub:<span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:select path="userM.bizclubProvince" cssClass="form-control textsize">
+					             <c:if test="${isStaff}">
+					              <form:select path="userM.bizclubProvince" cssClass="form-control textsize"  disabled="true">
 					             	 <form:options items="${provinceCenters}" itemValue="provinceId" itemLabel="provinceName"/>
-							                		
 							      </form:select>
+							     </c:if> 
+							     <c:if test="${!isStaff}">
+					              <form:select path="userM.bizclubProvince" cssClass="form-control textsize" >
+					             	 <form:options items="${provinceCenters}" itemValue="provinceId" itemLabel="provinceName"/>
+							      </form:select>
+							     </c:if> 
+					            </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Level: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					            <form:select path="userM.level" cssClass="form-control textsize">
+					             	 <form:option value="gold" label="gold" /> 
+					             	 <form:option value="silver" label="silver" /> 
+ 									 <form:option value="bronze" label="bronze" /> 
+							      </form:select>
+					              
 					            </div>
 				            </div>
 			            </fieldset>
@@ -482,7 +518,7 @@
 	            <div class="form-group" style="padding-top: 50px;">
 	            <div class="col-md-10 col-md-offset-4">
 	                <button type="reset" class="btn btn-default" style="font-weight: bold; font-size: 24px;">ยกเลิก</button>
-	                <button type="submit" class="btn btn-material-red" style="font-weight: bold; font-size: 22px;">แก้ไขข้อมูล</button
+	                <button type="submit" class="btn btn-material-red" style="font-weight: bold; font-size: 22px;">แก้ไขข้อมูล</button>
 	            </div>
 	        </div> 
 	            
@@ -524,79 +560,153 @@ $(document).ready(function() {
 	    if(dInput.length==13)
 			checkCardId();
 	});
-	loadAddressAmphur($("#addressProvince").val());
+	loadAddressAmphur($("#addressProvince").val(),true);
+	initCorpGroup();
 });
-function loadAddressAmphur(provinceId){
-	//alert(provinceId)
+function initCorpGroup(){
+	  var corpBizTypes=$("#corpGroupIdInit").val();
+	  if(corpBizTypes!=null && corpBizTypes.length>0){
+		  corpBizTypes=corpBizTypes.split("-");
+		  $("input[name=corpGroupIds]").each(function() { 
+			  var  corpGroupId_value=$(this).val();
+			  //alert(corpGroupId_value)
+			   for(var i=0;i<corpBizTypes.length;i++){
+				//   alert("inner->"+corpBizTypes[i])
+				   if(corpBizTypes[i]==corpGroupId_value){
+					  // corpBizTypes[i].checked=true;
+					  
+					   $(this).attr("checked","true");
+					//   alert( $(this).attr("checked"));
+				   }
+			   }
+			});
+	  }
+	
+}
+function loadAddressAmphur(provinceId,isinit){
 	  $.ajax({
 		  type: "GET",
 		  contentType : 'application/json; charset=utf-8',
-		  url: "ws/addr/amphur/"+provinceId,
+		  url: "/bizclub/ws/addr/amphur/"+provinceId,
 		  dataType : 'json'
 		})
 		  .done(function( msg ) {
 			 // alert(msg)
 			  var listAmphur=msg;
-			  var first_id="";
-			  var str="<select id=\"addressDistrict\" name=\"userM.addressDistrict\" class=\"form-control textsize\" onchange=\"loadAddressDistrict(this.value)\">";
+			  var first_id= "";
+			  if(isinit)
+				  first_id= $("#addressDistrictInit").val();
+			 
+			  var str="<select id=\"addressDistrict\" name=\"userM.addressDistrict\" class=\"form-control textsize\" onchange=\"loadAddressDistrict(this.value,false)\">";
 			  for(var i=0;i<listAmphur.length;i++){
-				  str=str+"<option value=\""+listAmphur[i].amphurId+"\">"+listAmphur[i].amphurName+"</option>";
-				  if(i==0)
-					  first_id=listAmphur[i].amphurId;
+				
+				  if(!isinit){
+					  str=str+"<option value=\""+listAmphur[i].amphurId+"\">"+listAmphur[i].amphurName+"</option>";
+					  if(i==0)
+						  first_id=listAmphur[i].amphurId;
+					  }else{
+						  var selected="";
+						  if(first_id!=null && first_id==listAmphur[i].amphurId){
+							  selected=" selected ";
+						  }
+						  str=str+"<option value=\""+listAmphur[i].amphurId+"\" "+selected+">"+listAmphur[i].amphurName+"</option>";
+					  }
 			  }
 			  str=str+"</select>";
-			//  alert(str)
 			  $("#addressDistrictElement").html(str);
-			  loadAddressDistrict(first_id)
+			  loadAddressDistrict(first_id,isinit)
+			  /*
+			  if(first_id!=null && first_id.length>0){
+				  $("#addressDistrict").val(first_id);
+				  //alert(first_id)
+				  loadAddressDistrict(first_id,isinit)
+			  }else{
+				  alert("aumphur is null")
+			  }
+			 */
 			  /*amphurId;
 				 amphurName;
 				 */
 		
 		  });
 }
-function loadAddressDistrict(districtId){
+function loadAddressDistrict(districtId,isinit){
 	  $.ajax({
 		  type: "GET",
 		  contentType : 'application/json; charset=utf-8',
-		  url: "ws/addr/district/"+districtId,
+		  url: "/bizclub/ws/addr/district/"+districtId,
 		  dataType : 'json'
 		})
 		  .done(function( msg ) {
 			  var listDistrict=msg;
-			  var str="<select id=\"addressSubDistrict\" name=\"userM.addressSubDistrict\" class=\"form-control textsize\" onchange=\"loadAddressZipcode(this.value)\">";
+			  var str="<select id=\"addressSubDistrict\" name=\"userM.addressSubDistrict\" class=\"form-control textsize\" onchange=\"loadAddressZipcode(this.value,false)\">";
 			  var first_id="";
+			  if(isinit)
+				  first_id=$("#addressSubDistrictInit").val();
+			 
 			  for(var i=0;i<listDistrict.length;i++){
-				  
-				  str=str+"<option value=\""+listDistrict[i].districtId+"\">"+listDistrict[i].districtName+"</option>";
+				 
+				  if(!isinit){
+					  str=str+"<option value=\""+listDistrict[i].districtId+"\">"+listDistrict[i].districtName+"</option>";
 				  if(i==0)
 					  first_id=listDistrict[i].districtId;
+				  }else{
+					  var selected="";
+					  if(first_id!=null && first_id==listDistrict[i].districtId){
+						  selected=" selected ";
+					  }
+					  str=str+"<option value=\""+listDistrict[i].districtId+"\" "+selected+">"+listDistrict[i].districtName+"</option>";
+				  }
 			  }
 			  str=str+"</select>";
 			  $("#addressSubDistrictElement").html(str);
-			  loadAddressZipcode(first_id)
+			  loadAddressZipcode(first_id,isinit)
+			  /*
+			  if(first_id!=null && first_id.length>0){
+				  $("#addressSubDistrict").val(first_id);
+				  loadAddressZipcode(first_id,isinit)
+			  }else{
+				  alert("tumbon is null")
+			  }
+			  */
+			 // loadAddressZipcode(first_id,isinit)
 			  /*
 				private Integer districtId;
 				private String districtName;	
 		   */
 		  });
 }
-function loadAddressZipcode(districtId){
+function loadAddressZipcode(districtId,isinit){
 	  $.ajax({
 		  type: "GET",
 		  contentType : 'application/json; charset=utf-8',
-		  url: "ws/addr/zipcode/"+districtId,
+		  url: "/bizclub/ws/addr/zipcode/"+districtId,
 		  dataType : 'json'
 		})
 		  .done(function( msg ) {
 			  var listZipcode=msg;
 			  var str="<select id=\"addressPostCode\" name=\"userM.addressPostCode\" class=\"form-control textsize\" >";
+			  var first_id="";
+			   if(isinit)
+				   first_id=$("#addressPostCodeInit").val();
+			 
 			  for(var i=0;i<listZipcode.length;i++){
-				  
-				  str=str+"<option value=\""+listZipcode[i].zipcodeId+"\">"+listZipcode[i].zipcode+"</option>";
+					  var selected="";
+					  if(first_id!=null && first_id==listZipcode[i].zipcodeId){
+						  selected=" selected ";
+					  }
+					  str=str+"<option value=\""+listZipcode[i].zipcodeId+"\" "+selected+">"+listZipcode[i].zipcode+"</option>";
+				 
 			  }
 			  str=str+"</select>";
 			  $("#addressPostCodeElement").html(str);
-			
+			 /*
+			  if(isinit){
+				  $("#addressPostCode").val(first_id);
+				  }
+			 */
+			  
+			 
 		  });
 }
 

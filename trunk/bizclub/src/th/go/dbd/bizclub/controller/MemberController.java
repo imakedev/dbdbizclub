@@ -3,7 +3,11 @@ package th.go.dbd.bizclub.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +31,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import th.go.dbd.bizclub.domain.MyUserDetails;
 import th.go.dbd.bizclub.form.MemberForm;
+import th.go.dbd.bizclub.mail.MailRunnable;
 import th.go.dbd.bizclub.model.UserM;
 import th.go.dbd.bizclub.service.BizClubService;
 
@@ -34,6 +39,7 @@ import th.go.dbd.bizclub.service.BizClubService;
 @RequestMapping(value={"/bizmem"})
 @SessionAttributes(value={"memberForm"})
 public class MemberController {
+	 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss a",new Locale("th", "TH"));
 	@Autowired
     private BizClubService bizClubService;
 	private static ResourceBundle bundle;
@@ -45,8 +51,22 @@ public class MemberController {
     public String initmemeber(Model model,SecurityContextHolderAwareRequestWrapper srequest)
     {
 		MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		MemberForm memberForm=new MemberForm();	
+	/*	MemberForm memberForm=new MemberForm();	
 		memberForm.setUserM( bizClubService.findUserById(user.getMyUser().getUserid()));
+
+		model.addAttribute("provinces", bizClubService.listProvince());
+		model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
+        model.addAttribute("memberForm", memberForm);*/
+        
+        //return "bizclub/member";
+        return "redirect:/bizmem/get/"+user.getMyUser().getUserid();
+    }
+	@RequestMapping(value={"/get/{userId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String getMemeber(@PathVariable Integer userId,Model model)
+    {
+		//MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		MemberForm memberForm=new MemberForm();	
+		memberForm.setUserM( bizClubService.findUserById(userId));
 
 		model.addAttribute("provinces", bizClubService.listProvince());
 		model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
@@ -188,6 +208,18 @@ public class MemberController {
 		memberForm.getUserM().setCorpGroupId(sb.toString());
 		
 		bizClubService.updateUser(memberForm.getUserM());
+		String subject="Update Infomation";
+		String content="user name : "+memberForm.getUserM().getUserName()+" <br/>"+
+				"ได้มีการแก้ไขข้อมูลส่วนตัว  ในวันที่ "+dateFormat.format(new Date());
+		List recipients =new ArrayList();
+		recipients.add(memberForm.getUserM().getEmail());
+		MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdcentralbizclub2015@gmail.com","bizclub2015","1",
+				recipients,subject,
+			    content,
+				"99","BizClub","587",null,null,null,"1");	
+	
+		Thread mailThread = new Thread(mailRunnable);
+		mailThread.start(); 
 		model.addAttribute("provinces", bizClubService.listProvince());
 		model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
 		model.addAttribute("memberForm", memberForm);

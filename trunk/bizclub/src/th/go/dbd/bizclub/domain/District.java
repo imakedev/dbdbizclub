@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -13,6 +14,7 @@ import javax.persistence.NamedQuery;
  * 
  */
 @Entity
+@Table(name="district")
 @NamedQuery(name="District.findAll", query="SELECT d FROM District d")
 public class District implements Serializable {
 	private static final long serialVersionUID = 1L;

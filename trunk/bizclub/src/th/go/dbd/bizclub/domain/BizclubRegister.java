@@ -183,6 +183,9 @@ public class BizclubRegister implements Serializable {
 	private String logoFileName;
 	@Column(name="PROFILE_FILE_NAME")
 	private String profileFileName;	
+	
+	@Column(name="LEVEL")
+	private String level;	
 	@Transient
 	private String addressDistrictShow;
 	@Transient
@@ -687,6 +690,14 @@ public class BizclubRegister implements Serializable {
 
 	public void setBizclubProvinceShow(String bizclubProvinceShow) {
 		this.bizclubProvinceShow = bizclubProvinceShow;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 
