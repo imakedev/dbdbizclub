@@ -290,7 +290,7 @@
 	      	</div>
 	      </div>
 	      
-	      <a href="<c:url value="/page/register" />" style="color: orange; float: right;">more<i class="mdi-av-play-circle-fill"></i></a>
+	      <a href="<c:url value="/page/register" />" style="color: orange; float: right;">ดูรายละเอียด<i class="mdi-av-play-circle-fill"></i></a>
 	      
      </div>
    </div>
