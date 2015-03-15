@@ -16,6 +16,8 @@ public class ApproveForm extends CommonForm implements Serializable {
     private Integer approveRole;
     private String roleModal;
     private Integer brId;
+    private String typeSelect;
+    private String level;
 	public ApproveForm() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -59,5 +61,17 @@ public class ApproveForm extends CommonForm implements Serializable {
 	}
 	public void setApproveRole(Integer approveRole) {
 		this.approveRole = approveRole;
+	}
+	public String getTypeSelect() {
+		return typeSelect;
+	}
+	public void setTypeSelect(String typeSelect) {
+		this.typeSelect = typeSelect;
+	}
+	public String getLevel() {
+		return level;
+	}
+	public void setLevel(String level) {
+		this.level = level;
 	}
 }

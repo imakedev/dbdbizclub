@@ -33,7 +33,7 @@
 					 <%--  <li><a href='#'>ต่อยอดธุรกิจ</a></li>  --%>
 					   <li><a href='<c:url value="/product" />'>ข้อมูลเครือข่าย</a></li>
 					   <li><a href='#'>ข่าวประชาสัมพันธ์</a></li>
-					   <li><a href='<c:url value="/member" />'>ระบบสมาชิก</a></li>
+					   <li><a href='<c:url value="/login" />'>ระบบสมาชิก</a></li>
 					   <%--   <li><a href='#'>ระบบรายงาน</a></li> --%>
 					   <%--  <li><a href='<c:url value="/approve" />'>อนุมัติผู้ใช้งาน</a></li> --%>
 					   <li><a href='#'>ติดต่อเรา</a></li>

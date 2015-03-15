@@ -20,7 +20,7 @@
 <link href="<c:url value="/resources/register/material/css/ripples.min.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/register/material/css/material-wfont.min.css" />" rel="stylesheet">
 
-<title>Bizclub ${isAuthen}</title>
+<title>Bizclub</title>
 <!--//-->
 <%--
 <link rel="stylesheet" href="<c:url value="/resources/register/css/responsivemobilemenu.css" />" type="text/css"/>

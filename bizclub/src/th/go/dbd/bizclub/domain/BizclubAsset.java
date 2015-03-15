@@ -61,6 +61,9 @@ public class BizclubAsset implements Serializable {
 	private Timestamp updatedDate;
 	
 	
+	@Column(name="BA_STATUS")
+	private String baStatus;
+	
 	
 	//bi-directional many-to-one association to User
 	@ManyToOne
@@ -168,6 +171,14 @@ public class BizclubAsset implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getBaStatus() {
+		return baStatus;
+	}
+
+	public void setBaStatus(String baStatus) {
+		this.baStatus = baStatus;
 	}
 
 /*	public List<BizclubPicture> getBizclubPictures() {

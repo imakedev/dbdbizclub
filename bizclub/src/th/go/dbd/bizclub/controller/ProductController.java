@@ -61,6 +61,7 @@ public class ProductController {
 		//SecurityContextHolder.getContext().setAuthentication(SecurityContextHolder.getContext().getAuthentication());
 		*/
 		BizclubAssetM bizclubAssetM =new BizclubAssetM();
+		bizclubAssetM.setBaStatus("1");
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
 		System.out.println(authentication.getPrincipal());
 		if(authentication.isAuthenticated() && authentication.getPrincipal()!=null && !authentication.getPrincipal().equals("anonymousUser")){
@@ -71,29 +72,48 @@ public class ProductController {
 			bizclubAssetM.setUser(u);
 		}
 		
-		
+		ProductForm productForm=new ProductForm();
+		productForm.setProductType("1");
 		//bizclubAssetM.setApproveStatus("0");
     	model.addAttribute("bizclubAssets", bizClubService.searchBizclubAsset(bizclubAssetM)); 
-        model.addAttribute("productForm",new ProductForm() );
+        model.addAttribute("productForm",productForm );
         model.addAttribute("productItemAddForm",new ItemForm());
         return "bizclub/itemList";
     }
 	@RequestMapping(value={"/search"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
-    public String doSearch(HttpServletRequest request, @ModelAttribute(value="approveForm") ProductForm productForm, BindingResult result, Model model)
+    public String doSearch(HttpServletRequest request, @ModelAttribute(value="productForm") ProductForm productForm, BindingResult result, Model model)
     {
-		MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		BizclubAssetM bizclubAssetM =new BizclubAssetM();
-		UserM u=new UserM();
-		u.setUserId(user.getMyUser().getUserid());
-		bizclubAssetM.setUser(u);
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		System.out.println(authentication.getPrincipal());
+		System.out.println("getProductType->"+productForm.getProductType());
+		if(authentication.isAuthenticated() && authentication.getPrincipal()!=null && !authentication.getPrincipal().equals("anonymousUser")){
+			MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			//System.out.println(user.getUsername()); 
+			UserM u=new UserM();
+			u.setUserId(user.getMyUser().getUserid());
+			bizclubAssetM.setUser(u);
+		}
+		
+		//MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String keyword =productForm.getKeyword();
 		bizclubAssetM.setBaTitle(keyword);
+		bizclubAssetM.setBaStatus(productForm.getProductType());
 		model.addAttribute("bizclubAssets", bizClubService.searchBizclubAsset(bizclubAssetM)); 
         model.addAttribute("productForm", productForm);
-        model.addAttribute("itemForm",new ItemForm() );
+        model.addAttribute("productItemAddForm",new ItemForm() );
+        
         return "bizclub/itemList";
     }
-
+	
+	@RequestMapping(value={"promote/{baId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String promote(@PathVariable Integer baId ,Model model)
+    {
+		BizclubAssetM bizclubAssetM=bizClubService.findBizclubAssetById(baId);
+		bizclubAssetM.setBaStatus("1");
+		bizClubService.updateBizclubAsset(bizclubAssetM);
+		return "redirect:/product";
+    }
 	//headers="Accept=application/json"
 	@RequestMapping(value={"/item/{baId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody BizclubAssetM getProduct(@PathVariable Integer baId ,Model model)

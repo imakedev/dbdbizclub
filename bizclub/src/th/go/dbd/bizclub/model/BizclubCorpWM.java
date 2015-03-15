@@ -18,6 +18,8 @@ public class BizclubCorpWM implements Serializable {
 
 	private String corpType;
 	private String btCode;
+	private String firstName;
+	private String lastName;
 	public String getBtCode() {
 		return btCode;
 	}
@@ -77,6 +79,22 @@ public class BizclubCorpWM implements Serializable {
 
 	public void setCorpType(String corpType) {
 		this.corpType = corpType;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 }

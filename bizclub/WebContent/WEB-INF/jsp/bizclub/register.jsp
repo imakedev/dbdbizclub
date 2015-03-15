@@ -11,8 +11,8 @@
 		<form:form   id="registerForm" name="registerForm" modelAttribute="registerForm"    method="post" action="${post_url}" enctype="multipart/form-data">
 		<div class="col-md-10 col-md-offset-1" style="padding-top: 40px; padding-bottom: 40px;">
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;">
-				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
-					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-communication-contacts"></i> สถานะทางธุรกิจ</p>
+				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
+					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-communication-contacts"></i> สถานะทางธุรกิจ</p>
 	          	</div>
           	</div> 
           	<div class="col-md-12" style="background-color: #fff; padding-top: 40px;">
@@ -43,14 +43,20 @@
 								      <span style="margin-top: -5px; margin-left: 20px; width: 200px;">บุคคลธรรมดา(ผู้สนใจทั่วไป)</span>
 								    </label>
 							    </div>
+							    <div class="col-md-3 radio radio-primary">
+								    <label class="radio-inline">
+								      <form:radiobutton path="bizclubRegisterM.corpType" value="4"  onclick="showbizclubtype(this.value)" /> 
+								      <span style="margin-top: -5px; margin-left: 20px; width: 200px;">เจ้าหน้าที่กรมพัฒฯ</span>
+								    </label>
+							    </div>
 						    </div>
 			            </div>
 			    	</fieldset>
 		    	  </span> 
 	    	</div>
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
-				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
-					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
+				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
+					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
 	          	</div>
           	</div>
           	<div class="col-md-12" style="background-color: #fff; ">
@@ -100,7 +106,7 @@
 							    </div>
 				            </div>
 				            <div class="form-group">
-					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: <span style="color: red;">*</span></label>
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: <span id="spec_name"></span><span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 					               <form:input path="bizclubRegisterM.brFirstName" cssClass="form-control textsize"
 		                 placeholder="ชื่อ"  /> - 
@@ -137,7 +143,7 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">E-mail: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:input path="bizclubRegisterM.email" cssClass="form-control textsize"
+					              <form:input path="bizclubRegisterM.email" id="email" cssClass="form-control textsize"
 		                 placeholder="E-mail"  /> 
 					            </div>
 				            </div>
@@ -236,8 +242,8 @@
 			<!--   <div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
 			-->
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; ">
-				<div class="col-md-2" style="border: 1px solid #fbb100; padding-top: 10px;">
-					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-action-assignment-ind"></i> เกี่ยวข้องกับธุรกิจ</p>
+				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
+					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-action-assignment-ind"></i> เกี่ยวข้องกับธุรกิจ</p>
 	          	</div>
           	</div>
           	<!-- 
@@ -287,13 +293,13 @@
             </div>
 </div>
 <!-- ==================================================== ข้อมูลการประกอบธุรกิจ =================================================================== -->
-			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
-				<div class="col-md-3" style="border: 1px solid #fbb100; padding-top: 10px;">
-					<p style="font-size: 22px; color: #fbb100; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
+			<div id="bizinfo_element" class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
+				<div class="col-md-3" style="border: 2px solid #FFB400; padding-top: 10px;">
+					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
 	          	</div>
           	</div>
           	<div class="col-md-12" style="background-color: #fff;  ">
-				<div class="col-md-8" style="padding-top: 40px;">
+				<div id="bizinfo2_element" class="col-md-8" style="padding-top: 40px;">
 					<span class="form-horizontal">
 				    	<fieldset>
 <!-- ----------------------------------- กรณี เป็นนิติบุคคล ------------------------------------------------------------- -->
@@ -345,7 +351,7 @@
 <!-- ----------------------------------- กรณี เป็นบุคคลธรรมดา/ผู้ประกอบธุรกิจ(ทั่วไป) ------------------------------------------------------------- -->
 				    	<div id="bizclubtype_3" hidden="">
 				            <div class="form-group" style="margin-top: 20px;">
-					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: <span style="color: red;">*</span></label>
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: <span style="color: red;"></span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 					              <form:input path="bizclubRegisterM.personCorpName" id="personCorpName" cssClass="form-control textsize"
 		                 placeholder="ชื่อธุรกิจ"  /> 
@@ -381,13 +387,13 @@
 	            </div>
 	          
 	            <!-- ---------------------------------- IMG LOGO --------------------------------- -->
-        	    <div class="col-md-4" style="padding:20px 0px 1px 100px;">
+        	    <div id="bizphoto_elment" class="col-md-4" style="padding:20px 0px 1px 100px;">
 	            	<img class="img-thumbnail" id="logo" src="<c:url value="/resources/register/images/img_logo.png" />" alt="<c:url value="/resources/register/images/icon.png" />" data-src="holder.js"/>
 	            	<input type='file' id="corp_upload" name="corp_upload" onchange="readURL1(this);" style="font-size: 10px; "/>
 	            	<%-- <input id="corp_upload" type="file" name="userfile" multiple>   --%>
 	            </div>
 	            <!-- ---------------------------------------------------------------------------- -->
-	            <div class="col-md-11 col-md-offset-1">
+	            <div id="biztype_element" class="col-md-11 col-md-offset-1">
 		            <span class="form-horizontal">
 				    	<fieldset>
 					    	<div class="form-group">
@@ -471,30 +477,10 @@
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 					              <form:select path="bizclubRegisterM.bizclubProvince" cssClass="form-control textsize">
 					             	 <form:options items="${provinceCenters}" itemValue="provinceId" itemLabel="provinceName"/>
-							                		<%--	<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
-							                		<form:option value="เชียงใหม่">เชียงใหม่</form:option>
-							                		<form:option value="พิษณุโลก">พิษณุโลก</form:option>
-							                		<form:option value="ชัยนาท">ชัยนาท</form:option>
-							                		<form:option value="ขอนแก่น">ขอนแก่น</form:option>
-							                		<form:option value="เพชรบุรี">เพชรบุรี</form:option>
-							                		<form:option value="สงขลา">สงขลา</form:option>
-							                		<form:option value="นนทบุรี">นนทบุรี</form:option>
-							                		<form:option value="เชียงราย">เชียงราย</form:option>
-							                		<form:option value="พิจิตร">พิจิตร</form:option>
-							                		<form:option value="นครราชสีมา">นครราชสีมา</form:option>
-							                		<form:option value="กาญจนบุรี">กาญจนบุรี</form:option>
-							                		<form:option value="ชลบุรี">ชลบุรี</form:option>
-							                	
-							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
-							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
-							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
-							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
-							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
-							                		<form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>
-							                		  --%>
 							      </form:select>
 					            </div>
 				            </div>
+				           
 			            </fieldset>
 		            </span>
 	            </div>
@@ -502,7 +488,10 @@
 	            <div class="form-group" style="padding-top: 50px;">
 	            <div class="col-md-10 col-md-offset-4">
 	                <button type="reset" class="btn btn-default" style="font-weight: bold; font-size: 24px;">ยกเลิก</button>
+	                <%-- 
 	                <button type="submit" class="btn btn-material-purple" style="font-weight: bold; font-size: 22px;">ลงทะเบียน</button>
+	                --%>
+	                <button type="button" onclick="doAction()" class="btn btn-material-purple" style="font-weight: bold; font-size: 22px;">ลงทะเบียน</button>
 	            </div>
 	        </div> 
 	            
@@ -518,6 +507,15 @@
 <script>
       $(document).ready(function() {
           $.material.init();
+          
+          $('#cardId').keyup(function() {
+      	    var dInput = this.value;
+      	   // alert(dInput.length)
+      	    if(dInput.length==13)
+      			checkCardId();
+      	});
+          //alert($("#addressProvince").val())
+      	loadAddressAmphur($("#addressProvince").val());
       });
 </script>
 <script>
@@ -537,15 +535,81 @@ function readURL(input) {
 }
 </script>
 <script>
-$(document).ready(function() {
-	$('#cardId').keyup(function() {
-	    var dInput = this.value;
-	   // alert(dInput.length)
-	    if(dInput.length==13)
-			checkCardId();
-	});
-	loadAddressAmphur($("#addressProvince").val());
-});
+
+function doAction(){
+	var cardId=$("#cardId").val();
+	if ($.trim(cardId).length == 0) {
+        alert('กรุณากรอก เลขบัตรประชาชน');
+        $("#cardId").focus();
+        return false;
+    }
+    if (!validateDigit(cardId)) {
+    	  alert('กรอก  เลขบัตรประชาชน ผิด.');
+    	  $("#cardId").focus();
+    	  return false;
+    }
+    var sEmail=$("#email").val();
+	if ($.trim(sEmail).length == 0) {
+            alert('กรุณากรอก Email Address');
+            $("#email").focus();
+            return false;
+        }
+        if (!validateEmail(sEmail)) {
+        	  alert('กรอก  Email Address ผิด.');
+        	  $("#email").focus();
+        	  return false;
+        }
+    
+   var corpType= $('input[name="bizclubRegisterM.corpType"]:checked').val();
+  
+    if(corpType=='1'){
+    	var corpId=$("#corpId").val();
+    	if ($.trim(corpId).length == 0) {
+            alert('กรุณากรอก เลขทะเบียนนิติบุคคล');
+            $("#corpId").focus();
+            return false;
+        }
+        if (!validateDigit(corpId)) {
+        	  alert('กรอก  เลขทะเบียนนิติบุคคล ผิด.');
+        	  $("#corpId").focus();
+        	  return false;
+        }
+    }else if(corpType=='2'){
+    	var taxesId=$("#taxesId").val();
+    	if ($.trim(taxesId).length == 0) {
+            alert('กรุณากรอก เลขทะเบียนพาณิชย์');
+            $("#taxesId").focus();
+            return false;
+        }
+        if (!validateDigit(taxesId)) {
+        	  alert('กรอก  เลขทะเบียนพาณิชย์ ผิด.');
+        	  $("#taxesId").focus();
+        	  return false;
+        }
+    }
+    		        document.getElementById("registerForm").submit();
+
+}
+function validateDigit(sDigit) {
+    
+    var filter=/^\d{13}$/;
+    if (filter.test(sDigit)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+function validateEmail(sEmail) {
+	    //var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+	    var filter=/^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/;
+	    if (filter.test(sEmail)) {
+	        return true;
+	    }
+	    else {
+	        return false;
+	    }
+}
 function loadAddressAmphur(provinceId){
 	//alert(provinceId)
 	  $.ajax({
@@ -622,6 +686,9 @@ function loadAddressZipcode(districtId){
 
 function getCrop(corpType){
 	var corpId="";
+	
+	$("#spec_name").html("")
+	
 	if(corpType=='1'){
 		corpId=jQuery.trim($("#corpId").val());
 		if(corpId.length!=13){
@@ -654,6 +721,19 @@ function getCrop(corpType){
 			  $("#services").val(msg.corpServices);
 			  $("#btCode").val(msg.btCode);
 			  $("#btDesc").val(msg.btDesc);
+			  if(corpType=='1'){
+				  if($('input[id="bizclubRegisterM.brFirstName"]').val()!=msg.firstName){
+					  alert("เฉพาะกรรมการเท่านั้น")
+					  $('input[id="bizclubRegisterM.brFirstName"]').focus();
+					  $("#spec_name").html("(เฉพาะกรรมการเท่านั้น)")
+					
+				  }else if($('input[id="bizclubRegisterM.brLastName"]').val()!=msg.lastName){
+					  alert("เฉพาะกรรมการเท่านั้น")
+					  $('input[id="bizclubRegisterM.brLastName"]').focus();
+					  $("#spec_name").html("(เฉพาะกรรมการเท่านั้น)")
+				  }
+					
+			  } 
 			  var corpBizTypes=msg.corpBizType.split("-");
 			  $("input[name=corpGroupIds]").each(function() { 
 				  var  corpGroupId_value=$(this).val();
@@ -714,6 +794,19 @@ function showbizclubtype(type){
 	resetbizclubtype();
 	resetFormBizclubType();
 	$("#bizclubtype_"+type).show();
+	if(type=='4'){
+		showForStaft(false);
+	}else
+		showForStaft(true);
+}
+var elements_staft=["bizinfo_element","biztype_element","bizphoto_elment","bizinfo2_element"];
+function showForStaft(isShow){
+	   for(var i=0;i<elements_staft.length;i++){
+		   if(isShow)
+		  	 $("#"+elements_staft[i]).show();
+		   else
+			 $("#"+elements_staft[i]).hide();
+	   }
 }
 function readURL1(input) {
     if (input.files && input.files[0]) {

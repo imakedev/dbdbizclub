@@ -43,7 +43,14 @@
 					   </c:if>
 					   <li><a href='<c:url value="/product" />'>ข้อมูลเครือข่าย</a></li>
 					   <li><a href='#'>ข่าวประชาสัมพันธ์</a></li>
-					   <li><a href='<c:url value="/member" />'>ระบบสมาชิก</a></li>
+					   <c:if test="${isStaff || isAdmin || isMember}">
+					     <li><a href='<c:url value="/member" />'>ระบบสมาชิก</a></li>
+					     </c:if>
+					     <c:if test="${!isStaff && !isAdmin && !isMember}">
+					     <li><a href='<c:url value="/login" />'>ระบบสมาชิก</a></li>
+					     </c:if>
+					  
+					  <%-- <li><a href='<c:url value="/member" />'>ระบบสมาชิก</a></li> --%> 
 					    <c:if test="${isStaff || isAdmin}">
 					   <li><a href='#'>ระบบรายงาน</a></li>
 					   <li><a href='<c:url value="/approve" />'>อนุมัติผู้ใช้งาน</a></li>

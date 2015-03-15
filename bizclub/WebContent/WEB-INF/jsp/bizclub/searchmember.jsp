@@ -18,13 +18,13 @@
 				            <div class="col-md-5"> 
 				               <form:select path="searchType" cssClass="form-control textsize"  >
 				                	 <form:option value="" label="ทั้งหมด" />
-				                	  <form:option value="ผู้ผลิต" label="ผู้ผลิต" />
-				                	   <form:option value="ธุรกิจบริการ" label="ธุรกิจบริการ" />
-				                	    <form:option value="ค้าส่ง" label="ค้าส่ง" />
-				                	     <form:option value="ค้าปลีก" label="ค้าปลีก" />
-				                	      <form:option value="นำเข้า" label="นำเข้า" />
-				                	       <form:option value="ส่งออก" label="ส่งออก" />
-				                	         <form:option value="" label="อื่นๆ" />
+				                	  <form:option value="1" label="ผู้ผลิต" />
+				                	   <form:option value="2" label="ธุรกิจบริการ" />
+				                	    <form:option value="3" label="ค้าส่ง" />
+				                	     <form:option value="4" label="ค้าปลีก" />
+				                	      <form:option value="5" label="นำเข้า" />
+				                	       <form:option value="6" label="ส่งออก" />
+				                	         <form:option value="7" label="อื่นๆ" />
 				               
 				                </form:select>
 				            </div>
@@ -36,12 +36,12 @@
 				            <div class="col-md-3">
 				        
 				                <form:select path="searchForm" cssClass="form-control textsize"> 
-				                  <form:option value="" label="ทั้งหมด" />
-				                  <form:option value="1" label="เลขที่สมาชิก" />
+				                  <form:option value="0" label="ทั้งหมด" />
+				                 <%-- <form:option value="1" label="เลขที่สมาชิก" />  --%>
 				                  <form:option value="2" label="เลขบัตรประชาชน" />
 				                  <form:option value="3" label="ชื่อสมาชิก" />
 				                  <form:option value="4" label="ชื่อทางการค้า" />
-				                  <form:option value="4" label="สินค้า/บริการ" />
+				                  <form:option value="5" label="สินค้า/บริการ" />
 				                </form:select>
 				            </div>
 				        </div>
@@ -80,7 +80,7 @@
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="row-picture">  
 								          <c:if test="${not empty user.profileFileName}">
-								            <img class="circle"  width="56" height="56" src="getfile/profile/${user.userId}/xxx" alt="icon">
+								            <img class="circle"  width="56" height="56" src="<c:url value="/getfile/profile/${user.userId}/xxx" /> alt="icon">
 								            </c:if>
 								            <c:if test="${ empty user.profileFileName}">
 								              <img class="circle"  width="56" height="56"  src="<c:url value="/resources/register/images/5.png" />" alt="icon">
@@ -94,10 +94,9 @@
 								            <h4 class="list-group-item-heading">${user.firstName}  ${user.lastName}
 								             <c:if test="${isAuthen==true}">
 								                 <c:if test="${isAdmin}">
-								                 <%--
-								             	<button class="btn btn-success btn-flat bton" type="button" onclick="editProductItem('${user.userId}')"><i class="mdi-image-edit"></i></button>
-								             	 --%>
-												<button class="btn btn-danger btn-flat bton" type="button"  onclick="showDelete('${user.userId}')"><i class="mdi-action-delete"></i></button>
+								             	<button class="btn btn-success btn-flat bton" type="button" onclick="editMember('${user.userId}')"><i class="mdi-image-edit"></i></button>
+												<%-- style="left:-60" --%>
+												<button  class="btn btn-danger btn-flat bton" type="button"  onclick="showDelete('${user.userId}')"><i class="mdi-action-delete"></i></button>
 								            	</c:if>
 								             </c:if>
 								            <c:if test="${user.isCorp=='1'}"> 
@@ -350,6 +349,9 @@
       $(document).ready(function() {
           $.material.init();
       });
+      function editMember(userid){
+    	  window.location.href="<c:url value='/bizmem/get/"+userid+"'/>";
+      }
       function deleteMemberItem(){
   	  	//alert(itemID);
   	  	var itemID=$("#item_delete").val();

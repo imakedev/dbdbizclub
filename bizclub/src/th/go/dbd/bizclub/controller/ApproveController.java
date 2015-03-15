@@ -36,8 +36,25 @@ public class ApproveController {
     {
 		BizclubRegisterM bizclubRegisterM =new BizclubRegisterM();
 		bizclubRegisterM.setApproveStatus("0");
+		String type="2";
+		bizclubRegisterM.setCorpType(type);
     	model.addAttribute("bizclubRegisters", bizClubService.searchBizclubRegister(bizclubRegisterM)); 
-        model.addAttribute("approveForm",new ApproveForm() );
+    	ApproveForm approveForm =new ApproveForm();
+    	approveForm.setTypeSelect(type);
+        model.addAttribute("approveForm",approveForm);
+        return "bizclub/approveList";
+    }
+	
+	@RequestMapping(value={"/type/{type}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String listType(@PathVariable String type,Model model)
+    {
+		BizclubRegisterM bizclubRegisterM =new BizclubRegisterM();
+		bizclubRegisterM.setApproveStatus("0");
+		bizclubRegisterM.setCorpType(type);
+    	model.addAttribute("bizclubRegisters", bizClubService.searchBizclubRegister(bizclubRegisterM)); 
+    	ApproveForm approveForm =new ApproveForm();
+    	approveForm.setTypeSelect(type);
+        model.addAttribute("approveForm",approveForm);
         return "bizclub/approveList";
     }
 	@RequestMapping(value={"/search"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
@@ -80,7 +97,8 @@ public class ApproveController {
 				username=bizclubRegister.getTaxesId();
 			}else if(corpType.equals("3")){ // 
 				username=bizclubRegister.getCardId();
-			}
+			}else
+				username=bizclubRegister.getCardId();
 			
 			String password=genToken(8);
 			user.setUserName(username);
@@ -109,13 +127,14 @@ public class ApproveController {
 			RoleM role =new RoleM();
 			role.setRoleId(approveForm.getApproveRole());
 			user.setRole(role);
+			user.setLevel(approveForm.getLevel());
 			bizClubService.saveUser(user);
 			
 			subject="ยินดีต้อนรับสู่สมาชิก BizClub Online";
-			content=	"Welcome to BizClub <br/> UserName / Password <br/> "+username+" / "+password+""
+			content=	"Welcome to BizClub <br/> user : "+username+" <br/> password : "+password+"<br/>"
 					+ "<br/> go to www.dbdbizclub.com ";
 			if(approveForm.getApproveStatus().equals("2"))
-				content=	"Welcome to BizClub <br/> UserName / Password <br/> "+username+" / "+password+""
+				content=	"Welcome to BizClub <br/> user : "+username+" <br/> password : "+password+"<br/>"
 						+ "<br/> <b style=\"color: red;\">"+approveForm.getApproveCondition()+"</b>"
 						+ "<br/> go to www.dbdbizclub.com ";
 			

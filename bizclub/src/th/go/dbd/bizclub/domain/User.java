@@ -53,6 +53,9 @@ public class User implements Serializable {
 		this.addressPostCodeShow = addressPostCodeShow;
 	}
 
+	@Column(name="LEVEL")
+	private String level;
+	
 	@Column(name="ADDRESS_NAME")
 	private String addressName;
 
@@ -680,6 +683,14 @@ public class User implements Serializable {
 
 	public void setBizclubProvinceShow(String bizclubProvinceShow) {
 		this.bizclubProvinceShow = bizclubProvinceShow;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
 	}
 
 

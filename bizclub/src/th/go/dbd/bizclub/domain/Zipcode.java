@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 
 /**
@@ -13,6 +14,7 @@ import javax.persistence.NamedQuery;
  * 
  */
 @Entity
+@Table(name="zipcode")
 @NamedQuery(name="Zipcode.findAll", query="SELECT z FROM Zipcode z")
 public class Zipcode implements Serializable {
 	private static final long serialVersionUID = 1L;

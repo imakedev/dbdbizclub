@@ -27,6 +27,14 @@ public class BizclubAssetM implements Serializable {
 	private String updatedBy;
 
 	private Timestamp updatedDate;
+	private String baStatus;
+	public String getBaStatus() {
+		return baStatus;
+	}
+
+	public void setBaStatus(String baStatus) {
+		this.baStatus = baStatus;
+	}
 
 	private UserM user;
 
