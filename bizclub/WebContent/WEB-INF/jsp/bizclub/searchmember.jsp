@@ -12,12 +12,25 @@
 		cssClass="form-inline" role="form" style="margin-bottom: 50px;">
 		    <fieldset>
 		    	<div class="row">
+		    	<div class="col-md-12">
+		    	<div class="col-md-1 col-md-offset-1">
+				    	<div class="form-group" style="float: right;">
+				          <!--   <label for="select" class="col-md-7 col control-label">ประเภทธุรกิจ:</label>
+				           -->
+				            
+				               <form:select path="searchUserType" cssClass="form-control textsize" >
+				                	  <form:option value="3" label="สมาชิก" />
+				                	  <form:option value="2" label="เจ้าหน้าที่" />
+				                </form:select>
+				            
+				        </div>
+		        	</div>
 		    		<div class="col-md-3">
 				    	<div class="form-group col-md-offset-1">
 				            <label for="select" class="col-md-7 col control-label">ประเภทธุรกิจ:</label>
 				            <div class="col-md-5"> 
 				               <form:select path="searchType" cssClass="form-control textsize"  >
-				                	 <form:option value="" label="ทั้งหมด" />
+				                	 <form:option value="0" label="ทั้งหมด" />
 				                	  <form:option value="1" label="ผู้ผลิต" />
 				                	   <form:option value="2" label="ธุรกิจบริการ" />
 				                	    <form:option value="3" label="ค้าส่ง" />
@@ -46,24 +59,21 @@
 				            </div>
 				        </div>
 			        </div>
-			        <div class="col-md-3">
-				        <div class="form-group has-warning">
-						    <div class="input-group col-md-offset-4">
+			        <div class="col-md-2">
+				        <div class="form-group has-warning col-md-12">
+						    <div class="input-group col-md-2 col-md-offset-3">
 						        <form:input  class="form-control input-lg textsize" path="keyword" placeholder="คำที่ต้องการค้นหา" type="text"/>
-						        <span class="input-group-btn">
-						            <button class="btn btn-material-amber btn-flat" type="submit" style="padding: 5px 10px"><i class="mdi-action-search"></i></button>
+						       <%-- <span class="input-group-btn col-md-1">
+						            <button class="btn btn-material-amber btn-flat" type="submit" style="padding: 5px 10px 5px 10px"><i class="mdi-action-search"></i></button>
 						        </span>
+						         --%>
 						    </div>
 						</div>
 					</div>
-					  <div class="col-md-3">
-				        <div class="form-group has-warning">
-						    <div class="input-group">
-						       
-						       <a href='<c:url value="/bizmem" />'>แก้ใขข้อมูลส่วนตัว</a>
-						    </div>
-						</div>
+					<div class="col-md-2">
+						 <a href="/bizclub/bizmem" style="float: right;">แก้ใขข้อมูลส่วนตัว</a>
 					</div>
+				</div> 
 				</div>
 	        </fieldset>
 	      </form:form>
@@ -80,7 +90,7 @@
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="row-picture">  
 								          <c:if test="${not empty user.profileFileName}">
-								            <img class="circle"  width="56" height="56" src="<c:url value="/getfile/profile/${user.userId}/xxx" /> alt="icon">
+								            <img class="circle"  width="56" height="56" src="<c:url value="/getfile/profile/${user.userId}/xxx" />" alt="icon">
 								            </c:if>
 								            <c:if test="${ empty user.profileFileName}">
 								              <img class="circle"  width="56" height="56"  src="<c:url value="/resources/register/images/5.png" />" alt="icon">
@@ -348,7 +358,15 @@
 <script>
       $(document).ready(function() {
           $.material.init();
+          $( "#keyword" ).keypress(function( event ) {
+        	  if ( event.which == 13 ) {
+        	     event.preventDefault();
+        	     document.getElementById("userForm").submit();
+        	  }
+        	 
+        	});
       });
+    
       function editMember(userid){
     	  window.location.href="<c:url value='/bizmem/get/"+userid+"'/>";
       }

@@ -38,6 +38,12 @@
 								      <span style="margin-top: -5px; margin-left: 20px; width: 200px;">บุคคลธรรมดา(ผู้สนใจทั่วไป)</span>
 								    </label>
 							    </div>
+							     <div class="col-md-3 radio radio-primary">
+								    <label class="radio-inline">
+								      <form:radiobutton path="userM.corpType" value="4"  onclick="showbizclubtype(this.value)" /> 
+								      <span style="margin-top: -5px; margin-left: 20px; width: 200px;">เจ้าหน้าที่กรมพัฒฯ</span>
+								    </label>
+							    </div>
 						    </div>
 			            </div>
 			    	</fieldset>
@@ -299,13 +305,13 @@
             </div>
 </div>
 <!-- ==================================================== ข้อมูลการประกอบธุรกิจ =================================================================== -->
-			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
+				<div id="bizinfo_element" class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
 				<div class="col-md-3" style="border: 2px solid #FFB400; padding-top: 10px;">
 					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
 	          	</div>
           	</div>
           	<div class="col-md-12" style="background-color: #fff;  ">
-				<div class="col-md-8" style="padding-top: 40px;">
+				<div id="bizinfo2_element" class="col-md-8" style="padding-top: 40px;">
 					<span class="form-horizontal">
 				    	<fieldset>
 <!-- ----------------------------------- กรณี เป็นนิติบุคคล ------------------------------------------------------------- -->
@@ -393,7 +399,7 @@
 	            </div>
 	          
 	            <!-- ---------------------------------- IMG LOGO --------------------------------- -->
-        	    <div class="col-md-4" style="padding:20px 0px 1px 100px;">
+        	    <div id="bizphoto_elment" class="col-md-4" style="padding:20px 0px 1px 100px;">
 	            	  <c:if test="${not empty memberForm.userM.logoFileName}">
 			<img class="img-thumbnail"  id="logo"  width="259" height="259" src="<c:url value="/getfile/logo/${memberForm.userM.userId}/xx" />">
 		</c:if>
@@ -404,7 +410,7 @@
 	            	<%-- <input id="corp_upload" type="file" name="userfile" multiple>   --%>
 	            </div>
 	            <!-- ---------------------------------------------------------------------------- -->
-	            <div class="col-md-11 col-md-offset-1">
+	           <div id="biztype_element" class="col-md-11 col-md-offset-1">
 		            <span class="form-horizontal">
 		            <input type="hidden" id="corpGroupIdInit" value="${memberForm.userM.corpGroupId}">
 				    	<fieldset>
@@ -490,12 +496,12 @@
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 					             <c:if test="${isStaff}">
 					              <form:select path="userM.bizclubProvince" cssClass="form-control textsize"  disabled="true">
-					             	 <form:options items="${provinceCenters}" itemValue="provinceId" itemLabel="provinceName"/>
+					             	 <form:options items="${provinceCenters}" itemValue="bcId" itemLabel="bcProviceName"/>
 							      </form:select>
 							     </c:if> 
 							     <c:if test="${!isStaff}">
 					              <form:select path="userM.bizclubProvince" cssClass="form-control textsize" >
-					             	 <form:options items="${provinceCenters}" itemValue="provinceId" itemLabel="provinceName"/>
+					             	 <form:options items="${provinceCenters}" itemValue="bcId" itemLabel="bcProviceName"/>
 							      </form:select>
 							     </c:if> 
 					            </div>
@@ -804,6 +810,19 @@ function showbizclubtype(type){
 	resetbizclubtype();
 	resetFormBizclubType();
 	$("#bizclubtype_"+type).show();
+	if(type=='4'){
+		showForStaft(false);
+	}else
+		showForStaft(true);
+}
+var elements_staft=["bizinfo_element","biztype_element","bizphoto_elment","bizinfo2_element"];
+function showForStaft(isShow){
+	   for(var i=0;i<elements_staft.length;i++){
+		   if(isShow)
+		  	 $("#"+elements_staft[i]).show();
+		   else
+			 $("#"+elements_staft[i]).hide();
+	   }
 }
 function readURL1(input) {
     if (input.files && input.files[0]) {

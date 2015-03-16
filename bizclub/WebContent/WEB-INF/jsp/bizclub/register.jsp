@@ -10,6 +10,9 @@
 	
 		<form:form   id="registerForm" name="registerForm" modelAttribute="registerForm"    method="post" action="${post_url}" enctype="multipart/form-data">
 		<div class="col-md-10 col-md-offset-1" style="padding-top: 40px; padding-bottom: 40px;">
+			<div class="col-md-12" style="background-color: #fbbf04;">
+                <div style="text-align: left;  color: #000; font-size: 35px; font-weight: 500;">สมัครสมาชิก</div>
+            </div>
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;">
 				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
 					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-communication-contacts"></i> สถานะทางธุรกิจ</p>
@@ -476,7 +479,7 @@
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ศูนย์เครือข่ายธุรกิจ BizClub: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 					              <form:select path="bizclubRegisterM.bizclubProvince" cssClass="form-control textsize">
-					             	 <form:options items="${provinceCenters}" itemValue="provinceId" itemLabel="provinceName"/>
+					             	 <form:options items="${provinceCenters}" itemValue="bcId" itemLabel="bcProviceName"/>
 							      </form:select>
 					            </div>
 				            </div>
@@ -511,6 +514,11 @@
           $('#cardId').keyup(function() {
       	    var dInput = this.value;
       	   // alert(dInput.length)
+      	   if ($.trim(dInput).length > 0 && !validateDigit2(dInput)) {
+    	  		alert('กรอก  เฉพาะตัวเลขเท่านั้น.');
+    	  		$("#cardId").focus();
+    	  		return false;
+   			 }
       	    if(dInput.length==13)
       			checkCardId();
       	});
@@ -589,6 +597,16 @@ function doAction(){
     }
     		        document.getElementById("registerForm").submit();
 
+}
+function validateDigit2(sDigit) {
+	var filter = /^\d*[0-9](|.\d*[0-9]|,\d*[0-9])?$/;
+   // var filter=/^\d$/;
+    if (filter.test(sDigit)) {
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 function validateDigit(sDigit) {
     
