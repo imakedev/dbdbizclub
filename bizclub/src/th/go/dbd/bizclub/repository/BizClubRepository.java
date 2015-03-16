@@ -167,7 +167,14 @@ public class BizClubRepository {
 		return user;
 	}
 
-	
+	public List<User> searchUserByCenter(User user) {
+		StringBuffer sb=new StringBuffer("select u from User u where u.userId!=1 ");
+		sb.append("  and u.bizclubProvince='"+user.getBizclubProvince()+"'");
+		sb.append(" order by u.updatedDate desc ");
+		Query query=entityManager.createQuery(sb.toString(), User.class);
+		
+		return query.getResultList();
+	}
 	public List<User> searchUser(User user) {
 		// TODO Auto-generated method stub
 		StringBuffer sb=new StringBuffer("select u from User u where u.userId!=1 ");
@@ -361,8 +368,11 @@ public class BizClubRepository {
 		// TODO Auto-generated method stub
 		return entityManager.find(BizclubAsset.class,baId );
 	}
-
-	
+	public BizclubCenter findBizclubCenterById(Integer bcId) {
+		// TODO Auto-generated method stub
+		return entityManager.find(BizclubCenter.class,bcId );
+	}
+		
 	public List<BizclubAsset> searchBizclubAsset(BizclubAsset bizclubAsset) {
 		// TODO Auto-generated method stub
 		boolean haveWhere=false;
@@ -415,14 +425,14 @@ public class BizClubRepository {
 	}
 	
 	public List<BizclubProvinceCenter> listProvinceCenter() {
-		// TODO Auto-generated method stub
-		StringBuffer sb=new StringBuffer("select u from BizclubProvinceCenter u order by u.provinceName ");
+		// TODO Auto-generated method stub 
+		StringBuffer sb=new StringBuffer("select u from BizclubProvinceCenter u order by  u.provinceName ");
 		Query query=entityManager.createQuery( sb.toString(), BizclubProvinceCenter.class);
 		return query.getResultList();
 	}
 	public List<BizclubCenter> listBizclubCenter() {
 		// TODO Auto-generated method stub
-		StringBuffer sb=new StringBuffer("select u from BizclubCenter u order by u.bcProviceName ");
+		StringBuffer sb=new StringBuffer("select u from BizclubCenter u order by u.bcOrder desc, u.bcProviceName ");
 		Query query=entityManager.createQuery( sb.toString(), BizclubCenter.class);
 		return query.getResultList();
 	}

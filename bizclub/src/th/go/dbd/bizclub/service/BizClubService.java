@@ -28,7 +28,8 @@ public interface BizClubService {
 	public Integer deleteUser(UserM userM);
 	public UserM findUserById(Integer userId);
 	public List<UserM> searchUser(UserM userM) ;
-
+	public List<UserM> searchUserByCenter(UserM userM) ;
+	
 	// 
 	public Integer saveBizclubRegister(BizclubRegisterM bizclubRegisterM) ;
 	public Integer updateBizclubRegister(BizclubRegisterM bizclubRegisterM) ;
@@ -52,6 +53,7 @@ public interface BizClubService {
 	
 	public List<BizclubProvinceCenterM> listProvinceCenter() ;
 	public List<BizclubCenterM> listBizclubCenter() ;
+	public BizclubCenterM findBizclubCenterById(Integer bcId);
 	public List<ProvinceM> listProvince() ;
 	public List<AmphurM> listAmphur(Integer provinceId) ;
 	public List<DistrictM> listDistrict(Integer amphurId) ;

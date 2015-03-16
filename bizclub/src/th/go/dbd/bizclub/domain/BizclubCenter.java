@@ -48,6 +48,18 @@ public class BizclubCenter implements Serializable {
 	@Column(name="BC_UPDATED_DATE")
 	private Timestamp bcUpdatedDate;
 
+	
+	@Column(name="BC_ORDER")
+	private Integer bcOrder;
+	
+	public Integer getBcOrder() {
+		return bcOrder;
+	}
+
+	public void setBcOrder(Integer bcOrder) {
+		this.bcOrder = bcOrder;
+	}
+
 	public BizclubCenter() {
 	}
 
