@@ -14,6 +14,13 @@ public class UserForm extends CommonForm implements Serializable {
 	private String keyword;
 	private String searchForm;
 	private String searchType;
+	private String searchUserType;
+	public String getSearchUserType() {
+		return searchUserType;
+	}
+	public void setSearchUserType(String searchUserType) {
+		this.searchUserType = searchUserType;
+	}
 	public UserForm() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -26,6 +26,22 @@ import javax.persistence.Transient;
 @Table(name="USER")
 @NamedQuery(name="User.findAll", query="SELECT u FROM User u")
 public class User implements Serializable {
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getSearchForm() {
+		return searchForm;
+	}
+
+	public void setSearchForm(String searchForm) {
+		this.searchForm = searchForm;
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -35,6 +51,16 @@ public class User implements Serializable {
 
 	@Column(name="ADDRESS_DISTRICT")
 	private String addressDistrict;
+	
+	@Transient
+	private String keyworkd;
+	
+	@Transient
+	private String searchType;
+    
+	@Transient
+	private String searchForm;
+	
 	@Transient
 	private String addressDistrictShow;
 	@Transient
@@ -45,6 +71,16 @@ public class User implements Serializable {
 	private String bizclubProvinceShow;
 	@Transient
 	private String addressPostCodeShow;
+	@Transient
+	private String searchUserType;
+	public String getSearchUserType() {
+		return searchUserType;
+	}
+
+	public void setSearchUserType(String searchUserType) {
+		this.searchUserType = searchUserType;
+	}
+
 	public String getAddressPostCodeShow() {
 		return addressPostCodeShow;
 	}
@@ -218,6 +254,15 @@ public class User implements Serializable {
 	private String btCode;
 	@Column(name="BT_DESC")
 	private String btDesc;
+	
+	public String getKeyworkd() {
+		return keyworkd;
+	}
+
+	public void setKeyworkd(String keyworkd) {
+		this.keyworkd = keyworkd;
+	}
+
 	public String getBtCode() {
 		return btCode;
 	}

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import th.go.dbd.bizclub.domain.Amphur;
 import th.go.dbd.bizclub.domain.BizclubAsset;
+import th.go.dbd.bizclub.domain.BizclubCenter;
 import th.go.dbd.bizclub.domain.BizclubCorpW;
 import th.go.dbd.bizclub.domain.BizclubPicture;
 import th.go.dbd.bizclub.domain.BizclubProvinceCenter;
@@ -24,6 +25,7 @@ import th.go.dbd.bizclub.domain.User;
 import th.go.dbd.bizclub.domain.Zipcode;
 import th.go.dbd.bizclub.model.AmphurM;
 import th.go.dbd.bizclub.model.BizclubAssetM;
+import th.go.dbd.bizclub.model.BizclubCenterM;
 import th.go.dbd.bizclub.model.BizclubCorpWM;
 import th.go.dbd.bizclub.model.BizclubPictureM;
 import th.go.dbd.bizclub.model.BizclubProvinceCenterM;
@@ -132,7 +134,7 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
+		System.out.println("getBizclubProvince-->"+bizclubRegister.getBizclubProvince());
 		return bizClubRepository.saveBizclubRegister(bizclubRegister);
 	}
 
@@ -406,4 +408,19 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		return zipcodeMList;
 	}
 
+
+	@Override
+	public List<BizclubCenterM> listBizclubCenter() {
+		// TODO Auto-generated method stub
+		List<BizclubCenter>  provinces= bizClubRepository.listBizclubCenter();
+		List<BizclubCenterM>  provinceMList=new ArrayList<BizclubCenterM>(provinces.size());
+		for (BizclubCenter province : provinces) {
+			BizclubCenterM provinceM=new BizclubCenterM();
+			BeanUtils.copyProperties( province, provinceM);
+			provinceMList.add(provinceM);
+		}
+		return provinceMList;
+	}
+
+	
 }

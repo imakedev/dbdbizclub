@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import th.go.dbd.bizclub.domain.Amphur;
 import th.go.dbd.bizclub.domain.BizclubAsset;
+import th.go.dbd.bizclub.domain.BizclubCenter;
 import th.go.dbd.bizclub.domain.BizclubCorpW;
 import th.go.dbd.bizclub.domain.BizclubPicture;
 import th.go.dbd.bizclub.domain.BizclubProvinceCenter;
@@ -143,8 +144,8 @@ public class BizClubRepository {
 		// TODO Auto-generated method stub
 		User user =entityManager.find(User.class,userId );
 		if(user.getBizclubProvince()!=null && user.getBizclubProvince().length()>0){
-			BizclubProvinceCenter bizclubProvinceCenter = entityManager.find(BizclubProvinceCenter.class,Integer.valueOf(user.getBizclubProvince()));
-			user.setBizclubProvinceShow(bizclubProvinceCenter.getProvinceName());
+			BizclubCenter bizclubProvinceCenter = entityManager.find(BizclubCenter.class,Integer.valueOf(user.getBizclubProvince()));
+			user.setBizclubProvinceShow(bizclubProvinceCenter.getBcProviceName());
 		}
 		if(user.getAddressProvince()!=null && user.getAddressProvince().length()>0){
 			Province province = entityManager.find(Province.class,Integer.valueOf(user.getAddressProvince()));
@@ -171,6 +172,9 @@ public class BizClubRepository {
 		// TODO Auto-generated method stub
 		StringBuffer sb=new StringBuffer("select u from User u where u.userId!=1 ");
 		if(user!=null){
+			if(user.getSearchUserType()!=null && user.getSearchUserType().length()>0){
+				sb.append(" and u.role.roleId ="+user.getSearchUserType().trim()+"");
+			}
 			if(user.getCorpGroupDesc()!=null && user.getCorpGroupDesc().length()>0){
 				sb.append(" and u.corpGroupId like '%"+user.getCorpGroupDesc().trim()+"%'");
 			}
@@ -185,6 +189,14 @@ public class BizClubRepository {
 			}
 			if(user.getServices()!=null && user.getServices().length()>0){
 				sb.append(" and u.services like '%"+user.getServices().trim()+"%'");
+			}
+			if(user.getSearchForm()!=null && user.getSearchForm().equals("0") ){
+				if( user.getKeyworkd()!=null && user.getKeyworkd().trim().length()>0 )
+					sb.append(" and ( u.cardId like '%"+user.getKeyworkd().trim()+"%'  or  "
+							+ "  u.firstName like '%"+user.getKeyworkd().trim()+"%' or u.lastName like '%"+user.getKeyworkd().trim()+"%' or"
+							+ "   u.corpName like '%"+user.getKeyworkd().trim()+"%' or  u.services like '%"+user.getKeyworkd().trim()+"%' )");
+			}else{
+				
 			}
 		}
 		System.out.println(sb.toString());
@@ -228,8 +240,8 @@ public class BizClubRepository {
 		// TODO Auto-generated method stub
 		BizclubRegister user = entityManager.find(BizclubRegister.class,brId );
 		if(user.getBizclubProvince()!=null && user.getBizclubProvince().length()>0){
-			BizclubProvinceCenter bizclubProvinceCenter = entityManager.find(BizclubProvinceCenter.class,Integer.valueOf(user.getBizclubProvince()));
-			user.setBizclubProvinceShow(bizclubProvinceCenter.getProvinceName());
+			BizclubCenter bizclubProvinceCenter = entityManager.find(BizclubCenter.class,Integer.valueOf(user.getBizclubProvince()));
+			user.setBizclubProvinceShow(bizclubProvinceCenter.getBcProviceName());
 		}
 		if(user.getAddressProvince()!=null && user.getAddressProvince().length()>0){
 			Province province = entityManager.find(Province.class,Integer.valueOf(user.getAddressProvince()));
@@ -408,6 +420,13 @@ public class BizClubRepository {
 		Query query=entityManager.createQuery( sb.toString(), BizclubProvinceCenter.class);
 		return query.getResultList();
 	}
+	public List<BizclubCenter> listBizclubCenter() {
+		// TODO Auto-generated method stub
+		StringBuffer sb=new StringBuffer("select u from BizclubCenter u order by u.bcProviceName ");
+		Query query=entityManager.createQuery( sb.toString(), BizclubCenter.class);
+		return query.getResultList();
+	}
+	 
 	public List<Province> listProvince() {
 		// TODO Auto-generated method stub
 		StringBuffer sb=new StringBuffer("select u from Province u order by u.provinceName ");

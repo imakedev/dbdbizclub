@@ -48,6 +48,21 @@ public class ProductController {
 	static{
 		bundle =  ResourceBundle.getBundle( "config" );				
 	}
+	@RequestMapping(value={"/activity/{bcId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String activity(@PathVariable Integer bcId,Model model,SecurityContextHolderAwareRequestWrapper srequest)
+    {
+		return "bizclub/activity";
+    }
+	@RequestMapping(value={"/member/{bcId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String member(@PathVariable Integer bcId,Model model,SecurityContextHolderAwareRequestWrapper srequest)
+    {
+		return "bizclub/activityMember";
+    }
+	@RequestMapping(value={"/items/{userId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String items(@PathVariable Integer userId,Model model,SecurityContextHolderAwareRequestWrapper srequest)
+    {
+		return "bizclub/activityItem";
+    }
 	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public String list(Model model,SecurityContextHolderAwareRequestWrapper srequest)
     {
@@ -78,7 +93,8 @@ public class ProductController {
     	model.addAttribute("bizclubAssets", bizClubService.searchBizclubAsset(bizclubAssetM)); 
         model.addAttribute("productForm",productForm );
         model.addAttribute("productItemAddForm",new ItemForm());
-        return "bizclub/itemList";
+       // return "bizclub/itemList";
+        return "bizclub/activity";
     }
 	@RequestMapping(value={"/search"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
     public String doSearch(HttpServletRequest request, @ModelAttribute(value="productForm") ProductForm productForm, BindingResult result, Model model)

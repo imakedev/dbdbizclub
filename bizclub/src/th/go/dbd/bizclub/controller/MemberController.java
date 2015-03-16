@@ -69,7 +69,8 @@ public class MemberController {
 		memberForm.setUserM( bizClubService.findUserById(userId));
 
 		model.addAttribute("provinces", bizClubService.listProvince());
-		model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
+		//model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
         model.addAttribute("memberForm", memberForm);
         return "bizclub/member";
     }
@@ -221,7 +222,8 @@ public class MemberController {
 		Thread mailThread = new Thread(mailRunnable);
 		mailThread.start(); 
 		model.addAttribute("provinces", bizClubService.listProvince());
-		model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
+		//model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
 		model.addAttribute("memberForm", memberForm);
         //return "bizclub/member";
         return "redirect:/member";
