@@ -9,15 +9,16 @@
 	      	<div class="col-md-3" style="margin-right: 10px;">
 	      		<div style="font-size: 22px;">
 					<ul class="v_menu">
-					   <li class="active"><a href='#'>กรุงเทพมหานคร</a></li>
-					   <li><a href='#'>นนทบุรี</a></li>
-					   <li><a href='#'>ปทุมธานี</a></li>
-					   <li><a href='#'>เชียงใหม่</a></li>
-					   <li><a href='#'>เชียงราย</a></li>
-					   <li><a href='#'>ขอนแก่น</a></li>
-					   <li><a href='#'>นครศรีธรรมราช</a></li>
-					   <li><a href='#'>พิษณุโลก</a></li>
-					   <li><a href='#'>ภูเก็ต</a></li>
+					   <c:if test="${not empty provinceCenters}"> 
+        	 				<c:forEach items="${provinceCenters}" var="provinceCenter" varStatus="loop"> 
+        	 				<c:if test="${provinceCenter.bcId==bcId}">
+        	 					<li class="active"><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />'>${provinceCenter.bcProviceName}</a></li>
+        	 				</c:if>
+        	 				<c:if test="${provinceCenter.bcId!=bcId}">
+        	 					<li><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />'>${provinceCenter.bcProviceName}</a></li>
+        	 				</c:if>
+        	 				</c:forEach>
+        	 			</c:if>
 					</ul>
 				</div>
 	      	</div>
@@ -25,14 +26,14 @@
 		      <div class="jumbotron">
 		      	<div class="row">
 			      	<div class="col-md-9">
-			      		<button class="btn btn-material-amber" type="button" style="padding: 10px 150px 10px 150px; float: right;"><img src="<c:url value="/resources/register/images/fb.gif" />">acebook</button>
+			      		<button onclick="goToPage('${bizclubCenter.bcFacebook}')"  class="btn btn-material-amber" type="button" style="padding: 10px 150px 10px 150px; float: right;"><img  src="<c:url value="/resources/register/images/fb.gif" />">acebook</button>
 					</div>
 		      		<div class="col-md-12">
 		      			<form class="form-inline">
 						  <div class="form-group">
 						  <h2 style="margin-left: 20px;">กิจกรรม</h2>
 						  </div>
-						  <a href="Activity_Member.html" style="float: right; margin-top:30px; color: purple;">สมาชิก 45 ราย</a>
+						  <a href="<c:url value="/product/member/${bcId}" />" style="float: right; margin-top:30px; color: purple;">สมาชิก ${bizclubCenter.bcMemberSize} ราย</a>
 						</form>
 						<div class="list-group">
 		      			<div class="list-group-separator"></div>
@@ -140,6 +141,15 @@
       $(document).ready(function() {
           $.material.init();
       });
+      function goToPage(page){
+    	
+    	  if(page.length>0){
+    	  window.open(
+    			  page,
+    			  '_blank' // <- This is what makes it open in a new window.
+    			);
+    	  }
+      }
 </script>
 <style>
 body{

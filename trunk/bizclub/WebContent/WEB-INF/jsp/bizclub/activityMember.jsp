@@ -8,15 +8,16 @@
 	      	<div class="col-md-3" style="margin-right: 10px;">
 	      		<div style="font-size: 22px;">
 					<ul class="v_menu">
-					   <li class="active"><a href='#'>กรุงเทพมหานคร</a></li>
-					   <li><a href='#'>นนทบุรี</a></li>
-					   <li><a href='#'>ปทุมธานี</a></li>
-					   <li><a href='#'>เชียงใหม่</a></li>
-					   <li><a href='#'>เชียงราย</a></li>
-					   <li><a href='#'>ขอนแก่น</a></li>
-					   <li><a href='#'>นครศรีธรรมราช</a></li>
-					   <li><a href='#'>พิษณุโลก</a></li>
-					   <li><a href='#'>ภูเก็ต</a></li>
+					   <c:if test="${not empty provinceCenters}"> 
+        	 				<c:forEach items="${provinceCenters}" var="provinceCenter" varStatus="loop"> 
+        	 				<c:if test="${provinceCenter.bcId==bcId}">
+        	 					<li class="active"><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />'>${provinceCenter.bcProviceName}</a></li>
+        	 				</c:if>
+        	 				<c:if test="${provinceCenter.bcId!=bcId}">
+        	 					<li><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />'>${provinceCenter.bcProviceName}</a></li>
+        	 				</c:if>
+        	 				</c:forEach>
+        	 			</c:if>
 					</ul>
 				</div>
 	      	</div>
@@ -24,20 +25,32 @@
 		      <div class="jumbotron">
 		      	<div class="row">
 			      	<div class="col-md-4" style="background-color: #fbcb04; box-shadow: 1px 7px 15px #000; ">
-						<div style="text-align: left;  color: #fff; font-size: 28px; font-weight: bold;">สมาชิก 45 ราย</div>
+						<div style="text-align: left;  color: #fff; font-size: 28px; font-weight: bold;">สมาชิก ${bizclubCenter.bcMemberSize} ราย</div>
 					</div>
 		      		<div class="col-md-12">
 		      			<div class="list-group">
+		      			<c:if test="${not empty users}"> 
+        	 				<c:forEach items="${users}" var="user" varStatus="loop"> 
 		      				<div class="row">
 			      				<div class="col-md-9" style="margin: 20px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="row-picture">
-								            <img class="circle" src="<c:url value="/resources/register/images/5.png" />" alt="icon">
+								          <c:if test="${not empty user.logoPath}">
+								            <img class="circle"  width="56" height="56" src="<c:url value="/getfile/logo/${user.userId}/xxx" />" alt="icon">
+								            </c:if>
+								            <c:if test="${ empty user.logoPath}">
+								              <img class="circle"  width="56" height="56"  src="<c:url value="/resources/register/images/5.png" />" alt="icon">
+								            </c:if>
 								        </div>
 								        <div class="row-content">
-								            <h4 class="list-group-item-heading">นาย คมสันต์ จันทหาร <span style="color: #a8a6a5;">(นิติบุคคล)</span></h4>
-								            <p class="list-group-item-text" style="margin-bottom: 5px;">บจ. เคเค อินเตอร์แบรนด์</p>
-								            <span>กระเป๋าแฟชั่นและเครื่องหนังแฟชั่น</span>						        
+								            <h4 class="list-group-item-heading">${user.firstName}  ${user.lastName}
+								             <c:if test="${user.isCorp=='1'}"> 
+								            	<span style="color: #a8a6a5;">(นิติบุคคล)</span>
+								            </c:if>
+								            
+								        </h4>
+								            <p class="list-group-item-text" style="margin-bottom: 5px;">${user.corpName}</p>
+								            <span><c:out value="${user.services}"/></span>						        
 								        </div>
 								    </div>
 							    </div>
@@ -45,10 +58,13 @@
 							    	<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
 							    	<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
 									<br><br><br>
-									<a href="Activity_item.html" style="color: orange; float: right;"><i class="mdi-action-shopping-cart"></i> สินค้า/บริการ</a>
+									<a href="<c:url value="/product/items/${bcId}/${user.userId}" />" style="color: orange; float: right;"><i class="mdi-action-shopping-cart"></i> สินค้า/บริการ</a>
 						    	</div>
 					    	</div>
 						    <div class="list-group-separator"></div>
+						   </c:forEach>
+						  </c:if>
+						  <%--  
 						     <div class="row">
 			      				<div class="col-md-9" style="margin: 10px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
@@ -91,7 +107,9 @@
 						    	</div>
 					    	</div>
 						    <div class="list-group-separator"></div>
+						     --%>
 						</div>
+						
 		      		</div>
 		      	</div>
 		      	<ul class="pager">
