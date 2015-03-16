@@ -422,5 +422,36 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		return provinceMList;
 	}
 
+
+	@Override
+	public BizclubCenterM findBizclubCenterById(Integer bcId) {
+		// TODO Auto-generated method stub
+		BizclubCenter bizclubCenter = bizClubRepository.findBizclubCenterById(bcId);
+		BizclubCenterM bizclubCenterM=new BizclubCenterM();
+		BeanUtils.copyProperties(bizclubCenter , bizclubCenterM,"user");
+		//BeanUtils.copyProperties(BizclubCenterM , BizclubCenter,"user");
+		
+		return bizclubCenterM;
+	}
+
+
+	@Override
+	public List<UserM> searchUserByCenter(UserM userM) {
+		// TODO Auto-generated method stub
+		User user=new User();
+		if(userM!=null)
+			BeanUtils.copyProperties(userM , user);
+		List<User> users= bizClubRepository.searchUserByCenter(user);
+		List<UserM> userModelList= new ArrayList<UserM>(users.size());
+		for (User userDomain : users) {
+			UserM userModel=new UserM();
+			//System.out.println("before->"+userDomain.getServices());
+			BeanUtils.copyProperties(userDomain , userModel);
+			//System.out.println("after->"+userModel.getServices());
+			userModelList.add(userModel);
+		}
+		return userModelList;
+	}
+	
 	
 }

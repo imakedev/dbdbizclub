@@ -23,6 +23,15 @@ public class BizclubCenterM implements Serializable {
 	private String bcUpdatedBy;
 
 	private Timestamp bcUpdatedDate;
+	private Integer bcOrder;
+
+	public Integer getBcOrder() {
+		return bcOrder;
+	}
+
+	public void setBcOrder(Integer bcOrder) {
+		this.bcOrder = bcOrder;
+	}
 
 	public BizclubCenterM() {
 	}

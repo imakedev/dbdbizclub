@@ -51,16 +51,43 @@ public class ProductController {
 	@RequestMapping(value={"/activity/{bcId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public String activity(@PathVariable Integer bcId,Model model,SecurityContextHolderAwareRequestWrapper srequest)
     {
+		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
+		model.addAttribute("bcId",bcId);
 		return "bizclub/activity";
     }
 	@RequestMapping(value={"/member/{bcId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public String member(@PathVariable Integer bcId,Model model,SecurityContextHolderAwareRequestWrapper srequest)
     {
+		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter()); 
+		UserM userm=new UserM();
+		userm.setBizclubProvince(bcId+"");
+		model.addAttribute("users", bizClubService.searchUserByCenter(userm));
+		model.addAttribute("bcId",bcId);
 		return "bizclub/activityMember";
     }
-	@RequestMapping(value={"/items/{userId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
-    public String items(@PathVariable Integer userId,Model model,SecurityContextHolderAwareRequestWrapper srequest)
+	@RequestMapping(value={"/items/{bcId}/{userId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String items(@PathVariable Integer bcId,@PathVariable Integer userId,Model model,SecurityContextHolderAwareRequestWrapper srequest)
     {
+		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
+		model.addAttribute("bcId",bcId);
+		
+		model.addAttribute("bizclubOwner", bizClubService.findUserById(userId));
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
+		BizclubAssetM bizclubAssetM =new BizclubAssetM();
+		bizclubAssetM.setBaStatus("1");
+		/*Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		if(authentication.isAuthenticated() && authentication.getPrincipal()!=null && !authentication.getPrincipal().equals("anonymousUser")){
+			MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			System.out.println(user.getUsername()); 
+			UserM u=new UserM();
+			u.setUserId(user.getMyUser().getUserid());
+			bizclubAssetM.setUser(u);
+		}*/
+		UserM u = bizClubService.findUserById(userId)	;
+		bizclubAssetM.setUser(u);
+    	model.addAttribute("bizclubAssets", bizClubService.searchBizclubAsset(bizclubAssetM)); 
 		return "bizclub/activityItem";
     }
 	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
@@ -94,7 +121,8 @@ public class ProductController {
         model.addAttribute("productForm",productForm );
         model.addAttribute("productItemAddForm",new ItemForm());
        // return "bizclub/itemList";
-        return "bizclub/activity";
+        //return "bizclub/activity";
+    	return "redirect:/product/activity/1";
     }
 	@RequestMapping(value={"/search"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
     public String doSearch(HttpServletRequest request, @ModelAttribute(value="productForm") ProductForm productForm, BindingResult result, Model model)
