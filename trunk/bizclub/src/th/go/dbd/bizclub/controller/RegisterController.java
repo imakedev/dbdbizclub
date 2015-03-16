@@ -50,7 +50,8 @@ public class RegisterController {
     {
 		model.addAttribute("registerForm", new RegisterForm());
 		model.addAttribute("provinces", bizClubService.listProvince());
-		model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
+		//model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
         return "bizclub/register";
     }
 	@RequestMapping(value={"/action"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})

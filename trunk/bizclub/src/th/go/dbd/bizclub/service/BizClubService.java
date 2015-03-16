@@ -9,6 +9,7 @@ import java.util.List;
 
 import th.go.dbd.bizclub.model.AmphurM;
 import th.go.dbd.bizclub.model.BizclubAssetM;
+import th.go.dbd.bizclub.model.BizclubCenterM;
 import th.go.dbd.bizclub.model.BizclubCorpWM;
 import th.go.dbd.bizclub.model.BizclubPictureM;
 import th.go.dbd.bizclub.model.BizclubProvinceCenterM;
@@ -50,6 +51,7 @@ public interface BizClubService {
 	public BizclubCorpWM findBizclubCorpWById(String corpId,String corpType) ;
 	
 	public List<BizclubProvinceCenterM> listProvinceCenter() ;
+	public List<BizclubCenterM> listBizclubCenter() ;
 	public List<ProvinceM> listProvince() ;
 	public List<AmphurM> listAmphur(Integer provinceId) ;
 	public List<DistrictM> listDistrict(Integer amphurId) ;

@@ -26,8 +26,12 @@ public class UserController {
 	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public String list(Model model,SecurityContextHolderAwareRequestWrapper srequest)
     {
-    	model.addAttribute("users", bizClubService.searchUser(null)); 
-        model.addAttribute("userForm",new UserForm() );
+		  UserM userM=new UserM();
+		  userM.setSearchUserType("3");
+    	model.addAttribute("users", bizClubService.searchUser(userM)); 
+    	UserForm userForm=new UserForm() ;
+    	userForm.setSearchUserType("3");
+        model.addAttribute("userForm",userForm);
         return "bizclub/searchmember";
     }
 	 @RequestMapping(value={"/delete/{userId}"},method = RequestMethod.GET)
@@ -45,15 +49,20 @@ public class UserController {
        String keyworkd=userForm.getKeyword();
        String searchForm= userForm.getSearchForm();
        String searchType= userForm.getSearchType();
+       String searchUserType= userForm.getSearchUserType();
        System.out.println("searchForm->"+searchForm);
        System.out.println("searchType->"+searchType);
        UserM userM=new UserM();
  
-       if(searchType!=null && searchType.length()>0 ){
+       userM.setSearchType(searchType); // ""
+       userM.setSearchForm(searchForm); // "0"
+       userM.setKeyworkd(keyworkd);
+       userM.setSearchUserType(searchUserType);
+       if(searchType!=null && searchType.length()>0 && !searchType.equals("0")){
     	   userM.setCorpGroupDesc(searchType);  
        }
        
-       if(searchForm!=null && searchForm.length()>0){
+       if(searchForm!=null && searchForm.length()>0 && !searchForm.equals("0")){
     	   if(searchForm.equals("2")){
     		   userM.setCardId(keyworkd);
     	   }else if(searchForm.equals("3")){
@@ -65,6 +74,7 @@ public class UserController {
     	   } 
     	  
        }
+       
         model.addAttribute("users", bizClubService.searchUser(userM)); 
         model.addAttribute("userForm", userForm);
         return "bizclub/searchmember";

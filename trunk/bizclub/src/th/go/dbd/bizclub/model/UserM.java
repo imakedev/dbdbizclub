@@ -9,6 +9,34 @@ public class UserM implements Serializable {
 
 	private Integer userId;
 
+	private String keyworkd;
+	private String searchType;
+	private String searchForm;
+	private String searchUserType;
+	public String getSearchUserType() {
+		return searchUserType;
+	}
+
+	public void setSearchUserType(String searchUserType) {
+		this.searchUserType = searchUserType;
+	}
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getSearchForm() {
+		return searchForm;
+	}
+
+	public void setSearchForm(String searchForm) {
+		this.searchForm = searchForm;
+	}
+
 	private String addressDistrict;
 
 	private String addressName;
@@ -160,6 +188,15 @@ public class UserM implements Serializable {
 	private String taxesCorpName;
 	private String personCorpName;
 	private String level;
+	
+	public String getKeyworkd() {
+		return keyworkd;
+	}
+
+	public void setKeyworkd(String keyworkd) {
+		this.keyworkd = keyworkd;
+	}
+
 	public String getLevel() {
 		return level;
 	}
