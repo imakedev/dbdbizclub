@@ -55,8 +55,14 @@
 								    </div>
 							    </div>
 							    <div class="col-md-3" style="margin: 10px 0px 0px 0px;">
-							    	<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
-							    	<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+							     <c:if test="${isAuthen==true}">
+		      					  	   <c:if test="${isStaff || isAdmin}">
+		      					  	   		<c:if test="${userObj.bizclubProvince==bcId}">
+							    				<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+							    			</c:if>
+							    		</c:if>
+							    	</c:if>
 									<br><br><br>
 									<a href="<c:url value="/product/items/${bcId}/${user.userId}" />" style="color: orange; float: right;"><i class="mdi-action-shopping-cart"></i> สินค้า/บริการ</a>
 						    	</div>

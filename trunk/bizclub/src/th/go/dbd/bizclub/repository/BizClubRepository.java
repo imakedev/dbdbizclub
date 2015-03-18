@@ -179,6 +179,9 @@ public class BizClubRepository {
 		// TODO Auto-generated method stub
 		StringBuffer sb=new StringBuffer("select u from User u where u.userId!=1 ");
 		if(user!=null){
+			if(user.getBizclubProvince()!=null && user.getBizclubProvince().length()>0){
+				sb.append(" and u.bizclubProvince ='"+user.getBizclubProvince().trim()+"'");
+			}
 			if(user.getSearchUserType()!=null && user.getSearchUserType().length()>0){
 				sb.append(" and u.role.roleId ="+user.getSearchUserType().trim()+"");
 			}
@@ -372,7 +375,27 @@ public class BizClubRepository {
 		// TODO Auto-generated method stub
 		return entityManager.find(BizclubCenter.class,bcId );
 	}
-		
+	public List<BizclubAsset> searchBizclubAssetByCenter(BizclubAsset bizclubAsset) {
+		StringBuffer sb=new StringBuffer("select u from BizclubAsset u ");
+		boolean haveWhere=false;
+		if(bizclubAsset.getBaStatus()!=null ){
+			if(bizclubAsset.getBaStatus().equals("1")){
+				sb.append((haveWhere?"and":"where")+" ( u.baStatus = '"+bizclubAsset.getBaStatus().trim()+"' ) ");
+				haveWhere=true;
+			}
+			if(bizclubAsset.getUser()!=null ){
+					if(bizclubAsset.getUser()!=null && bizclubAsset.getUser().getUserId()!=null){
+						sb.append((haveWhere?"and":"where")+"  u.user.userId="+bizclubAsset.getUser().getUserId());
+						haveWhere=true;
+			}	
+		 }
+			
+		}
+		sb.append(" order by u.updatedDate desc ");
+		Query query=entityManager.createQuery( sb.toString(), BizclubAsset.class);
+		return query.getResultList();
+	}
+	
 	public List<BizclubAsset> searchBizclubAsset(BizclubAsset bizclubAsset) {
 		// TODO Auto-generated method stub
 		boolean haveWhere=false;

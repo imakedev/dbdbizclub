@@ -18,7 +18,7 @@
 				          <!--   <label for="select" class="col-md-7 col control-label">ประเภทธุรกิจ:</label>
 				           -->
 				            
-				               <form:select path="searchUserType" cssClass="form-control textsize" >
+				               <form:select path="searchUserType" cssClass="textsize" >
 				                	  <form:option value="3" label="สมาชิก" />
 				                	  <form:option value="2" label="เจ้าหน้าที่" />
 				                </form:select>
@@ -29,7 +29,7 @@
 				    	<div class="form-group col-md-offset-1">
 				            <label for="select" class="col-md-7 col control-label">ประเภทธุรกิจ:</label>
 				            <div class="col-md-5"> 
-				               <form:select path="searchType" cssClass="form-control textsize"  >
+				               <form:select path="searchType" cssClass="textsize"  >
 				                	 <form:option value="0" label="ทั้งหมด" />
 				                	  <form:option value="1" label="ผู้ผลิต" />
 				                	   <form:option value="2" label="ธุรกิจบริการ" />
@@ -48,7 +48,7 @@
 				            <label for="select" class="col-md-5 col-md-offset-3 control-label">ค้นหาจาก:</label>
 				            <div class="col-md-3">
 				        
-				                <form:select path="searchForm" cssClass="form-control textsize"> 
+				                <form:select path="searchForm" cssClass="textsize"> 
 				                  <form:option value="0" label="ทั้งหมด" />
 				                 <%-- <form:option value="1" label="เลขที่สมาชิก" />  --%>
 				                  <form:option value="2" label="เลขบัตรประชาชน" />
@@ -59,24 +59,43 @@
 				            </div>
 				        </div>
 			        </div>
+			         <div class="col-md-4">
+				        <div class="form-group has-warning">
+						    <div class="input-group col-md-offset-2">
+						        <form:input class="form-control input-lg textsize" path="keyword" placeholder="คำที่ต้องการค้นหา" type="text"/>
+						        <span class="input-group-btn">
+						            <button class="btn btn-material-amber btn-flat" type="submit" style="padding: 5px 10px 5px 10px"><i class="mdi-action-search"></i></button>
+						        </span>
+						    </div>
+						</div>
+					</div>
+					<%--
 			        <div class="col-md-2">
 				        <div class="form-group has-warning col-md-12">
 						    <div class="input-group col-md-2 col-md-offset-3">
 						        <form:input  class="form-control input-lg textsize" path="keyword" placeholder="คำที่ต้องการค้นหา" type="text"/>
-						       <%-- <span class="input-group-btn col-md-1">
+						        <span class="input-group-btn col-md-1">
 						            <button class="btn btn-material-amber btn-flat" type="submit" style="padding: 5px 10px 5px 10px"><i class="mdi-action-search"></i></button>
 						        </span>
-						         --%>
+						         
 						    </div>
 						</div>
 					</div>
+					 
 					<div class="col-md-2">
 						 <a href="/bizclub/bizmem" style="float: right;">แก้ใขข้อมูลส่วนตัว</a>
 					</div>
+					--%>
 				</div> 
 				</div>
 	        </fieldset>
 	      </form:form>
+	      <div class="col-md-2 " style="float: right;">
+						 <a href="/bizclub/bizmem" style="float: right;">แก้ใขข้อมูลส่วนตัว</a>
+			</div>
+			<div class="col-md-2 " style="float: right;">
+						 <a href="/bizclub/product/itemlist" style="float: right;">แก้ใขสินค้า</a>
+			</div>
 	      <div class="row">
 	      	<div class="span8 offset2">
 		      <div class="jumbotron">

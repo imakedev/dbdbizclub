@@ -4,6 +4,7 @@
 <sec:authorize access="hasAnyRole('ROLE_ADMIN')" var="isAdmin"/>
 <sec:authorize access="hasAnyRole('ROLE_STAFF')" var="isStaff"/>
 <sec:authorize access="hasAnyRole('ROLE_MEMBER')" var="isMember"/>
+<sec:authorize access="isAuthenticated()" var="isAuthen"/> 
 <html>
 <head>
 <meta charset="UTF-8">
@@ -22,6 +23,12 @@
 <title>Bizclub</title>
 </head>
 <body>
+<c:url value="/register" var="registerUrl" />"
+<script>
+  function goRegister(){
+    	  window.location.href="${registerUrl}";
+      }
+  </script>
 <div id="top_menu">
 	<div id="box_top">
 		<div class="row">
@@ -59,6 +66,11 @@
 			        <span class="input-group-btn">
 						<button type="submit" class="btn btn-material-indigo" style="font-weight: bold; font-size: 18px; margin-top: -17px;">Search</button>
 					</span>
+					  <c:if test="${isAuthen!=true}">
+					<span class="input-group-btn">
+                        <button type="button"  onclick="goRegister()"  class="btn btn-material-amber-A200" style="font-weight: bold; font-size: 20px; margin: -17px 0px 0px 10px; padding: 6px 15px 6px 15px;">Sign up</button>
+                    </span>
+                    </c:if>
 			    </div>
 			</div>
 		</div>

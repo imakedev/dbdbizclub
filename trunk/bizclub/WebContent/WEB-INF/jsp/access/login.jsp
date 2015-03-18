@@ -58,8 +58,8 @@
 				        </div>
 				        <div class="col-md-4">
 				        <button type="button" onclick="goRegister()" class="btn btn-material-orange btn_popup" 
-				        style="float: right; color: #fff; text-align: right; padding: 0px 10px 0px 10px; margin-top: -5px;">Sing Up</button>
-				        <%--	<a href="<c:url value="/register" />" style="float: right; color: #fff; text-align: right;">Sing Up</a>  --%>
+				        style="float: right; color: #fff; text-align: right; padding: 0px 10px 0px 10px; margin-top: -5px;">Sign Up</button>
+				        
 				        </div>
 				        <div class="col-md-1">
 				        	<a href="#" style="text-decoration: none; float: right;"><span class="mdi-action-info-outline" style="color: #fff;"></span></a>

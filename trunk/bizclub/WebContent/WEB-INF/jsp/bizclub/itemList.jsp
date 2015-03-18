@@ -24,7 +24,7 @@
 				        <div class="form-group">
 				            <label for="select" class="col-md-4 col-md-offset-5 control-label"></label>
 				            <div class="col-md-1">
-				                <form:select path="productType" cssClass="form-control textsize" id="productType" onchange="doSearch()">
+				                <form:select path="productType" cssClass="textsize" id="productType" onchange="doSearch()">
 				                	<option value="1">ข้อมูลเครือข่าย</option>
 				                	<option value="0">My Product</option>
 				                	
