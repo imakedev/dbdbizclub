@@ -48,6 +48,7 @@ public interface BizClubService {
 	public Integer deleteBizclubAsset(BizclubAssetM bizclubAssetM);
 	public BizclubAssetM findBizclubAssetById(Integer baId);
 	public List<BizclubAssetM> searchBizclubAsset(BizclubAssetM bizclubAssetM) ;
+	public List<BizclubAssetM> searchBizclubAssetByCenter(BizclubAssetM bizclubAssetM) ;
 	
 	public BizclubCorpWM findBizclubCorpWById(String corpId,String corpType) ;
 	

@@ -192,7 +192,7 @@
 				            		<div class="col-md-7">
 							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">จังหวัด: <span style="color: red;">*</span></label>
 							            <div class="col-md-5" style="padding-bottom: 10px;">
-							                <form:select path="bizclubRegisterM.addressProvince" id="addressProvince" cssClass="form-control textsize" onchange="loadAddressAmphur(this.value)" >
+							                <form:select path="bizclubRegisterM.addressProvince" id="addressProvince" cssClass="textsize" onchange="loadAddressAmphur(this.value)" >
 							                	<%-- <form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>  --%>
 							                	<form:options items="${provinces}" itemValue="provinceId" itemLabel="provinceName"/>
 							                </form:select>
@@ -201,7 +201,7 @@
 						            <div class="col-md-5">
 						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">อำเภอ/เขต: <span style="color: red;">*</span></label>
 							            <div class="col-md-7" style="padding-bottom: 10px;" id="addressDistrictElement">
-							              <form:select path="bizclubRegisterM.addressDistrict" id="addressDistrict" onchange="loadAddressDistrict(this.value)" cssClass="form-control textsize">
+							              <form:select path="bizclubRegisterM.addressDistrict" id="addressDistrict" onchange="loadAddressDistrict(this.value)" cssClass="textsize">
 							                	
 							                </form:select>
 							            </div>
@@ -213,7 +213,7 @@
 				            		<div class="col-md-7">
 							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">ตำบล/แขวง: <span style="color: red;">*</span></label>
 							            <div class="col-md-5" style="padding-bottom: 10px;"  id="addressSubDistrictElement">
-							            	<form:select path="bizclubRegisterM.addressSubDistrict" id="addressSubDistrict" onchange="loadAddressZipcode(this)" cssClass="form-control textsize">
+							            	<form:select path="bizclubRegisterM.addressSubDistrict" id="addressSubDistrict" onchange="loadAddressZipcode(this)" cssClass="textsize">
 							                	
 							                </form:select>
 							            </div>
@@ -223,7 +223,7 @@
 							            <div class="col-md-6" style="padding-bottom: 10px;"  id="addressPostCodeElement">
 							             <%-- <form:input path="bizclubRegisterM.addressPostCode" cssClass="form-control textsize"
 		                 placeholder="รหัสไปรษณีย์"  />  --%> 
-		                 				<form:select path="bizclubRegisterM.addressPostCode" id="addressPostCode" cssClass="form-control textsize">
+		                 				<form:select path="bizclubRegisterM.addressPostCode" id="addressPostCode" cssClass="textsize">
 							                	
 							                </form:select>
 							            </div>
@@ -478,7 +478,7 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ศูนย์เครือข่ายธุรกิจ BizClub: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:select path="bizclubRegisterM.bizclubProvince" cssClass="form-control textsize">
+					              <form:select path="bizclubRegisterM.bizclubProvince" cssClass="textsize">
 					             	 <form:options items="${provinceCenters}" itemValue="bcId" itemLabel="bcProviceName"/>
 							      </form:select>
 					            </div>
@@ -640,7 +640,7 @@ function loadAddressAmphur(provinceId){
 			 // alert(msg)
 			  var listAmphur=msg;
 			  var first_id="";
-			  var str="<select id=\"addressDistrict\" name=\"bizclubRegisterM.addressDistrict\" class=\"form-control textsize\" onchange=\"loadAddressDistrict(this.value)\">";
+			  var str="<select id=\"addressDistrict\" name=\"bizclubRegisterM.addressDistrict\" class=\"textsize\" onchange=\"loadAddressDistrict(this.value)\">";
 			  for(var i=0;i<listAmphur.length;i++){
 				  str=str+"<option value=\""+listAmphur[i].amphurId+"\">"+listAmphur[i].amphurName+"</option>";
 				  if(i==0)
@@ -665,7 +665,7 @@ function loadAddressDistrict(districtId){
 		})
 		  .done(function( msg ) {
 			  var listDistrict=msg;
-			  var str="<select id=\"addressSubDistrict\" name=\"bizclubRegisterM.addressSubDistrict\" class=\"form-control textsize\" onchange=\"loadAddressZipcode(this.value)\">";
+			  var str="<select id=\"addressSubDistrict\" name=\"bizclubRegisterM.addressSubDistrict\" class=\"textsize\" onchange=\"loadAddressZipcode(this.value)\">";
 			  var first_id="";
 			  for(var i=0;i<listDistrict.length;i++){
 				  
@@ -691,7 +691,7 @@ function loadAddressZipcode(districtId){
 		})
 		  .done(function( msg ) {
 			  var listZipcode=msg;
-			  var str="<select id=\"addressPostCode\" name=\"bizclubRegisterM.addressPostCode\" class=\"form-control textsize\" >";
+			  var str="<select id=\"addressPostCode\" name=\"bizclubRegisterM.addressPostCode\" class=\"textsize\" >";
 			  for(var i=0;i<listZipcode.length;i++){
 				  
 				  str=str+"<option value=\""+listZipcode[i].zipcodeId+"\">"+listZipcode[i].zipcode+"</option>";

@@ -194,7 +194,7 @@
 							            <div class="col-md-5" style="padding-bottom: 10px;">
 							          
 							            <input type="hidden" value="${memberForm.userM.addressProvince}" id="addressProvinceInit" />
-							                <form:select path="userM.addressProvince" id="addressProvince" cssClass="form-control textsize" onchange="loadAddressAmphur(this.value,false)" >
+							                <form:select path="userM.addressProvince" id="addressProvince" cssClass="textsize" onchange="loadAddressAmphur(this.value,false)" >
 							                	<%-- <form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>  --%>
 							                	<form:options items="${provinces}" itemValue="provinceId" itemLabel="provinceName"/>
 							                </form:select>
@@ -205,7 +205,7 @@
 							             <input type="hidden" value="${memberForm.userM.addressDistrict}" id="addressDistrictInit" />
 							              
 							            <div class="col-md-7" style="padding-bottom: 10px;" id="addressDistrictElement">
-							              <form:select path="userM.addressDistrict" id="addressDistrict" onchange="loadAddressDistrict(this.value,false)" cssClass="form-control textsize">
+							              <form:select path="userM.addressDistrict" id="addressDistrict" onchange="loadAddressDistrict(this.value,false)" cssClass="textsize">
 							                	
 							                </form:select>
 							            </div>
@@ -219,7 +219,7 @@
 							           <input type="hidden" value="${memberForm.userM.addressSubDistrict}" id="addressSubDistrictInit" />
 							            
 							            <div class="col-md-5" style="padding-bottom: 10px;"  id="addressSubDistrictElement">
-							            	<form:select path="userM.addressSubDistrict" id="addressSubDistrict" onchange="loadAddressZipcode(this,false)" cssClass="form-control textsize">
+							            	<form:select path="userM.addressSubDistrict" id="addressSubDistrict" onchange="loadAddressZipcode(this,false)" cssClass="textsize">
 							                	
 							                </form:select>
 							            </div>
@@ -231,7 +231,7 @@
 							            <div class="col-md-6" style="padding-bottom: 10px;"  id="addressPostCodeElement">
 							             <%-- <form:input path="userM.addressPostCode" cssClass="form-control textsize"
 		                 placeholder="รหัสไปรษณีย์"  />  --%> 
-		                 				<form:select path="userM.addressPostCode" id="addressPostCode" cssClass="form-control textsize">
+		                 				<form:select path="userM.addressPostCode" id="addressPostCode" cssClass="textsize">
 							                	
 							                </form:select>
 							            </div>
@@ -495,12 +495,12 @@
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ศูนย์เครือข่ายธุรกิจ BizClub:<span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 					             <c:if test="${isStaff}">
-					              <form:select path="userM.bizclubProvince" cssClass="form-control textsize"  disabled="true">
+					              <form:select path="userM.bizclubProvince" cssClass="textsize"  disabled="true">
 					             	 <form:options items="${provinceCenters}" itemValue="bcId" itemLabel="bcProviceName"/>
 							      </form:select>
 							     </c:if> 
 							     <c:if test="${!isStaff}">
-					              <form:select path="userM.bizclubProvince" cssClass="form-control textsize" >
+					              <form:select path="userM.bizclubProvince" cssClass="textsize" >
 					             	 <form:options items="${provinceCenters}" itemValue="bcId" itemLabel="bcProviceName"/>
 							      </form:select>
 							     </c:if> 
@@ -509,7 +509,7 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Level: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					            <form:select path="userM.level" cssClass="form-control textsize">
+					            <form:select path="userM.level" cssClass="textsize">
 					             	 <form:option value="gold" label="gold" /> 
 					             	 <form:option value="silver" label="silver" /> 
  									 <form:option value="bronze" label="bronze" /> 
@@ -603,7 +603,7 @@ function loadAddressAmphur(provinceId,isinit){
 			  if(isinit)
 				  first_id= $("#addressDistrictInit").val();
 			 
-			  var str="<select id=\"addressDistrict\" name=\"userM.addressDistrict\" class=\"form-control textsize\" onchange=\"loadAddressDistrict(this.value,false)\">";
+			  var str="<select id=\"addressDistrict\" name=\"userM.addressDistrict\" class=\"textsize\" onchange=\"loadAddressDistrict(this.value,false)\">";
 			  for(var i=0;i<listAmphur.length;i++){
 				
 				  if(!isinit){
@@ -645,7 +645,7 @@ function loadAddressDistrict(districtId,isinit){
 		})
 		  .done(function( msg ) {
 			  var listDistrict=msg;
-			  var str="<select id=\"addressSubDistrict\" name=\"userM.addressSubDistrict\" class=\"form-control textsize\" onchange=\"loadAddressZipcode(this.value,false)\">";
+			  var str="<select id=\"addressSubDistrict\" name=\"userM.addressSubDistrict\" class=\"textsize\" onchange=\"loadAddressZipcode(this.value,false)\">";
 			  var first_id="";
 			  if(isinit)
 				  first_id=$("#addressSubDistrictInit").val();
@@ -691,7 +691,7 @@ function loadAddressZipcode(districtId,isinit){
 		})
 		  .done(function( msg ) {
 			  var listZipcode=msg;
-			  var str="<select id=\"addressPostCode\" name=\"userM.addressPostCode\" class=\"form-control textsize\" >";
+			  var str="<select id=\"addressPostCode\" name=\"userM.addressPostCode\" class=\"textsize\" >";
 			  var first_id="";
 			   if(isinit)
 				   first_id=$("#addressPostCodeInit").val();

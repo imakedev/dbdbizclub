@@ -81,8 +81,14 @@
 								    </div>
 							    </div>
 							    <div class="col-md-2">
-							    	<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
-							    	<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+							      <c:if test="${isAuthen==true}">
+		      					  	   <c:if test="${isStaff || isAdmin}">
+		      					  	   		<c:if test="${userObj.bizclubProvince==bcId}">
+							    				<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+							    	   		</c:if>
+							    	   </c:if>
+							    	</c:if>
 							    	<br><br><br><br>
 							    	<div>
 							    	<a href="#" onclick="showMemeber('${bizclubAsset.user.userId}')" style="font-size: 20px;">สนใจติดต่อ..</a>	
@@ -157,6 +163,7 @@
   		</div>
 	</div>
 	      <!-- ------------------------ detail-popup ------------------------------------- -->
+	      <%--
 <div id="detail-popup" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content" style="border: 5px solid #fbb819;">
@@ -180,7 +187,7 @@
       </div>
   	</div>
  </div>
- 
+  --%>
  <div id="member-popup2" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content" style="border: 3px solid #fbb819;">
@@ -317,9 +324,10 @@
     		    $("#mmobile").val(msg.mobilePhone);
     		    //$("#mlineID").val(msg.lineId);
     		    //$("#mlineName").val(msg.lineName);
-    		           
-    		    if(msg.profileFileName!=null && msg.profileFileName.length>0){
-   		    	 $("#profile").attr("src","/bizclub/getfile/logo/"+msg.userId+"/xxx");
+    		          
+    		    if(msg.logoFileName!=null && msg.logoFileName.length>0){
+   		    		 $("#profile").attr("src","/bizclub/getfile/logo/"+msg.userId+"/xxx");
+   		    		 
    		    	 }else{
    		    		 $("#profile").attr("src",'<c:url value="/resources/register/images/img_logo.png" />');
    		    	 }

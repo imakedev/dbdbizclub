@@ -3,6 +3,8 @@ package th.go.dbd.bizclub.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import th.go.dbd.bizclub.domain.MyUserDetails;
 import th.go.dbd.bizclub.form.UserForm;
 import th.go.dbd.bizclub.model.UserM;
 import th.go.dbd.bizclub.service.BizClubService;
@@ -26,7 +29,15 @@ public class UserController {
 	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public String list(Model model,SecurityContextHolderAwareRequestWrapper srequest)
     {
-		  UserM userM=new UserM();
+		UserM userM=new UserM();
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		if(authentication.isAuthenticated() && authentication.getPrincipal()!=null && !authentication.getPrincipal().equals("anonymousUser")){
+			MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			UserM userObj  =bizClubService.findUserById(user.getMyUser().getUserid());
+			if(userObj.getUserId()!=1)
+				userM.setBizclubProvince(userObj.getBizclubProvince());
+		}
+		  
 		  userM.setSearchUserType("3");
     	model.addAttribute("users", bizClubService.searchUser(userM)); 
     	UserForm userForm=new UserForm() ;
@@ -53,7 +64,13 @@ public class UserController {
        System.out.println("searchForm->"+searchForm);
        System.out.println("searchType->"+searchType);
        UserM userM=new UserM();
- 
+       Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		if(authentication.isAuthenticated() && authentication.getPrincipal()!=null && !authentication.getPrincipal().equals("anonymousUser")){
+			MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			UserM userObj  =bizClubService.findUserById(user.getMyUser().getUserid());
+			if(userObj.getUserId()!=1)
+				userM.setBizclubProvince(userObj.getBizclubProvince());
+		}
        userM.setSearchType(searchType); // ""
        userM.setSearchForm(searchForm); // "0"
        userM.setKeyworkd(keyworkd);

@@ -452,6 +452,32 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		}
 		return userModelList;
 	}
-	
+
+
+	@Override
+	public List<BizclubAssetM> searchBizclubAssetByCenter(
+			BizclubAssetM bizclubAssetM) {
+		// TODO Auto-generated method stub
+		BizclubAsset bizclubAsset=new BizclubAsset();
+		BeanUtils.copyProperties(bizclubAssetM , bizclubAsset,"user");
+		if(bizclubAssetM.getUser()!=null && bizclubAssetM.getUser().getUserId()!=null){
+			User user=new User();
+			user.setUserId(bizclubAssetM.getUser().getUserId());
+			bizclubAsset.setUser(user);
+		}
+		List<BizclubAsset> bizclubAssets= bizClubRepository.searchBizclubAssetByCenter(bizclubAsset);
+		List<BizclubAssetM> bizclubAssetModelList= new ArrayList<BizclubAssetM>(bizclubAssets.size());
+		for (BizclubAsset bizclubAssetDomain : bizclubAssets) {
+			BizclubAssetM bizclubAssetModel=new BizclubAssetM();
+			BeanUtils.copyProperties(bizclubAssetDomain , bizclubAssetModel,"user");
+			if(bizclubAssetDomain.getUser()!=null && bizclubAssetDomain.getUser().getUserId()!=null){
+				UserM userM=new UserM();
+				userM.setUserId(bizclubAssetDomain.getUser().getUserId());
+				bizclubAssetModel.setUser(userM);
+			}
+			bizclubAssetModelList.add(bizclubAssetModel);
+		}
+		return bizclubAssetModelList;
+	}
 	
 }

@@ -14,7 +14,7 @@
 					</div>
 					<div class="col-md-4">
 					
-						<select id="type_select"  class="form-control textsize"  onchange="changeTypeSelect(this.value)">
+						<select id="type_select"  class="textsize"  onchange="changeTypeSelect(this.value)">
 					            	<option value="2">สมาชิก</option>
 					            	<option  value="4">เจ้าหน้าที่</option>
 					    </select>
@@ -370,7 +370,7 @@
 		    				<div class="form-group">
 					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">Level: </label>
 					            <div class="col-md-6" style="padding-bottom: 10px;">
-					            <select id="level_modal" class="form-control textsize">
+					            <select id="level_modal" class="textsize">
 					             	<option  value="gold" selected="selected" >gold</option> 
 					             	 <option  value="silver">silver</option> 
  									 <option  value="bronze">bronze</option> 
@@ -387,7 +387,7 @@
 		    				<div class="form-group">
 					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">สิทธิ์การเข้าใช้งาน: </label>
 					            <div class="col-md-6" style="padding-bottom: 10px;">
-					            <select id="role_select" class="form-control textsize" disabled="disabled">
+					            <select id="role_select" class="textsize" disabled="disabled">
 					            	<option  value="2">เจ้าหน้าที่</option>
 					            	<option value="3">สมาชิก</option>
 					            </select>

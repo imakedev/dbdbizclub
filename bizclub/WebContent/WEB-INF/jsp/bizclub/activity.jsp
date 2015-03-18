@@ -41,8 +41,18 @@
 		      			<div class="list-group">
 		      				<div class="row">
 		      					<div class="col-md-12" style="margin: -20px 0px -50px 0px;">
+		      					  <c:if test="${isAuthen==true}">
+		      					  	   <c:if test="${isStaff || isAdmin}">
+		      					  	   		<c:if test="${userObj.bizclubProvince==bcId}">
+		      					  	   			<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+									 		</c:if>
+									 </c:if>
+		      					  </c:if>
+		      					<%--
 									<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
 							    	<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+						    	 --%>
 						    	</div>
 			      				<div class="col-md-12" style="margin: 20px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
@@ -61,9 +71,15 @@
 						    <div class="list-group-separator"></div>
 						     <div class="row">
 						     	<div class="col-md-12" style="margin: -20px 0px -50px 0px;">
-									<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
-							    	<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
-						    	</div>
+								<c:if test="${isAuthen==true}">
+		      					  	   <c:if test="${isStaff || isAdmin}">
+		      					  	   		<c:if test="${userObj.bizclubProvince==bcId}">
+		      					  	   			<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+									 		</c:if>
+									 </c:if>
+		      					  </c:if>
+								</div>
 			      				<div class="col-md-12" style="margin: 20px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="col-md-3">
@@ -81,9 +97,15 @@
 					    	<div class="list-group-separator"></div>
 						    <div class="row">
 						    	<div class="col-md-12" style="margin: -20px 0px -50px 0px;">
-									<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
-							    	<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
-						    	</div>
+								<c:if test="${isAuthen==true}">
+		      					  	   <c:if test="${isStaff || isAdmin}">
+		      					  	   		<c:if test="${userObj.bizclubProvince==bcId}">
+		      					  	   			<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+									 		</c:if>
+									 </c:if>
+		      					  </c:if>
+								</div>
 			      				<div class="col-md-12" style="margin: 20px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="col-md-3">
