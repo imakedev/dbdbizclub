@@ -32,11 +32,12 @@
 					</ul>
 				</div>
 	      	</div>
+	      	<!-- ===================== สินค้า ============================= -->
 	      	<div class="col-md-8">
 		      <div class="jumbotron">
 		      	<div class="row">
 		      		<div class="col-md-11" style="background-color: #fbcb04; box-shadow: 1px 7px 15px #000; margin-bottom: 30px;">
-						<div style="text-align: left;  color: #000; font-size: 28px; font-weight: 500;">
+						<div style="text-align: left;  color: #000; font-size: 28px; font-weight: 500;"><i class="mdi-action-shopping-cart"></i> ข้อมูลสินค้า
 						<c:if test="${bizclubOwner.corpType=='1'}">
 							${bizclubOwner.corpName}
 						</c:if>
@@ -150,12 +151,108 @@
 						    <div class="list-group-separator"></div>
 						     --%>
 						</div>
+				      	<ul class="pager">
+						    <li class="previous disabled"><a href="javascript:void(0)">← Older</a></li>
+						    <li class="next"><a href="javascript:void(0)">Newer →</a></li>
+						</ul>
+		      		</div>
+<!-- =============================== ข้อมูลสมาชิก =============================================== -->
+					<div class="col-md-11" style="background-color: #7105a2; box-shadow: 1px 7px 15px #000; margin-top: 20px; margin-bottom: 30px;">
+						<div style="text-align: left;  color: #fff; font-size: 28px; font-weight: 500;"><i class="mdi-social-person"></i> ข้อมูลผู้ประกอบการ
+						<c:if test="${bizclubOwner.corpType=='1'}">
+							${bizclubOwner.corpName}
+						</c:if>
+						<c:if test="${bizclubOwner.corpType=='2'}">
+							${bizclubOwner.taxesCorpName}
+						</c:if>
+						<c:if test="${bizclubOwner.corpType=='3'}">
+							${bizclubOwner.personCorpName}
+						</c:if>
+						<c:if test="${bizclubOwner.corpType=='4'}">
+							
+						</c:if>
+						</div>
+					</div>
+		      		<div class="col-md-12">
+		      			<div class="col-md-3 col-md-offset-1">
+							<img class="img-thumbnail" id="profile" width="259" height="259"  src="<c:url value="/resources/register/images/5.png" />" >
+						</div>
+						
+						<div class="col-md-8">
+						<span class="form-horizontal">
+						    <fieldset>
+					            <div class="form-group">
+						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+						              <input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						          
+									   </div>
+					            </div>
+					            <div class="form-group">
+						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						            </div>
+					            </div>
+					            <div class="form-group">
+						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">สินค้า/บริการ: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						            </div>
+					            </div>
+					            <div class="form-group">
+						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ประเภทธุรกิจ: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						            </div>
+					            </div>
+					            <div class="form-group">
+						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Facebook: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						            </div>
+					            </div>
+					            <div class="form-group">
+						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Website: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						            </div>
+					            </div>
+					            <div class="form-group">
+						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ที่อยู่: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						            </div>
+					            </div>
+					            <div class="form-group">
+						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">จังหวัด: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						            </div>
+					            </div>
+					            <div class="form-group">
+						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+						            	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						            </div>
+					            </div>
+					            <div class="form-group">
+						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Email: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+						                <input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						            </div>
+					            </div>
+					            <div class="form-group">
+						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Line ID: </label>
+						            <div class="col-md-6" style="padding-bottom: 10px;">
+						                <input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						            </div>
+					            </div>
+				            </fieldset>
+						</span>
+					</div>
 		      		</div>
 		      	</div>
-		      	<ul class="pager">
-				    <li class="previous disabled"><a href="javascript:void(0)">← Older</a></li>
-				    <li class="next"><a href="javascript:void(0)">Newer →</a></li>
-				</ul>
 		      </div>
 	      	</div>
 				<button onclick="goBackToMemeber('${bcId}')" class="btn btn-fab btn-fab btn-raised btn-material-lightyellow" style="float: right;"><i class="mdi-content-reply"></i></button>      		
@@ -163,7 +260,6 @@
   		</div>
 	</div>
 	      <!-- ------------------------ detail-popup ------------------------------------- -->
-	      <%--
 <div id="detail-popup" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content" style="border: 5px solid #fbb819;">
@@ -187,7 +283,7 @@
       </div>
   	</div>
  </div>
-  --%>
+ 
  <div id="member-popup2" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content" style="border: 3px solid #fbb819;">
