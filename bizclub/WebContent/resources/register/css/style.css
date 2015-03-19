@@ -444,7 +444,7 @@ input[type="search"]:focus {
 #cssmenu.small-screen.align-center {
   float: none;
   display: block;
-  border-top: 1px solid rgba(100, 100, 100, 0.1);
+  border-top: 1px solid #fff;
 }
 #cssmenu.small-screen > ul > li:hover > a,
 #cssmenu.small-screen > ul > li > a:hover {
@@ -466,7 +466,7 @@ input[type="search"]:focus {
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background: #5b0483;
+//  background: #5b0483;
 }
 #cssmenu.small-screen #menu-button:after {
   content: "";
@@ -477,14 +477,14 @@ input[type="search"]:focus {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  border-top: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
+  border-top: 2px solid #fb8d04;
+  border-bottom: 2px solid #fb8d04;
   width: 22px;
   height: 3px;
 }
 #cssmenu.small-screen #menu-button.menu-opened:after {
-  border-top: 2px solid #fff;
-  border-bottom: 2px solid #fff;
+  border-top: 2px solid #fb8d04;
+  border-bottom: 2px solid #fb8d04;
 }
 #cssmenu.small-screen #menu-button:before {
   content: "";
@@ -494,10 +494,10 @@ input[type="search"]:focus {
   display: block;
   width: 22px;
   height: 2px;
-  background: #ffffff;
+  background: #fb8d04;
 }
 #cssmenu.small-screen #menu-button.menu-opened:before {
-  background: #5b0483;
+  background: #fb8d04;
 }
 
 
@@ -522,10 +522,10 @@ input[type="search"]:focus {
 }
 
 #cssmenu ul li ul {
-  padding: 10;
+  margin-left: -10px; 
   position: absolute;
   text-decoration:none;
-  width: 140px;
+  width: 150px;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -564,13 +564,13 @@ input[type="search"]:focus {
   background: #5b0483;
 } 
 
-ul.v_menu{
+ul.v_menu{ /* กำหนดขอบเขตของเมนู */  
      list-style:none;  
      margin-left:10px;  
      padding:0px;  
      width:250px;   
  }  
- ul.v_menu > li{
+ ul.v_menu > li{ /* กำหนดรูปแบบให้กับเมนูเ */  
      display:block;  
      padding: 10px 0px 10px 0px;  
      text-indent:15px;
@@ -578,7 +578,7 @@ ul.v_menu{
  	-moz-border-radius: 5px;
  	border-radius: 5px;
  }  
- ul.v_menu > li:hover{ 
+ ul.v_menu > li:hover{ /* กำหนดรูปแบบให้กับเมนูเมื่อมีเมาส์อยู่เหนือ */  
      display:block;  
      padding: 10px 0px 10px 0px;   
      background:#eae8ec;
@@ -588,7 +588,7 @@ ul.v_menu{
  	border-radius: 5px;
  	
  }  
- ul.v_menu > li.active,ul.v_menu > li > a:active{
+ ul.v_menu > li.active,ul.v_menu > li > a:active{ /* กำหนดรูปแบบให้กับลิ้งค์ */  
      display:block;  
       padding: 10px 0px 10px 0px; 
       text-indent:15px;   
@@ -599,16 +599,16 @@ ul.v_menu{
   	font-weight: bold;
   	color: #ffffff;
  }
- ul.v_menu > li > a{
+ ul.v_menu > li > a{ /* กำหนดรูปแบบให้กับลิ้งค์ */  
      text-decoration:none;  
      color:#000;  
     
  }
- ul.v_menu > li > a:HOVER{ 
+ ul.v_menu > li > a:HOVER{ /* กำหนดรูปแบบให้กับลิ้งค์ */  
      text-decoration:none;  
      color:#000;  
  }
- ul.v_menu > li > a:active{
+ ul.v_menu > li > a:active{ /* กำหนดรูปแบบให้กับลิ้งค์ */  
      text-decoration:none;  
      color:#fff; 
  }
