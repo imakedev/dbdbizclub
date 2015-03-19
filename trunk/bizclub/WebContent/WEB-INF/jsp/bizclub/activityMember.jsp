@@ -43,14 +43,9 @@
 								            </c:if>
 								        </div>
 								        <div class="row-content">
-								            <h4 class="list-group-item-heading">${user.firstName}  ${user.lastName}
-								             <c:if test="${user.isCorp=='1'}"> 
-								            	<span style="color: #a8a6a5;">(นิติบุคคล)</span>
-								            </c:if>
-								            
-								        </h4>
-								            <p class="list-group-item-text" style="margin-bottom: 5px;">${user.corpName}</p>
-								            <span><c:out value="${user.services}"/></span>						        
+								             <h4 class="list-group-item-heading">${user.corpName}</h4>
+								          
+<%-- 								            <span><c:out value="${user.services}"/></span>						         --%>
 								        </div>
 								    </div>
 							    </div>
@@ -58,13 +53,13 @@
 							     <c:if test="${isAuthen==true}">
 		      					  	   <c:if test="${isStaff || isAdmin}">
 		      					  	   		<c:if test="${userObj.bizclubProvince==bcId}">
-							    				<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
-							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+							    				<button class="btn btn-danger btn-flat" style="padding: 5px 5px 5px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 5px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
 							    			</c:if>
 							    		</c:if>
 							    	</c:if>
 									<br><br><br>
-									<a href="<c:url value="/product/items/${bcId}/${user.userId}" />" style="color: orange; float: right;"><i class="mdi-action-shopping-cart"></i> สินค้า/บริการ</a>
+									<a href="<c:url value="/product/items/${bcId}/${user.userId}" />" style="color: orange; float: right;">รายละเอียด<i class="mdi-av-play-circle-fill"></i></a>
 						    	</div>
 					    	</div>
 						    <div class="list-group-separator"></div>
