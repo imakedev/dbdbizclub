@@ -71,6 +71,43 @@
 	</div>
 </div>
 </div>
+<!-- ----------------------------------------------------ERROR Message กรณีกรอกผิด------------------------------------------------------------------- -->
+<div id="error_case1" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content" style="border: 3px solid red;">
+      <div class="modal-header" style="background-color: red">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #fbb819;">×</button>
+        <p class="modal-title" style="font-size: 22px; font-weight: bold; color: #fff;">Error Message</p>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-md-12">
+      			<p style="text-align: center; font-size: 24px; font-weight: 500;">Username หรือ password ของท่านไม่ถูกต้อง !</p>
+			</div>
+		</div>
+      </div>
+  	</div>
+ </div>
+</div>
+<!-- ----------------------------------------------------ERROR Message กรณีถูกปิดใช้งาน------------------------------------------------------------------- -->
+<div id="error_case2" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="border: 3px solid red;">
+      <div class="modal-header" style="background-color: red">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="color: #fbb819;">×</button>
+        <p class="modal-title" style="font-size: 22px; font-weight: bold; color: #fff;">Error Message</p>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-md-12">
+      			<p style="text-align: center; font-size: 24px; font-weight: 500;">โปรดติดต่อเจ้าหน้าที่ !</p>
+			</div>
+		</div>
+      </div>
+  	</div>
+ </div>
+</div>
+<!-- ------------------------------------------------------------------------------------------------------------------ -->
 <c:url value="/register" var="registerUrl" />"
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script>
