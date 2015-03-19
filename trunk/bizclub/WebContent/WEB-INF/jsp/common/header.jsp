@@ -44,7 +44,13 @@
 					   <li><a href='<c:url value="/product" />'>ข้อมูลเครือข่าย</a></li>
 					   <li><a href='#'>ข่าวประชาสัมพันธ์</a></li>
 					   <c:if test="${isStaff || isAdmin || isMember}">
-					     <li><a href='<c:url value="/member" />'>ระบบสมาชิก</a></li>
+					     <li><a href="#">ระบบสมาชิก</a>
+					     	<ul>  
+					            <li><a href='<c:url value="/member" />'>ข้อมูลสมาชิกทั้งหมด</a></li>  
+					            <li><a href='<c:url value="/bizmem" />'>ข้อมูลส่วนตัว</a></li>  
+					            <li><a href="#">ข้อมูลสินค้า/บริการ</a></li>  
+				        	</ul>  
+					     </li>
 					     </c:if>
 					     <c:if test="${!isStaff && !isAdmin && !isMember}">
 					     <li><a href='<c:url value="/login" />'>ระบบสมาชิก</a></li>

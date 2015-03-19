@@ -37,13 +37,13 @@
 							    <div class="col-md-3 radio radio-primary">
 								    <label class="radio-inline">
 								      <form:radiobutton path="bizclubRegisterM.corpType" value="2"  onclick="showbizclubtype(this.value)" /> 
-								      <span style="margin-top: -5px; margin-left: 20px; width: 250px;">บุคคลธรรมดา(จดทะเบียนพาณิชย์)</span>
+								      <span style="margin-top: -5px; margin-left: 20px; width: 250px;">ทะเบียนพาณิชย์</span>
 								    </label>
 								</div>
 								<div class="col-md-3 radio radio-primary">
 								    <label class="radio-inline">
 								      <form:radiobutton path="bizclubRegisterM.corpType" value="3"  onclick="showbizclubtype(this.value)" /> 
-								      <span style="margin-top: -5px; margin-left: 20px; width: 200px;">บุคคลธรรมดา(ผู้สนใจทั่วไป)</span>
+								      <span style="margin-top: -5px; margin-left: 20px; width: 200px;">บุคคลธรรมดา</span>
 								    </label>
 							    </div>
 							    <div class="col-md-3 radio radio-primary">
@@ -112,7 +112,7 @@
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: <span id="spec_name"></span><span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 					               <form:input path="bizclubRegisterM.brFirstName" cssClass="form-control textsize"
-		                 placeholder="ชื่อ"  /> - 
+		                 placeholder="ชื่อ"  /> 
 		                     <form:input path="bizclubRegisterM.brLastName" cssClass="form-control textsize"
 		                 placeholder="นามสกุล"  />
 					            </div>
@@ -146,7 +146,7 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">E-mail: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:input path="bizclubRegisterM.email" id="email" cssClass="form-control textsize"
+					              <form:input path="bizclubRegisterM.email" id="email" type="email" cssClass="form-control textsize"
 		                 placeholder="E-mail"  /> 
 					            </div>
 				            </div>
