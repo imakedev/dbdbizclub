@@ -48,7 +48,7 @@
 							    </div>
 							    <div class="col-md-3" style="margin: 10px 0px 0px 0px;">
 									<br><br><br>
-										<a href="#" style="color: orange; float: right;" onclick="showApprove('${bizclubRegister.brId}')">more<i class="mdi-av-play-circle-fill"></i></a>
+										<a href="#" style="color: orange; float: right;" onclick="showApprove('${bizclubRegister.brId}')">รายละเอียด<i class="mdi-av-play-circle-fill"></i></a>
 						    	</div>
 					    	</div>
 						    <div class="list-group-separator"></div>
@@ -387,9 +387,9 @@
 		    				<div class="form-group">
 					            <label class="col-md-5 control-label" style="padding-bottom: 10px;">สิทธิ์การเข้าใช้งาน: </label>
 					            <div class="col-md-6" style="padding-bottom: 10px;">
-					            <select id="role_select" class="textsize" disabled="disabled">
-					            	<option  value="2">เจ้าหน้าที่</option>
-					            	<option value="3">สมาชิก</option>
+					            <select id="role_select" class="textsize">
+					            	<option  value="2">เปิดใช้งาน</option>
+					            	<option value="3">ปิดใช้งาน</option>
 					            </select>
 					            </div>
 				            </div>
