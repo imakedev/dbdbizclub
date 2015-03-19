@@ -13,89 +13,71 @@
 		    <fieldset>
 		    	<div class="row">
 		    	<div class="col-md-12">
-		    	<div class="col-md-1 col-md-offset-1">
-				    	<div class="form-group" style="float: right;">
-				          <!--   <label for="select" class="col-md-7 col control-label">ประเภทธุรกิจ:</label>
-				           -->
-				            
-				               <form:select path="searchUserType" cssClass="textsize" >
-				                	  <form:option value="3" label="สมาชิก" />
-				                	  <form:option value="2" label="เจ้าหน้าที่" />
-				                </form:select>
-				            
+		    		<div class="form-group col-md-2">
+		    			<label for="select" class="col-md-4 control-label">กลุ่ม:</label>
+				    	<div class="col-md-8">
+				          	<form:select path="searchUserType" cssClass="form-control textsize" >
+				          		<form:option value="0" label="ทั้งหมด" />
+		                	  	<form:option value="3" label="สมาชิก" />
+		                	  	<form:option value="2" label="เจ้าหน้าที่" />
+				            </form:select>
+				        </div>
+		        	</div>
+		        	<div class="form-group col-md-2">
+		    			<label for="select" class="col-md-5 control-label">จังหวัด:</label>
+				    	<div class="col-md-7">
+				          	<form:select path="searchUserType" cssClass="form-control textsize" >
+				          		<form:option value="0" label="ทั้งหมด" />
+		                	  	<form:option value="3" label="สมาชิก" />
+		                	  	<form:option value="2" label="เจ้าหน้าที่" />
+				            </form:select>
 				        </div>
 		        	</div>
 		    		<div class="col-md-3">
-				    	<div class="form-group col-md-offset-1">
-				            <label for="select" class="col-md-7 col control-label">ประเภทธุรกิจ:</label>
-				            <div class="col-md-5"> 
-				               <form:select path="searchType" cssClass="textsize"  >
+				    	<div class="form-group">
+				            <label for="select" class="col-md-6 col control-label">ประเภทธุรกิจ:</label>
+				            <div class="col-md-6"> 
+				               <form:select path="searchType" cssClass="form-control textsize"  >
 				                	 <form:option value="0" label="ทั้งหมด" />
-				                	  <form:option value="1" label="ผู้ผลิต" />
-				                	   <form:option value="2" label="ธุรกิจบริการ" />
-				                	    <form:option value="3" label="ค้าส่ง" />
-				                	     <form:option value="4" label="ค้าปลีก" />
-				                	      <form:option value="5" label="นำเข้า" />
-				                	       <form:option value="6" label="ส่งออก" />
-				                	         <form:option value="7" label="อื่นๆ" />
-				               
+				                	 <form:option value="1" label="ผู้ผลิต" />
+				                	 <form:option value="2" label="ธุรกิจบริการ" />
+				                	 <form:option value="3" label="ค้าส่ง" />
+				                	 <form:option value="4" label="ค้าปลีก" />
+				                	 <form:option value="5" label="นำเข้า" />
+				                	 <form:option value="6" label="ส่งออก" />
+				                	 <form:option value="7" label="อื่นๆ" />
 				                </form:select>
 				            </div>
 				        </div>
 		        	</div>
-			        <div class="col-md-3">
-				        <div class="form-group">
-				            <label for="select" class="col-md-5 col-md-offset-3 control-label">ค้นหาจาก:</label>
-				            <div class="col-md-3">
-				        
-				                <form:select path="searchForm" cssClass="textsize"> 
-				                  <form:option value="0" label="ทั้งหมด" />
-				                 <%-- <form:option value="1" label="เลขที่สมาชิก" />  --%>
-				                  <form:option value="2" label="เลขบัตรประชาชน" />
-				                  <form:option value="3" label="ชื่อสมาชิก" />
-				                  <form:option value="4" label="ชื่อทางการค้า" />
-				                  <form:option value="5" label="สินค้า/บริการ" />
-				                </form:select>
-				            </div>
-				        </div>
+			        <div class="form-group col-md-3">
+			            <label for="select" class="col-md-5 control-label">ค้นหาจาก:</label>
+			            <div class="col-md-4">
+			                <form:select path="searchForm" cssClass="form-control textsize"> 
+			                  <form:option value="0" label="ทั้งหมด" />
+			                 <%-- <form:option value="1" label="เลขที่สมาชิก" />  --%>
+							 <%-- <form:option value="2" label="เลขบัตรประชาชน" /> --%>
+			                  <form:option value="3" label="ชื่อสมาชิก" />
+			                  <form:option value="4" label="ชื่อทางการค้า" />
+			                  <form:option value="5" label="สินค้า/บริการ" />
+			                </form:select>
+			            </div>
 			        </div>
-			         <div class="col-md-4">
+			        <div class="col-md-1">
 				        <div class="form-group has-warning">
-						    <div class="input-group col-md-offset-2">
-						        <form:input class="form-control input-lg textsize" path="keyword" placeholder="คำที่ต้องการค้นหา" type="text"/>
-						        <span class="input-group-btn">
+						    <div class="input-group">
+						        <form:input  class="form-control input-lg textsize" style="margin-top: -5px;" path="keyword" placeholder="คำที่ต้องการค้นหา" type="text"/>
+						       <%-- <span class="input-group-btn col-md-1">
 						            <button class="btn btn-material-amber btn-flat" type="submit" style="padding: 5px 10px 5px 10px"><i class="mdi-action-search"></i></button>
 						        </span>
+						         --%>
 						    </div>
 						</div>
 					</div>
-					<%--
-			        <div class="col-md-2">
-				        <div class="form-group has-warning col-md-12">
-						    <div class="input-group col-md-2 col-md-offset-3">
-						        <form:input  class="form-control input-lg textsize" path="keyword" placeholder="คำที่ต้องการค้นหา" type="text"/>
-						        <span class="input-group-btn col-md-1">
-						            <button class="btn btn-material-amber btn-flat" type="submit" style="padding: 5px 10px 5px 10px"><i class="mdi-action-search"></i></button>
-						        </span>
-						         
-						    </div>
-						</div>
-					</div>
-					 
-					<div class="col-md-2">
-						 <a href="/bizclub/bizmem" style="float: right;">แก้ใขข้อมูลส่วนตัว</a>
-					</div>
-					--%>
 				</div> 
 				</div>
 	        </fieldset>
 	      </form:form>
-	      <div class="col-md-2 " style="float: right;">
-						 <a href="/bizclub/bizmem" style="float: right;">แก้ใขข้อมูลส่วนตัว</a>
-			</div>
-			<div class="col-md-2 " style="float: right;">
-						 <a href="/bizclub/product/itemlist" style="float: right;">แก้ใขสินค้า</a>
-			</div>
 	      <div class="row">
 	      	<div class="span8 offset2">
 		      <div class="jumbotron">
@@ -123,9 +105,9 @@
 								            <h4 class="list-group-item-heading">${user.firstName}  ${user.lastName}
 								             <c:if test="${isAuthen==true}">
 								                 <c:if test="${isAdmin}">
-								             	<button class="btn btn-success btn-flat bton" type="button" onclick="editMember('${user.userId}')"><i class="mdi-image-edit"></i></button>
+								             	<button class="btn btn-success btn-flat" style="padding: 5px 5px 5px 5px;" type="button" onclick="editMember('${user.userId}')"><i class="mdi-image-edit"></i></button>
 												<%-- style="left:-60" --%>
-												<button  class="btn btn-danger btn-flat bton" type="button"  onclick="showDelete('${user.userId}')"><i class="mdi-action-delete"></i></button>
+												<button  class="btn btn-danger btn-flat" style="padding: 5px 5px 5px 5px;" type="button"  onclick="showDelete('${user.userId}')"><i class="mdi-action-delete"></i></button>
 								            	</c:if>
 								             </c:if>
 								            <c:if test="${user.isCorp=='1'}"> 
@@ -153,7 +135,7 @@
 									<br>
 									<br>
 									<br>
-									<a href="#" style="color: orange; float: right;" onclick="showMemeber('${user.userId}')" >more<i class="mdi-av-play-circle-fill"></i></a>
+									<a href="#" style="color: orange; float: right;" onclick="showMemeber('${user.userId}')" >รายละเอียด<i class="mdi-av-play-circle-fill"></i></a>
 						    	</div>
 					    	</div>
 						     <div class="list-group-separator"></div>
@@ -242,77 +224,54 @@
 	      <!-- ------------------------------------------------------ -->
 <div id="member-popup" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-md">
-    <div class="modal-content">
+    <div class="modal-content" style="border-top: 5px solid #7e06b4; border-bottom: 5px solid #7e06b4;">
       <div class="modal-body">
       	<div class="row">
-      		<div class="col-md-11 col-md-offset-1">
+   			<div class="col-md-7 col-md-offset-5">
+				<img class="img-thumbnail" id="profile" width="120" height="120" src="<c:url value="/resources/register/images/5.png" />" >
+   			</div>
+   			<div class="col-md-12" style="margin-top: 20px;">
       			<form class="form-horizontal">
 				    <fieldset>
 				        <div class="form-group">
-				        	<label class="col-md-5 control-label" style="color:purple;">เลขที่สมาชิก: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="userId_modal" type="text" value="" disabled="disabled">
-				            </div>
-				        </div>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label" style="color:purple;">เลชบัตรประชาชน: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="cardId_modal" type="text" value="" disabled="disabled">
-				            </div>
-				        </div>
-				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">ชื่อ-สกุล: </label>
-				            <div class="col-md-5">
+				            <div class="col-md-6">
 				                <input class="form-control textsize" id="fullName_modal" type="text" value="" disabled="disabled">
-				            </div>
-				        </div>
-				        <%--
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label" style="color:purple;">ลักษณะธุรกิจ: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="type" type="text" value="นิติบุคคล" disabled="disabled">
-				            </div>
-				        </div>
-				         --%>
-				        <div class="form-group">
-				        	<label class="col-md-5 control-label" style="color:purple;">เลขทะเบียนนิติบุคคล: </label>
-				            <div class="col-md-5">
-				                <input class="form-control textsize" id="corpId_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">ชื่อนิติบุคคล/ชื่อทางการค้า: </label>
-				            <div class="col-md-5">
+				            <div class="col-md-6">
 				                <input class="form-control textsize" id="corpName_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">สินค้า/บริการ: </label>
-				            <div class="col-md-5">
+				            <div class="col-md-6">
 				                <textarea rows="2" cols="" id="services_modal" class="form-control textsize" disabled="disabled"></textarea>
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">Website: </label>
-				            <div class="col-md-5">
+				            <div class="col-md-6">
 				                <input class="form-control textsize" id="website_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">Email: </label>
-				            <div class="col-md-5">
+				            <div class="col-md-6">
 				                <input class="form-control textsize" id="email_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">เบอร์โทรศัพท์: </label>
-				            <div class="col-md-5">
+				            <div class="col-md-6">
 				                <input class="form-control textsize" id="mobilePhone_modal" type="text" value="" disabled="disabled">
 				            </div>
 				        </div>
 				        <div class="form-group">
 				        	<label class="col-md-5 control-label" style="color:purple;">Line: </label>
-				            <div class="col-md-5">
+				            <div class="col-md-6">
 				                <input class="form-control textsize" id="lineId_modal" type="text" value="Tode Dream Jockey" disabled="disabled">
 				            </div>
 				        </div>

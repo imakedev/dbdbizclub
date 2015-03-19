@@ -524,7 +524,7 @@
 	            <div class="form-group" style="padding-top: 50px;">
 	            <div class="col-md-10 col-md-offset-4">
 	                <button type="reset" class="btn btn-default" style="font-weight: bold; font-size: 24px;">ยกเลิก</button>
-	                <button type="submit" class="btn btn-material-red" style="font-weight: bold; font-size: 22px;">แก้ไขข้อมูล</button>
+	                <button type="submit" class="btn btn-material-red" style="font-weight: bold; font-size: 22px;" data-toggle="modal" data-target="#success-popup">แก้ไขข้อมูล</button>
 	            </div>
 	        </div> 
 	            
@@ -534,8 +534,21 @@
 		</form:form>
 	</div>
 </div>
-
-<!-- --------------------------------------------------------------------------- -->
+<!-- ----------------------------------------------------success Message กรณีบันทึกข้อมูลแล้ว------------------------------------------------------------------- -->
+				<div id="success-popup" class="modal fade" tabindex="-1">
+				  <div class="modal-dialog modal-sm">
+				    <div class="modal-content">
+				      <div class="modal-body" style="background-color: green;">
+				      	<div class="row">
+				      		<div class="col-md-12">
+				      			<p style="text-align: center; font-size: 24px; font-weight: 500; color: #ffffff;">บันทึกข้อมูลเรียบร้อยแล้ว !</p>
+							</div>
+						</div>
+				      </div>
+				  	</div>
+				 </div>
+				</div>
+<!-- ----------------------------------------------------------------------------------------------------------------------- -->
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script>
       $(document).ready(function() {
