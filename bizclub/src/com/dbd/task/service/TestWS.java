@@ -9,8 +9,8 @@ public class TestWS {
 		try {
 			TaskJuristicServiceServiceStub stub =new TaskJuristicServiceServiceStub();
 			JuristicDetailByJuristicId id =new JuristicDetailByJuristicId();
-			id.setInputData(param);
-			stub.juristicDetailByJuristicId(id)
+			//id.setInputData(param);
+			//stub.juristicDetailByJuristicId(id)
 		} catch (AxisFault e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
