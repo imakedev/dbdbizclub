@@ -294,7 +294,7 @@
       <div class="modal-body">
       	<div class="row">
 		<div class="col-md-3 col-md-offset-1">
-			<img class="img-thumbnail" id="profile" width="259" height="259"  src="<c:url value="/resources/register/images/5.png" />" >
+			<img class="img-thumbnail" id="mprofile" width="259" height="259"  src="<c:url value="/resources/register/images/img_logo.png" />" >
 		</div>
 		
 		<div class="col-md-8">
@@ -335,6 +335,20 @@
 		            <div class="col-md-6" style="padding-bottom: 10px;">
 		             <input class="form-control textsize" id="mwebsite" value="" type="text" disabled="disabled">
 		           
+		            </div>
+	            </div>
+	             <div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Facebook: </label>
+		            <div class="col-md-6" style="padding-bottom: 10px;">
+		                  <input class="form-control textsize" id="mfacebook" value="" type="text" disabled="disabled">
+		            </div>
+	            </div>
+	             
+	            <div class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ID Line: </label>
+		            <div class="col-md-6" style="padding-bottom: 10px;">
+		              <input class="form-control textsize" id="mlineID" value="" type="text" disabled="disabled">
+		          
 		            </div>
 	            </div>
 	            <div class="form-group">
@@ -408,7 +422,7 @@
     		  .done(function( msg ) {
     		   // alert( "Data Saved: " + msg.addressDistrict );
     		    // $("#id_member").val(msg.userId);
-    		  //  $("#mfacebook").val(msg.facebook);
+    		    $("#mfacebook").val(msg.facebook);
     		    $("#mfirstName").val(msg.firstName +" "+msg.lastName);
     		   // $("#mlastName").val(msg.lastName);
     		  //  $("#mnickName").val(msg.nickName);
@@ -418,14 +432,14 @@
     		    $("#mwebsite").val(msg.website);
     		    $("#memail").val(msg.email);
     		    $("#mmobile").val(msg.mobilePhone);
-    		    //$("#mlineID").val(msg.lineId);
+    		    $("#mlineID").val(msg.lineId);
     		    //$("#mlineName").val(msg.lineName);
     		          
     		    if(msg.logoFileName!=null && msg.logoFileName.length>0){
-   		    		 $("#profile").attr("src","/bizclub/getfile/logo/"+msg.userId+"/xxx");
+   		    		 $("#mprofile").attr("src","/bizclub/getfile/logo/"+msg.userId+"/xxx");
    		    		 
    		    	 }else{
-   		    		 $("#profile").attr("src",'<c:url value="/resources/register/images/img_logo.png" />');
+   		    		 $("#mprofile").attr("src",'<c:url value="/resources/register/images/img_logo.png" />');
    		    	 }
    		    
     		   //  $("#brId").val(brId);
