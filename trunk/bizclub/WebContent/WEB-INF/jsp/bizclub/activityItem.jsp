@@ -86,7 +86,7 @@
 		      					  	   <c:if test="${isStaff || isAdmin}">
 		      					  	   		<c:if test="${userObj.bizclubProvince==bcId}">
 							    				<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
-							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#detail-popup"><i class="mdi-image-edit"></i></button>
 							    	   		</c:if>
 							    	   </c:if>
 							    	</c:if>
@@ -262,28 +262,47 @@
 	      <!-- ------------------------ detail-popup ------------------------------------- -->
 <div id="detail-popup" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg">
-    <div class="modal-content" style="border: 5px solid #fbb819;">
+    <div class="modal-content" style="border-top: 5px solid #f0bb18; border-bottom: 5px solid #7e06b4;">
       <div class="modal-header" style="background-color: #fbb819">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <p class="modal-title" style="font-size: 26px; font-weight: bold; padding-bottom: 20px;">ชื่อสินค้า</p>
       </div>
       <div class="modal-body">
       	<div class="row">
       		<div class="col-md-12">
-      			<div class="col-md-4" style="padding-left: 20px;">
-      				<img class="img-thumbnail" id="profile" src="" alt="" data-src="holder.js"/>
+      			<div class="col-md-3">
+	            	<img class="img-thumbnail" id="item" src="WebContent/resources/register/images/defult.png" alt="WebContent/resources/register/images/defult.png" data-src="holder.js"/>
+	            	 <input type='file' id="profile_upload" name="profile_upload" onchange="URLitem(this);" style="font-size: 10px; "/>
       			</div>
-      			<div class="col-md-8" style="padding-left: 0px;">
-	            	<p>รายละเอียด ...</p>
+      			<div class="col-md-9" style="padding-left: 0px;">
+	            	<span class="form-horizontal">
+				    	<fieldset>
+		      				<div class="form-group">
+					        	<label class="col-md-2 control-label">ชื่อสินค้า: </label>
+					            <div class="col-md-9">
+					                <input class="form-control textsize" id="" type="text" value="">
+					            </div>
+					        </div>
+					        <div class="form-group">
+					        	<label class="col-md-2 control-label">รายละเอียด: </label>
+					            <div class="col-md-9">
+					                <textarea class="form-control textsize" id="" cols="7" rows="5"></textarea>
+					            </div>
+					        </div>
+			        	</fieldset>
+			        </span>
 	            </div>
-      			
+      		</div>
+      		<div class="col-md-offset-4">
+		        <button class="btn btn-default btn-flat" data-dismiss="modal" style="font-weight: bold; font-size: 20px;">ยกเลิก</button>
+		        <button type="button" onclick="deleteMemberItem()" class="btn btn-material-purple-800 btn-xs" data-dismiss="modal" style="font-weight: bold; font-size: 20px;">บันทึก</button>
+	      	</div>
             </div>
         </div>
 		</div>
       </div>
   	</div>
  </div>
- 
+ <!-- ------------------------------------------------------------------------------------------- -->
  <div id="member-popup2" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content" style="border: 3px solid #fbb819;">
@@ -299,22 +318,7 @@
 		
 		<div class="col-md-8">
 		<span class="form-horizontal">
-				    <fieldset>
-		<%--    <fieldset>  --%>
-		    	 <%-- <div class="form-group">
-		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">เลขที่สมาชิก: </label>
-		            <div class="col-md-5" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" id="id_member" type="text" value="" disabled="disabled">
-		            </div>
-	            </div>
-	           
-		    	<div class="form-group">
-		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">เลขบัตรประชาชน: <span style="color: red;">*</span></label>
-		            <div class="col-md-5" style="padding-bottom: 10px;">
-		                <input class="form-control textsize" id="mcardId" value="" type="text" disabled="disabled">
-		            </div>   
-	            </div>
-	            --%>
+		    <fieldset>
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: </label>
 		            <div class="col-md-6" style="padding-bottom: 10px;">
@@ -322,14 +326,6 @@
 		          
 					   </div>
 	            </div>
-	           <%--  
-	            <div class="form-group">
-		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อเล่น: </label>
-		            <div class="col-md-5" style="padding-bottom: 10px;">
-		                 <input class="form-control textsize" id="mnickName" value="" type="text" disabled="disabled">
-		            </div>
-	            </div>
-	        --%>
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Website: </label>
 		            <div class="col-md-6" style="padding-bottom: 10px;">
@@ -362,32 +358,8 @@
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Email: </label>
 		            <div class="col-md-6" style="padding-bottom: 10px;">
 		                <input class="form-control textsize" id="memail" value="" type="text" disabled="disabled">
-		               
 		            </div>
 	            </div>
-	            <%--
-	            <div class="form-group">
-		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Facebook: </label>
-		            <div class="col-md-5" style="padding-bottom: 10px;">
-		                  <input class="form-control textsize" id="mfacebook" value="" type="text" disabled="disabled">
-		            </div>
-	            </div>
-	             
-	            <div class="form-group">
-		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ID Line: </label>
-		            <div class="col-md-5" style="padding-bottom: 10px;">
-		              <input class="form-control textsize" id="mlineID" value="" type="text" disabled="disabled">
-		          
-		            </div>
-	            </div>
-	            <div class="form-group">
-		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ Line: </label>
-		            <div class="col-md-5" style="padding-bottom: 10px;">
-		                 <input class="form-control textsize" id="mlineName" value="" type="text" disabled="disabled">
-		                </div>
-	            </div>
-	          
-	           --%> 
 <!-- ----------------------------------EDIT MODE---------------------------------------------- -->	            
 <!-- 	            <div class="form-group"> -->
 <!-- 		            <div class="col-lg-10"> -->
@@ -396,8 +368,7 @@
 <!-- 		            </div> -->
 <!-- 		        </div> -->
 <!-- ----------------------------------------------------------------------------------------- -->
-		<%--    </fieldset>  --%>
-	</fieldset>
+		</fieldset>
 	</span>
 		</div>
 	
@@ -406,8 +377,44 @@
 </div>
 </div>
 </div>
+
+<div id="delete-popup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="background-color: #d81515;">
+      <div class="modal-body">
+      	<form:form   id="memberItemForm" name="memberItemForm"   method="GET" action=""
+		cssClass="form-horizontal">
+		     <input type="hidden" id="item_delete">
+	          	<div class="form-group">
+		            <label class="col-lg-10 col-md-offset-1 control-label" style="text-align: center; font-size: 28px; color: #ffffff; font-weight: 700;">Are you sure?</label>
+	        	</div>
+	      </form:form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" onclick="deleteMemberItem()" class="btn btn-material-grey-100 btn-xs" data-dismiss="modal">Yes</button>
+        <button class="btn btn-black btn-xs" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ----------------------------------------------------------------------------------------------------------- -->
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
+<script>
+function URLitem(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#item')
+                .attr('src', e.target.result)
+                .width(200)
+                .height(250);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 <script>
       $(document).ready(function() {
           $.material.init();
