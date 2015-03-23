@@ -370,13 +370,13 @@
 		                 placeholder="สินค้า/บริการ"  /> 
 					            </div>
 				            </div>
-				              <div class="form-group">
+				              <div id="group_biz_element" class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">รหัสหมวดธุรกิจ: <span style="color: red;"></span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 					                <form:input path="bizclubRegisterM.btCode" id="btCode" cssClass="form-control textsize"/>
 					            </div>
 							 </div>
-							 <div class="form-group">
+							 <div id="group_biz_detail_element"class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">รายละเอียดหมวดธุรกิจ: <span style="color: red;"></span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 					                <form:textarea path="bizclubRegisterM.btDesc"  id="btDesc" cssClass="form-control textsize" rows="2" cols="3"/>
@@ -516,12 +516,36 @@
       	   // alert(dInput.length)
       	   if ($.trim(dInput).length > 0 && !validateDigit2(dInput)) {
     	  		alert('กรอก  เฉพาะตัวเลขเท่านั้น.');
+    	  		$("#cardId").val("");
     	  		$("#cardId").focus();
     	  		return false;
    			 }
       	    if(dInput.length==13)
       			checkCardId();
       	});
+          $('#corpId').keyup(function() {
+        	    var dInput = this.value;
+        	   // alert(dInput.length)
+        	   if ($.trim(dInput).length > 0 && !validateDigit2(dInput)) {
+      	  		alert('กรอก  เฉพาะตัวเลขเท่านั้น.');
+      	  		$("#corpId").val("");
+      	  		$("#corpId").focus();
+      	  		return false;
+     			 }
+        	   
+        	});
+          $('#taxesId').keyup(function() {
+      	    var dInput = this.value;
+      	   // alert(dInput.length)
+      	   if ($.trim(dInput).length > 0 && !validateDigit2(dInput)) {
+    	  		alert('กรอก  เฉพาะตัวเลขเท่านั้น.');
+    	  		$("#taxesId").val("");
+    	  		$("#taxesId").focus();
+    	  		return false;
+   			 }
+      	   
+      	});
+          
           //alert($("#addressProvince").val())
       	loadAddressAmphur($("#addressProvince").val());
       });
@@ -727,18 +751,53 @@ function getCrop(corpType){
 	  $.ajax({
 		  type: "GET",
 		  contentType : 'application/json; charset=utf-8',
-		  url: "ws/corp/"+corpId+"/"+corpType,
+		//  url: "ws/corp/"+corpId+"/"+corpType,
+		  url: "ws/juristic/"+corpId,
 		  dataType : 'json'
 		})
 		  .done(function( msg ) {
+			  if(msg.corpCount==0){
+				  alert("ไม่พบข้อมูล");
+				  return false;
+			  }
 			  if(corpType=='1'){
 					$("#corpName").val(msg.corpName);
 			  }else{
 				    $("#taxesCorpName").val(msg.corpName);
 			  }
-			  $("#services").val(msg.corpServices);
-			  $("#btCode").val(msg.btCode);
-			  $("#btDesc").val(msg.btDesc);
+			//  $("#services").val(msg.corpServices);
+			//  $("#btCode").val(msg.btCode);
+			//  $("#btDesc").val(msg.btDesc);
+			alert(msg.committeeNames.length)
+			var isCommittee=false;
+			for(var i=0;i<msg.committeeNames.length;i++){
+				if(corpType=='1'){
+					  if($('input[id="bizclubRegisterM.brFirstName"]').val()==msg.committeeNames[i]){
+						  isCommittee=true;
+						 /* alert("เฉพาะกรรมการเท่านั้น")
+						  $('input[id="bizclubRegisterM.brFirstName"]').focus();
+						  $("#spec_name").html("(เฉพาะกรรมการเท่านั้น)")
+						  */
+						break;
+					  }
+					  /*
+					  else if($('input[id="bizclubRegisterM.brLastName"]').val()!=msg.lastName){
+						  alert("เฉพาะกรรมการเท่านั้น")
+						  $('input[id="bizclubRegisterM.brLastName"]').focus();
+						  $("#spec_name").html("(เฉพาะกรรมการเท่านั้น)")
+							break;
+					  }
+						*/
+				  } 
+			}
+			if(!isCommittee){
+				 alert("เฉพาะกรรมการเท่านั้น")
+				  $('input[id="bizclubRegisterM.brFirstName"]').focus();
+				  $("#spec_name").html("(เฉพาะกรรมการเท่านั้น)")	
+			}
+			
+			  
+			/*
 			  if(corpType=='1'){
 				  if($('input[id="bizclubRegisterM.brFirstName"]').val()!=msg.firstName){
 					  alert("เฉพาะกรรมการเท่านั้น")
@@ -752,7 +811,9 @@ function getCrop(corpType){
 				  }
 					
 			  } 
-			  var corpBizTypes=msg.corpBizType.split("-");
+			*/
+			/* 
+			var corpBizTypes=msg.corpBizType.split("-");
 			  $("input[name=corpGroupIds]").each(function() { 
 				  var  corpGroupId_value=$(this).val();
 				  //alert(corpGroupId_value)
@@ -766,7 +827,7 @@ function getCrop(corpType){
 					   }
 				   }
 				});
-			
+			*/
 		
 		  });
 	//  data-toggle="modal" data-target="#member-popup"
@@ -812,10 +873,17 @@ function showbizclubtype(type){
 	resetbizclubtype();
 	resetFormBizclubType();
 	$("#bizclubtype_"+type).show();
+	$("#group_biz_element").show();
+	$("#group_biz_detail_element").show();
 	if(type=='4'){
 		showForStaft(false);
 	}else
 		showForStaft(true);
+	
+	if(type=='4' || type=='3' ){
+		$("#group_biz_element").hide();
+		$("#group_biz_detail_element").hide();
+	}
 }
 var elements_staft=["bizinfo_element","biztype_element","bizphoto_elment","bizinfo2_element"];
 function showForStaft(isShow){
