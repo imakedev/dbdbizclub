@@ -25,7 +25,7 @@
 		      <div class="jumbotron">
 		      	<div class="row">
 			      	<div class="col-md-4" style="background-color: #fbcb04; box-shadow: 1px 7px 15px #000; ">
-						<div style="text-align: left;  color: #fff; font-size: 28px; font-weight: bold;">สมาชิก ${bizclubCenter.bcMemberSize} ราย</div>
+						<div style="text-align: left;  color: #fff; font-size: 28px; font-weight: bold;">จำนวนร้านค้า ${bizclubCenter.bcMemberSize} ราย</div>
 					</div>
 		      		<div class="col-md-12">
 		      			<div class="list-group">
@@ -39,7 +39,7 @@
 								            <img class="circle"  width="56" height="56" src="<c:url value="/getfile/logo/${user.userId}/xxx" />" alt="icon">
 								            </c:if>
 								            <c:if test="${ empty user.logoPath}">
-								              <img class="circle"  width="56" height="56"  src="<c:url value="/resources/register/images/5.png" />" alt="icon">
+								              <img class="circle"  width="56" height="56"  src="<c:url value="/resources/register/images/img_logo.png" />" alt="icon">
 								            </c:if>
 								        </div>
 								        <div class="row-content">
@@ -54,7 +54,7 @@
 		      					  	   <c:if test="${isStaff || isAdmin}">
 		      					  	   		<c:if test="${userObj.bizclubProvince==bcId}">
 							    				<button class="btn btn-danger btn-flat" style="padding: 5px 5px 5px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
-							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 5px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 5px 5px; float: right;" data-toggle="modal" data-target="#member-popup"><i class="mdi-image-edit"></i></button>
 							    			</c:if>
 							    		</c:if>
 							    	</c:if>
@@ -122,6 +122,119 @@
 	      </div>
   		</div>
 	</div>
+		      <!-- ------------------------------------------------------ -->
+<div id="member-popup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content" style="border-top: 5px solid #f0bb18; border-bottom: 5px solid #7e06b4;">
+      <div class="modal-body">
+      	<div class="row">
+   			<div class="col-md-7 col-md-offset-5">
+				<img class="img-thumbnail" id="profile" width="120" height="120" src="<c:url value="/resources/register/images/img_logo.png" />" >
+   			</div>
+   			<div class="col-md-12" style="margin-top: 20px;">
+      			<form class="form-horizontal">
+				    <fieldset>
+				        <div class="form-group">
+				        	<label class="col-md-4 control-label">ชื่อ-สกุล: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="fullName_modal" type="text" value="">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-4 control-label">ชื่อนิติบุคคล/ชื่อทางการค้า: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="corpName_modal" type="text" value="">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-4 control-label">สินค้า/บริการ: </label>
+				            <div class="col-md-7">
+				                <textarea rows="2" cols="" id="services_modal" class="form-control textsize"></textarea>
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-4 control-label">Website: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="website_modal" type="text" value="">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-4 control-label">Email: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="email_modal" type="text" value="">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-4 control-label">เบอร์โทรศัพท์: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="mobilePhone_modal" type="text" value="">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-4 control-label">Line: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="lineId_modal" type="text" value="">
+				            </div>
+				        </div>
+				        <div class="col-md-offset-4">
+				        	<button class="btn btn-white btn-lg" type="reset" style="font-weight: bold; font-size: 20px;">ยกเลิก</button>
+				        	<button class="btn btn-material-yellow-400" type="submit" style="font-weight: bold; font-size: 20px;">บันทึก</button>
+				        </div>
+				        <%--
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">ประเภทธุรกิจ: </label>
+				            <div class="col-md-5">
+				            	<textarea rows="2" cols="" class="form-control textsize" disabled="disabled">ธุรกิจบริการ</textarea>
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">เกี่ยวข้องในธุรกิจ: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="" type="text" value="เจ้าของธุรกิจ ตำแหน่งกรรมการผู้จัดการ" disabled="disabled">
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">ที่อยู่: </label>
+				            <div class="col-md-5">
+				            	<textarea rows="2" cols="" class="form-control textsize" disabled="disabled">542/36 ซ.สหการประมูล (สถานทูตลาว) ถนนประชาอุทิศ แขวงวังทองหลาง เขตวังทองหลาง</textarea>
+				            </div>
+				        </div>
+				        <div class="form-group">
+				        	<label class="col-md-5 control-label" style="color:purple;">จังหวัด: </label>
+				            <div class="col-md-5">
+				                <input class="form-control textsize" id="" type="text" value="กรุงเทพมหานคร" disabled="disabled">
+				            </div>
+				        </div>
+				         --%>
+			        </fieldset>
+		        </form>
+      		</div>
+      	</div>
+      </div>
+  	</div>
+ </div>
+</div>
+
+
+<div id="delete-popup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="background-color: #d81515;">
+      <div class="modal-body">
+      	<form:form   id="memberItemForm" name="memberItemForm"   method="GET" action=""
+		cssClass="form-horizontal">
+		     <input type="hidden" id="item_delete">
+	          	<div class="form-group">
+		            <label class="col-lg-10 col-md-offset-1 control-label" style="text-align: center; font-size: 28px; color: #ffffff; font-weight: 700;">Are you sure?</label>
+	        	</div>
+	      </form:form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" onclick="deleteMemberItem()" class="btn btn-material-grey-100 btn-xs" data-dismiss="modal">Yes</button>
+        <button class="btn btn-black btn-xs" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ----------------------------------------------------------------------------------------------------------- -->
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script>

@@ -33,7 +33,7 @@
 						  <div class="form-group">
 						  <h2 style="margin-left: 20px;">กิจกรรม</h2>
 						  </div>
-						  <a href="<c:url value="/product/member/${bcId}" />" style="float: right; margin-top:30px; color: purple;">สมาชิก ${bizclubCenter.bcMemberSize} ราย</a>
+						  <a href="<c:url value="/product/member/${bcId}" />" style="float: right; margin-top:30px; color: purple;">จำนวนร้านค้า ${bizclubCenter.bcMemberSize} ราย</a>
 						</form>
 						<div class="list-group">
 		      			<div class="list-group-separator"></div>
@@ -45,14 +45,10 @@
 		      					  	   <c:if test="${isStaff || isAdmin}">
 		      					  	   		<c:if test="${userObj.bizclubProvince==bcId}">
 		      					  	   			<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
-							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#activity-popup"><i class="mdi-image-edit"></i></button>
 									 		</c:if>
 									 </c:if>
 		      					  </c:if>
-		      					<%--
-									<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
-							    	<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
-						    	 --%>
 						    	</div>
 			      				<div class="col-md-12" style="margin: 20px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
@@ -75,7 +71,7 @@
 		      					  	   <c:if test="${isStaff || isAdmin}">
 		      					  	   		<c:if test="${userObj.bizclubProvince==bcId}">
 		      					  	   			<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
-							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#activity-popup"><i class="mdi-image-edit"></i></button>
 									 		</c:if>
 									 </c:if>
 		      					  </c:if>
@@ -101,7 +97,7 @@
 		      					  	   <c:if test="${isStaff || isAdmin}">
 		      					  	   		<c:if test="${userObj.bizclubProvince==bcId}">
 		      					  	   			<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete"></i></button>
-							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right; data-toggle="modal" data-target="#item-popup"><i class="mdi-image-edit"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#activity-popup"><i class="mdi-image-edit"></i></button>
 									 		</c:if>
 									 </c:if>
 		      					  </c:if>
@@ -156,7 +152,80 @@
       </div>
   	</div>
  </div>
+<!-- ----------------------------------------------------------------------------------------------------------- -->
+<div id="activity-popup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="border-top: 5px solid #f0bb18; border-bottom: 5px solid #7e06b4;">
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-md-12">
+      			<div class="col-md-8">
+      			<span class="form-horizontal">
+				    	<fieldset>
+		      				<div class="form-group">
+					        	<label class="col-md-2 control-label">หัวข้อ: </label>
+					            <div class="col-md-10">
+					                <input class="form-control textsize" id="" type="text" value="">
+					            </div>
+					        </div>
+					        <div class="form-group">
+					        	<label class="col-md-2 control-label">เนื่อหา: </label>
+					            <div class="col-md-10">
+					                <textarea class="form-control textsize" id="" cols="5" rows="5"></textarea>
+					            </div>
+					        </div>
+					        <div class="col-md-offset-3">
+					        	<div class="col-md-4 radio radio-primary">
+								    <label class="radio-inline">
+								      <input name="chk1" value="option1" type="radio">
+								      <span style="margin-top: -5px; margin-left: 20px; width: 250px;">โพสปักหมุด</span>
+								    </label>
+								</div>
+								<div class="col-md-3 radio radio-primary">
+								    <label class="radio-inline">
+								      <input name="chk1" value="option1" type="radio">
+								      <span style="margin-top: -5px; margin-left: 20px; width: 250px;">โพสธรรมดา</span>
+								    </label>
+							    </div>
+					        </div>
+			        	</fieldset>
+			        </span>
+      			</div>
+      			<div class="col-md-4">
+	            	<img class="img-thumbnail" id="activity" src="WebContent/resources/register/images/defult.png" alt="WebContent/resources/register/images/defult.png" data-src="holder.js"/>
+	            	 <input type='file' id="profile_upload" name="profile_upload" onchange="URLact(this);" style="font-size: 10px; "/>
+      			</div>
+      		</div>
+      		<div class="col-md-offset-4">
+		        <button class="btn btn-default btn-flat" data-dismiss="modal" style="font-weight: bold; font-size: 20px;">ยกเลิก</button>
+		        <button type="button" onclick="deleteMemberItem()" class="btn btn-material-purple-800 btn-xs" data-dismiss="modal" style="font-weight: bold; font-size: 20px;">โพส</button>
+	      	</div>
+      	</div>
+      </div>
+  	</div>
+ </div>
+</div>
 
+
+<div id="delete-popup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="background-color: #d81515;">
+      <div class="modal-body">
+      	<form:form   id="memberItemForm" name="memberItemForm"   method="GET" action=""
+		cssClass="form-horizontal">
+		     <input type="hidden" id="item_delete">
+	          	<div class="form-group">
+		            <label class="col-lg-10 col-md-offset-1 control-label" style="text-align: center; font-size: 28px; color: #ffffff; font-weight: 700;">Are you sure?</label>
+	        	</div>
+	      </form:form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" onclick="deleteMemberItem()" class="btn btn-material-grey-100 btn-xs" data-dismiss="modal">Yes</button>
+        <button class="btn btn-black btn-xs" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ----------------------------------------------------------------------------------------------------------- -->
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script>
@@ -172,6 +241,22 @@
     			);
     	  }
       }
+</script>
+<script>
+function URLact(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#activity')
+                .attr('src', e.target.result)
+                .width(190)
+                .height(130);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 </script>
 <style>
 body{

@@ -221,59 +221,63 @@
 			</ul>
   		</div>
 	</div>
-	      <!-- ------------------------------------------------------ -->
+		      <!-- ------------------------------------------------------ -->
 <div id="member-popup" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-md">
-    <div class="modal-content" style="border-top: 5px solid #7e06b4; border-bottom: 5px solid #7e06b4;">
+    <div class="modal-content" style="border-top: 5px solid #f0bb18; border-bottom: 5px solid #7e06b4;">
       <div class="modal-body">
       	<div class="row">
    			<div class="col-md-7 col-md-offset-5">
-				<img class="img-thumbnail" id="profile" width="120" height="120" src="<c:url value="/resources/register/images/5.png" />" >
+				<img class="img-thumbnail" id="profile" width="120" height="120" src="<c:url value="/resources/register/images/icon.png" />" >
    			</div>
    			<div class="col-md-12" style="margin-top: 20px;">
       			<form class="form-horizontal">
 				    <fieldset>
 				        <div class="form-group">
-				        	<label class="col-md-5 control-label" style="color:purple;">ชื่อ-สกุล: </label>
-				            <div class="col-md-6">
-				                <input class="form-control textsize" id="fullName_modal" type="text" value="" disabled="disabled">
+				        	<label class="col-md-4 control-label">ชื่อ-สกุล: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="fullName_modal" type="text" value="">
 				            </div>
 				        </div>
 				        <div class="form-group">
-				        	<label class="col-md-5 control-label" style="color:purple;">ชื่อนิติบุคคล/ชื่อทางการค้า: </label>
-				            <div class="col-md-6">
-				                <input class="form-control textsize" id="corpName_modal" type="text" value="" disabled="disabled">
+				        	<label class="col-md-4 control-label">ชื่อนิติบุคคล/ชื่อทางการค้า: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="corpName_modal" type="text" value="">
 				            </div>
 				        </div>
 				        <div class="form-group">
-				        	<label class="col-md-5 control-label" style="color:purple;">สินค้า/บริการ: </label>
-				            <div class="col-md-6">
-				                <textarea rows="2" cols="" id="services_modal" class="form-control textsize" disabled="disabled"></textarea>
+				        	<label class="col-md-4 control-label">สินค้า/บริการ: </label>
+				            <div class="col-md-7">
+				                <textarea rows="2" cols="" id="services_modal" class="form-control textsize"></textarea>
 				            </div>
 				        </div>
 				        <div class="form-group">
-				        	<label class="col-md-5 control-label" style="color:purple;">Website: </label>
-				            <div class="col-md-6">
-				                <input class="form-control textsize" id="website_modal" type="text" value="" disabled="disabled">
+				        	<label class="col-md-4 control-label">Website: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="website_modal" type="text" value="">
 				            </div>
 				        </div>
 				        <div class="form-group">
-				        	<label class="col-md-5 control-label" style="color:purple;">Email: </label>
-				            <div class="col-md-6">
-				                <input class="form-control textsize" id="email_modal" type="text" value="" disabled="disabled">
+				        	<label class="col-md-4 control-label">Email: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="email_modal" type="text" value="">
 				            </div>
 				        </div>
 				        <div class="form-group">
-				        	<label class="col-md-5 control-label" style="color:purple;">เบอร์โทรศัพท์: </label>
-				            <div class="col-md-6">
-				                <input class="form-control textsize" id="mobilePhone_modal" type="text" value="" disabled="disabled">
+				        	<label class="col-md-4 control-label">เบอร์โทรศัพท์: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="mobilePhone_modal" type="text" value="">
 				            </div>
 				        </div>
 				        <div class="form-group">
-				        	<label class="col-md-5 control-label" style="color:purple;">Line: </label>
-				            <div class="col-md-6">
-				                <input class="form-control textsize" id="lineId_modal" type="text" value="Tode Dream Jockey" disabled="disabled">
+				        	<label class="col-md-4 control-label">Line: </label>
+				            <div class="col-md-7">
+				                <input class="form-control textsize" id="lineId_modal" type="text" value="">
 				            </div>
+				        </div>
+				        <div class="col-md-offset-4">
+				        	<button class="btn btn-white btn-lg" type="reset" style="font-weight: bold; font-size: 20px;">ยกเลิก</button>
+				        	<button class="btn btn-material-yellow-400" type="submit" style="font-weight: bold; font-size: 20px;">บันทึก</button>
 				        </div>
 				        <%--
 				        <div class="form-group">
@@ -313,21 +317,19 @@
 
 <div id="delete-popup" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-sm">
-    <div class="modal-content">
+    <div class="modal-content" style="background-color: #d81515;">
       <div class="modal-body">
       	<form:form   id="memberItemForm" name="memberItemForm"   method="GET" action=""
 		cssClass="form-horizontal">
 		     <input type="hidden" id="item_delete">
-			<fieldset>
 	          	<div class="form-group">
-		            <label class="col-lg-10 col-md-offset-1 control-label" style="text-align: center; font-size: 18px;">Are you sure?</label>
+		            <label class="col-lg-10 col-md-offset-1 control-label" style="text-align: center; font-size: 28px; color: #ffffff; font-weight: 700;">Are you sure?</label>
 	        	</div>
-	      	</fieldset>
 	      </form:form>
       </div>
       <div class="modal-footer">
-        <button type="button" onclick="deleteMemberItem()" class="btn btn-material-blue-700 btn-xs" data-dismiss="modal">Yes</button>
-        <button class="btn btn-material-grey-100 btn-xs" data-dismiss="modal">No</button>
+        <button type="button" onclick="deleteMemberItem()" class="btn btn-material-grey-100 btn-xs" data-dismiss="modal">Yes</button>
+        <button class="btn btn-black btn-xs" data-dismiss="modal">No</button>
       </div>
     </div>
   </div>
