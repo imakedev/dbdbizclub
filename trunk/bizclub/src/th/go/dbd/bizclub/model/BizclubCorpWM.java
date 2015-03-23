@@ -20,6 +20,16 @@ public class BizclubCorpWM implements Serializable {
 	private String btCode;
 	private String firstName;
 	private String lastName;
+	private String[] committeeNames;
+	private int corpCount;
+	public String[] getCommitteeNames() {
+		return committeeNames;
+	}
+
+	public void setCommitteeNames(String[] committeeNames) {
+		this.committeeNames = committeeNames;
+	}
+
 	public String getBtCode() {
 		return btCode;
 	}
@@ -95,6 +105,14 @@ public class BizclubCorpWM implements Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public int getCorpCount() {
+		return corpCount;
+	}
+
+	public void setCorpCount(int corpCount) {
+		this.corpCount = corpCount;
 	}
 
 }
