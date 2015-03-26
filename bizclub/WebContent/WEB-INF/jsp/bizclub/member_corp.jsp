@@ -49,209 +49,7 @@
 			    	</fieldset>
 		    	  </span> 
 	    	</div>
-			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
-				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
-					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
-	          	</div>
-          	</div>
-          	<div class="col-md-12" style="background-color: #fff; ">
-				<div class="col-md-8" style="padding-top: 40px;">
-					<span class="form-horizontal">
-				    	<fieldset>
-					    	<div class="form-group">
-					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เลขบัตรประชาชน: <span style="color: red;">*</span></label>
-					            <div class="col-md-7" style="padding-bottom: 10px;">
-					                 <form:input path="userM.cardId" id="cardId" cssClass="form-control textsize"
-		                 placeholder="เลขบัตรประชาชน" />
-					              
-					            </div>
-					           	<button type="button" onclick="checkCardId()">check</button>
-				            </div>
-				            <div class="form-group">
-					            <div class="col-md-10 col-md-offset-2">
-					            	<span style="color: red; font-weight:bold; float: left;">*</span>
-					            	<div class="col-md-2 radio radio-primary">
-									    <label class="radio-inline">
-									     <form:radiobutton path="userM.titleType" value="1"   checked="true"  />									      <span style="margin-top: -5px; margin-left: 20px;">นาย</span>
-									    </label>
-								    </div>
-								    <div class="col-md-2 radio radio-primary">
-									    <label class="radio-inline">
-									       <form:radiobutton path="userM.titleType" value="2" />		
-									      <span style="margin-top: -5px; margin-left: 20px;">นาง</span>
-									    </label>
-									</div>
-									<div class="col-md-2 radio radio-primary">
-									    <label class="radio-inline">
-									       <form:radiobutton path="userM.titleType" value="3" />		
-									      <span style="margin-top: -5px; margin-left: 20px;">นางสาว</span>
-									    </label>
-								    </div>
-								    <div class="col-md-2 radio radio-primary">
-									    <label class="radio-inline">
-									       <form:radiobutton path="userM.titleType" value="4" />		
-									      <span style="margin-top: -5px; margin-left: 20px; text-align: right;">อื่นๆ(ระบุ)</span>
-									    </label>
-								    </div>
-								    <div class="col-md-3"> 
-								      <form:input path="userM.titleName" cssClass="form-control textsize"
-		                 placeholder=""  /> 
-									 
-									</div>
-							    </div>
-				            </div>
-				            <div class="form-group">
-					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: <span style="color: red;">*</span></label>
-					            <div class="col-md-8" style="padding-bottom: 10px;">
-					               <form:input path="userM.firstName" cssClass="form-control textsize"
-		                 placeholder="ชื่อ"  /> - 
-		                     <form:input path="userM.lastName" cssClass="form-control textsize"
-		                 placeholder="นามสกุล"  />
-					            </div>
-				            </div>
-				               <div class="form-group">
-		            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Password </label>
-		            <div class="col-md-8" style="padding-bottom: 10px;">
-		              <input type="password" id="userM.password" name="userM.password"  value="${userM.password}" class="form-control textsize"/>
-		           <%--   <form: path="userM.password" value="${userM.password}" cssClass="form-control textsize"/>
-		               <input class="form-control textsize" id="bd" value="" type="date">  --%>
-		            </div>
-	            </div>
-				            <div class="form-group">
-					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อเล่น: </label>
-					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:input path="userM.brNickName" cssClass="form-control textsize"
-		                 placeholder="ชื่อเล่น"  /> 
-					             
-					            </div>
-				            </div>
-				            <div class="form-group">
-					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">วัน เดือน ปีเกิด: <span style="color: red;">*</span></label>
-					            <div class="col-md-8" style="padding-bottom: 10px;">
-					             <form:input path="userM.dateOfBirthStr" cssClass="form-control textsize"
-		                 placeholder="วัน เดือน ปีเกิด" type="date" />
-		                  <%--
-					                <input class="form-control textsize" id="Birth" placeholder="วัน เดือน ปีเกิด" type="date">
-					                 --%>
-					            </div>
-				            </div>
-				            <div class="form-group">
-					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์ (มือถือ): <span style="color: red;">*</span></label>
-					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:input path="userM.mobilePhone" cssClass="form-control textsize"
-		                 placeholder="เบอร์โทรศัพท์ (มือถือ)"  /> 
-					               
-					            </div>
-				            </div>
-				            <div class="form-group">
-					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">E-mail: <span style="color: red;">*</span></label>
-					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:input path="userM.email" cssClass="form-control textsize"
-		                 placeholder="E-mail"  /> 
-					            </div>
-				            </div>
-				            <div class="form-group">
-				            	<div class="row">
-				            		<div class="col-md-5 col-md-offset-2">
-							            <label class="col-md-5 control-label" style="padding-bottom: 10px;">Line ID:</label>
-							            <div class="col-md-7" style="padding-bottom: 10px;">
-							              <form:input path="userM.lineId" cssClass="form-control textsize"
-		                 placeholder="Line ID"  /> 
-							            </div>
-						            </div>
-						            <div class="col-md-5">
-						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">Line Name: </label>
-							            <div class="col-md-7" style="padding-bottom: 10px;">
-							              <form:input path="userM.lineName" cssClass="form-control textsize"
-		                 placeholder="Line Name"  /> 
-							            </div>
-						            </div>
-					            </div>
-				            </div>
-				            <div class="form-group">
-				            	<div class="row">
-				            		<div class="col-md-7">
-							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">ที่อยู่ที่สามารถติดต่อได้: <span style="color: red;">*</span></label>
-							            <div class="col-md-5" style="padding-bottom: 10px;">
-							              <form:input path="userM.addressNo" cssClass="form-control textsize"
-		                 placeholder="บ้านเลขที่"  /> 
-							            </div>
-						            </div>
-						            <div class="col-md-5">
-						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">ถนน/ซอย: </label>
-							            <div class="col-md-7" style="padding-bottom: 10px;">
-							              <form:input path="userM.addressName" cssClass="form-control textsize"
-		                 placeholder="ถนน/ซอย"  /> 
-							             
-							            </div>
-						            </div>
-					            </div>
-				            </div>
-				            <div class="form-group">
-				            	<div class="row">
-				            		<div class="col-md-7">
-							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">จังหวัด: <span style="color: red;">*</span></label>
-							            <div class="col-md-5" style="padding-bottom: 10px;">
-							          
-							            <input type="hidden" value="${memberForm.userM.addressProvince}" id="addressProvinceInit" />
-							                <form:select path="userM.addressProvince" id="addressProvince" cssClass="textsize" onchange="loadAddressAmphur(this.value,false)" >
-							                	<%-- <form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>  --%>
-							                	<form:options items="${provinces}" itemValue="provinceId" itemLabel="provinceName"/>
-							                </form:select>
-							            </div>
-						            </div>
-						            <div class="col-md-5">
-						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">อำเภอ/เขต: <span style="color: red;">*</span></label>
-							             <input type="hidden" value="${memberForm.userM.addressDistrict}" id="addressDistrictInit" />
-							              
-							            <div class="col-md-7" style="padding-bottom: 10px;" id="addressDistrictElement">
-							              <form:select path="userM.addressDistrict" id="addressDistrict" onchange="loadAddressDistrict(this.value,false)" cssClass="textsize">
-							                	
-							                </form:select>
-							            </div>
-						            </div>
-					            </div>
-				            </div>
-				            <div class="form-group">
-				            	<div class="row">
-				            		<div class="col-md-7">
-							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">ตำบล/แขวง: <span style="color: red;">*</span></label>
-							           <input type="hidden" value="${memberForm.userM.addressSubDistrict}" id="addressSubDistrictInit" />
-							            
-							            <div class="col-md-5" style="padding-bottom: 10px;"  id="addressSubDistrictElement">
-							            	<form:select path="userM.addressSubDistrict" id="addressSubDistrict" onchange="loadAddressZipcode(this,false)" cssClass="textsize">
-							                	
-							                </form:select>
-							            </div>
-						            </div>
-						            <div class="col-md-5">
-						            	<label class="col-md-6 control-label" style="padding-bottom: 10px;">รหัสไปรษณีย์: <span style="color: red;">*</span></label>
-							            
-							               <input type="hidden" value="${memberForm.userM.addressPostCode}" id="addressPostCodeInit" /> 
-							            <div class="col-md-6" style="padding-bottom: 10px;"  id="addressPostCodeElement">
-							             <%-- <form:input path="userM.addressPostCode" cssClass="form-control textsize"
-		                 placeholder="รหัสไปรษณีย์"  />  --%> 
-		                 				<form:select path="userM.addressPostCode" id="addressPostCode" cssClass="textsize">
-							                	
-							                </form:select>
-							            </div>
-						            </div>
-					            </div>
-				            </div>
-			            </fieldset>
-		            </span>
-	            </div>
-<!-- ---------------------------------------------------- ADD PIX --------------------------------------------------------- -->            
-	            <div class="col-md-4" style="padding:20px 0px 0px 100px;">
-	             <c:if test="${not empty memberForm.userM.profileFileName}">
-			<img class="img-thumbnail"  id="profile"  width="259" height="259" src="<c:url value="/getfile/profile/${memberForm.userM.userId}/xx" />">
-		</c:if>
-		<c:if test="${ empty memberForm.userM.profileFileName}">
-			<img class="img-thumbnail"  id="profile"  width="259" height="259"  src="<c:url value="/resources/register/images/5.png" />" >
-		</c:if>
-	            	 <input type='file' id="profile_upload" name="profile_upload" onchange="readURL(this);" style="font-size: 10px; "/>
-	            </div>
-			</div>
+			
 <!-- -------------------------------------- กรณี เป็นบุคคลธรรมดา/ผู้ประกอบกิจการ(ทั่วไป) ---------------------------------------------------- -->			
 <div hidden="">
 			
@@ -520,7 +318,211 @@
 			            </fieldset>
 		            </span>
 	            </div>
-	            
+	           
+	           <div class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
+				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
+					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
+	          	</div>
+          	</div>
+          	<div class="col-md-12" style="background-color: #fff; ">
+				<div class="col-md-8" style="padding-top: 40px;">
+					<span class="form-horizontal">
+				    	<fieldset>
+					    	<div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เลขบัตรประชาชน: <span style="color: red;">*</span></label>
+					            <div class="col-md-7" style="padding-bottom: 10px;">
+					                 <form:input path="userM.cardId" id="cardId" cssClass="form-control textsize"
+		                 placeholder="เลขบัตรประชาชน" />
+					              
+					            </div>
+					           	<button type="button" onclick="checkCardId()">check</button>
+				            </div>
+				            <div class="form-group">
+					            <div class="col-md-10 col-md-offset-2">
+					            	<span style="color: red; font-weight:bold; float: left;">*</span>
+					            	<div class="col-md-2 radio radio-primary">
+									    <label class="radio-inline">
+									     <form:radiobutton path="userM.titleType" value="1"   checked="true"  />									      <span style="margin-top: -5px; margin-left: 20px;">นาย</span>
+									    </label>
+								    </div>
+								    <div class="col-md-2 radio radio-primary">
+									    <label class="radio-inline">
+									       <form:radiobutton path="userM.titleType" value="2" />		
+									      <span style="margin-top: -5px; margin-left: 20px;">นาง</span>
+									    </label>
+									</div>
+									<div class="col-md-2 radio radio-primary">
+									    <label class="radio-inline">
+									       <form:radiobutton path="userM.titleType" value="3" />		
+									      <span style="margin-top: -5px; margin-left: 20px;">นางสาว</span>
+									    </label>
+								    </div>
+								    <div class="col-md-2 radio radio-primary">
+									    <label class="radio-inline">
+									       <form:radiobutton path="userM.titleType" value="4" />		
+									      <span style="margin-top: -5px; margin-left: 20px; text-align: right;">อื่นๆ(ระบุ)</span>
+									    </label>
+								    </div>
+								    <div class="col-md-3"> 
+								      <form:input path="userM.titleName" cssClass="form-control textsize"
+		                 placeholder=""  /> 
+									 
+									</div>
+							    </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					               <form:input path="userM.firstName" cssClass="form-control textsize"
+		                 placeholder="ชื่อ"  /> - 
+		                     <form:input path="userM.lastName" cssClass="form-control textsize"
+		                 placeholder="นามสกุล"  />
+					            </div>
+				            </div>
+				               <div class="form-group">
+		            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Password </label>
+		            <div class="col-md-8" style="padding-bottom: 10px;">
+		              <input type="password" id="userM.password" name="userM.password"  value="${userM.password}" class="form-control textsize"/>
+		           <%--   <form: path="userM.password" value="${userM.password}" cssClass="form-control textsize"/>
+		               <input class="form-control textsize" id="bd" value="" type="date">  --%>
+		            </div>
+	            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อเล่น: </label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					              <form:input path="userM.brNickName" cssClass="form-control textsize"
+		                 placeholder="ชื่อเล่น"  /> 
+					             
+					            </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">วัน เดือน ปีเกิด: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					             <form:input path="userM.dateOfBirthStr" cssClass="form-control textsize"
+		                 placeholder="วัน เดือน ปีเกิด" type="date" />
+		                  <%--
+					                <input class="form-control textsize" id="Birth" placeholder="วัน เดือน ปีเกิด" type="date">
+					                 --%>
+					            </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์ (มือถือ): <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					              <form:input path="userM.mobilePhone" cssClass="form-control textsize"
+		                 placeholder="เบอร์โทรศัพท์ (มือถือ)"  /> 
+					               
+					            </div>
+				            </div>
+				            <div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">E-mail: <span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
+					              <form:input path="userM.email" cssClass="form-control textsize"
+		                 placeholder="E-mail"  /> 
+					            </div>
+				            </div>
+				            <div class="form-group">
+				            	<div class="row">
+				            		<div class="col-md-5 col-md-offset-2">
+							            <label class="col-md-5 control-label" style="padding-bottom: 10px;">Line ID:</label>
+							            <div class="col-md-7" style="padding-bottom: 10px;">
+							              <form:input path="userM.lineId" cssClass="form-control textsize"
+		                 placeholder="Line ID"  /> 
+							            </div>
+						            </div>
+						            <div class="col-md-5">
+						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">Line Name: </label>
+							            <div class="col-md-7" style="padding-bottom: 10px;">
+							              <form:input path="userM.lineName" cssClass="form-control textsize"
+		                 placeholder="Line Name"  /> 
+							            </div>
+						            </div>
+					            </div>
+				            </div>
+				            <div class="form-group">
+				            	<div class="row">
+				            		<div class="col-md-7">
+							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">ที่อยู่ที่สามารถติดต่อได้: <span style="color: red;">*</span></label>
+							            <div class="col-md-5" style="padding-bottom: 10px;">
+							              <form:input path="userM.addressNo" cssClass="form-control textsize"
+		                 placeholder="บ้านเลขที่"  /> 
+							            </div>
+						            </div>
+						            <div class="col-md-5">
+						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">ถนน/ซอย: </label>
+							            <div class="col-md-7" style="padding-bottom: 10px;">
+							              <form:input path="userM.addressName" cssClass="form-control textsize"
+		                 placeholder="ถนน/ซอย"  /> 
+							             
+							            </div>
+						            </div>
+					            </div>
+				            </div>
+				            <div class="form-group">
+				            	<div class="row">
+				            		<div class="col-md-7">
+							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">จังหวัด: <span style="color: red;">*</span></label>
+							            <div class="col-md-5" style="padding-bottom: 10px;">
+							          
+							            <input type="hidden" value="${memberForm.userM.addressProvince}" id="addressProvinceInit" />
+							                <form:select path="userM.addressProvince" id="addressProvince" cssClass="textsize" onchange="loadAddressAmphur(this.value,false)" >
+							                	<%-- <form:option value="กรุงเทพมหานคร">กรุงเทพมหานคร</form:option>  --%>
+							                	<form:options items="${provinces}" itemValue="provinceId" itemLabel="provinceName"/>
+							                </form:select>
+							            </div>
+						            </div>
+						            <div class="col-md-5">
+						            	<label class="col-md-5 control-label" style="padding-bottom: 10px;">อำเภอ/เขต: <span style="color: red;">*</span></label>
+							             <input type="hidden" value="${memberForm.userM.addressDistrict}" id="addressDistrictInit" />
+							              
+							            <div class="col-md-7" style="padding-bottom: 10px;" id="addressDistrictElement">
+							              <form:select path="userM.addressDistrict" id="addressDistrict" onchange="loadAddressDistrict(this.value,false)" cssClass="textsize">
+							                	
+							                </form:select>
+							            </div>
+						            </div>
+					            </div>
+				            </div>
+				            <div class="form-group">
+				            	<div class="row">
+				            		<div class="col-md-7">
+							            <label class="col-md-7 control-label" style="padding-bottom: 10px;">ตำบล/แขวง: <span style="color: red;">*</span></label>
+							           <input type="hidden" value="${memberForm.userM.addressSubDistrict}" id="addressSubDistrictInit" />
+							            
+							            <div class="col-md-5" style="padding-bottom: 10px;"  id="addressSubDistrictElement">
+							            	<form:select path="userM.addressSubDistrict" id="addressSubDistrict" onchange="loadAddressZipcode(this,false)" cssClass="textsize">
+							                	
+							                </form:select>
+							            </div>
+						            </div>
+						            <div class="col-md-5">
+						            	<label class="col-md-6 control-label" style="padding-bottom: 10px;">รหัสไปรษณีย์: <span style="color: red;">*</span></label>
+							            
+							               <input type="hidden" value="${memberForm.userM.addressPostCode}" id="addressPostCodeInit" /> 
+							            <div class="col-md-6" style="padding-bottom: 10px;"  id="addressPostCodeElement">
+							             <%-- <form:input path="userM.addressPostCode" cssClass="form-control textsize"
+		                 placeholder="รหัสไปรษณีย์"  />  --%> 
+		                 				<form:select path="userM.addressPostCode" id="addressPostCode" cssClass="textsize">
+							                	
+							                </form:select>
+							            </div>
+						            </div>
+					            </div>
+				            </div>
+			            </fieldset>
+		            </span>
+	            </div>
+<!-- ---------------------------------------------------- ADD PIX --------------------------------------------------------- -->            
+	            <div class="col-md-4" style="padding:20px 0px 0px 100px;">
+	             <c:if test="${not empty memberForm.userM.profileFileName}">
+			<img class="img-thumbnail"  id="profile"  width="259" height="259" src="<c:url value="/getfile/profile/${memberForm.userM.userId}/xx" />">
+		</c:if>
+		<c:if test="${ empty memberForm.userM.profileFileName}">
+			<img class="img-thumbnail"  id="profile"  width="259" height="259"  src="<c:url value="/resources/register/images/5.png" />" >
+		</c:if>
+	            	 <input type='file' id="profile_upload" name="profile_upload" onchange="readURL(this);" style="font-size: 10px; "/>
+	            </div>
+			</div>
+			 
 	            <div class="form-group" style="padding-top: 50px;">
 	            <div class="col-md-10 col-md-offset-4">
 	                <button type="reset" class="btn btn-default" style="font-weight: bold; font-size: 24px;">ยกเลิก</button>
@@ -587,7 +589,7 @@
      			 }
         	   
         	});
-            
+           
       });
 </script>
 <script>
@@ -613,19 +615,19 @@ $(document).ready(function() {
 	
 	loadAddressAmphur($("#addressProvince").val(),true);
 	initCorpGroup();
-	resetbizclubtype();
-	//resetFormBizclubType();
-	$("#bizclubtype_"+corpType).show();
-	$("#group_biz_element").show();
-	$("#group_biz_detail_element").show();
-	if(corpType=='4'){
-		showForStaft(false);
-	}else
-		showForStaft(true);
-	if(corpType=='4' || corpType=='3' ){
-		$("#group_biz_element").hide();
-		$("#group_biz_detail_element").hide();
-	}
+	 resetbizclubtype();
+ 	//resetFormBizclubType();
+ 	$("#bizclubtype_"+corpType).show();
+ 	$("#group_biz_element").show();
+ 	$("#group_biz_detail_element").show();
+ 	if(corpType=='4'){
+ 		showForStaft(false);
+ 	}else
+ 		showForStaft(true);
+ 	if(corpType=='4' || corpType=='3' ){
+ 		$("#group_biz_element").hide();
+ 		$("#group_biz_detail_element").hide();
+ 	}
 	 //showbizclubtype(corpType);
 });
 function initCorpGroup(){
@@ -1053,6 +1055,7 @@ function resetFormBizclubType(){
 	  $("#personCorpName").val("");
 }
 function showbizclubtype(type){
+	
 	window.location.href="<c:url value='/bizmem/get/"+${memberForm.userM.userId}+"/"+type+"'/>";
 	
 }

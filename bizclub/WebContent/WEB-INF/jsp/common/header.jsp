@@ -48,7 +48,7 @@
 					     	<ul>  
 					            <li><a href='<c:url value="/member" />'>ข้อมูลสมาชิกทั้งหมด</a></li>  
 					            <li><a href='<c:url value="/bizmem" />'>ข้อมูลส่วนตัว</a></li>  
-					            <li><a href="#">ข้อมูลสินค้า/บริการ</a></li>  
+					            <li><a href='<c:url value="/product/itemlist" />'>ข้อมูลสินค้า/บริการ</a></li>  
 				        	</ul>  
 					     </li>
 					     </c:if>

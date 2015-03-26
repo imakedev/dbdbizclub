@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,11 +49,23 @@ public class RegisterController {
 	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public String getNewForm(HttpServletRequest request,HttpServletResponse response,  Model model)
     {
-		model.addAttribute("registerForm", new RegisterForm());
+		 return "redirect:/register/1";
+    }
+	 
+	@RequestMapping(value={"/{corpType}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String selectPage(@PathVariable String corpType,  Model model)
+    {
+		RegisterForm registerForm=new RegisterForm();
+		registerForm.getBizclubRegisterM().setCorpType(corpType);
+		model.addAttribute("registerForm",registerForm );
 		model.addAttribute("provinces", bizClubService.listProvince());
 		//model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
 		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
-        return "bizclub/register";
+		if(corpType.equals("1") || corpType.equals("2")){
+			return "bizclub/register_corp";
+		}else
+			return "bizclub/register";
+          
     }
 	@RequestMapping(value={"/action"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
     public String action(HttpServletRequest request,HttpServletResponse response,  @ModelAttribute(value="registerForm") RegisterForm registerForm, BindingResult result, Model model)

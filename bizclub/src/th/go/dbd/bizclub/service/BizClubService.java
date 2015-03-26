@@ -51,6 +51,7 @@ public interface BizClubService {
 	public List<BizclubAssetM> searchBizclubAssetByCenter(BizclubAssetM bizclubAssetM) ;
 	
 	public BizclubCorpWM findBizclubCorpWById(String corpId,String corpType) ;
+	public String checkExist(String corpId,String corpType) ;
 	
 	public List<BizclubProvinceCenterM> listProvinceCenter() ;
 	public List<BizclubCenterM> listBizclubCenter() ;

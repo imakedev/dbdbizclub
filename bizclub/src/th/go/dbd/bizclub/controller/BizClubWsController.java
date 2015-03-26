@@ -33,8 +33,8 @@ public class BizClubWsController {
 		BizclubCorpWM bizclubCorpWM=new BizclubCorpWM();	
 		
 	try{
-		//String certPath="/aoe"; //
-		String certPath="/Users/imake/Desktop";
+		String certPath="/aoe"; //
+	//	String certPath="/Users/imake/Desktop";
 		System.setProperty("java.protocol.handler.pkgs","com.sun.net.ssl.internal.www.protocol");
 		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 		System.setProperty("javax.net.ssl.keyStoreType", "pkcs12");
@@ -84,7 +84,12 @@ public class BizClubWsController {
 	    {
 		 return bizClubService.findBizclubCorpWById(corpId,corpType) ;
 	    }
-	
+	@RequestMapping(value={"/check/{corpId}/{corpType}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String checkExist(@PathVariable String corpId,@PathVariable String corpType,Model model)
+	    {
+		  
+		 return bizClubService.checkExist(corpId,corpType) ;
+	    }	
 	@RequestMapping(value={"/addr/amphur/{provinceId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<AmphurM> getDistrict(@PathVariable Integer provinceId,Model model)
 	    {

@@ -65,14 +65,33 @@ public class MemberController {
     public String getMemeber(@PathVariable Integer userId,Model model)
     {
 		//MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		MemberForm memberForm=new MemberForm();	
-		memberForm.setUserM( bizClubService.findUserById(userId));
+		//MemberForm memberForm=new MemberForm();	
+		UserM userM=bizClubService.findUserById(userId);
+		/*memberForm.setUserM(userM );
 
 		model.addAttribute("provinces", bizClubService.listProvince());
 		//model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
 		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
+        model.addAttribute("memberForm", memberForm);*/
+        return "redirect:/bizmem/get/"+userId+"/"+userM.getCorpType();
+    }
+	
+	@RequestMapping(value={"/get/{userId}/{corpType}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String getMemeberByPage(@PathVariable Integer userId,@PathVariable String corpType,Model model)
+    {
+		//MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		MemberForm memberForm=new MemberForm();	
+		memberForm.setUserM( bizClubService.findUserById(userId));
+		memberForm.getUserM().setCorpType(corpType);
+		model.addAttribute("provinces", bizClubService.listProvince());
+		//model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
         model.addAttribute("memberForm", memberForm);
-        return "bizclub/member";
+        if(corpType.equals("1") || corpType.equals("2")){
+			return "bizclub/member_corp";
+		}else
+			return "bizclub/member";
+       // return "bizclub/member";
     }
 	@RequestMapping(value={"/update"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
     public String update(HttpServletRequest request,HttpServletResponse response,  @ModelAttribute(value="memberForm") MemberForm memberForm, BindingResult result, Model model)

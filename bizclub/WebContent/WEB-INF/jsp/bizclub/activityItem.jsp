@@ -175,7 +175,15 @@
 					</div>
 		      		<div class="col-md-12">
 		      			<div class="col-md-3 col-md-offset-1">
+		      			 <c:if test="${not empty bizclubOwner.logoPath}">
+								            <img  class="img-thumbnail"  width="259" height="259" src="<c:url value="/getfile/logo/${bizclubOwner.userId}/xxx" />" alt="icon">
+								            </c:if>
+								            <c:if test="${ empty bizclubOwner.logoPath}">
+								              <img  class="img-thumbnail"  width="259" height="259" s src="<c:url value="/resources/register/images/img_logo.png" />" alt="icon">
+								            </c:if>
+					<%--
 							<img class="img-thumbnail" id="profile" width="259" height="259"  src="<c:url value="/resources/register/images/5.png" />" >
+							 --%>
 						</div>
 						
 						<div class="col-md-8">
@@ -184,68 +192,75 @@
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">
-						              <input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						              <input class="form-control textsize" id="" value="${bizclubOwner.firstName} ${bizclubOwner.lastName}" type="text" disabled="disabled">
 						          
 									   </div>
 					            </div>
+					            <%-- 
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อธุรกิจ: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">
 						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
 						            </div>
 					            </div>
+					            --%>
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">สินค้า/บริการ: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">
-						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						             	<input class="form-control textsize" id="" value="${bizclubOwner.services}" type="text" disabled="disabled">
 						            </div>
 					            </div>
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ประเภทธุรกิจ: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">
-						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						             	<input class="form-control textsize" id="" value="${bizclubOwner.corpGroupIdShow}" type="text" disabled="disabled">
 						            </div>
 					            </div>
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Facebook: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">
-						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						             	<input class="form-control textsize" id="" value="${bizclubOwner.facebook}" type="text" disabled="disabled">
 						            </div>
 					            </div>
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Website: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">
-						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						             	<input class="form-control textsize" id="" value="${bizclubOwner.website}" type="text" disabled="disabled">
 						            </div>
 					            </div>
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ที่อยู่: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">
-						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						               <textarea rows="3" cols="2" style="width:100%" disabled="disabled">${bizclubOwner.addressNo} ${bizclubOwner.addressName} ${bizclubOwner.addressSubDistrictShow} ${bizclubOwner.addressDistrictShow} ${bizclubOwner.addressProvinceShow} ${bizclubOwner.addressPostCodeShow}
+						               </textarea>
+						               <%--
+						             	<input class="form-control textsize" id="" value=""  type="text" disabled="disabled">
+						             	 --%>
 						            </div>
 					            </div>
+					            
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">จังหวัด: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">
-						             	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						             	<input class="form-control textsize" id="" value="${bizclubOwner.bizclubProvinceShow}" type="text" disabled="disabled">
 						            </div>
 					            </div>
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">
-						            	<input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						            	<input class="form-control textsize" id="" value="${bizclubOwner.mobilePhone}" type="text" disabled="disabled">
 						            </div>
 					            </div>
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Email: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">
-						                <input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						                <input class="form-control textsize" id="" value="${bizclubOwner.email}" type="text" disabled="disabled">
 						            </div>
 					            </div>
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Line ID: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">
-						                <input class="form-control textsize" id="" value="" type="text" disabled="disabled">
+						                <input class="form-control textsize" id="" value="${bizclubOwner.lineId}" type="text" disabled="disabled">
 						            </div>
 					            </div>
 				            </fieldset>
@@ -319,6 +334,13 @@
 		<div class="col-md-8">
 		<span class="form-horizontal">
 		    <fieldset>
+		     <div id="store_element" class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อร้าน: </label>
+		            <div class="col-md-6" style="padding-bottom: 10px;">
+		              <input class="form-control textsize" id="mcorpName" value="" type="text" disabled="disabled">
+		          
+					   </div>
+	            </div>
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: </label>
 		            <div class="col-md-6" style="padding-bottom: 10px;">
@@ -429,6 +451,23 @@ function URLitem(input) {
     		  .done(function( msg ) {
     		   // alert( "Data Saved: " + msg.addressDistrict );
     		    // $("#id_member").val(msg.userId);
+    		     if( msg.corpType ) {
+    		    //	 alert(msg.corpType)
+    		    var corpname="";
+    		        if(msg.corpType=='1')
+    		        	corpname=msg.corpName;
+    		        else  if(msg.corpType=='2')
+    		        	corpname=msg.taxesCorpName;
+    		        else  if(msg.corpType=='3')
+    		        	corpname=msg.personCorpName;
+    		        else  if(msg.corpType=='3')
+    		        	  $("#store_element").hide();
+    		    	
+    	    	     $("#mcorpName").val(msg.corpName); 
+    		    }else{
+    		    	  $("#store_element").hide();
+    		    }
+    		  
     		    $("#mfacebook").val(msg.facebook);
     		    $("#mfirstName").val(msg.firstName +" "+msg.lastName);
     		   // $("#mlastName").val(msg.lastName);

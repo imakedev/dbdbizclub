@@ -365,6 +365,13 @@
 		            </div>   
 	            </div>
 	            --%>
+	               <div id="store_element" class="form-group">
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อร้าน: </label>
+		            <div class="col-md-6" style="padding-bottom: 10px;">
+		              <input class="form-control textsize" id="mcorpName" value="" type="text" disabled="disabled">
+		          
+					   </div>
+	            </div>
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: </label>
 		            <div class="col-md-6" style="padding-bottom: 10px;">
@@ -401,7 +408,7 @@
 		               
 		            </div>
 	            </div>
-	            <%--
+	           
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Facebook: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
@@ -416,6 +423,7 @@
 		          
 		            </div>
 	            </div>
+	             <%--
 	            <div class="form-group">
 		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ชื่อ Line: </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
@@ -456,6 +464,7 @@
     	  window.location.href="<c:url value='/product/promote/"+baId+"'/>";
       }
       function showMemeber(uid){
+    	  $("#store_element").show();
     	  $.ajax({
     		  type: "GET",
     		  contentType : 'application/json; charset=utf-8',
@@ -465,7 +474,24 @@
     		  .done(function( msg ) {
     		   // alert( "Data Saved: " + msg.addressDistrict );
     		    // $("#id_member").val(msg.userId);
-    		  //  $("#mfacebook").val(msg.facebook);
+    		    if( msg.corpType ) {
+    		    //	 alert(msg.corpType)
+    		    var corpname="";
+    		        if(msg.corpType=='1')
+    		        	corpname=msg.corpName;
+    		        else  if(msg.corpType=='2')
+    		        	corpname=msg.taxesCorpName;
+    		        else  if(msg.corpType=='3')
+    		        	corpname=msg.personCorpName;
+    		        else  if(msg.corpType=='3')
+    		        	  $("#store_element").hide();
+    		    	
+    	    	     $("#mcorpName").val(msg.corpName); 
+    		    }else{
+    		    	  $("#store_element").hide();
+    		    }
+    		  
+    		    $("#mfacebook").val(msg.facebook);
     		    $("#mfirstName").val(msg.firstName +" "+msg.lastName);
     		   // $("#mlastName").val(msg.lastName);
     		  //  $("#mnickName").val(msg.nickName);
@@ -475,7 +501,7 @@
     		    $("#mwebsite").val(msg.website);
     		    $("#memail").val(msg.email);
     		    $("#mmobile").val(msg.mobilePhone);
-    		    //$("#mlineID").val(msg.lineId);
+    		    $("#mlineID").val(msg.lineId);
     		    //$("#mlineName").val(msg.lineName);
     		           
     		    if(msg.profileFileName!=null && msg.profileFileName.length>0){
@@ -483,7 +509,7 @@
    		    	 }else{
    		    		 $("#profile").attr("src",'<c:url value="/resources/register/images/img_logo.png" />');
    		    	 }
-   		    
+    		  
     		   //  $("#brId").val(brId);
     		    //$("#cardId_modal").val(msg.cardId);
     		  

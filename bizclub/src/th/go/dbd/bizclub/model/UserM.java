@@ -13,6 +13,26 @@ public class UserM implements Serializable {
 	private String searchType;
 	private String searchForm;
 	private String searchUserType;
+	private String searchProvinceCenter;
+	public String getSearchProvinceCenter() {
+		return searchProvinceCenter;
+	}
+
+	public void setSearchProvinceCenter(String searchProvinceCenter) {
+		this.searchProvinceCenter = searchProvinceCenter;
+	}
+
+	
+	private String corpGroupIdShow;
+	
+	public String getCorpGroupIdShow() {
+		return corpGroupIdShow;
+	}
+
+	public void setCorpGroupIdShow(String corpGroupIdShow) {
+		this.corpGroupIdShow = corpGroupIdShow;
+	}
+
 	public String getSearchUserType() {
 		return searchUserType;
 	}

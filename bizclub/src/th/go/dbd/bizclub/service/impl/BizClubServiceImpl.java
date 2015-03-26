@@ -99,6 +99,16 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 			BeanUtils.copyProperties(user.getRole() , roleM);
 			userM.setRole(roleM);
 		}
+		StringBuffer sb=new StringBuffer();
+		if(user.getCorpGroupId()!=null && user.getCorpGroupId().length()>0){
+			String[] corpGroupIds=user.getCorpGroupId().split("-");
+			if(corpGroupIds!=null && corpGroupIds.length>0){
+				for (int i = 0; i < corpGroupIds.length; i++) {
+					sb.append(corpGroupIdMap.get(corpGroupIds[i])+" ");
+				}
+			}
+		}
+		userM.setCorpGroupIdShow(sb.toString());
 	//	System.out.println("role=>"+user.getRole());
 		return userM;
 	}
@@ -338,6 +348,12 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		return bizclubCorpWM;
 	}
 
+	@Override
+	public String checkExist(String corpId,String corpType) {
+		// TODO Auto-generated method stub
+		 return String.valueOf(bizClubRepository.checkExist(corpId,corpType));
+	}
+	
 
 	@Override
 	public List<BizclubProvinceCenterM> listProvinceCenter() {
