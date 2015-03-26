@@ -60,6 +60,9 @@ public class User implements Serializable {
     
 	@Transient
 	private String searchForm;
+
+	@Transient
+	private String searchProvinceCenter;
 	
 	@Transient
 	private String addressDistrictShow;
@@ -75,6 +78,14 @@ public class User implements Serializable {
 	private String searchUserType;
 	public String getSearchUserType() {
 		return searchUserType;
+	}
+
+	public String getSearchProvinceCenter() {
+		return searchProvinceCenter;
+	}
+
+	public void setSearchProvinceCenter(String searchProvinceCenter) {
+		this.searchProvinceCenter = searchProvinceCenter;
 	}
 
 	public void setSearchUserType(String searchUserType) {

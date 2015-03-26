@@ -43,6 +43,7 @@ public class UserController {
     	UserForm userForm=new UserForm() ;
     	userForm.setSearchUserType("3");
         model.addAttribute("userForm",userForm);
+        model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
         return "bizclub/searchmember";
     }
 	 @RequestMapping(value={"/delete/{userId}"},method = RequestMethod.GET)
@@ -60,6 +61,7 @@ public class UserController {
        String keyworkd=userForm.getKeyword();
        String searchForm= userForm.getSearchForm();
        String searchType= userForm.getSearchType();
+       String searchProvinceCenter= userForm.getSearchProvinceCenter();
        String searchUserType= userForm.getSearchUserType();
        System.out.println("searchForm->"+searchForm);
        System.out.println("searchType->"+searchType);
@@ -94,6 +96,7 @@ public class UserController {
        
         model.addAttribute("users", bizClubService.searchUser(userM)); 
         model.addAttribute("userForm", userForm);
+        model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
         return "bizclub/searchmember";
     }
 

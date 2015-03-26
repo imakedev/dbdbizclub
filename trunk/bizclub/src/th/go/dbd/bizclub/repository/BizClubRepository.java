@@ -170,7 +170,8 @@ public class BizClubRepository {
 	public List<User> searchUserByCenter(User user) {
 		StringBuffer sb=new StringBuffer("select u from User u where u.userId!=1 ");
 		sb.append("  and u.bizclubProvince='"+user.getBizclubProvince()+"'");
-		sb.append(" order by u.updatedDate desc ");
+		sb.append(" order by u.corpType asc , u.corpName asc  ");
+		//sb.append(" order by u.updatedDate desc ");d
 		Query query=entityManager.createQuery(sb.toString(), User.class);
 		
 		return query.getResultList();
@@ -200,6 +201,10 @@ public class BizClubRepository {
 			if(user.getServices()!=null && user.getServices().length()>0){
 				sb.append(" and u.services like '%"+user.getServices().trim()+"%'");
 			}
+			if(user.getSearchProvinceCenter()!=null && user.getSearchProvinceCenter().length()>0){
+				sb.append(" and u.bizclubProvince="+user.getSearchProvinceCenter().trim()+"");
+			}
+				
 			if(user.getSearchForm()!=null && user.getSearchForm().equals("0") ){
 				if( user.getKeyworkd()!=null && user.getKeyworkd().trim().length()>0 )
 					sb.append(" and ( u.cardId like '%"+user.getKeyworkd().trim()+"%'  or  "
@@ -210,7 +215,8 @@ public class BizClubRepository {
 			}
 		}
 		System.out.println(sb.toString());
-		sb.append(" order by u.updatedDate desc ");
+		sb.append(" order by u.firstName asc ");
+		//sb.append(" order by u.updatedDate desc ");
 		Query query=entityManager.createQuery(sb.toString(), User.class);
 		
 		return query.getResultList();
@@ -446,6 +452,38 @@ public class BizClubRepository {
 		else
 			return null;
 	}
+	public int checkExist(String corpId,String corpType) {
+		//return entityManager.find(BizclubCorpW.class,corpId );
+		StringBuffer sb=new StringBuffer();
+		sb.append("select count(u) from User u where u.userName=:corpId ");
+		Query query=entityManager.createQuery( sb.toString());
+		query.setParameter("corpId", corpId);
+		 java.lang.Long count=( java.lang.Long)query.getSingleResult();
+		if(count>0){
+			return count.intValue();
+		}else{
+			sb.setLength(0);
+			if(corpType.equals("1")){ // CorpbizclubRegisterM.corpId
+				sb.append("select count(u) from BizclubRegister u where u.corpId=:corpId ");
+						
+			}else if(corpType.equals("2")){ // CorpbizclubRegisterM.corpId
+				sb.append("select count(u) from BizclubRegister u where u.taxesId=:corpId ");
+						
+			}else if(corpType.equals("3")){ // CorpbizclubRegisterM.corpId
+				sb.append("select count(u) from BizclubRegister u where u.cardId=:corpId ");
+						
+			}else if(corpType.equals("4")){ // CorpbizclubRegisterM.corpId
+				sb.append("select count(u) from BizclubRegister u where u.cardId=:corpId ");
+						
+			}
+			query=entityManager.createQuery( sb.toString());
+			query.setParameter("corpId", corpId);
+			 count=(Long)query.getSingleResult();
+			return count.intValue();
+		}
+	 // return 0;	
+	}
+	
 	
 	public List<BizclubProvinceCenter> listProvinceCenter() {
 		// TODO Auto-generated method stub 

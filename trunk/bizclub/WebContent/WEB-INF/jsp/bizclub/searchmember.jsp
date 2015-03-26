@@ -16,8 +16,8 @@
 		    		<div class="form-group col-md-2">
 		    			<label for="select" class="col-md-4 control-label">กลุ่ม:</label>
 				    	<div class="col-md-8">
-				          	<form:select path="searchUserType" cssClass="form-control textsize" >
-				          		<form:option value="0" label="ทั้งหมด" />
+				          	<form:select path="searchUserType" cssClass="textsize" >
+				          	 <%--	<form:option value="0" label="ทั้งหมด" />  --%>
 		                	  	<form:option value="3" label="สมาชิก" />
 		                	  	<form:option value="2" label="เจ้าหน้าที่" />
 				            </form:select>
@@ -26,18 +26,17 @@
 		        	<div class="form-group col-md-2">
 		    			<label for="select" class="col-md-5 control-label">จังหวัด:</label>
 				    	<div class="col-md-7">
-				          	<form:select path="searchUserType" cssClass="form-control textsize" >
-				          		<form:option value="0" label="ทั้งหมด" />
-		                	  	<form:option value="3" label="สมาชิก" />
-		                	  	<form:option value="2" label="เจ้าหน้าที่" />
-				            </form:select>
+				    	<form:select path="searchProvinceCenter" cssClass="textsize" cssStyle="width:80px">
+				    	            <form:option value="0" label="ทั้งหมด" />
+					             	 <form:options items="${provinceCenters}" itemValue="bcId" itemLabel="bcProviceName"/>
+						</form:select>
 				        </div>
 		        	</div>
 		    		<div class="col-md-3">
 				    	<div class="form-group">
 				            <label for="select" class="col-md-6 col control-label">ประเภทธุรกิจ:</label>
 				            <div class="col-md-6"> 
-				               <form:select path="searchType" cssClass="form-control textsize"  >
+				               <form:select path="searchType" cssClass="textsize"  >
 				                	 <form:option value="0" label="ทั้งหมด" />
 				                	 <form:option value="1" label="ผู้ผลิต" />
 				                	 <form:option value="2" label="ธุรกิจบริการ" />
@@ -53,7 +52,7 @@
 			        <div class="form-group col-md-3">
 			            <label for="select" class="col-md-5 control-label">ค้นหาจาก:</label>
 			            <div class="col-md-4">
-			                <form:select path="searchForm" cssClass="form-control textsize"> 
+			                <form:select path="searchForm" cssClass="textsize"> 
 			                  <form:option value="0" label="ทั้งหมด" />
 			                 <%-- <form:option value="1" label="เลขที่สมาชิก" />  --%>
 							 <%-- <form:option value="2" label="เลขบัตรประชาชน" /> --%>

@@ -15,6 +15,7 @@ public class UserForm extends CommonForm implements Serializable {
 	private String searchForm;
 	private String searchType;
 	private String searchUserType;
+	private String searchProvinceCenter;
 	public String getSearchUserType() {
 		return searchUserType;
 	}
@@ -52,6 +53,12 @@ public class UserForm extends CommonForm implements Serializable {
 	}
 	public void setSearchType(String searchType) {
 		this.searchType = searchType;
+	}
+	public String getSearchProvinceCenter() {
+		return searchProvinceCenter;
+	}
+	public void setSearchProvinceCenter(String searchProvinceCenter) {
+		this.searchProvinceCenter = searchProvinceCenter;
 	}
 	
 }
