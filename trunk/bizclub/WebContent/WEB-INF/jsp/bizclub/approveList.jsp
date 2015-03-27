@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
 
-<div style="background:#5E3752; padding:20px 0 20px 0;">
+<div style="background:#5E3752; padding:50px 0 20px 0;">
 	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
 	      <div class="row">
 	      	<div class="span8 offset2">

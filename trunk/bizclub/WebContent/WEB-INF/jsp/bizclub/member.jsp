@@ -3,12 +3,12 @@
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <sec:authorize access="hasAnyRole('ROLE_STAFF')" var="isStaff"/>
 <!-- -------------------------------------------------BODY------------------------------------------------------------------------------- -->
-<div style="background:#58047d; padding:20px 0 20px 0;">
+<div style="background:#5E3752; padding:0px 0 20px 0;">
 	<div class="row">
 	<c:url var="post_url"  value="/bizmem/update" />
 	
 		<form:form   id="memberForm" name="memberForm" modelAttribute="memberForm"    method="post" action="${post_url}" enctype="multipart/form-data">
-		<div class="col-md-10 col-md-offset-1" style="padding-top: 40px; padding-bottom: 40px;">
+		<div class="col-md-10 col-md-offset-1" style="padding-top: 0px; padding-bottom: 40px;">
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;">
 				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
 					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-communication-contacts"></i> สถานะทางธุรกิจ</p>
@@ -110,7 +110,7 @@
 					            </div>
 				            </div>
 				               <div class="form-group">
-		            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Password </label>
+		            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Password(แก้ไข): </label>
 		            <div class="col-md-8" style="padding-bottom: 10px;">
 		              <input type="password" id="userM.password" name="userM.password"  value="${userM.password}" class="form-control textsize"/>
 		           <%--   <form: path="userM.password" value="${userM.password}" cssClass="form-control textsize"/>
@@ -128,11 +128,29 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">วัน เดือน ปีเกิด: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					             <form:input path="userM.dateOfBirthStr" cssClass="form-control textsize"
-		                 placeholder="วัน เดือน ปีเกิด" type="date" />
-		                  <%--
-					                <input class="form-control textsize" id="Birth" placeholder="วัน เดือน ปีเกิด" type="date">
-					                 --%>
+<%-- 					             <form:input path="userM.dateOfBirthStr" cssClass="form-control textsize" --%>
+<%-- 		                 placeholder="วัน เดือน ปีเกิด" type="date" /> --%>
+									<div class="col-md-2">
+										<select class="form-control textsize" id="select">
+						                    <option>วัน</option>
+						                    <option>1</option>
+						                    <option>2</option>
+						                </select>
+					                </div>
+					                <div class="col-md-3">
+						                <select class="form-control textsize" id="select">
+						                    <option>เดือน</option>
+						                    <option>มกราคม</option>
+						                    <option>กุมภาพันธ์</option>
+						                </select>
+					                </div>
+					                <div class="col-md-3">
+						                <select class="form-control textsize" id="select">
+						                    <option>ปี</option>
+						                    <option>2557</option>
+						                    <option>2556</option>
+						                </select>
+					                </div>
 					            </div>
 				            </div>
 				            <div class="form-group">

@@ -2,16 +2,16 @@
 <%@ include file="/WEB-INF/jsp/includes.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
-<div style="background:#5E3752; padding:20px 0 20px 0;">
+<div style="background:#5E3752; padding:50px 0 20px 0;">
 	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
 	      <div class="row">
 	      	<div class="col-md-3" style="margin-right: 10px;">
 	      		<div style="font-size: 22px;">
-					<ul class="v_menu">
+					<ul class="v_menu col-md-12">
 					   <c:if test="${not empty provinceCenters}"> 
         	 				<c:forEach items="${provinceCenters}" var="provinceCenter" varStatus="loop"> 
         	 				<c:if test="${provinceCenter.bcId==bcId}">
-        	 					<li class="active"><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />'>${provinceCenter.bcProviceName}</a></li>
+        	 					<li class="active"><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />' style="color:#fff;">${provinceCenter.bcProviceName}</a></li>
         	 				</c:if>
         	 				<c:if test="${provinceCenter.bcId!=bcId}">
         	 					<li><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />'>${provinceCenter.bcProviceName}</a></li>
@@ -25,7 +25,7 @@
 		      <div class="jumbotron">
 		      	<div class="row">
 			      	<div class="col-md-4" style="background-color: #fbcb04; box-shadow: 1px 7px 15px #000; ">
-						<div style="text-align: left;  color: #fff; font-size: 28px; font-weight: bold;">จำนวนร้านค้า ${bizclubCenter.bcMemberSize} ราย</div>
+						<div style="text-align: left;  color: #fff; font-size: 28px; font-weight: bold;">จำนวนสมาชิก ${bizclubCenter.bcMemberSize} ราย</div>
 					</div>
 		      		<div class="col-md-12">
 		      			<div class="list-group">

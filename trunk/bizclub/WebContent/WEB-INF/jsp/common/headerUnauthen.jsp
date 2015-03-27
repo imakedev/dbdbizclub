@@ -23,7 +23,7 @@
 <title>Bizclub</title>
 </head>
 <body>
-<c:url value="/register" var="registerUrl" />"
+<c:url value="/register" var="registerUrl" />
 <script>
   function goRegister(){
     	  window.location.href="${registerUrl}";

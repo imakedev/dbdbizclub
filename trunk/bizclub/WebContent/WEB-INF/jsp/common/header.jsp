@@ -96,7 +96,7 @@
 			    </div>
 			</div>
 		</div>
-	    <div class="col-md-6 col-md-offset-3 hidden-xs" style="margin-top: -25px;">
+	    <div class="col-md-6 col-md-offset-3 hidden-xs">
 			<div class="form-group">
 			    <div class="input-group style-5">
 			        <input type="search" placeholder="search">

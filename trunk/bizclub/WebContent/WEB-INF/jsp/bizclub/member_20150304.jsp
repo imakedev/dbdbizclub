@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
 
-<div style="background:#5E3752; padding:20px 0 20px 0;">
+<div style="background:#5E3752; padding:0px 0 20px 0;">
 	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
 	<div class="col-md-9 col-md-offset-1" style="font-weight: bold; font-size: 32px; margin-bottom: 30px; text-align: center;">ข้อมูลสมาชิก
 	<div class="list-group">
@@ -49,7 +49,7 @@
 					   </div>
 	            </div>
 	            <div class="form-group">
-		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Password </label>
+		            <label class="col-md-3 control-label" style="padding-bottom: 10px;">Password(แก้ไข): </label>
 		            <div class="col-md-5" style="padding-bottom: 10px;">
 		              <input type="password" id="userM.password" name="userM.password"  value="${userM.password}" class="form-control textsize"/>
 		           <%--   <form: path="userM.password" value="${userM.password}" cssClass="form-control textsize"/>
