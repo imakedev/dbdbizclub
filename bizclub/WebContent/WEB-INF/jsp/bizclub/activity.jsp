@@ -3,16 +3,16 @@
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
-<div style="background:#5E3752; padding:20px 0 20px 0;">
-	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
+<div style="background:#5E3752; padding:50px 0 20px 0;">
+	<div class="container" style="background:#fff; margin-top: 40px; margin-bottom: 40px; margin: 0 auto;">
 	      <div class="row">
 	      	<div class="col-md-3" style="margin-right: 10px;">
 	      		<div style="font-size: 22px;">
-					<ul class="v_menu">
+					<ul class="v_menu col-md-12">
 					   <c:if test="${not empty provinceCenters}"> 
         	 				<c:forEach items="${provinceCenters}" var="provinceCenter" varStatus="loop"> 
         	 				<c:if test="${provinceCenter.bcId==bcId}">
-        	 					<li class="active"><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />'>${provinceCenter.bcProviceName}</a></li>
+        	 					<li class="active"><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />' style="color:#fff;">${provinceCenter.bcProviceName}</a></li>
         	 				</c:if>
         	 				<c:if test="${provinceCenter.bcId!=bcId}">
         	 					<li><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />'>${provinceCenter.bcProviceName}</a></li>
@@ -33,7 +33,7 @@
 						  <div class="form-group">
 						  <h2 style="margin-left: 20px;">กิจกรรม</h2>
 						  </div>
-						  <a href="<c:url value="/product/member/${bcId}" />" style="float: right; margin-top:30px; color: purple;">จำนวนร้านค้า ${bizclubCenter.bcMemberSize} ราย</a>
+						  <a href="<c:url value="/product/member/${bcId}" />" style="float: right; margin-top:30px; color: purple;">ข้อมูลสมาชิก ${bizclubCenter.bcMemberSize} ราย</a>
 						</form>
 						<div class="list-group">
 		      			<div class="list-group-separator"></div>

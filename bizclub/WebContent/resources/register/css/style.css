@@ -567,8 +567,7 @@ input[type="search"]:focus {
 ul.v_menu{ /* กำหนดขอบเขตของเมนู */  
      list-style:none;  
      margin-left:10px;  
-     padding:0px;  
-     width:250px;   
+     padding:0px;
  }  
  ul.v_menu > li{ /* กำหนดรูปแบบให้กับเมนูเ */  
      display:block;  
@@ -600,8 +599,7 @@ ul.v_menu{ /* กำหนดขอบเขตของเมนู */
   	color: #ffffff;
  }
  ul.v_menu > li > a{ /* กำหนดรูปแบบให้กับลิ้งค์ */  
-     text-decoration:none;  
-     color:#000;  
+     text-decoration:none;
     
  }
  ul.v_menu > li > a:HOVER{ /* กำหนดรูปแบบให้กับลิ้งค์ */  

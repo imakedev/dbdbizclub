@@ -2,33 +2,22 @@
 <%@ include file="/WEB-INF/jsp/includes.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
-<div style="background:#5E3752; padding:20px 0 20px 0;">
+<div style="background:#5E3752; padding:50px 0 20px 0;">
 	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
 	      <div class="row">
 	      	<div class="col-md-3" style="margin-right: 10px;">
 	      		<div style="font-size: 22px;">
-					<ul class="v_menu">
-						<c:if test="${not empty provinceCenters}"> 
+					<ul class="v_menu col-md-12">
+					   <c:if test="${not empty provinceCenters}"> 
         	 				<c:forEach items="${provinceCenters}" var="provinceCenter" varStatus="loop"> 
         	 				<c:if test="${provinceCenter.bcId==bcId}">
-        	 					<li class="active"><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />'>${provinceCenter.bcProviceName}</a></li>
+        	 					<li class="active"><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />' style="color:#fff;">${provinceCenter.bcProviceName}</a></li>
         	 				</c:if>
         	 				<c:if test="${provinceCenter.bcId!=bcId}">
         	 					<li><a href='<c:url value="/product/activity/${provinceCenter.bcId}" />'>${provinceCenter.bcProviceName}</a></li>
         	 				</c:if>
         	 				</c:forEach>
         	 			</c:if>
-        	 			<%--
-					   <li class="active"><a href='#'>กรุงเทพมหานคร</a></li>
-					   <li><a href='#'>นนทบุรี</a></li>
-					   <li><a href='#'>ปทุมธานี</a></li>
-					   <li><a href='#'>เชียงใหม่</a></li>
-					   <li><a href='#'>เชียงราย</a></li>
-					   <li><a href='#'>ขอนแก่น</a></li>
-					   <li><a href='#'>นครศรีธรรมราช</a></li>
-					   <li><a href='#'>พิษณุโลก</a></li>
-					   <li><a href='#'>ภูเก็ต</a></li>
-					    --%>
 					</ul>
 				</div>
 	      	</div>

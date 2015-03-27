@@ -120,11 +120,29 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">วัน เดือน ปีเกิด: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					             <form:input path="bizclubRegisterM.dateOfBirthStr" cssClass="form-control textsize"
-		                 placeholder="วัน เดือน ปีเกิด" type="date" />
-		                  <%--
-					                <input class="form-control textsize" id="Birth" placeholder="วัน เดือน ปีเกิด" type="date">
-					                 --%>
+<%-- 					             <form:input path="bizclubRegisterM.dateOfBirthStr" cssClass="form-control textsize" --%>
+<%-- 		                 placeholder="วัน เดือน ปีเกิด" type="date" /> --%>
+									<div class="col-md-2">
+										<select class="form-control textsize" id="select">
+						                    <option>วัน</option>
+						                    <option>1</option>
+						                    <option>2</option>
+						                </select>
+					                </div>
+					                <div class="col-md-3">
+						                <select class="form-control textsize" id="select">
+						                    <option>เดือน</option>
+						                    <option>มกราคม</option>
+						                    <option>กุมภาพันธ์</option>
+						                </select>
+					                </div>
+					                <div class="col-md-3">
+						                <select class="form-control textsize" id="select">
+						                    <option>ปี</option>
+						                    <option>2557</option>
+						                    <option>2556</option>
+						                </select>
+					                </div>
 					            </div>
 				            </div>
 				            <div class="form-group">

@@ -5,7 +5,7 @@
 
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
 
-<div style="background:#5E3752; padding:20px 0 20px 0;">
+<div style="background:#5E3752; padding:50px 0 20px 0;">
 	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
 	
 		<form:form   id="userForm" name="userForm" modelAttribute="userForm"    method="post" action="/bizclub/member/search"
