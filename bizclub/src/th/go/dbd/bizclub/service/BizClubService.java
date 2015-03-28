@@ -60,4 +60,6 @@ public interface BizClubService {
 	public List<AmphurM> listAmphur(Integer provinceId) ;
 	public List<DistrictM> listDistrict(Integer amphurId) ;
 	public List<ZipcodeM> listZipcode(String districtId) ;
+	
+	public List<UserM> listStaft(Integer roleId,String bizClubProvince);
 }

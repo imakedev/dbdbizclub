@@ -525,5 +525,10 @@ public class BizClubRepository {
 		query.setParameter("districtId", districtId);
 		return query.getResultList();
 	}
-	
+	public List<User> listStaft(Integer roleId,String bizClubProvince){
+		StringBuffer sb=new StringBuffer("select u from User u  where u.role.roleId=:roleId and u.bizclubProvince='"+bizClubProvince+"' ");
+		Query query=entityManager.createQuery( sb.toString(), User.class);
+		query.setParameter("roleId", roleId);
+		return query.getResultList();
+	}
 }

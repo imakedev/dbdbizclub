@@ -400,6 +400,10 @@
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 <%-- 					             <form:input path="userM.dateOfBirthStr" cssClass="form-control textsize" --%>
 <%-- 		                 placeholder="วัน เดือน ปีเกิด" type="date" /> --%>
+<form:hidden path="userM.dateOfBirthStr"/>	
+<div id="birthday" class='birthday-picker'>
+</div>
+   <%--
 									<div class="col-md-2">
 										<select class="form-control textsize" id="select">
 						                    <option>วัน</option>
@@ -421,6 +425,7 @@
 						                    <option>2556</option>
 						                </select>
 					                </div>
+					                 --%>
 					            </div>
 				            </div>
 				            <div class="form-group">
@@ -434,7 +439,7 @@
 				            <div class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">E-mail: <span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					              <form:input path="userM.email" cssClass="form-control textsize"
+					              <form:input path="userM.email" id="email" cssClass="form-control textsize"
 		                 placeholder="E-mail"  /> 
 					            </div>
 				            </div>
@@ -544,7 +549,7 @@
 	            <div class="form-group" style="padding-top: 50px;">
 	            <div class="col-md-10 col-md-offset-4">
 	                <button type="reset" class="btn btn-default" style="font-weight: bold; font-size: 24px;">ยกเลิก</button>
-	                <button type="button" onclick="doAction()" class="btn btn-material-red" style="font-weight: bold; font-size: 22px;" data-toggle="modal" data-target="#success-popup">แก้ไขข้อมูล</button>
+	                <button type="button" onclick="doAction()" class="btn btn-material-red" style="font-weight: bold; font-size: 22px;">แก้ไขข้อมูล</button>
 	            </div>
 	        </div> 
 	            
@@ -573,6 +578,48 @@
 <script>
       $(document).ready(function() {
           $.material.init();
+          $("#birthday").birthdaypicker(options={
+        		  dateFormat:"littleEndian"
+          });
+          if("${save_success}"=='1'){
+        	  //$("#success-popup").show();
+        	  $("#success-popup").modal('show')
+          }
+          //alert("${save_success}")
+          var dateOfBirthStr=$.trim($('input[id="userM.dateOfBirthStr"]').val());
+          //alert(dateOfBirthStr)
+          if(dateOfBirthStr!=null && dateOfBirthStr.length>0){
+        	  var dateOfBirthStrArray=dateOfBirthStr.split("/");
+        	//  alert(parseInt(dateOfBirthStrArray[1],10))
+        	  $('select[name="birth[day]"]').val(parseInt(dateOfBirthStrArray[0],10));
+        	  $('select[name="birth[month]"]').val(parseInt(dateOfBirthStrArray[1],10));
+        	  $('select[name="birth[year]"]').val(parseInt(dateOfBirthStrArray[2],10));
+          }
+          
+          /*
+    	  var birth_day=$('select[name="birth[day]"]').val();
+    		var birth_month=$('select[name="birth[month]"]').val();
+    		var birth_year=$('select[name="birth[year]"]').val();
+    		//alert(birth_day+","+birth_month+","+birth_year)
+    		if(birth_day=='0'){
+    			alert("กรุณากรอก วัน เกิด");
+    			$('select[name="birth[day]"]').focus();
+    			  return false;
+    		}
+    		if(birth_month=='0'){
+    			alert("กรุณากรอก เดือน เกิด");
+    			$('select[name="birth[month]"]').focus();
+    			  return false;
+    		}
+    		if(birth_year=='0'){
+    			alert("กรุณากรอก ปี เกิด");
+    			$('select[name="birth[year]"]').focus();
+    			  return false;
+    		}
+    		*/
+    		//$('input[id="bizclubRegisterM.dateOfBirthStr"]').val(birth_day+"/"+birth_month+"/"+birth_year);
+    		//alert($('input[id="userM.dateOfBirthStr"]').val());
+       
           $('#cardId').keyup(function() {
         	    var dInput = this.value;
         	   // alert(dInput.length)
@@ -670,7 +717,28 @@ function initCorpGroup(){
 }
 
 function doAction(){
- 	
+	
+	var birth_day=$('select[name="birth[day]"]').val();
+	var birth_month=$('select[name="birth[month]"]').val();
+	var birth_year=$('select[name="birth[year]"]').val();
+	//alert(birth_day+","+birth_month+","+birth_year)
+	if(birth_day=='0'){
+		alert("กรุณากรอก วัน เกิด");
+		$('select[name="birth[day]"]').focus();
+		  return false;
+	}
+	if(birth_month=='0'){
+		alert("กรุณากรอก เดือน เกิด");
+		$('select[name="birth[month]"]').focus();
+		  return false;
+	}
+	if(birth_year=='0'){
+		alert("กรุณากรอก ปี เกิด");
+		$('select[name="birth[year]"]').focus();
+		  return false;
+	}
+	$('input[id="userM.dateOfBirthStr"]').val(birth_day+"/"+birth_month+"/"+birth_year);
+	
 	var cardId=$("#cardId").val();
 	if ($.trim(cardId).length == 0) {
         alert('กรุณากรอก เลขบัตรประชาชน');
@@ -682,14 +750,14 @@ function doAction(){
     	  $("#cardId").focus();
     	  return false;
     }
-    if ($.trim($('input[id="userM.brFirstName"]').val()).length == 0) {
+    if ($.trim($('input[id="userM.firstName"]').val()).length == 0) {
         alert('กรุณากรอก ชื่อ');
-        $('input[id="userM.brFirstName"]').focus();
+        $('input[id="userM.firstName"]').focus();
         return false;
     }
-    if ($.trim($('input[id="userM.brLastName"]').val()).length == 0) {
+    if ($.trim($('input[id="userM.lastName"]').val()).length == 0) {
         alert('กรุณากรอก นามสกุล');
-        $('input[id="userM.brLastName"]').focus();
+        $('input[id="userM.lastName"]').focus();
         return false;
     }
     if ($.trim($('input[id="userM.dateOfBirthStr"]').val()).length == 0) {
@@ -775,7 +843,7 @@ function doAction(){
          }
     }
     
-    if(corpType!='4'){
+    if(corpType!='4' && corpType!='1'){
     	var isCorpGroupCheck=false;
      	 $("input[name=corpGroupIds]").each(function() { 
      			//  var  corpGroupId_value=$(this).val();
@@ -1000,7 +1068,7 @@ function getCrop(corpType){
 			return false;
 		}
 	}
-	
+	if(corpType=='1'){	
 	  $.ajax({
 		  type: "GET",
 		  contentType : 'application/json; charset=utf-8',
@@ -1018,21 +1086,30 @@ function getCrop(corpType){
 				    $("#taxesCorpName").val(msg.corpName);
 			  }
 			  var isCommittee=false;
+			  if(msg.committeeNames.length>0){
+					$('input[id="userM.firstName"]').val()==msg.committeeNames[0]
+					$('input[id="userM.lastName"]').val()==msg.committeeLastNames[0]
+				}
+			  /*
 				for(var i=0;i<msg.committeeNames.length;i++){
 					if(corpType=='1'){
-						  if($('input[id="userM.brFirstName"]').val()==msg.committeeNames[i]){
+						  if($('input[id="userM.lastName"]').val()==msg.committeeNames[i]){
 							  isCommittee=true;
 							break;
 						  }
 					  } 
 				}
+			  */
+				/*
 				if(!isCommittee){
 					 alert("เฉพาะกรรมการเท่านั้น")
 					  $('input[id="userM.brFirstName"]').focus();
 					  $("#spec_name").html("(เฉพาะกรรมการเท่านั้น)")	
 				}
+				*/
 		
 		  });
+	}
 	//  data-toggle="modal" data-target="#member-popup"
 }
 function checkID(id) {

@@ -380,6 +380,10 @@
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 <%-- 					             <form:input path="bizclubRegisterM.dateOfBirthStr" cssClass="form-control textsize" --%>
 <%-- 		                 placeholder="วัน เดือน ปีเกิด" type="date" /> --%>
+<form:hidden path="bizclubRegisterM.dateOfBirthStr"/>	
+<div id="birthday" class='birthday-picker'>
+</div>
+  <%--
 									<div class="col-md-2">
 										<select class="form-control textsize" id="select">
 						                    <option>วัน</option>
@@ -401,6 +405,7 @@
 						                    <option>2556</option>
 						                </select>
 					                </div>
+					                 --%>
 					            </div>
 				            </div>
 				            <div class="form-group">
@@ -531,7 +536,9 @@
 <script>
       $(document).ready(function() {
           $.material.init();
-          
+          $("#birthday").birthdaypicker(options={
+        		  dateFormat:"littleEndian"
+          });
           $('#cardId').keyup(function() {
       	    var dInput = this.value;
       	   // alert(dInput.length)
@@ -577,10 +584,14 @@
         	}else
         		showForStaft(true);
         	
-        	if(corpType=='4' || corpType=='3' ){
-        		$("#group_biz_element").hide();
-        		$("#group_biz_detail_element").hide();
-        	}
+        	if(corpType=='4' || corpType=='3' || corpType=='2' ){
+          		$("#group_biz_element").hide();
+          		$("#group_biz_detail_element").hide();
+          	}
+          	if(corpType=='1' ){
+          		$("#biztype_element").hide();
+          	}
+          
             
           //alert($("#addressProvince").val())
       	loadAddressAmphur($("#addressProvince").val());
@@ -613,7 +624,29 @@ function confirmAction(){
 	}
 }
 function doAction(){
- 	
+	var birth_day=$('select[name="birth[day]"]').val();
+	var birth_month=$('select[name="birth[month]"]').val();
+	var birth_year=$('select[name="birth[year]"]').val();
+	//alert(birth_day+","+birth_month+","+birth_year)
+	if(birth_day=='0'){
+		alert("กรุณากรอก วัน เกิด");
+		$('select[name="birth[day]"]').focus();
+		  return false;
+	}
+	if(birth_month=='0'){
+		alert("กรุณากรอก เดือน เกิด");
+		$('select[name="birth[month]"]').focus();
+		  return false;
+	}
+	if(birth_year=='0'){
+		alert("กรุณากรอก ปี เกิด");
+		$('select[name="birth[year]"]').focus();
+		  return false;
+	}
+	$('input[id="bizclubRegisterM.dateOfBirthStr"]').val(birth_day+"/"+birth_month+"/"+birth_year);
+	//alert($('input[id="bizclubRegisterM.dateOfBirthStr"]').val());
+	//return false;
+	
 	var cardId=$("#cardId").val();
 	if ($.trim(cardId).length == 0) {
         alert('กรุณากรอก เลขบัตรประชาชน');
@@ -718,7 +751,7 @@ function doAction(){
          }
     }
     
-    if(corpType!='4'){
+    if(corpType!='4' && corpType!='1'){
     	var isCorpGroupCheck=false;
      	 $("input[name=corpGroupIds]").each(function() { 
      			//  var  corpGroupId_value=$(this).val();
@@ -752,7 +785,7 @@ function doAction(){
     		$.ajax({
     			  type: "GET",
     			  contentType : 'application/json; charset=utf-8',
-    			  url: "ws/check/"+valueCheck+"/"+corpType,
+    			  url: "/bizclub/ws/check/"+valueCheck+"/"+corpType,
     			  dataType : 'json'
     			})
     			  .done(function( msg ) {
@@ -761,8 +794,53 @@ function doAction(){
     			     		alert("มีข้อมูลสมาชิกในระบบแล้ว")
     			     		return false;
     			     	}
-    				  document.getElementById("registerForm").submit();
-    			  });
+    			     	if(corpType=='1'){	
+  			     		  $.ajax({
+  			     			  type: "GET",
+  			     			  contentType : 'application/json; charset=utf-8',
+  			     			//  url: "ws/corp/"+corpId+"/"+corpType,
+  			     			  url: "/bizclub/ws/juristic/"+$("#corpId").val(),
+  			     			  dataType : 'json'
+  			     			})
+  			     			  .done(function( msg ) {
+  			     				  if(msg.corpCount==0){
+  			     					  alert("ไม่พบข้อมูล");
+  			     					  return false;
+  			     				  }
+  			     				  if(corpType=='1'){
+  			     						$("#corpName").val(msg.corpName);
+  			     				  }else{
+  			     					    $("#taxesCorpName").val(msg.corpName);
+  			     				  }
+  			     				var isCommittee=false;
+  			     				for(var i=0;i<msg.committeeNames.length;i++){
+  			     					if(corpType=='1'){
+  			     						  if($('input[id="bizclubRegisterM.brFirstName"]').val()==msg.committeeNames[i]){
+  			     							  isCommittee=true;
+  			     							 /* alert("เฉพาะกรรมการเท่านั้น")
+  			     							  $('input[id="bizclubRegisterM.brFirstName"]').focus();
+  			     							  $("#spec_name").html("(เฉพาะกรรมการเท่านั้น)")
+  			     							  */
+  			     							break;
+  			     						  }
+  			     					  } 
+  			     				}
+  			     				if(!isCommittee){
+  			     					 alert("ผู้มีสิทธิสมัคร เฉพาะกรรมการเท่านั้น")
+  			     					  $('input[id="bizclubRegisterM.brFirstName"]').focus();
+  			     					  $("#spec_name").html("(ผู้มีสิทธิสมัคร เฉพาะกรรมการเท่านั้น)")	
+  			     					  return false;
+  			     				}else{
+  			     					document.getElementById("registerForm").submit();
+  			     				}
+  			     		});
+  			     	}else{
+  			     		document.getElementById("registerForm").submit();
+  			     	}	
+  				  
+  			  });
+  		       
+    	// });
     		       
 
 }
@@ -891,89 +969,34 @@ function getCrop(corpType){
 			return false;
 		}
 	}
-	
-	  $.ajax({
-		  type: "GET",
-		  contentType : 'application/json; charset=utf-8',
-		//  url: "ws/corp/"+corpId+"/"+corpType,
-		  url: "/bizclub/ws/juristic/"+corpId,
-		  dataType : 'json'
-		})
-		  .done(function( msg ) {
-			  if(msg.corpCount==0){
-				  alert("ไม่พบข้อมูล");
-				  return false;
-			  }
-			  if(corpType=='1'){
-					$("#corpName").val(msg.corpName);
-			  }else{
-				    $("#taxesCorpName").val(msg.corpName);
-			  }
-			//  $("#services").val(msg.corpServices);
-			//  $("#btCode").val(msg.btCode);
-			//  $("#btDesc").val(msg.btDesc);
-			//alert(msg.committeeNames.length)
-			var isCommittee=false;
-			for(var i=0;i<msg.committeeNames.length;i++){
-				if(corpType=='1'){
-					  if($('input[id="bizclubRegisterM.brFirstName"]').val()==msg.committeeNames[i]){
-						  isCommittee=true;
-						 /* alert("เฉพาะกรรมการเท่านั้น")
-						  $('input[id="bizclubRegisterM.brFirstName"]').focus();
-						  $("#spec_name").html("(เฉพาะกรรมการเท่านั้น)")
-						  */
-						break;
-					  }
-					  /*
-					  else if($('input[id="bizclubRegisterM.brLastName"]').val()!=msg.lastName){
-						  alert("เฉพาะกรรมการเท่านั้น")
-						  $('input[id="bizclubRegisterM.brLastName"]').focus();
-						  $("#spec_name").html("(เฉพาะกรรมการเท่านั้น)")
-							break;
-					  }
-						*/
-				  } 
-			}
-			if(!isCommittee){
-				 alert("ผู้มีสิทธิสมัคร เฉพาะกรรมการเท่านั้น")
-				  $('input[id="bizclubRegisterM.brFirstName"]').focus();
-				  $("#spec_name").html("(ผู้มีสิทธิสมัคร เฉพาะกรรมการเท่านั้น)")	
-			}
-			
-			  
-			/*
-			  if(corpType=='1'){
-				  if($('input[id="bizclubRegisterM.brFirstName"]').val()!=msg.firstName){
-					  alert("เฉพาะกรรมการเท่านั้น")
-					  $('input[id="bizclubRegisterM.brFirstName"]').focus();
-					  $("#spec_name").html("(เฉพาะกรรมการเท่านั้น)")
-					
-				  }else if($('input[id="bizclubRegisterM.brLastName"]').val()!=msg.lastName){
-					  alert("เฉพาะกรรมการเท่านั้น")
-					  $('input[id="bizclubRegisterM.brLastName"]').focus();
-					  $("#spec_name").html("(เฉพาะกรรมการเท่านั้น)")
+	if(corpType=='1'){	
+		  $.ajax({
+			  type: "GET",
+			  contentType : 'application/json; charset=utf-8',
+			//  url: "ws/corp/"+corpId+"/"+corpType,
+			  url: "/bizclub/ws/juristic/"+corpId,
+			  dataType : 'json'
+			})
+			  .done(function( msg ) {
+				  if(msg.corpCount==0){
+					  alert("ไม่พบข้อมูล");
+					  return false;
 				  }
-					
-			  } 
-			*/
-			/* 
-			var corpBizTypes=msg.corpBizType.split("-");
-			  $("input[name=corpGroupIds]").each(function() { 
-				  var  corpGroupId_value=$(this).val();
-				  //alert(corpGroupId_value)
-				   for(var i=0;i<corpBizTypes.length;i++){
-					//   alert("inner->"+corpBizTypes[i])
-					   if(corpBizTypes[i]==corpGroupId_value){
-						  // corpBizTypes[i].checked=true;
-						  
-						   $(this).attr("checked","true");
-						//   alert( $(this).attr("checked"));
-					   }
-				   }
-				});
-			*/
-		
-		  });
+				  if(corpType=='1'){
+						$("#corpName").val(msg.corpName);
+				  }else{
+					    $("#taxesCorpName").val(msg.corpName);
+				  }
+				var isCommittee=false;
+				if(msg.committeeNames.length>0){
+					$('input[id="bizclubRegisterM.brFirstName"]').val()==msg.committeeNames[0]
+					$('input[id="bizclubRegisterM.brLastName"]').val()==msg.committeeLastNames[0];
+				}
+			//		document.getElementById("registerForm").submit();
+		});
+	}else{
+		//document.getElementById("registerForm").submit();
+	}
 	//  data-toggle="modal" data-target="#member-popup"
 }
 function checkID(id) {
