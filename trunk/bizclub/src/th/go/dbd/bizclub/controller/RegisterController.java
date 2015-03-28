@@ -3,7 +3,11 @@ package th.go.dbd.bizclub.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,14 +26,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import th.go.dbd.bizclub.form.RegisterForm;
+import th.go.dbd.bizclub.mail.MailRunnable;
 import th.go.dbd.bizclub.model.BizclubRegisterM;
+import th.go.dbd.bizclub.model.UserM;
 import th.go.dbd.bizclub.service.BizClubService;
 
 @Controller 
 @RequestMapping(value={"/register"})
 @SessionAttributes(value={"registerForm"})
 public class RegisterController {
-	
+	 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/M/yyyy HH:mm:ss a",new Locale("th", "TH"));
 	@Autowired
     private BizClubService bizClubService;
 	  //the approach described in this blog
@@ -189,6 +195,32 @@ public class RegisterController {
 		BizclubRegisterM bizclubRegisterM=registerForm.getBizclubRegisterM();
 		bizclubRegisterM.setCorpGroupId(sb.toString());
 		bizClubService.saveBizclubRegister(bizclubRegisterM);
+		
+		System.out.println("userM.bizclubProvince->"+registerForm.getBizclubRegisterM().getBizclubProvince());
+		
+	
+		// send mail to Staft
+		List<UserM> stafts=bizClubService.listStaft(2,registerForm.getBizclubRegisterM().getBizclubProvince());
+		List recipients =new ArrayList();
+		System.out.println("stafts>"+stafts);
+		if(stafts!=null && stafts.size()>0){
+			for (UserM staft : stafts) {
+				recipients.add(staft.getEmail());
+			}
+			String subject="แจ้งการสมัครข้อมูล สมาชิค bizclub";
+			
+			String content=" ได้มีการสมัครเข้าขอใช้ระบบ  ในวันที่ "+dateFormat.format(new Date())+" <br/>";
+			
+			MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdcentralbizclub2015@gmail.com","bizclub2015","1",
+					recipients,subject,
+				    content,
+					"99","BizClub","587",null,null,null,"1");	
+		
+			Thread mailThread = new Thread(mailRunnable);
+			mailThread.start(); 
+		}
+		
+		
 	//	System.out.println(registerForm.getBizclubRegisterM());
         return "bizclub/approve";
         //return "bizclub/register_test";

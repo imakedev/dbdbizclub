@@ -124,6 +124,8 @@ public class ApproveController {
 			user.setServices(bizclubRegister.getServices());
 			user.setWebsite(bizclubRegister.getWebsite());
 			user.setLineId(bizclubRegister.getLineId());
+			System.out.println("getDateOfBirthStr->"+bizclubRegister.getDateOfBirthStr());
+			user.setDateOfBirthStr(bizclubRegister.getDateOfBirthStr());
 			RoleM role =new RoleM();
 			role.setRoleId(approveForm.getApproveRole());
 			user.setRole(role);

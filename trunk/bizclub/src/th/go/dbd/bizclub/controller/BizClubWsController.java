@@ -2,6 +2,7 @@ package th.go.dbd.bizclub.controller;
 
 import java.security.Security;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,13 +28,18 @@ import com.dbd.task.service.TaskJuristicServiceProxy;
 public class BizClubWsController {
 	@Autowired
     private BizClubService bizClubService;
+	private static ResourceBundle bundle;
+	static{
+		bundle =  ResourceBundle.getBundle( "config" );				
+	}
+	 
 	@RequestMapping(value={"/juristic/{corpId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody BizclubCorpWM getJuristicyId(@PathVariable String corpId,Model model)
 	    {
 		BizclubCorpWM bizclubCorpWM=new BizclubCorpWM();	
 		
 	try{
-		String certPath="/aoe"; //
+		String certPath=bundle.getString("certPath");//"/aoe"; //
 	//	String certPath="/Users/imake/Desktop";
 		System.setProperty("java.protocol.handler.pkgs","com.sun.net.ssl.internal.www.protocol");
 		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
@@ -61,6 +67,7 @@ public class BizClubWsController {
 			
 		    int size=committeeInformations.length;
 		    String[] committeeNames =new String[size];
+		    String[] committeeLastNames =new String[size];
 			for (int j = 0; j < size; j++) {
 				String lastName=committeeInformations[j].getLastName();
 				String name=committeeInformations[j].getName();
@@ -68,9 +75,11 @@ public class BizClubWsController {
 						lastName=lastName.substring(0,lastName.length()-1);
 					}
 					committeeNames[j]=name;
+					committeeLastNames[j]=lastName;
 				//System.out.println(committeeInformations[j].getId()+" "+committeeInformations[j].getTitle()+" "+name+" "+lastName);
 			}
 			bizclubCorpWM.setCommitteeNames(committeeNames);
+			bizclubCorpWM.setCommitteeLastNames(committeeLastNames);
 		}
 		bizclubCorpWM.setCorpCount(corpCount);
 	} catch (Exception e) {

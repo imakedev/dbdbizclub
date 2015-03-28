@@ -16,7 +16,7 @@
 		    		<div class="form-group col-md-2">
 		    			<label for="select" class="col-md-4 control-label">กลุ่ม:</label>
 				    	<div class="col-md-8">
-				          	<form:select path="searchUserType" cssClass="textsize" >
+				          	<form:select path="searchUserType" cssClass="textsize"  onchange="submitUserForm()"> 
 				          	 <%--	<form:option value="0" label="ทั้งหมด" />  --%>
 		                	  	<form:option value="3" label="สมาชิก" />
 		                	  	<form:option value="2" label="เจ้าหน้าที่" />
@@ -26,7 +26,7 @@
 		        	<div class="form-group col-md-2">
 		    			<label for="select" class="col-md-5 control-label">จังหวัด:</label>
 				    	<div class="col-md-7">
-				    	<form:select path="searchProvinceCenter" cssClass="textsize" cssStyle="width:80px">
+				    	<form:select path="searchProvinceCenter" cssClass="textsize" cssStyle="width:80px" onchange="submitUserForm()"> 
 				    	            <form:option value="0" label="ทั้งหมด" />
 					             	 <form:options items="${provinceCenters}" itemValue="bcId" itemLabel="bcProviceName"/>
 						</form:select>
@@ -36,7 +36,7 @@
 				    	<div class="form-group">
 				            <label for="select" class="col-md-6 col control-label">ประเภทธุรกิจ:</label>
 				            <div class="col-md-6"> 
-				               <form:select path="searchType" cssClass="textsize"  >
+				               <form:select path="searchType" cssClass="textsize"  onchange="submitUserForm()"> 
 				                	 <form:option value="0" label="ทั้งหมด" />
 				                	 <form:option value="1" label="ผู้ผลิต" />
 				                	 <form:option value="2" label="ธุรกิจบริการ" />
@@ -52,7 +52,7 @@
 			        <div class="form-group col-md-3">
 			            <label for="select" class="col-md-5 control-label">ค้นหาจาก:</label>
 			            <div class="col-md-4">
-			                <form:select path="searchForm" cssClass="textsize"> 
+			                <form:select path="searchForm" cssClass="textsize" onchange="submitUserForm()"> 
 			                  <form:option value="0" label="ทั้งหมด" />
 			                 <%-- <form:option value="1" label="เลขที่สมาชิก" />  --%>
 							 <%-- <form:option value="2" label="เลขบัตรประชาชน" /> --%>
@@ -345,7 +345,9 @@
         	 
         	});
       });
-    
+      function submitUserForm(){
+    	  document.getElementById("userForm").submit();
+      } 
       function editMember(userid){
     	  window.location.href="<c:url value='/bizmem/get/"+userid+"'/>";
       }

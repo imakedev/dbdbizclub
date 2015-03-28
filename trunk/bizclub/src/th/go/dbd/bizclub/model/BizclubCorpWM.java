@@ -2,8 +2,6 @@ package th.go.dbd.bizclub.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
-
 
 public class BizclubCorpWM implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -21,6 +19,15 @@ public class BizclubCorpWM implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String[] committeeNames;
+	private String[] committeeLastNames;
+	public String[] getCommitteeLastNames() {
+		return committeeLastNames;
+	}
+
+	public void setCommitteeLastNames(String[] committeeLastNames) {
+		this.committeeLastNames = committeeLastNames;
+	}
+
 	private int corpCount;
 	public String[] getCommitteeNames() {
 		return committeeNames;

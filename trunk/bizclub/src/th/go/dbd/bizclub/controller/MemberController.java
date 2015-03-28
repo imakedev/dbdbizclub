@@ -59,10 +59,10 @@ public class MemberController {
         model.addAttribute("memberForm", memberForm);*/
         
         //return "bizclub/member";
-        return "redirect:/bizmem/get/"+user.getMyUser().getUserid();
+        return "redirect:/bizmem/get/"+user.getMyUser().getUserid()+"/0";
     }
-	@RequestMapping(value={"/get/{userId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
-    public String getMemeber(@PathVariable Integer userId,Model model)
+	@RequestMapping(value={"/get/{userId}/{flag}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String getMemeber(@PathVariable Integer userId,@PathVariable String flag,Model model)
     {
 		//MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		//MemberForm memberForm=new MemberForm();	
@@ -73,11 +73,11 @@ public class MemberController {
 		//model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
 		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
         model.addAttribute("memberForm", memberForm);*/
-        return "redirect:/bizmem/get/"+userId+"/"+userM.getCorpType();
+        return "redirect:/bizmem/get/"+userId+"/"+userM.getCorpType()+"/"+flag;
     }
 	
-	@RequestMapping(value={"/get/{userId}/{corpType}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
-    public String getMemeberByPage(@PathVariable Integer userId,@PathVariable String corpType,Model model)
+	@RequestMapping(value={"/get/{userId}/{corpType}/{flag}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String getMemeberByPage(@PathVariable Integer userId,@PathVariable String flag,@PathVariable String corpType,Model model)
     {
 		//MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		MemberForm memberForm=new MemberForm();	
@@ -87,6 +87,7 @@ public class MemberController {
 		//model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
 		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
         model.addAttribute("memberForm", memberForm);
+        model.addAttribute("save_success",flag); 
         if(corpType.equals("1") || corpType.equals("2")){
 			return "bizclub/member_corp";
 		}else
@@ -244,8 +245,9 @@ public class MemberController {
 		//model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
 		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
 		model.addAttribute("memberForm", memberForm);
-        //return "bizclub/member";
-        return "redirect:/member";
+		//@RequestMapping(value={"/get/{userId}/{flag}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+        //return "bizclub/member";bizmem
+        return "redirect:/bizmem/get/"+userOld.getUserId()+"/1";
     }
 	@RequestMapping(value={"/item/{userId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody UserM getItem(@PathVariable Integer userId,Model model)

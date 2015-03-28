@@ -63,6 +63,13 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 			role.setRoleId(userM.getRole().getRoleId());
 			user.setRole(role);
 		}
+		if(userM.getDateOfBirthStr() != null)
+			try {
+				user.setDateOfBirth(format2.parse(userM.getDateOfBirthStr()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 		return bizClubRepository.saveUser(user);
 	}
 
@@ -76,6 +83,13 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 			role.setRoleId(userM.getRole().getRoleId());
 			user.setRole(role);
 		}
+		if(userM.getDateOfBirthStr() != null)
+			try {
+				user.setDateOfBirth(format1.parse(userM.getDateOfBirthStr()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 		return bizClubRepository.updateUser(user);
 	}
 
@@ -93,7 +107,8 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		User user = bizClubRepository.findUserById(userId);
 		UserM userM=new UserM();
 		BeanUtils.copyProperties(user , userM);
-		
+		if(user.getDateOfBirth() != null)
+			userM.setDateOfBirthStr(format1.format(user.getDateOfBirth()));	
 		if(user.getRole()!=null){
 			RoleM roleM=new RoleM();
 			BeanUtils.copyProperties(user.getRole() , roleM);
@@ -137,14 +152,15 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		BizclubRegister bizclubRegister=new BizclubRegister();
 		
 		BeanUtils.copyProperties(bizclubRegisterM , bizclubRegister);
+		System.out.println("getDateOfBirthStr-->"+bizclubRegisterM.getDateOfBirthStr());
 		if(bizclubRegisterM.getDateOfBirthStr() != null && bizclubRegisterM.getDateOfBirthStr().trim().length() > 0)
 			try {
-				bizclubRegister.setDateOfBirth(format2.parse(bizclubRegisterM.getDateOfBirthStr()));
+				bizclubRegister.setDateOfBirth(format1.parse(bizclubRegisterM.getDateOfBirthStr()));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		System.out.println("getBizclubProvince-->"+bizclubRegister.getBizclubProvince());
+		System.out.println("getDateOfBirth-->"+bizclubRegister.getDateOfBirth());
 		return bizClubRepository.saveBizclubRegister(bizclubRegister);
 	}
 
@@ -171,7 +187,7 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		BizclubRegisterM bizclubRegisterM=new BizclubRegisterM();
 		BeanUtils.copyProperties(bizclubRegister , bizclubRegisterM);
 		if(bizclubRegister.getDateOfBirth() != null)
-				bizclubRegisterM.setDateOfBirthStr(format1.format(bizclubRegister.getDateOfBirth()));
+				bizclubRegisterM.setDateOfBirthStr(format2.format(bizclubRegister.getDateOfBirth()));
 		StringBuffer sb=new StringBuffer();
 		if(bizclubRegister.getCorpGroupId()!=null && bizclubRegister.getCorpGroupId().length()>0){
 			String[] corpGroupIds=bizclubRegister.getCorpGroupId().split("-");
@@ -494,6 +510,23 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 			bizclubAssetModelList.add(bizclubAssetModel);
 		}
 		return bizclubAssetModelList;
+	}
+
+
+	@Override
+	public List<UserM> listStaft(Integer roleId,String bizClubProvince) {
+		// TODO Auto-generated method stub
+		
+		List<User> users= bizClubRepository.listStaft(roleId,bizClubProvince);
+		List<UserM> userModelList= new ArrayList<UserM>(users.size());
+		for (User userDomain : users) {
+			UserM userModel=new UserM();
+			//System.out.println("before->"+userDomain.getServices());
+			BeanUtils.copyProperties(userDomain , userModel);
+			//System.out.println("after->"+userModel.getServices());
+			userModelList.add(userModel);
+		}
+		return userModelList;
 	}
 	
 }

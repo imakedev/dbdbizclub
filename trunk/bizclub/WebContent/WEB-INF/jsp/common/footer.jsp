@@ -9,6 +9,7 @@
 <script type="text/javascript" src="<c:url value='/resources/fileupload/js/vendor/jquery.ui.widget.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/resources/fileupload/js/jquery.iframe-transport.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/resources/fileupload/js/jquery.fileupload.js'/>"></script>  
+<script src="<c:url value="/resources/register/js/bday-picker.min.js" />"></script>
 <div id="footer">
 	<div class="container">
 	<div id="footer_body" class="clear">
