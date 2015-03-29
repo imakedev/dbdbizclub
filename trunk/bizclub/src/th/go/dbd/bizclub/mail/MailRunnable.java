@@ -83,7 +83,7 @@ public class MailRunnable implements Runnable {
 				props.put("mail.smtp.starttls.enable","true");
 			props.put("mail.smtp.host", host);//"smtp.gmail.com");
 			props.put("mail.smtp.port",port);
-			
+		//props.put("mail.smtp.starttls.enable", "true"); 	
 			 
 			//props.put("mail.smtp.ssl.enable", "true");
 			if(useAuthen!=null && useAuthen.equals("1")){

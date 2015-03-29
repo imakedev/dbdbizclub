@@ -217,7 +217,9 @@ public class RegisterController {
 					"99","BizClub","587",null,null,null,"1");	
 		
 			Thread mailThread = new Thread(mailRunnable);
-			mailThread.start(); 
+			mailThread.start();
+		
+			
 		}
 		
 		
