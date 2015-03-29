@@ -3,11 +3,12 @@ package bizclub;
 
 import java.security.Security;
 
-import com.dbd.task.model.FinancialStatementInfo;
 import com.dbd.task.model.JuristicAddressInfo;
 import com.dbd.task.model.JuristicCertificateInfo;
+import com.dbd.task.model.JuristicInfo;
+import com.dbd.task.model.JuristicInformationInfo;
+import com.dbd.task.model.JuristicRegisterCapitalInfo;
 import com.dbd.task.model.main.JuristicMain;
-import com.dbd.task.model.sub.BalanceStatementInformation;
 import com.dbd.task.model.sub.CommitteeInformation;
 import com.dbd.task.model.sub.DataAccessInfo;
 import com.dbd.task.service.TaskJuristicServiceProxy;
@@ -50,6 +51,8 @@ public class Client {
 					System.out.println(balances[i].getTotalRevenue());
 				}
 			}*/
+		//	JuristicObjectiveInfo[] juristicObjectiveInfos=juristicMain.getJuristicObjectiveInfo();
+			
 			JuristicCertificateInfo[] certificateInfo = juristicMain
 					.getJuristicCertificateInfo();
 			System.out.println(certificateInfo.length);
@@ -73,11 +76,30 @@ public class Client {
 					System.out.println(committeeInformations[j].getId()+" "+committeeInformations[j].getTitle()+" "+committeeInformations[j].getName()+" "+lastName);
 					
 				}
+			
 				//System.out.println(;
 				System.out.println(certificateInfo[i].getJuristicType());
 				System.out.println(certificateInfo[i].getJuristicStatus());
 				System.out.println("xxx");
+			
+				
 			}
+			JuristicInformationInfo[] juristicInformationInfos=juristicMain.getJuristicInformationInfo();
+			System.out.println(juristicInformationInfos);
+			if(juristicInformationInfos!=null)
+				for (int i = 0; i < juristicInformationInfos.length; i++) {
+					System.out.println(juristicInformationInfos[i].getJuristicName());
+					
+				}
+			JuristicInfo[] juristicInfos=juristicMain.getJuristicInfo();
+			System.out.println(juristicInfos);
+			JuristicRegisterCapitalInfo[] juristicRegisterCapitalInfos=	juristicMain.getJuristicRegisterCapitalInfo();
+			System.out.println(juristicRegisterCapitalInfos);
+			if(juristicRegisterCapitalInfos!=null)
+				for (int i = 0; i < juristicRegisterCapitalInfos.length; i++) {
+					System.out.println(juristicRegisterCapitalInfos[i].getRegisterCapital());
+					
+				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

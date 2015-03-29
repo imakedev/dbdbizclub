@@ -57,7 +57,7 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 	public Integer saveUser(UserM userM) {
 		// TODO Auto-generated method stub
 		User user=new User();
-		BeanUtils.copyProperties(userM , user,"id");
+		BeanUtils.copyProperties(userM , user,"id","bizclubRegister");
 		if(userM.getRole()!=null && userM.getRole().getRoleId()!=null){
 			Role role =new Role();
 			role.setRoleId(userM.getRole().getRoleId());
@@ -69,7 +69,12 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	
+			}
+		if(userM.getBizclubRegister()!=null && userM.getBizclubRegister().getBrId()!=null){
+			BizclubRegister bizclubRegister =new BizclubRegister();
+			BeanUtils.copyProperties(userM.getBizclubRegister() , bizclubRegister);
+			user.setBizclubRegister(bizclubRegister);
+		}
 		return bizClubRepository.saveUser(user);
 	}
 

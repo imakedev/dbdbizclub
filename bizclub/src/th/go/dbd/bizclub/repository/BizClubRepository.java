@@ -135,7 +135,14 @@ public class BizClubRepository {
 	
 		Query query=	entityManager.createQuery( "delete from User where userId =:userId ");
 		query.setParameter("userId",userId.getUserId());
-		return Integer.valueOf(query.executeUpdate());
+		Integer reuturnRec=Integer.valueOf(query.executeUpdate());
+		if(userId.getBizclubRegister()!=null && userId.getBizclubRegister().getBrId()!=null){
+			query=	entityManager.createQuery( "delete from BizclubRegister where brId =:brId ");
+			query.setParameter("brId",userId.getBizclubRegister().getBrId());
+			query.executeUpdate();
+		}
+		
+		return reuturnRec;
 	
 	}
 
