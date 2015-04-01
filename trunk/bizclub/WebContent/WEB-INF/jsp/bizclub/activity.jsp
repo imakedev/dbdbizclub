@@ -3,8 +3,8 @@
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
-<div style="background:#5E3752; padding:50px 0 20px 0;">
-	<div class="container" style="background:#fff; margin-top: 40px; margin-bottom: 40px; margin: 0 auto;">
+<div style="background:#5E3752; padding:10px 0 20px 0;">
+	<div class="container" style="background:#fff; margin-top: 40px; margin-bottom: 40px;">
 	      <div class="row">
 	      	<div class="col-md-3" style="margin-right: 10px;">
 	      		<div style="font-size: 22px;">

@@ -109,10 +109,15 @@
 							    </div>
 				            </div>
 				            <div class="form-group">
-					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อ-สกุล: <span id="spec_name"></span><span style="color: red;">*</span></label>
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">ชื่อ: <span id="spec_name"></span><span style="color: red;">*</span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
 					               <form:input path="bizclubRegisterM.brFirstName" cssClass="form-control textsize"
 		                 placeholder="ชื่อ"  /> 
+		                 		</div>
+	                 		</div>
+		                 	<div class="form-group">
+					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">นามสกุล: <span id="spec_name"></span><span style="color: red;">*</span></label>
+					            <div class="col-md-8" style="padding-bottom: 10px;">
 		                     <form:input path="bizclubRegisterM.brLastName" cssClass="form-control textsize"
 		                 placeholder="นามสกุล"  />
 					            </div>

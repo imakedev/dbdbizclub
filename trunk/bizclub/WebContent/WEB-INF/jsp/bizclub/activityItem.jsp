@@ -217,23 +217,22 @@
 						             	<input class="form-control textsize" id="" value="${bizclubOwner.website}" type="text" disabled="disabled">
 						            </div>
 					            </div>
-					            <div class="form-group">
-						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ที่อยู่: </label>
-						            <div class="col-md-6" style="padding-bottom: 10px;">
-						               <textarea rows="3" cols="2" style="width:100%" disabled="disabled">${bizclubOwner.addressNo} ${bizclubOwner.addressName} ${bizclubOwner.addressSubDistrictShow} ${bizclubOwner.addressDistrictShow} ${bizclubOwner.addressProvinceShow} ${bizclubOwner.addressPostCodeShow}
-						               </textarea>
-						               <%--
-						             	<input class="form-control textsize" id="" value=""  type="text" disabled="disabled">
-						             	 --%>
-						            </div>
-					            </div>
-					            
-					            <div class="form-group">
-						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">จังหวัด: </label>
-						            <div class="col-md-6" style="padding-bottom: 10px;">
-						             	<input class="form-control textsize" id="" value="${bizclubOwner.bizclubProvinceShow}" type="text" disabled="disabled">
-						            </div>
-					            </div>
+<!-- 					            <div class="form-group"> -->
+<!-- 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">ที่อยู่: </label> -->
+<!-- 						            <div class="col-md-6" style="padding-bottom: 10px;"> -->
+<%-- 						               <textarea rows="3" cols="2" style="width:100%" disabled="disabled">${bizclubOwner.addressNo} ${bizclubOwner.addressName} ${bizclubOwner.addressSubDistrictShow} ${bizclubOwner.addressDistrictShow} ${bizclubOwner.addressProvinceShow} ${bizclubOwner.addressPostCodeShow} --%>
+<!-- 						               </textarea> -->
+<%-- 						              
+<%-- 						             	<input class="form-control textsize" id="" value=""  type="text" disabled="disabled"> --%>
+<%-- 						             	 --%>
+<!-- 						            </div> -->
+<!-- 					            </div> -->
+<!-- 					            <div class="form-group"> -->
+<!-- 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">จังหวัด: </label> -->
+<!-- 						            <div class="col-md-6" style="padding-bottom: 10px;"> -->
+<%-- 						             	<input class="form-control textsize" id="" value="${bizclubOwner.bizclubProvinceShow}" type="text" disabled="disabled"> --%>
+<!-- 						            </div> -->
+<!-- 					            </div> -->
 					            <div class="form-group">
 						            <label class="col-md-3 control-label" style="padding-bottom: 10px;">เบอร์โทรศัพท์: </label>
 						            <div class="col-md-6" style="padding-bottom: 10px;">

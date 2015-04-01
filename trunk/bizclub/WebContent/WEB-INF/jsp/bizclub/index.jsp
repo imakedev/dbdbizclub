@@ -240,9 +240,9 @@
 					    <c:if test="${isAdmin}">
 					   	<li><a href='#'>ตั้งค่าระบบ</a></li>
 					   </c:if>
-					     <c:if test="${isStaff || isAdmin || isMember}">
-					    <li><a href='<c:url value="/logout" />'>ออกจากระบบ</a></li>
-					    </c:if>
+<%-- 					     <c:if test="${isStaff || isAdmin || isMember}"> --%>
+<%-- 					    <li><a href='<c:url value="/logout" />'>ออกจากระบบ</a></li> --%>
+<%-- 					    </c:if> --%>
 					</ul>
 					 
 					<%-- <ul>
@@ -260,6 +260,17 @@
 					--%>
 				</div>
 			</div>
+<!-- ===================================== if Login ================================================================== -->
+			<div class="col-md-3 col-md-offset-9" style="margin-top: -45px; z-index: 19; position: relative;">
+				<div style="float: right;">
+					<img src="<c:url value="/resources/register/images/icon.png" />" height="20px" width="20px">
+					<label>วรรวิษา อนุรักษ์พนาวัน</label>
+		            <a href='<c:url value="/logout" />'>
+						<button class="btn btn-default btn-flat" data-dismiss="modal" style="font-weight: 500; font-size: 18px; color:purple; padding: 5px;">ออกจากระบบ</button>
+					</a>
+				</div>
+			</div>
+<!-- ================================================================================================================ -->
 		</div>
 		<div class="col-md-6 col-md-offset-3 visible-xs" style="margin-top: -40px; margin-right:80px; z-index: 99; position: relative;">
 			<div class="form-group">
@@ -271,7 +282,7 @@
 			    </div>
 			</div>
 		</div>
-	    <div class="col-md-6 col-md-offset-3 hidden-xs" style="margin-top: -25px;">
+	    <div class="col-md-6 col-md-offset-3 hidden-xs" style="margin-top: -30px;">
 			<div class="form-group">
 			    <div class="input-group style-5">
 			        <input type="search" placeholder="search">
@@ -405,7 +416,7 @@
         <div  class="box_contact">
             <div  class="topic_contact">กรมพัฒนาธุรกิจการค้า</div>
             <div>เลขที่ 563 ถนน นนทบุรี ต.บางกระสอ อ.เมือง จ.นททบุรี 11000</div>
-            <div>โทรศัพท์: 02-547-5964</div>
+            <div>โทรศัพท์: 02-547-5985</div>
             <div>โทรสาร: 02-547-5963</div>
             <div>email: dbdbizclub2015@gmail.com</div>
         </div>

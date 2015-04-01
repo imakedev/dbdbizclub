@@ -32,7 +32,7 @@
 <div id="top_menu">
 	<div id="box_top">
 		<div class="row">
-	    	<div class="col-md-2" style="padding:5px 0 0 50px;"><a href="<c:url value="/" />"><img src="<c:url value="/resources/register/images/logo.png" />"></a><</div>
+	    	<div class="col-md-2" style="padding:5px 0 0 50px;"><a href="<c:url value="/" />"><img src="<c:url value="/resources/register/images/logo.png" />"></a></div>
 	        <div class="col-md-10" style="z-index: 9; position: relative;">                
 				<div id='cssmenu' style="font-size: 18px;float: right;">
 				
@@ -65,9 +65,9 @@
 					    <c:if test="${isAdmin}">
 					   	<li><a href='#'>ตั้งค่าระบบ</a></li>
 					   </c:if>
-					    <c:if test="${isStaff || isAdmin || isMember}">
-					    <li><a href='<c:url value="/logout" />'>ออกจากระบบ</a></li>
-					    </c:if>
+<%-- 					    <c:if test="${isStaff || isAdmin || isMember}"> --%>
+<%-- 					    <li><a href='<c:url value="/logout" />'>ออกจากระบบ</a></li> --%>
+<%-- 					    </c:if> --%>
 					</ul>
 					 
 					<%-- <ul>
@@ -85,18 +85,29 @@
 					--%>
 				</div>
 			</div>
+<!-- ======================================== if Login ============================================================= -->
+			<div class="col-md-4 col-md-offset-8" style="margin-top: -45px; z-index: 19; position: relative;">
+				<div style="float: right;">
+					<img src="<c:url value="/resources/register/images/icon.png" />" height="20px" width="20px">
+					<label>วรรวิษา อนุรักษ์พนาวัน</label>
+		            <a href='<c:url value="/logout" />'>
+						<button class="btn btn-default btn-flat" data-dismiss="modal" style="font-weight: 500; font-size: 18px; color:purple; padding: 5px;">ออกจากระบบ</button>
+					</a>
+				</div>
+			</div>
+<!-- =============================================================================================================== -->
 		</div>
 		<div class="col-md-6 col-md-offset-3 visible-xs" style="margin-top: -40px; margin-right:80px; z-index: 99; position: relative;">
 			<div class="form-group">
 			    <div class="input-group">
 			        <input class="form-control textsize" id="inputWarning" type="text" placeholder="Search" style="background-color: #fff;">
 			        <span class="input-group-btn">
-			            <button class="btn btn-material-indigo" type="button" style="padding: 2px 10px 2px 10px; font-weight: bold; font-size: 18px; margin-left: -5px; ">Search</button>
+		            	<button class="btn btn-material-indigo" type="button" style="padding: 2px 10px 2px 10px; font-weight: bold; font-size: 18px; margin-left: -5px; ">Search</button>
 			        </span>
 			    </div>
 			</div>
 		</div>
-	    <div class="col-md-6 col-md-offset-3 hidden-xs">
+	    <div class="col-md-6 col-md-offset-3 hidden-xs" style="margin-top: 20px;">
 			<div class="form-group">
 			    <div class="input-group style-5">
 			        <input type="search" placeholder="search">
@@ -108,3 +119,4 @@
 		</div>
 	</div>
 </div>
+
