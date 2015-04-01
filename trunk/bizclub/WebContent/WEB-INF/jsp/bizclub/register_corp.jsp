@@ -193,13 +193,13 @@
 				              <div id="group_biz_element" class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">รหัสหมวดธุรกิจ: <span style="color: red;"></span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <form:input path="bizclubRegisterM.btCode" id="btCode" cssClass="form-control textsize"/>
+					                <form:input path="bizclubRegisterM.btCode" id="btCode" cssClass="form-control textsize" placeholder="รหัสหมวดธุรกิจ"/>
 					            </div>
 							 </div>
 							 <div id="group_biz_detail_element" class="form-group">
 					            <label class="col-md-4 control-label" style="padding-bottom: 10px;">รายละเอียดหมวดธุรกิจ: <span style="color: red;"></span></label>
 					            <div class="col-md-8" style="padding-bottom: 10px;">
-					                <form:textarea path="bizclubRegisterM.btDesc"  id="btDesc" cssClass="form-control textsize" rows="2" cols="3"/>
+					                <form:textarea path="bizclubRegisterM.btDesc"  id="btDesc" cssClass="form-control textsize" placeholder="รายละเอียดหมวดธุรกิจ" rows="2" cols="3"/>
 					                
 					            </div>
 							 </div>

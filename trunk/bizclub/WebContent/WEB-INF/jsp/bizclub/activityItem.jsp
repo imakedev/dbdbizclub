@@ -168,7 +168,7 @@
 								            <img  class="img-thumbnail"  width="259" height="259" src="<c:url value="/getfile/logo/${bizclubOwner.userId}/xxx" />" alt="icon">
 								            </c:if>
 								            <c:if test="${ empty bizclubOwner.logoPath}">
-								              <img  class="img-thumbnail"  width="259" height="259" s src="<c:url value="/resources/register/images/img_logo.png" />" alt="icon">
+								              <img  class="img-thumbnail"  width="259" height="259" src="<c:url value="/resources/register/images/img_logo.png" />" alt="icon">
 								            </c:if>
 					<%--
 							<img class="img-thumbnail" id="profile" width="259" height="259"  src="<c:url value="/resources/register/images/5.png" />" >
@@ -260,7 +260,7 @@
 	      	</div>
 				<button onclick="goBackToMemeber('${bcId}')" class="btn btn-fab btn-fab btn-raised btn-material-lightyellow" style="float: right;"><i class="mdi-content-reply"></i></button>      		
 	      </div>
-  		</div>
+  		</div>  		
 	</div>
 	      <!-- ------------------------ detail-popup ------------------------------------- -->
 <div id="detail-popup" class="modal fade" tabindex="-1">
@@ -304,7 +304,6 @@
 		</div>
       </div>
   	</div>
- </div>
  <!-- ------------------------------------------------------------------------------------------- -->
  <div id="member-popup2" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-lg">
@@ -409,6 +408,7 @@
 </div>
 <!-- ----------------------------------------------------------------------------------------------------------- -->
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
+
 <script>
 function URLitem(input) {
     if (input.files && input.files[0]) {

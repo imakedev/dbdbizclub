@@ -112,7 +112,7 @@
 				               <div class="form-group">
 		            <label class="col-md-4 control-label" style="padding-bottom: 10px;">Password(แก้ไข): </label>
 		            <div class="col-md-8" style="padding-bottom: 10px;">
-		              <input type="password" id="userM.password" name="userM.password"  value="${userM.password}" class="form-control textsize"/>
+		              <input type="password" id="userM.password" name="userM.password"  value="${userM.password}" class="form-control textsize" placeholder="Password (แก้ไข)"/>
 		           <%--   <form: path="userM.password" value="${userM.password}" cssClass="form-control textsize"/>
 		               <input class="form-control textsize" id="bd" value="" type="date">  --%>
 		            </div>
