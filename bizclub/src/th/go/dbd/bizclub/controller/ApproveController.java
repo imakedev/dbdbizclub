@@ -90,6 +90,7 @@ public class ApproveController {
 			UserM user=new UserM();
 			BeanUtils.copyProperties(bizclubRegister , user);
 			String corpType=bizclubRegister.getCorpType();
+			Integer roleId=3;
 			String username="";
 			if(corpType.equals("1")){ // 
 				username=bizclubRegister.getCorpId();
@@ -97,9 +98,10 @@ public class ApproveController {
 				username=bizclubRegister.getTaxesId();
 			}else if(corpType.equals("3")){ // 
 				username=bizclubRegister.getCardId();
-			}else
+			}else{
 				username=bizclubRegister.getCardId();
-			
+				roleId=2;
+			}
 			String password=genToken(8);
 			user.setUserName(username);
 			user.setPassword(password);
@@ -128,7 +130,8 @@ public class ApproveController {
 			System.out.println("getDateOfBirthStr->"+bizclubRegister.getDateOfBirthStr());
 			user.setDateOfBirthStr(bizclubRegister.getDateOfBirthStr());
 			RoleM role =new RoleM();
-			role.setRoleId(approveForm.getApproveRole());
+			//role.setRoleId(approveForm.getApproveRole());
+			role.setRoleId(roleId);
 			user.setRole(role);
 			user.setLevel(approveForm.getLevel());
 			bizClubService.saveUser(user);
