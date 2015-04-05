@@ -18,11 +18,11 @@ public class Test {
 		List recipients =new ArrayList();
 		
 		recipients.add("moooooooooooogle@gmail.com");
-		//MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","chatchai@lansingbs.com","chatchai2012","1",
-		//MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdbizclub2015@gmail.com","bizclub2015","1",
+		//MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","chatchai@lansingbs.com","xx","1",
+		//MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdbizclub2015@gmail.com","xx","1",
 		MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdcentralbizclub2015@gmail.com","bizclub2015","1",
-				//MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","pimtun.chatchai@gmail.com","015482543a6e","1",
-		//		MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","moooooooooooogle@gmail.com","015482543a6ee6acoder","1",
+				//MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","pimtun.chatchai@gmail.com","ss","1",
+		//		MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","moooooooooooogle@gmail.com","xxx","1",
 				recipients,"ยินดีต้อนรับสู่สมาชิก BizClub Online",
 				"Welcome to BizClub <br/> UserName/Password <br/> xxx/bbbb "
 				+ "<br/> go to www.dbdbizclub.com ",
