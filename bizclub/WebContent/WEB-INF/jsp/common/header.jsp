@@ -42,7 +42,7 @@
 					   <li><a href='#'>ต่อยอดธุรกิจ</a></li>
 					   </c:if>
 					   <li><a href='<c:url value="/product" />'>ข้อมูลเครือข่าย</a></li>
-					   <li><a href='#'>ข่าวประชาสัมพันธ์</a></li>
+					   <li><a href='<c:url value="/news" />'>ข่าวประชาสัมพันธ์</a></li>
 					   <c:if test="${isStaff || isAdmin || isMember}">
 					     <li><a href="#">ระบบสมาชิก</a>
 					     	<ul>  

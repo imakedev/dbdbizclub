@@ -39,7 +39,7 @@
 					   <li class='active'><a href='<c:url value="/" />'>หน้าแรก</a></li>
 					 <%--  <li><a href='#'>ต่อยอดธุรกิจ</a></li>  --%>
 					   <li><a href='<c:url value="/product" />'>ข้อมูลเครือข่าย</a></li>
-					   <li><a href='#'>ข่าวประชาสัมพันธ์</a></li>
+					   <li><a href='<c:url value="/news" />'>ข่าวประชาสัมพันธ์</a></li>
 					   <li><a href='<c:url value="/login" />'>ระบบสมาชิก</a></li>
 					   <%--   <li><a href='#'>ระบบรายงาน</a></li> --%>
 					   <%--  <li><a href='<c:url value="/approve" />'>อนุมัติผู้ใช้งาน</a></li> --%>
