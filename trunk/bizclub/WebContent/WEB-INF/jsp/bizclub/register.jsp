@@ -11,11 +11,11 @@
 		<form:form   id="registerForm" name="registerForm" modelAttribute="registerForm"    method="post" action="${post_url}" enctype="multipart/form-data">
 		<div class="col-md-10 col-md-offset-1" style="padding-top: 40px; padding-bottom: 40px;">
 			<div class="col-md-12" style="background-color: #fbbf04;">
-                <div style="text-align: left;  color: #000; font-size: 35px; font-weight: 500;">สมัครสมาชิก</div>
+                <div style="text-align: left; color: #000; font-size: 35px; font-weight: 500;">สมัครสมาชิก</div>
             </div>
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;">
-				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
-					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-communication-contacts"></i> สถานะทางธุรกิจ</p>
+				<div class="col-md-2" style="border: 2px solid #ffb400; background-color: #000; padding-top: 10px;">
+					<p style="font-size: 22px; font-weight:bold; color: #ffb400; background-color:#000; text-align: center;"><i class="mdi-communication-contacts"></i> สถานะทางธุรกิจ</p>
 	          	</div>
           	</div> 
           	<div class="col-md-12" style="background-color: #fff; padding-top: 40px;">
@@ -58,8 +58,8 @@
 		    	  </span> 
 	    	</div>
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
-				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
-					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
+				<div class="col-md-2" style="border: 2px solid #FFB400; background-color: #000; padding-top: 10px;">
+					<p style="font-size: 22px; font-weight:bold; color: #FFB400; background-color:#000; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
 	          	</div>
           	</div>
           	<div class="col-md-12" style="background-color: #fff; ">
@@ -80,7 +80,7 @@
 					            	<span style="color: red; font-weight:bold; float: left;">*</span>
 					            	<div class="col-md-2 radio radio-primary">
 									    <label class="radio-inline">
-									     <form:radiobutton path="bizclubRegisterM.titleType" value="1"   checked="true"  />									      <span style="margin-top: -5px; margin-left: 20px;">นาย</span>
+									     <form:radiobutton path="bizclubRegisterM.titleType" value="1"   checked="true"  /><span style="margin-top: -5px; margin-left: 20px;">นาย</span>
 									    </label>
 								    </div>
 								    <div class="col-md-2 radio radio-primary">
@@ -326,8 +326,8 @@
 </div>
 <!-- ==================================================== ข้อมูลการประกอบธุรกิจ =================================================================== -->
 			<div id="bizinfo_element" class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
-				<div class="col-md-3" style="border: 2px solid #FFB400; padding-top: 10px;">
-					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
+				<div class="col-md-3" style="background-color:#000; border: 2px solid #ffb400; padding-top: 10px;">
+					<p style="font-size: 22px; font-weight:bold; color: #FFB400; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
 	          	</div>
           	</div>
           	<div class="col-md-12" style="background-color: #fff;  ">
