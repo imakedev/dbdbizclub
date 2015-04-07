@@ -224,7 +224,7 @@
                             <li><a href="#">&raquo; บริการ</a></li>
                         </ul>
                     </li>
-                    <li><a href="#" >ข่าวประชาสัมพันธ์</a></li>
+                    <li><a href='<c:url value="/news" />'>ข่าวประชาสัมพันธ์</a></li>
                     <li><a href="#">ระบบรายงาน</a></li>
                     <li><a href="<c:url value="/page/searchmember" />">ระบบสมาชิก</a></li>
                     <li><a href="#">ติดต่อเรา</a></li>

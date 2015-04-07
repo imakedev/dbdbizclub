@@ -236,7 +236,7 @@
     <div class="modal-content">
       <div class="modal-body">
       	<div class="col-md-12">
-           	<img src="<c:url value="/resources/register/images/carendar.png" />" width="530px" height="730px" >
+           	<img src="<c:url value="/resources/register/images/calendar.jpg" />" width="530px" height="730px" >
          </div>
       </div>
       <div class="modal-footer">
