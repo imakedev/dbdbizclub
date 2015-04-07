@@ -264,7 +264,17 @@
 			<div class="col-md-3 col-md-offset-9" style="margin-top: -45px; z-index: 19; position: relative;">
 				<div style="float: right;">
 					<img src="<c:url value="/resources/register/images/icon.png" />" height="20px" width="20px">
-					<label>วรรวิษา อนุรักษ์พนาวัน</label>
+					<label>
+						<sec:authorize var="loggedIn" access="isAuthenticated()" />
+							<c:choose>
+							    <c:when test="${loggedIn}">
+							           <sec:authentication property="principal.myUser.fullName"/>
+							           
+							    </c:when>
+							    <c:otherwise>
+							    </c:otherwise>
+							</c:choose>
+					</label>
 		            <a href='<c:url value="/logout" />'>
 						<button class="btn btn-default btn-flat" data-dismiss="modal" style="font-weight: 500; font-size: 18px; color:purple; padding: 5px;">ออกจากระบบ</button>
 					</a>
