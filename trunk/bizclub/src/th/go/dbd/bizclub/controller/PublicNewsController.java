@@ -42,7 +42,7 @@ public class PublicNewsController {
 	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
 	public String listAllNews(HttpServletRequest request,HttpServletResponse response,Model model, @RequestParam(required=false) String message) {
     	System.out.println("publicNews12........");
-		return "bizclub/public_news";
+		return "bizclub/News";
 	}
 	
 //	
