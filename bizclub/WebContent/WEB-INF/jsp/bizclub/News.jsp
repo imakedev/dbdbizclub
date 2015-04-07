@@ -8,7 +8,10 @@
 </div>
 <div style="background:#5E3752; padding:20px 0 20px 0;">
 	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
-	<a href="#" style="float: right; font-size: 22px; font-weight: bold;" data-toggle="modal" data-target="#calendar">ตารางกิจกรรม</a>
+	
+	
+	<a href="<c:url value="/news/activity" />" style="float: right; font-size: 22px; font-weight: bold;">ตารางกิจกรรม</a>
+	<%-- <a href="<c:url value="/news/activity" />" style="float: right; font-size: 22px; font-weight: bold;" data-toggle="modal" data-target="#calendar">ตารางกิจกรรม</a> --%>
       <div class="row">
 	      <div class="col-md-10 col-md-offset-2">
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
