@@ -22,25 +22,26 @@
 				            	<div class="col-md-2 col-md-offset-1 radio radio-primary" style="margin-top: -5px">
 				            	<span style="color: red; font-weight:bold; float: left;">*</span>
 								    <label class="radio-inline">
-								    <form:radiobutton path="userM.corpType" value="1" onclick="showbizclubtype(this.value)" checked="true"  /> 
+								    <%-- onclick="showbizclubtype(this.value)"  --%>
+								    <form:radiobutton path="userM.corpType" value="1" disabled="true"  /> 
 								      <span style="margin-top: -5px; margin-left: 20px;">นิติบุคคล</span>
 								    </label>
 							    </div>
 							    <div class="col-md-3 radio radio-primary">
 								    <label class="radio-inline">
-								      <form:radiobutton path="userM.corpType" value="2"  onclick="showbizclubtype(this.value)" /> 
+								      <form:radiobutton path="userM.corpType" value="2"  disabled="true"  /> 
 								      <span style="margin-top: -5px; margin-left: 20px; width: 250px;">บุคคลธรรมดา(จดทะเบียนพาณิชย์)</span>
 								    </label>
 								</div>
 								<div class="col-md-3 radio radio-primary">
 								    <label class="radio-inline">
-								      <form:radiobutton path="userM.corpType" value="3"  onclick="showbizclubtype(this.value)" /> 
+								      <form:radiobutton path="userM.corpType" value="3"  disabled="true"  /> 
 								      <span style="margin-top: -5px; margin-left: 20px; width: 200px;">บุคคลธรรมดา(ผู้สนใจทั่วไป)</span>
 								    </label>
 							    </div>
 							     <div class="col-md-3 radio radio-primary">
 								    <label class="radio-inline">
-								      <form:radiobutton path="userM.corpType" value="4"  onclick="showbizclubtype(this.value)" /> 
+								      <form:radiobutton path="userM.corpType" value="4" disabled="true"  /> 
 								      <span style="margin-top: -5px; margin-left: 20px; width: 200px;">เจ้าหน้าที่กรมพัฒฯ</span>
 								    </label>
 							    </div>
