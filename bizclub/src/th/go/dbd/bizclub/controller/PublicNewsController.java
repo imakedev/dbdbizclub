@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -44,6 +45,19 @@ public class PublicNewsController {
     	System.out.println("publicNews12........");
 		return "bizclub/News";
 	}
+	
+	@RequestMapping(value={"/activity"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String listActivity(	HttpServletRequest request,
+    							HttpServletResponse response,
+    							Model model) {
+		System.out.println("listActivity....");
+		/*model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
+		model.addAttribute("bcId",bcId);*/
+		return "bizclub/calendarActivities";
+    }
+	
+	
 	
 //	
 //	@Autowired
