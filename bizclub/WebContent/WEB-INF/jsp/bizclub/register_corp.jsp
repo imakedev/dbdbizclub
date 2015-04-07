@@ -14,8 +14,8 @@
                 <div style="text-align: left;  color: #000; font-size: 35px; font-weight: 500;">สมัครสมาชิก</div>
             </div>
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px;">
-				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
-					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-communication-contacts"></i> สถานะทางธุรกิจ</p>
+				<div class="col-md-2" style="border: 2px solid #FFB400; background-color:#000; padding-top: 10px;">
+					<p style="font-size: 22px; font-weight:bold; color: #ffb400; text-align: center;"><i class="mdi-communication-contacts"></i> สถานะทางธุรกิจ</p>
 	          	</div>
           	</div> 
           	<div class="col-md-12" style="background-color: #fff; padding-top: 40px;">
@@ -65,8 +65,8 @@
 			<!--   <div class="col-md-12" style="background-color: #fff; padding-top: 30px; box-shadow: 5px 5px 10px #000; ">
 			-->
 			<div class="col-md-12" style="background-color: #fff; padding-top: 30px; ">
-				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
-					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-action-assignment-ind"></i> เกี่ยวข้องกับธุรกิจ</p>
+				<div class="col-md-2" style="border: 2px solid #FFB400; background-color:#000; padding-top: 10px;">
+					<p style="font-size: 22px; font-weight:bold; color: #ffb400; text-align: center;"><i class="mdi-action-assignment-ind"></i> เกี่ยวข้องกับธุรกิจ</p>
 	          	</div>
           	</div>
           	<!-- 
@@ -117,8 +117,8 @@
 </div>
 <!-- ==================================================== ข้อมูลการประกอบธุรกิจ =================================================================== -->
 			<div id="bizinfo_element" class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
-				<div class="col-md-3" style="border: 2px solid #FFB400; padding-top: 10px;">
-					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
+				<div class="col-md-3" style="border: 2px solid #FFB400; background-color:#000; padding-top: 10px;">
+					<p style="font-size: 22px; font-weight:bold; color: #ffb400; text-align: center;"><i class="mdi-social-people"></i> ข้อมูลการประกอบธุรกิจ</p>
 	          	</div>
           	</div>
           	<div class="col-md-12" style="background-color: #fff;  ">
@@ -308,8 +308,8 @@
 		            </span>
 	            </div>
 	            <div class="col-md-12" style="background-color: #fff; padding-top: 30px;  ">
-				<div class="col-md-2" style="border: 2px solid #FFB400; padding-top: 10px;">
-					<p style="font-size: 22px; color: #FFB400; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
+				<div class="col-md-2" style="border: 2px solid #FFB400; background-color:#000; padding-top: 10px;">
+					<p style="font-size: 22px; font-weight:bold; color: #ffb400; text-align: center;"><i class="mdi-social-person"></i> ข้อมูลส่วนบุคคล</p>
 	          	</div>
           	</div>
           	<div class="col-md-12" style="background-color: #fff; ">

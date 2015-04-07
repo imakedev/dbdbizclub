@@ -53,11 +53,11 @@
 			      				<div class="col-md-12" style="margin: 20px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="col-md-3">
-								            <img src="<c:url value="/resources/register/images/n1.jpg" />" class="img-thumbnail" data-src="holder.js/200x200">
+								            <img src="<c:url value="/resources/register/images/pix_9.png" />" class="img-thumbnail" data-src="holder.js/200x200">
 								        </div>
 								        <div class="col-md-9">
-								            <h4 class="list-group-item-heading">ร่วมเป็นคณะกรรมการตัดสินการประกวดของดีเมืองกรุง</h4>
-								            <p class="list-group-item-text" style="margin-bottom: 5px;">รายละเอียด...</p>	
+								            <h4 class="list-group-item-heading">การสัมมนา“การเชื่อมโยงเครือข่ายธุรกิจ Biz Club Thailand”</h4>
+								            <p class="list-group-item-text" style="margin-bottom: 5px;"> &nbsp;&nbsp;การจัดงานสัมมนาเชื่อมโยงเครือข่ายธุรกิจ Biz Club รองรับ AEC ระหว่างวันที่   1-3 สิงหาคม 2557 ณ จังหวัดเพชรบุรี ผู้ประกอบธุรกิจที่เป็นสมาชิก Biz Club ทั้งส่วนกลางและส่วนภูมิภาค จำนวน 126 ราย ได้มีมติตั้ง “คณะกรรมการ Biz Club Thailand”เพื่อประสานความร่วมมือและเชื่อมโยงการดำเนินงานระหว่างศูนย์เครือข่ายธุรกิจ Biz Club ต่างๆ ทั่วประเทศ โดยมีองค์ประกอบจากคณะทำงานจากผู้แทนศูนย์เครือข่ายธุรกิจทุกแห่ง และมี ดร.กรัณย์ สุทธารมณ์ ประธานศูนย์เครือข่ายธุรกิจ Biz Club เพชรบุรี เป็นประธาน Biz Club Thailand รุ่นที่ 1</p>	
 								            <a href="#" style="color: orange; float: right;" data-toggle="modal" data-target="#more-popup">รายละเอียด<i class="mdi-av-play-circle-fill"></i></a>
 								            			        
 								        </div>
@@ -135,16 +135,21 @@
     <div class="modal-content" style="border: 5px solid #fbb819;">
       <div class="modal-header" style="background-color: #fbb819">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <p class="modal-title" style="font-size: 26px; font-weight: bold; padding-bottom: 20px;">ชื่อกิจกรรม</p>
+        <p class="modal-title" style="font-size: 26px; font-weight: bold; padding-bottom: 20px;">การสัมมนา“การเชื่อมโยงเครือข่ายธุรกิจ Biz Club Thailand”</p>
       </div>
       <div class="modal-body">
       	<div class="row">
       		<div class="col-md-12">
       			<div class="col-md-4" style="padding-left: 20px;">
-      				<img class="img-thumbnail" id="profile" src="<c:url value="/resources/register/images/n1.jpg" />" alt="" data-src="holder.js"/>
+      				<img class="img-thumbnail" id="profile" src="<c:url value="/resources/register/images/pix_9.png" />" alt="" data-src="holder.js"/>
       			</div>
       			<div class="col-md-8" style="padding-left: 0px;">
-	            	<p>รายละเอียด ...</p>
+	            	<p style="font-size: 20px;"> &nbsp;&nbsp;ผลต่อเนื่องจากการจัดงานสัมมนาเชื่อมโยงเครือข่ายธุรกิจ Biz Club รองรับ AEC ระหว่างวันที่   1-3 สิงหาคม 2557 ณ จังหวัดเพชรบุรี ผู้ประกอบธุรกิจที่เป็นสมาชิก Biz Club ทั้งส่วนกลางและส่วนภูมิภาค จำนวน 126 ราย ได้มีมติตั้ง “คณะกรรมการ Biz Club Thailand”เพื่อประสานความร่วมมือและเชื่อมโยงการดำเนินงานระหว่างศูนย์เครือข่ายธุรกิจ Biz Club ต่างๆ ทั่วประเทศ โดยมีองค์ประกอบจากคณะทำงานจากผู้แทนศูนย์เครือข่ายธุรกิจทุกแห่ง และมี ดร.กรัณย์ สุทธารมณ์ ประธานศูนย์เครือข่ายธุรกิจ Biz Club เพชรบุรี เป็นประธาน Biz Club Thailand รุ่นที่ 1
+    เพื่อให้ศูนย์เครือข่ายธุรกิจประเทศไทย (Biz Club Thailand) เป็นจุดเริ่มต้นของการสร้างเครือข่าย         ผู้ประกอบธุรกิจและเป็นศูนย์กลางการเชื่อมโยงให้กับเครือข่ายธุรกิจ Biz Club ในระดับประเทศ จึงได้กำหนดจัดงานสัมมนาเชิงปฏิบัติการ “เชื่อมโยงเครือข่ายธุรกิจ Biz Club Thailand” โดยมีวัตถุประสงค์
+    1. เพื่อพบปะแลกเปลี่ยนข้อคิดเห็น และข้อเสนอแนะต่างๆ ในการพัฒนา Biz Club Thailand       ให้เป็นศูนย์กลาง Biz Club ในระดับประเทศอย่างมีประสิทธิภาพ
+    2. เพื่อสร้างความสัมพันธ์ระหว่างผู้บริหาร Biz Club ทั่วประเทศ และสร้างความเข้าใจบทบาทหน้าที่ในการเป็นตัวแทนสมาชิกในระดับประเทศ
+    3. เพื่อประชาสัมพันธ์การจัดตั้งเครือข่ายธุรกิจ Biz Club Thailand ให้เป็นที่รู้จักของสมาชิก          และผู้ประกอบธุรกิจทั่วไป
+	            	</p>
 	            </div>
             </div>
         </div>

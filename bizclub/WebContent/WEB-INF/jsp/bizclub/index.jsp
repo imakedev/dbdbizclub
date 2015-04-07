@@ -324,16 +324,34 @@
                 <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 600px; height: 300px;
                     overflow: hidden;">
                     <div>
-                        <a u=image href="#"><img src="<c:url value="/resources/register/images/new01.jpg" />" /></a>
-                        <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
-                        random caption transition
-                        </div>
+                        <a u=image href="#"><img src="<c:url value="/resources/register/images/pix_9.png" />" /></a>
+<!--                         <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;">  -->
+                        
+<!--                         </div> -->
                     </div>
                     <div>
-                        <a u=image href="#"><img src="<c:url value="/resources/register/images/new03.jpg" />" /></a>
-                        <div u=caption t="*" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:300px; height:30px;"> 
-                        mobile ready, touch swipe
-                        </div>
+                        <a u=image href="#"><img src="<c:url value="/resources/register/images/pix_2.png" />" /></a>
+                    </div>
+                    <div>
+                        <a u=image href="#"><img src="<c:url value="/resources/register/images/pix_1.png" />" /></a>
+                    </div>
+                    <div>
+                        <a u=image href="#"><img src="<c:url value="/resources/register/images/pix_3.png" />" /></a>
+                    </div>
+                    <div>
+                        <a u=image href="#"><img src="<c:url value="/resources/register/images/pix_4.png" />" /></a>
+                    </div>
+                    <div>
+                        <a u=image href="#"><img src="<c:url value="/resources/register/images/pix_5.png" />" /></a>
+                    </div>
+                    <div>
+                        <a u=image href="#"><img src="<c:url value="/resources/register/images/pix_6.png" />" /></a>
+                    </div>
+                    <div>
+                        <a u=image href="#"><img src="<c:url value="/resources/register/images/pix_7.png" />" /></a>
+                    </div>
+                    <div>
+                        <a u=image href="#"><img src="<c:url value="/resources/register/images/pix_8.png" />" /></a>
                     </div>
                 </div>
                 <style>
@@ -390,9 +408,9 @@
 <div class="container" style="margin:0 auto; padding-top:30px; padding-bottom:30px;">
       <div class="row">
         <div class="col-md-4">
-          <img src="<c:url value="/resources/register/images/n1.jpg" />" class="img-thumbnail" >
-          <h2>KIP Awards 2013</h2>
-          <p>KIP Awards 2013 ร่วมเป็นคณะกรรมการตัดสินการประกวดของดีเมืองโคราช (KIP Awades 2013) วันที่ 11 ธันวาคม 2556 ณ หอการค้าจังหวัดนครราชสีมา</p>
+          <img height="165px" width="270px" src="<c:url value="/resources/register/images/pix_9.png" />" class="img-thumbnail" >
+          <h2>การเชื่อมโยงเครือข่ายธุรกิจ</h2>
+          <p>การสัมมนา“การเชื่อมโยงเครือข่ายธุรกิจ Biz Club Thailand”  วันที่ 1-3 สิงหาคม 2557 ณ จังหวัดเพชรบุรี</p>
           <p><a class="btn" href="#">อ่านต่อ &raquo;</a></p>
         </div><!-- /.col-md-4 -->
         <div class="col-md-4">
