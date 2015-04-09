@@ -51,13 +51,23 @@ public class PublicNewsController {
     							HttpServletResponse response,
     							Model model) {
 		System.out.println("listActivity....");
-		/*model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
+		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(1));
+		model.addAttribute("bcId",1);
 		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
-		model.addAttribute("bcId",bcId);*/
 		return "bizclub/calendarActivities";
     }
 	
-	
+	@RequestMapping(value={"/activity/{bcId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String listActivityByBcId(	@PathVariable Integer bcId,
+    							HttpServletRequest request,
+    							HttpServletResponse response,
+    							Model model) {
+		System.out.println("listActivityByBcId...."+bcId);
+		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
+		model.addAttribute("bcId",bcId);
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
+		return "bizclub/calendarActivities";
+    }
 	
 //	
 //	@Autowired
