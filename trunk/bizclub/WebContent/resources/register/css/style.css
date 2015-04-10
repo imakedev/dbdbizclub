@@ -610,7 +610,25 @@ ul.v_menu{ /* กำหนดขอบเขตของเมนู */
      text-decoration:none;  
      color:#fff; 
  }
+/*=============== contactUs =============== */ 
+ .contact{
+	color: #000;
+	margin-bottom: 10px;
+}
+.contact-heading{
+	background-color: #fbbf04;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 22px;
+}
+.contact-body{
+	background-color: #fbcb36;
+	padding: 5px;
+	margin-top: -5px;
+	height: 220px;
+}
  
+/*------------------------ News ---------------------------*/ 
  .tabs {
       position: relative;
       min-height: 300px; /* This part sucks */
@@ -673,6 +691,31 @@ ul.v_menu{ /* กำหนดขอบเขตของเมนู */
       -ms-transform:     translateX(0);
       -o-transform:      translateX(0);
     }
+
+.newsText{
+	padding: 5px 2px 5px 2px; 
+	font-size: 14px; 	
+	font-weight: bold;
+}
+.newsMore{
+	padding: 5px 2px 5px 2px; 
+	font-size: 14px; 
+	font-weight:bold; 
+	float: right;
+}
+.newsTitlebox{
+	background-color: #7e06b4; 
+	height: 50px; 
+	margin-top: -15px;
+	padding-top: 5px;
+}
+.newsBody{
+	word-wrap:break-word; 
+	margin: 0px; 
+	padding: 0px; 
+	color: #fff;
+}
+/*-------------------------------------------------------------*/
 /*====footer========*/
 #footer{height:240px; background:#817F80;color: #FFFFFF;}
 #footer_body{padding-top:30px; padding-bottom:30px; }

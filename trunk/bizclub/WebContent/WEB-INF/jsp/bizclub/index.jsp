@@ -261,7 +261,7 @@
 				</div>
 			</div>
 <!-- ===================================== if Login ================================================================== -->
-			<div class="col-md-3 col-md-offset-9" style="margin-top: -45px; z-index: 19; position: relative;">
+			<div class="col-md-3 col-md-offset-9" style="margin-top: -45px;">
 				<div style="float: right;">
 					<img src="<c:url value="/resources/register/images/icon.png" />" height="20px" width="20px">
 					<c:if test="${isAuthen==true}">
@@ -419,7 +419,7 @@
         <div class="col-md-4">
           <img height="165px" width="270px" src="<c:url value="/resources/register/images/pix_9.png" />" class="img-thumbnail" >
           <h2>การเชื่อมโยงเครือข่ายธุรกิจ</h2>
-          <p>การสัมมนา“การเชื่อมโยงเครือข่ายธุรกิจ Biz Club Thailand”  วันที่ 1-3 สิงหาคม 2557 ณ จังหวัดเพชรบุรี</p>
+          <p>การสัมมนา“การเชื่อมโยงเครือข่ายธุรกิจ Biz Club Thailand”  วันที่ 1-3 สิงหาคม 2557</p>
           <p><a class="btn" href="#">อ่านต่อ &raquo;</a></p>
         </div><!-- /.col-md-4 -->
         <div class="col-md-4">

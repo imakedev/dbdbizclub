@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/includes.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
+<%@ include file="/WEB-INF/jsp/common/search.jsp" %>
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
 <div style="background:#5E3752; padding:50px 0 20px 0;">
 	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
