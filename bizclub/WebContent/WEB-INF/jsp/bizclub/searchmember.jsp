@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/jsp/includes.jsp" %>
 
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
-
+<%@ include file="/WEB-INF/jsp/common/search.jsp" %>
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
 
 <div style="background:#5E3752; padding:50px 0 20px 0;">

@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/includes.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
-
+<%@ include file="/WEB-INF/jsp/common/banner.jsp" %>
+<%@ include file="/WEB-INF/jsp/common/search.jsp" %>
 <!-- -------------------------------------------------------------------------------------------------------------------------------- -->
-<div class="col-md-12" style="background-color: #9737c3; color:#fff; text-align: center; height: 200px;">
-	<h1> -- BANNER -- </h1>
-</div>
+
 <div style="background:#5E3752; padding:20px 0 20px 0;">
 	<div class="container" style="background:#fff; padding:30px; margin: 0 auto;">
 	
@@ -16,87 +15,73 @@
 	      <div class="col-md-10 col-md-offset-2">
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
-	      			<div class="col-md-7">
-	      				<p style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight: bold; ">ข่าวภาคเหนือ</p>
-	      			</div>
-	      			<div class="col-md-5">
-	      				<a style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight:bold; float: right;">ดูทั้งหมด</a>
-	      			</div>
+      				<p class="newsText">ข่าวภาคเหนือ
+      				<a href="#" class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
-	      		<div class="col-md-12" style="background-color: #7e06b4; height: 50px; margin-top: -15px;">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_6.png" />" height="40px" width="50px" style="padding: 0px; margin: 0px;"></div>
-	      			<div class="col-md-8" style="margin: 0px; padding: 0px; color: #fff;">หัวข้อ............................................................</div>
+	      		<div class="col-md-12 newsTitlebox">
+	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_6.png" />" height="40px" width="50px"></div>
+	      			<div class="col-md-8 newsBody">หัวข้อ............................................................</div>
 	      		</div>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
-	      			<div class="col-md-7">
-	      				<p style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight: bold; ">ข่าวภาคกลาง</p>
-	      			</div>
-	      			<div class="col-md-5">
-	      				<a style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight:bold; float: right;">ดูทั้งหมด</a>
-	      			</div>
+      				<p class="newsText">ข่าวภาคกลาง
+      				<a href="#" class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
-	      		<div class="col-md-12" style="background-color: #7e06b4; height: 50px; margin-top: -15px;">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_5.png" />" height="40px" width="50px" style="padding: 0px; margin: 0px;"></div>
-	      			<div class="col-md-8" style="margin: 0px; padding: 0px; color: #fff;">หัวข้อ............................................................</div>
+	      		<div class="col-md-12 newsTitlebox">
+	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_5.png" />" height="40px" width="50px"></div>
+	      			<div class="col-md-8 newsBody">การสัมมนา“การเชื่อมโยงเครือข่ายธุรกิจ Biz Club Thailand”</div>
+	      		</div>
+	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">ผลต่อเนื่องจากการจัดงานสัมมนาเชื่อมโยงเครือข่ายธุรกิจ Biz Club รองรับ AEC ระหว่างวันที่   1-3 สิงหาคม 2557 ผู้ประกอบธุรกิจที่เป็นสมาชิก Biz Club ทั้งส่วนกลาง . . .
+	      		</div>
+	      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
+	      	</div>
+	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
+	      		<div class="col-md-12">
+      				<p class="newsText">ข่าวภาคอีสาน
+      				<a href="#" class="newsMore">ดูทั้งหมด</a></p>
+	      		</div>
+	      		<div class="col-md-12 newsTitlebox">
+	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_1.png" />" height="40px" width="50px"></div>
+	      			<div class="col-md-8 newsBody">หัวข้อ............................................................</div>
 	      		</div>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
-	      			<div class="col-md-7">
-	      				<p style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight: bold; ">ข่าวภาคอีสาน</p>
-	      			</div>
-	      			<div class="col-md-5">
-	      				<a style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight:bold; float: right;">ดูทั้งหมด</a>
-	      			</div>
+      				<p class="newsText">ข่าวภาคใต้
+      				<a href="#" class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
-	      		<div class="col-md-12" style="background-color: #7e06b4; height: 50px; margin-top: -15px;">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_1.png" />" height="40px" width="50px" style="padding: 0px; margin: 0px;"></div>
-	      			<div class="col-md-8" style="margin: 0px; padding: 0px; color: #fff;">หัวข้อ............................................................</div>
+	      		<div class="col-md-12 newsTitlebox">
+	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_2.png" />" height="40px" width="50px"></div>
+	      			<div class="col-md-8 newsBody">หัวข้อ............................................................</div>
 	      		</div>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
-	      			<div class="col-md-7">
-	      				<p style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight: bold; ">ข่าวภาคใต้</p>
-	      			</div>
-	      			<div class="col-md-5">
-	      				<a style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight:bold; float: right;">ดูทั้งหมด</a>
-	      			</div>
+      				<p class="newsText">ข่าวภาคตะวันออก
+      				<a href="#" class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
-	      		<div class="col-md-12" style="background-color: #7e06b4; height: 50px; margin-top: -15px;">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_2.png" />" height="40px" width="50px" style="padding: 0px; margin: 0px;"></div>
-	      			<div class="col-md-8" style="margin: 0px; padding: 0px; color: #fff;">หัวข้อ............................................................</div>
+	      		<div class="col-md-12 newsTitlebox">
+	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_3.png" />" height="40px" width="50px"></div>
+	      			<div class="col-md-8 newsBody">หัวข้อ............................................................</div>
 	      		</div>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
-	      				<p style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight: bold; ">ข่าวภาคตะวันออก
-	      				<a style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight:bold; float: right; margin-top: -5px;">ดูทั้งหมด</a></p>
+      				<p class="newsText">ข่าวภาคตะวันตก
+      				<a href="#" class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
-	      		<div class="col-md-12" style="background-color: #7e06b4; height: 50px; margin-top: -15px;">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_3.png" />" height="40px" width="50px" style="padding: 0px; margin: 0px;"></div>
-	      			<div class="col-md-8" style="margin: 0px; padding: 0px; color: #fff;">หัวข้อ............................................................</div>
-	      		</div>
-	      	</div>
-	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
-	      		<div class="col-md-12">
-	      			<div class="col-md-7">
-	      				<p style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight: bold; ">ข่าวภาคตะวันตก</p>
-	      			</div>
-	      			<div class="col-md-5">
-	      				<a style="padding: 5px 2px 5px 2px; font-size: 14px; font-weight:bold; float: right;">ดูทั้งหมด</a>
-	      			</div>
-	      		</div>
-	      		<div class="col-md-12" style="background-color: #7e06b4; height: 50px; margin-top: -15px;">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_4.png" />" height="40px" width="50px" style="padding: 0px; margin: 0px;"></div>
-	      			<div class="col-md-8" style="margin: 0px; padding: 0px; color: #fff;">หัวข้อ............................................................</div>
+	      		<div class="col-md-12 newsTitlebox">
+	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_4.png" />" height="40px" width="50px"></div>
+	      			<div class="col-md-8 newsBody">หัวข้อ............................................................</div>
 	      		</div>
 	      	</div>
       	</div>
    	</div>
-   	<div class="col-md-12 jumbotron" style="background-color: #ffb400; height: 80px; text-align: center;"><h2>โฆษณา</h2></div>
+   	
+   	<a href='<c:url value="/register/1" />' class="col-md-12 jumbotron" style="background-color: #ffb400; height: 80px; text-align: center; color:#000; text-decoration: none;">
+   		<h2>ร่วมสมัครสมาชิก Biz Club</h2>
+   	</a>
    	<div class="col-md-10 col-md-offset-1">
    		<div class="tabs">
 	       <div class="tab">
@@ -105,31 +90,31 @@
 	           <div class="content">
 	               <table class="table table-hover">
 		               <thead>
-			               	<tr>
+			               	<tr style="font-weight: bold; font-size: 22px; background-color: #ffb400;">
 								<th class="col-md-2" style="text-align: center;">วันที่</th>
 								<th class="col-md-10" style="text-align: center;">หัวข้อ</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody style="font-size: 20px; font-weight: 500;">
 							<tr height="30px">
-								<td></td>
-								<td></td>
+								<td style="text-align: center;">09-03-2558</td>
+								<td><a href="#">โรงเรียนกวดวิชา</a> (จากการ promotion สินค้า หน้าระบบสินค้า > สินค้าและบริการ > My product)</td>
 							</tr>
 							<tr height="30px">
-								<td></td>
-								<td></td>
+								<td style="text-align: center;">28-02-2558</td>
+								<td><a href="#">เสื้อนอนเด็ก</a></td>
 							</tr>
 							<tr height="30px">
-								<td></td>
-								<td></td>
+								<td style="text-align: center;">07-02-2558</td>
+								<td><a href="#">พระเครื่อง</a></td>
 							</tr>
 							<tr height="30px">
-								<td></td>
-								<td></td>
+								<td style="text-align: center;"></td>
+								<td><a href="#"></a></td>
 							</tr>
 							<tr height="30px">
-								<td></td>
-								<td></td>
+								<td style="text-align: center;"></td>
+								<td><a href="#"></a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -141,31 +126,31 @@
 	           <div class="content">
 	               <table class="table table-hover">
 		               <thead>
-			               	<tr>
+			               	<tr style="font-weight: bold; font-size: 22px; background-color: #58047d; color:#fff;">
 								<th class="col-md-2" style="text-align: center;">วันที่</th>
 								<th class="col-md-10" style="text-align: center;">หัวข้อ</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody style="font-size: 20px; font-weight: 500;">
 							<tr height="30px">
-								<td></td>
-								<td></td>
+								<td style="text-align: center;">01-04-2558</td>
+								<td><a href="#">ลำไยสด พันธุ์จัมโบ้</a> {จากการ เพิ่มความต้องการสินค้า ในหน้าต่อยอดธุรกิจ}</td>
 							</tr>
 							<tr height="30px">
-								<td></td>
-								<td></td>
+								<td style="text-align: center;">05-04-2558</td>
+								<td><a href="#">อุปกรณ์เล่นสงกรานต์ (ปืนฉีดน้ำ, ขันน้ำ, แว่นตา, แป้ง ฯลฯ)</a></td>
 							</tr>
 							<tr height="30px">
-								<td></td>
-								<td></td>
+								<td style="text-align: center;"></td>
+								<td><a href="#"></a></td>
 							</tr>
 							<tr height="30px">
-								<td></td>
-								<td></td>
+								<td style="text-align: center;"></td>
+								<td><a href="#"></a></td>
 							</tr>
 							<tr height="30px">
-								<td></td>
-								<td></td>
+								<td style="text-align: center;"></td>
+								<td><a href="#"></a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -173,7 +158,7 @@
 	       </div>
 	    </div>
    	</div>
-   	<div class="col-md-12 jumbotron" style="background-color: #58047d; color:#fff; height: 80px; text-align: center;"><h2>โฆษณา</h2></div>
+   	<a href='<c:url value="/register/1" />' class="col-md-12 jumbotron" style="background-color: #58047d; color:#fff; height: 80px; text-align: center; color: #fff; text-decoration: none;"><h2>สมัครเป็นสมาชิก Biz Club</h2></a>
    	<div class="col-md-12" style="font-size: 22px; font-weight: bold;">รายการศูนย์ประสานงานภาคต่างๆ</div>
    	<div class="row">
    		<div class="col-md-3 col-md-offset-2" style="background-color: #fff2b2;">
@@ -283,68 +268,6 @@ function URLact(input) {
 body{
 	font-family: 'th_k2d_july8regular';
 }
-.tabs {
-      position: relative;
-      min-height: 200px; /* This part sucks */
-      clear: both;
-      margin: 25px 0;
-    }
-    .tab {
-      float: left;
-    }
-    .tab label {
-    	width:200px;
-      background: #eee;
-      padding: 10px;
-      border: 1px solid #ccc;
-      margin-left: -1px;
-      position: relative;
-      left: 1px;
-    }
-    .tab [type=radio] {
-      display: none;
-    }
-    .content {
-      position: absolute;
-      top: 28px;
-      left: 0;
-      background: white;
-      right: 0;
-      bottom: 0;
-      padding: 20px;
-      border: 1px solid #ccc;
-      overflow: hidden;
-    }
-    .content > * {
-      opacity: 0;
-
-      -webkit-transform: translate3d(0, 0, 0);
-
-      -webkit-transform: translateX(-100%);
-      -moz-transform:    translateX(-100%);
-      -ms-transform:     translateX(-100%);
-      -o-transform:      translateX(-100%);
-      -webkit-transition: all 0.6s ease;
-      -moz-transition:    all 0.6s ease;
-      -ms-transition:     all 0.6s ease;
-      -o-transition:      all 0.6s ease;
-    }
-    [type=radio]:checked ~ label {
-      background: white;
-      border-bottom: 1px solid white;
-      z-index: 2;
-    }
-    [type=radio]:checked ~ label ~ .content {
-      z-index: 1;
-    }
-    [type=radio]:checked ~ label ~ .content > * {
-      opacity: 1;
-
-      -webkit-transform: translateX(0);
-      -moz-transform:    translateX(0);
-      -ms-transform:     translateX(0);
-      -o-transform:      translateX(0);
-    }
 </style>  
 </body>
 </html>
