@@ -8,6 +8,7 @@ package th.go.dbd.bizclub.service;
 import java.util.List;
 
 import th.go.dbd.bizclub.model.AmphurM;
+import th.go.dbd.bizclub.model.BizclubActivityM;
 import th.go.dbd.bizclub.model.BizclubAssetM;
 import th.go.dbd.bizclub.model.BizclubCenterM;
 import th.go.dbd.bizclub.model.BizclubCorpWM;
@@ -62,4 +63,11 @@ public interface BizClubService {
 	public List<ZipcodeM> listZipcode(String districtId) ;
 	
 	public List<UserM> listStaft(Integer roleId,String bizClubProvince);
+	
+	// CalendarActivity
+	public Integer saveActivity(BizclubActivityM activities) ;
+	public Integer updateActivity(BizclubActivityM activities) ;
+	public Integer deleteActivity(BizclubActivityM activities);
+	public List<UserM> searchActivityByCenter(BizclubActivityM activities) ;
+	
 }

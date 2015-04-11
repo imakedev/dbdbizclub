@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import th.go.dbd.bizclub.domain.Amphur;
+import th.go.dbd.bizclub.domain.BizclubActivity;
 import th.go.dbd.bizclub.domain.BizclubAsset;
 import th.go.dbd.bizclub.domain.BizclubCenter;
 import th.go.dbd.bizclub.domain.BizclubCorpW;
@@ -107,7 +108,15 @@ public class BizClubRepository {
 	 return losApplications_model;	
 	}
 */
-
+	public Integer saveActivity(BizclubActivity act) {
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		act.setUpdatedDate(now);
+		act.setCreatedDate(now);
+		entityManager.persist(act);
+		entityManager.flush();
+		return null;
+	}
+	
 	
 	public Integer saveUser(User user) {
 		// TODO Auto-generated method stub
