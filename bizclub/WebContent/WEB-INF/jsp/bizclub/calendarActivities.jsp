@@ -120,6 +120,11 @@
         				}
         			]
         		});
+        		
+        		$('#newActivity').click(function(){
+        			var url = '<c:url value="/news/addactivity/${bcId}" />';
+        			location.href=url;
+        		});
       		});
       		function goToPage(page){
 				if(page.length>0){
@@ -177,6 +182,14 @@
 
                     <div class="col-md-8">
                         <div class="jumbotron">
+                        
+                        	<div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-default" id="newActivity">Add</button>
+                                </div>
+                            </div>
+                        
+                        
                             <div class="row">
                                 <div class="col-md-12">
                                     <div id='calendar'></div>
