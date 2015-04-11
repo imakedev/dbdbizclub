@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import th.go.dbd.bizclub.domain.Amphur;
+import th.go.dbd.bizclub.domain.BizclubActivity;
 import th.go.dbd.bizclub.domain.BizclubAsset;
 import th.go.dbd.bizclub.domain.BizclubCenter;
 import th.go.dbd.bizclub.domain.BizclubCorpW;
@@ -24,6 +25,7 @@ import th.go.dbd.bizclub.domain.RoleType;
 import th.go.dbd.bizclub.domain.User;
 import th.go.dbd.bizclub.domain.Zipcode;
 import th.go.dbd.bizclub.model.AmphurM;
+import th.go.dbd.bizclub.model.BizclubActivityM;
 import th.go.dbd.bizclub.model.BizclubAssetM;
 import th.go.dbd.bizclub.model.BizclubCenterM;
 import th.go.dbd.bizclub.model.BizclubCorpWM;
@@ -533,5 +535,42 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		}
 		return userModelList;
 	}
+
+
+	@Override
+	public Integer saveActivity(BizclubActivityM activitiesM) {
+		// TODO Auto-generated method stub
+		
+		
+	BizclubActivity activities=new BizclubActivity();
+		BeanUtils.copyProperties(activitiesM , activities);
+		return bizClubRepository.saveActivity(activities);
+	}
+
+
+	@Override
+	public Integer updateActivity(BizclubActivityM activities) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Integer deleteActivity(BizclubActivityM activities) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<UserM> searchActivityByCenter(BizclubActivityM activities) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	
+	
 	
 }

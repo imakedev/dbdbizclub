@@ -1,48 +1,52 @@
 package th.go.dbd.bizclub.controller;
-
-import java.util.Locale;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.propertyeditors.LocaleEditor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import th.go.dbd.bizclub.domain.MyUserDetails;
-import th.go.dbd.bizclub.form.ApproveForm;
-import th.go.dbd.bizclub.form.ItemForm;
-import th.go.dbd.bizclub.form.ProductForm;
-import th.go.dbd.bizclub.model.BizclubAssetM;
-import th.go.dbd.bizclub.model.BizclubRegisterM;
-import th.go.dbd.bizclub.model.UserM;
+import th.go.dbd.bizclub.form.CalendarActivityForm;
+import th.go.dbd.bizclub.model.BizclubActivityM;
 import th.go.dbd.bizclub.service.BizClubService;
-
-
 
 @Controller 
 @RequestMapping(value={"/news"})
-@SessionAttributes(value={"publicForm"})
+@SessionAttributes(value={"calendarActivityForm"})
 public class PublicNewsController {
+	
+	
+	Logger logger = Logger.getRootLogger();
 	
 	@Autowired
 	@Qualifier("bizClubServiceImpl")
 	private BizClubService bizClubService;
+	private static ResourceBundle bundle;
+	static{
+		bundle =  ResourceBundle.getBundle("config");				
+	}
+	
 	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
 	public String listAllNews(HttpServletRequest request,HttpServletResponse response,Model model, @RequestParam(required=false) String message) {
-    	System.out.println("publicNews12........");
+    	logger.debug("publicNews12........");
 		return "bizclub/News";
 	}
 	
@@ -50,11 +54,7 @@ public class PublicNewsController {
     public String listActivity(	HttpServletRequest request,
     							HttpServletResponse response,
     							Model model) {
-		System.out.println("listActivity....");
-		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(1));
-		model.addAttribute("bcId",1);
-		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
-		return "bizclub/calendarActivities";
+		return "redirect:/news/activity/1";
     }
 	
 	@RequestMapping(value={"/activity/{bcId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
@@ -62,52 +62,131 @@ public class PublicNewsController {
     							HttpServletRequest request,
     							HttpServletResponse response,
     							Model model) {
-		System.out.println("listActivityByBcId...."+bcId);
+		logger.debug("listActivityByBcId...."+bcId);
 		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
 		model.addAttribute("bcId",bcId);
 		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
 		return "bizclub/calendarActivities";
     }
 	
-//	
-//	@Autowired
-//    private BizClubService bizClubService;
-//	private static ResourceBundle bundle;
-//	static{
-//		bundle =  ResourceBundle.getBundle( "config" );				
-//	}
+	@RequestMapping(value={"/addactivity/{bcId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String addActivityByBcId(	@PathVariable Integer bcId,
+    							HttpServletRequest request,
+    							HttpServletResponse response,
+    							Model model) {
+		logger.debug("addActivityByBcId...."+bcId);
+		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
+		model.addAttribute("bcId",bcId);
+		
+		CalendarActivityForm activitiyForm = new CalendarActivityForm();
+		activitiyForm.setBcId(bcId);
+		model.addAttribute("calendarActivityForm", activitiyForm);
+		
+		return "bizclub/addCalendarActivities";
+    }
 	
-//	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
-//    public String list(Model model,SecurityContextHolderAwareRequestWrapper srequest) {
-//		
-//		System.out.println("default public new .....");
-//		return "bizclub/public_news";
-//		
+	@RequestMapping(value={"/saveactivity"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
+	public String saveActivity(	HttpServletRequest request,
+			 				HttpServletResponse response,  
+			 				@ModelAttribute(value="calendarActivityForm") CalendarActivityForm actForm, 
+			 				BindingResult result, 
+			 				Model model){
 		
-		/*Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-		if(authentication.isAuthenticated() && authentication.getPrincipal()!=null && !authentication.getPrincipal().equals("anonymousUser")){
-			MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			model.addAttribute("userObj", bizClubService.findUserById(user.getMyUser().getUserid()));
+		BizclubActivityM bizclubActivityM = new BizclubActivityM();
+		
+		logger.debug("saveActivity....");
+		logger.debug("bcId:"+actForm.getBcId());
+		logger.debug("title:"+actForm.getBaTitle());
+		logger.debug("sDate:"+actForm.getBaStartTime());
+		logger.debug("eDate:"+actForm.getBaEndTime());
+		logger.debug("detail:"+actForm.getBaDetail());
+		logger.debug("fix:"+actForm.getIsFixed());
+		
+		bizclubActivityM.setBcId(actForm.getBcId());
+		if(actForm.getBaTitle()!=null) bizclubActivityM.setBaTitle(actForm.getBaTitle());
+		/*if(actForm.getBaStartTime()!=null) bizclubActivityM.setBaStartTime(Timestamp.valueOf(actForm.getBaStartTime()));
+		if(actForm.getBaEndTime()!=null) bizclubActivityM.setBaEndTime(Timestamp.valueOf(actForm.getBaEndTime()));*/
+		
+		 bizclubActivityM.setBaStartTime(new Timestamp(new Date().getTime()));
+		 bizclubActivityM.setBaEndTime(new Timestamp(new Date().getTime()));
+		 
+		 
+		if(actForm.getBaDetail()!=null) bizclubActivityM.setBaDetail(actForm.getBaDetail());
+		if(actForm.getIsFixed()!=null) if(actForm.getIsFixed()!="null") bizclubActivityM.setIsFixed("Y"); else bizclubActivityM.setIsFixed("N");
+		
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		MultipartFile multipartFile_profile = multipartRequest.getFile("activity_upload");
+		if(multipartFile_profile!=null){
+			
+			org.joda.time.DateTime    dt1  = new org.joda.time.DateTime (new Date().getTime()); 
+			String  monthStr= dt1.getMonthOfYear()+"";
+			monthStr = monthStr.length()>1?monthStr:"0"+monthStr;
+			String yearStr= dt1.getYear()+"";
+			String pathFolder=yearStr+"_"+monthStr+"";
+			String profileFileName="";
+			String profilePath="";
+			
+            String orgName = multipartFile_profile.getOriginalFilename();
+            logger.debug("orgName:"+orgName);
+            orgName = FilenameUtils.getName(orgName);
+            FileOutputStream fos = null;
+			try {  
+				byte []filesize = multipartFile_profile.getBytes(); 
+				logger.debug("file size->"+filesize.length);
+				if(filesize.length>0){									
+					long current = System.currentTimeMillis();
+				  
+				  String path = bundle.getString("activityCalendarPath")+pathFolder;
+				  createDirectoryIfNeeded(path);
+				  profileFileName =orgName ;// multipart.getOriginalFilename();
+				  String []filenameSplit  =profileFileName.split("\\.");
+				  String extension ="";
+				  if(filenameSplit!=null && filenameSplit.length>0){
+					  extension =filenameSplit[filenameSplit.length-1];
+				  }
+				 String hotLink=current+""+genToken();
+				 String ndPathFileGen =hotLink+"."+extension; 
+				 String pathFolder_profile=pathFolder+"/"+ndPathFileGen;
+				 profilePath=path+"/"+ndPathFileGen;
+				 fos = new FileOutputStream(profilePath);
+				 profilePath=pathFolder_profile;
+				 logger.debug("path->"+profilePath);
+				 fos.write(filesize);
+				 actForm.setBaPicturePath(profilePath);
+				 actForm.setBaPictureName(profileFileName);
+				 
+				 bizclubActivityM.setBaPicturePath(actForm.getBaPicturePath());
+				 bizclubActivityM.setBaPictureName(actForm.getBaPictureName());
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			finally{
+				if(fos!=null){
+					try {
+						fos.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}	
+				}
+			} 
 		}
-		BizclubAssetM bizclubAssetM =new BizclubAssetM();
-		bizclubAssetM.setBaStatus("1");
-		System.out.println(authentication.getPrincipal());
-		if(authentication.isAuthenticated() && authentication.getPrincipal()!=null && !authentication.getPrincipal().equals("anonymousUser")){
-			MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-			System.out.println(user.getUsername()); 
-			UserM u=new UserM();
-			u.setUserId(user.getMyUser().getUserid());
-			bizclubAssetM.setUser(u);
-		}
-		ProductForm productForm=new ProductForm();
-		productForm.setProductType("1");
-    	model.addAttribute("bizclubAssets", bizClubService.searchBizclubAsset(bizclubAssetM)); 
-        model.addAttribute("productForm",productForm );
-        model.addAttribute("productItemAddForm",new ItemForm());
-    	return "redirect:/product/activity/1";*/
-		
-		
-   // }
+		bizClubService.saveActivity(bizclubActivityM);
+		return "redirect:/news/activity/"+actForm.getBcId();
+	 }
 	
-
+	 private void createDirectoryIfNeeded(String directoryName) {
+  	   File theDir = new File(directoryName);
+  	   if (!theDir.exists()) theDir.mkdir();
+  	 }	
+	 
+	 private String genToken(){
+		 StringBuffer sb = new StringBuffer();
+		 for (int i = 36; i > 0; i -= 12) {
+			 int n = Math.min(12, Math.abs(i));
+			 sb.append(org.apache.commons.lang3.StringUtils.leftPad(Long.toString(Math.round(Math.random() * Math.pow(36, n)), 36), n, '0'));
+		 }
+		 return sb.toString();
+	 }
 }
