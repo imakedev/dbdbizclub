@@ -556,21 +556,24 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 
 
 	@Override
-	public Integer deleteActivity(BizclubActivityM activities) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer deleteActivity(BizclubActivityM activitieM) {
+		BizclubActivity activity=new BizclubActivity();
+		activity.setBaId(activitieM.getBaId());
+		return bizClubRepository.deleteBizclubActivity(activity);
 	}
 
 
 	@Override
-	public List<UserM> searchActivityByCenter(BizclubActivityM activities) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BizclubActivityM> searchActivityByCenter(BizclubActivityM activitiesM) {
+		BizclubActivity activity =new BizclubActivity();
+		if(activitiesM!=null) BeanUtils.copyProperties(activitiesM , activity);
+		List<BizclubActivity> bizActivity= bizClubRepository.searchBizclubActivity(activity);
+		List<BizclubActivityM> activityList= new ArrayList<BizclubActivityM>(bizActivity.size());
+		for (BizclubActivity act : bizActivity) {
+			BizclubActivityM actM=new BizclubActivityM();
+			BeanUtils.copyProperties(act , actM);
+			activityList.add(actM);
+		}
+		return activityList;
 	}
-	
-	
-	
-	
-	
-	
 }
