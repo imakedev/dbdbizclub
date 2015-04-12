@@ -68,6 +68,6 @@ public interface BizClubService {
 	public Integer saveActivity(BizclubActivityM activities) ;
 	public Integer updateActivity(BizclubActivityM activities) ;
 	public Integer deleteActivity(BizclubActivityM activities);
-	public List<UserM> searchActivityByCenter(BizclubActivityM activities) ;
+	public List<BizclubActivityM> searchActivityByCenter(BizclubActivityM activities) ;
 	
 }
