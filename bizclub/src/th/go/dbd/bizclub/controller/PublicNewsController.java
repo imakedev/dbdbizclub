@@ -3,7 +3,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +28,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.google.gson.Gson;
+
+import th.go.dbd.bizclub.bean.CalendarBean;
 import th.go.dbd.bizclub.form.CalendarActivityForm;
 import th.go.dbd.bizclub.model.BizclubActivityM;
 import th.go.dbd.bizclub.service.BizClubService;
@@ -62,12 +69,71 @@ public class PublicNewsController {
     							HttpServletRequest request,
     							HttpServletResponse response,
     							Model model) {
+		
+		String imgURL = bundle.getString("activityDefaultUrl");
 		logger.debug("listActivityByBcId...."+bcId);
 		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
 		model.addAttribute("bcId",bcId);
 		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
+		BizclubActivityM activities = new BizclubActivityM();
+		activities.setBcId(bcId);
+		List<BizclubActivityM> listActivity = bizClubService.searchActivityByCenter(activities);
+		if(listActivity!=null && listActivity.size()>0){
+			logger.debug("listActivity:"+listActivity.size());
+			List<CalendarBean> calendarList = new ArrayList<CalendarBean>();
+			for (int i = 0; i < listActivity.size(); i++) {
+				BizclubActivityM act = listActivity.get(i);
+				CalendarBean calBean = new CalendarBean();
+				calBean.setCenterId(bcId);
+				calBean.setActivityId(act.getBaId());
+				calBean.setTitle(act.getBaTitle());
+				calBean.setDetail(act.getBaDetail());
+				calBean.setStart(convertTimestampToJson(act.getBaStartTime().toString()));
+				calBean.setEnd(convertTimestampToJson(act.getBaEndTime().toString()));
+				calBean.setsTime(convertTimestampToString(act.getBaStartTime()));
+				calBean.seteTime(convertTimestampToString(act.getBaEndTime()));
+				if(act.getBaPicturePath()!=null && act.getBaPicturePath().length()>0){
+					calBean.setImgPath(imgURL+"/"+act.getBaPicturePath());
+				}
+				if(act.getBaPictureName()!=null && act.getBaPictureName().length()>0){
+					calBean.setImgName(act.getBaPictureName());
+				}
+				calendarList.add(calBean);
+			}
+			Gson gson = new Gson();
+			String calendarJSON = gson.toJson(calendarList);
+			logger.debug("========");
+			logger.debug(calendarJSON);
+			logger.debug("========");
+			model.addAttribute("calendarJSON",calendarJSON);
+		}else{
+			logger.debug("not event.....");
+			model.addAttribute("calendarJSON",null);
+		}
 		return "bizclub/calendarActivities";
     }
+	
+	@RequestMapping(value={"/delactivity/{bcId}/{baId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String delActivityByBaId(@PathVariable Integer bcId,
+    								@PathVariable Integer baId,
+    								HttpServletRequest request,
+    								HttpServletResponse response,
+    								Model model) {
+		logger.debug("delActivityByBaId...."+baId);
+		logger.debug("bcId:"+bcId);
+		logger.debug("baId:"+baId);
+		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
+		model.addAttribute("bcId",bcId);
+		
+		BizclubActivityM activitiesM = new BizclubActivityM();
+		activitiesM.setBaId(baId);
+		Integer result = bizClubService.deleteActivity(activitiesM);
+		logger.debug("deleteActivity:"+result);
+		
+		return "redirect:/news/activity/"+bcId;
+    }
+	
 	
 	@RequestMapping(value={"/addactivity/{bcId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public String addActivityByBcId(	@PathVariable Integer bcId,
@@ -96,6 +162,7 @@ public class PublicNewsController {
 		BizclubActivityM bizclubActivityM = new BizclubActivityM();
 		
 		logger.debug("saveActivity....");
+		if(request.getUserPrincipal()!=null) logger.debug(request.getUserPrincipal().getName()+"...");
 		logger.debug("bcId:"+actForm.getBcId());
 		logger.debug("title:"+actForm.getBaTitle());
 		logger.debug("sDate:"+actForm.getBaStartTime());
@@ -105,16 +172,25 @@ public class PublicNewsController {
 		
 		bizclubActivityM.setBcId(actForm.getBcId());
 		if(actForm.getBaTitle()!=null) bizclubActivityM.setBaTitle(actForm.getBaTitle());
-		/*if(actForm.getBaStartTime()!=null) bizclubActivityM.setBaStartTime(Timestamp.valueOf(actForm.getBaStartTime()));
-		if(actForm.getBaEndTime()!=null) bizclubActivityM.setBaEndTime(Timestamp.valueOf(actForm.getBaEndTime()));*/
 		
-		 bizclubActivityM.setBaStartTime(new Timestamp(new Date().getTime()));
-		 bizclubActivityM.setBaEndTime(new Timestamp(new Date().getTime()));
-		 
-		 
+		if(actForm.getBaStartTime()!=null) {
+			Timestamp baStartTime =  convertStringToTimestamp(actForm.getBaStartTime()+" 08:00:00");
+			if(baStartTime!=null) bizclubActivityM.setBaStartTime(baStartTime);
+		}
+		if(actForm.getBaEndTime()!=null){
+			Timestamp baEndTime =  convertStringToTimestamp(actForm.getBaEndTime()+" 18:00:00");
+			if(baEndTime!=null) bizclubActivityM.setBaEndTime(baEndTime);
+		}
 		if(actForm.getBaDetail()!=null) bizclubActivityM.setBaDetail(actForm.getBaDetail());
-		if(actForm.getIsFixed()!=null) if(actForm.getIsFixed()!="null") bizclubActivityM.setIsFixed("Y"); else bizclubActivityM.setIsFixed("N");
-		
+		if(actForm.getIsFixed()!=null) {
+			if(actForm.getIsFixed()!="null") {
+				bizclubActivityM.setIsFixed("Y"); 
+			}else{
+				bizclubActivityM.setIsFixed("N");
+			}
+		}else{
+			bizclubActivityM.setIsFixed("N");
+		}
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		MultipartFile multipartFile_profile = multipartRequest.getFile("activity_upload");
 		if(multipartFile_profile!=null){
@@ -156,8 +232,17 @@ public class PublicNewsController {
 				 actForm.setBaPicturePath(profilePath);
 				 actForm.setBaPictureName(profileFileName);
 				 
+				 logger.debug("profilePath(length)....."+profilePath.length());
+				 logger.debug("profileFileName(length)....."+profileFileName.length());
+				 
 				 bizclubActivityM.setBaPicturePath(actForm.getBaPicturePath());
 				 bizclubActivityM.setBaPictureName(actForm.getBaPictureName());
+				 
+				 if(request.getUserPrincipal()!=null) {
+					 bizclubActivityM.setCreatedBy(request.getUserPrincipal().getName());
+					 bizclubActivityM.setUpdatedBy(request.getUserPrincipal().getName());
+				 }
+				 
 				}
 			}catch (Exception e) {
 				e.printStackTrace();
@@ -176,6 +261,23 @@ public class PublicNewsController {
 		return "redirect:/news/activity/"+actForm.getBcId();
 	 }
 	
+	private Timestamp convertStringToTimestamp(String strDate){
+		Timestamp timestamp = null;
+		String newFormat = null;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+		try {
+			java.util.Date myDt  = sdf.parse(strDate);
+			newFormat = (myDt.getYear()+1900)+"-"+(myDt.getMonth()+1)+"-"+myDt.getDate()+" "+ myDt.getHours()+":"+myDt.getMinutes()+":"+myDt.getSeconds();
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			Date parsedDate = dateFormat.parse(newFormat);
+			timestamp = new java.sql.Timestamp(parsedDate.getTime());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return timestamp;
+	}
+	
 	 private void createDirectoryIfNeeded(String directoryName) {
   	   File theDir = new File(directoryName);
   	   if (!theDir.exists()) theDir.mkdir();
@@ -189,4 +291,22 @@ public class PublicNewsController {
 		 }
 		 return sb.toString();
 	 }
+	 private String convertTimestampToJson(String strTime){
+		 logger.debug("convertTimestampToJson..."+strTime);
+		 String result = null;
+		 try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			Date parsedDate = dateFormat.parse(strTime);
+			Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+			result = timestamp.toString().replaceAll(" ", "T");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		 logger.debug("result:"+result);
+		 return result;
+	 } 
+	 
+	 private String convertTimestampToString(Timestamp timeDate){
+		return timeDate.getDate()+"/"+(timeDate.getMonth()+1)+"/"+(timeDate.getYear()+1900)+" "+ timeDate.getHours()+":"+timeDate.getMinutes();
+	}
 }
