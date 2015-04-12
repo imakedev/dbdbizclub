@@ -30,8 +30,13 @@
 		<script>
       		$(document).ready(function() {
         		$.material.init();
-        		$('#startDatepicker').datepicker();
-        		$('#endDatepicker').datepicker();
+        		//$('#startDatepicker').datepicker();
+        		//$('#endDatepicker').datepicker();
+
+
+
+
+
 
 				$('#commit').click(function(){
 					var title = $('#title').val();
@@ -52,7 +57,7 @@
 					var url = '<c:url value="/news/activity/${bcId}" />';
         			location.href=url;
 				});
-      		});d
+      		});
       		function goToPage(page){
 				if(page.length>0){
 	    	  		window.open(
@@ -128,17 +133,17 @@
 										        
 										        <div class="form-group">
 										        	<label class="col-md-3 control-label">วันที่จัดกิจกรรม: </label>
-										            <div class="col-md-3">
-										                <div class="form-control-wrapper">
-										                	<form:input path="baStartTime" class="form-control textsize empty" id="startDatepicker"/>
-										                	<span class="material-input"></span>
+										            <div class="col-md-2">
+														<div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd/mm/yyyy">
+															<form:input path="baStartTime" id="startDatepicker" readonly=""/>
+										                	<span class="add-on"><i class="icon-calendar"></i></span>
 										                </div>
 										            </div>   
 										            <label class="col-md-3 control-label">ถึง </label> 
-										            <div class="col-md-3">
-										                <div class="form-control-wrapper">
-										                	<form:input path="baEndTime" class="form-control textsize empty" id="endDatepicker"/>
-										                	<span class="material-input"></span>
+										            <div class="col-md-2">
+										            	<div class="input-append date" id="dp4" data-date="12-02-2012" data-date-format="dd/mm/yyyy">
+															<form:input path="baEndTime" id="endDatepicker" readonly=""/>
+										                	<span class="add-on"><i class="icon-calendar"></i></span>
 										                </div>
 										            </div>    
 										        </div>
@@ -195,6 +200,6 @@
             </div>
          </div>
          </form:form> 
-       <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
+       
 	</body>
 </html>
