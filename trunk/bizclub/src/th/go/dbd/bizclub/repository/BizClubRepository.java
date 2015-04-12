@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,11 @@ import th.go.dbd.bizclub.domain.Zipcode;
 @Repository("bizClubRepository")
 @Transactional
 public class BizClubRepository {
+	
+	
+	
+	Logger logger = Logger.getRootLogger();
+	
 	@Autowired
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -108,6 +114,20 @@ public class BizClubRepository {
 	 return losApplications_model;	
 	}
 */
+	public List<BizclubActivity> searchBizclubActivity(BizclubActivity activity) {
+		logger.debug("searchBizclubActivity.....");
+		StringBuffer sb=new StringBuffer("select act from BizclubActivity act ");
+		if(activity!=null){
+			sb.append("where act.bcId="+activity.getBcId());
+		}
+		System.out.println(sb.toString());
+		sb.append(" order by act.updatedDate desc ");
+		logger.debug("SQL:"+sb.toString());
+		Query query=entityManager.createQuery(sb.toString(), BizclubActivity.class);
+		return query.getResultList();
+	}
+	
+	
 	public Integer saveActivity(BizclubActivity act) {
 		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
 		act.setUpdatedDate(now);
@@ -138,10 +158,8 @@ public class BizClubRepository {
 		return null;
 	}
 
-	
 	public Integer deleteUser(User userId) {
 		// TODO Auto-generated method stub
-	
 		Query query=	entityManager.createQuery( "delete from User where userId =:userId ");
 		query.setParameter("userId",userId.getUserId());
 		Integer reuturnRec=Integer.valueOf(query.executeUpdate());
@@ -154,8 +172,14 @@ public class BizClubRepository {
 		return reuturnRec;
 	
 	}
-
 	
+	public Integer deleteBizclubActivity(BizclubActivity activity) {
+		Query query=	entityManager.createQuery( "delete from BizclubActivity where baId =:id ");
+		query.setParameter("id",activity.getBaId());
+		Integer reuturnRec=Integer.valueOf(query.executeUpdate());
+		return reuturnRec;
+	}
+
 	public User findUserById(Integer userId) {
 		// TODO Auto-generated method stub
 		User user =entityManager.find(User.class,userId );
