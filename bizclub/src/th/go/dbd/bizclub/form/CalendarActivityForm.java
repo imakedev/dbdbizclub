@@ -1,6 +1,7 @@
 package th.go.dbd.bizclub.form;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 
 public class CalendarActivityForm implements Serializable{
@@ -15,7 +16,32 @@ public class CalendarActivityForm implements Serializable{
 	private String baStartTime;
 	private String baTitle;
 	private String isFixed;
-
+	private int baId;
+	private String createBy;
+	private Timestamp createDate;
+	
+	
+	
+	
+	
+	public String getCreateBy() {
+		return createBy;
+	}
+	public void setCreateBy(String createBy) {
+		this.createBy = createBy;
+	}
+	public Timestamp getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Timestamp createDate) {
+		this.createDate = createDate;
+	}
+	public int getBaId() {
+		return baId;
+	}
+	public void setBaId(int baId) {
+		this.baId = baId;
+	}
 	public int getBcId() {
 		return bcId;
 	}
