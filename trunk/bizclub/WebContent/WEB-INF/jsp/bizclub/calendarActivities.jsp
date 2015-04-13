@@ -2,6 +2,11 @@
 <%@ include file="/WEB-INF/jsp/includes.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 <%@ include file="/WEB-INF/jsp/common/search.jsp" %>
+
+<sec:authorize access="hasAnyRole('ROLE_ADMIN')" var="isAdmin"/>
+<sec:authorize access="hasAnyRole('ROLE_STAFF')" var="isStaff"/>
+<sec:authorize access="isAuthenticated()" var="isAuthen"/> 
+
 <%-- <%@ include file="/WEB-INF/jsp/common/footer.jsp" %> --%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -57,12 +62,17 @@
                     eventLimit: true, // allow "more" link when too many events
                     selectable: true,
                     eventClick: function(calEvent, jsEvent, view) {
-
-                        var str = '<div class="col-md-12" style="margin: 0px 0px -50px 0px;">';
-                        str = str +'<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete" onclick="deleteAct('+calEvent.activityId+','+calEvent.centerId+')"></i></button>';
-                        str = str +'<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#activity-popup"><i class="mdi-image-edit" onclick="editAct('+calEvent.activityId+','+calEvent.centerId+')"></i></button>';
-                        str = str +'</div>';
-
+                    	var str = '';
+						var isStaff = '${isStaff}';
+						var isAdmin = '${isAdmin}';
+						var isAuthen = '${isAuthen}';
+						
+						if(isAuthen =='true' && isAdmin=='true'){
+							str = str +'<div class="col-md-12" style="margin: 0px 0px -50px 0px;">';
+	                        str = str +'<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete" onclick="deleteAct('+calEvent.activityId+','+calEvent.centerId+')"></i></button>';
+	                        str = str +'<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#activity-popup"><i class="mdi-image-edit" onclick="editAct('+calEvent.activityId+','+calEvent.centerId+')"></i></button>';
+	                        str = str +'</div>';
+						}
                         str = str +'<div><b>Title:</b> '+calEvent.title+'<br/>';
                         str = str +'<b>StartDate:</b> '+calEvent.sTime+'<br/>';
                         str = str +'<b>EndDate:</b> '+calEvent.eTime+'<br/>';
@@ -142,14 +152,14 @@
 
                     <div class="col-md-8">
                         <div class="jumbotron">
-                        
-                            <div class="row">
+                        	<c:if test="${isStaff || isAdmin || isAuthen}">
+					   		<div class="row">
                                 <div class="col-md-12">
                                     <button type="button" class="btn btn-default" id="newActivity">Add</button>
                                 </div>
                             </div>
-                        
-                        
+					   		</c:if>
+					   		
                             <div class="row">
                                 <div class="col-md-12">
                                     <div id='calendar'></div>
