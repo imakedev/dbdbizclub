@@ -114,6 +114,13 @@ public class BizClubRepository {
 	 return losApplications_model;	
 	}
 */
+	
+	
+	public BizclubActivity findBizclubActivityById(Integer baId) {
+		BizclubActivity activity =entityManager.find(BizclubActivity.class,baId );
+		return activity;
+	}
+	
 	public List<BizclubActivity> searchBizclubActivity(BizclubActivity activity) {
 		logger.debug("searchBizclubActivity.....");
 		StringBuffer sb=new StringBuffer("select act from BizclubActivity act ");
@@ -133,6 +140,14 @@ public class BizClubRepository {
 		act.setUpdatedDate(now);
 		act.setCreatedDate(now);
 		entityManager.persist(act);
+		entityManager.flush();
+		return null;
+	}
+	
+	public Integer updateBizclubActivity(BizclubActivity act) {
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		act.setUpdatedDate(now);
+		entityManager.merge(act);
 		entityManager.flush();
 		return null;
 	}
