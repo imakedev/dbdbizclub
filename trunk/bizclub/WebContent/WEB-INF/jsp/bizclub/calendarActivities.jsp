@@ -31,6 +31,8 @@
         <script src='<c:url value="/resources/calendar/lib/moment.min.js" />' ></script>
         <script src="<c:url value="/resources/register/js/jquery.min.js" />"></script>
         <script src='<c:url value="/resources/calendar/fullcalendar.min.js" />' ></script>
+        
+         <script src='<c:url value="/resources/calendar/lang-all.js" />' ></script>
 
         <script src="<c:url value="/resources/register/material/js/material.min.js" />"></script>
 
@@ -58,6 +60,7 @@
                         right: 'month,agendaWeek,agendaDay'
                     },
                     //defaultDate: '2015-02-12',
+                    lang: 'th',
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
                     selectable: true,
