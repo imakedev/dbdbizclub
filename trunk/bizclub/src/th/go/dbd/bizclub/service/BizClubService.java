@@ -65,6 +65,7 @@ public interface BizClubService {
 	public List<UserM> listStaft(Integer roleId,String bizClubProvince);
 	
 	// CalendarActivity
+	public BizclubActivityM findBizclubActivityById(Integer baId) ;
 	public Integer saveActivity(BizclubActivityM activities) ;
 	public Integer updateActivity(BizclubActivityM activities) ;
 	public Integer deleteActivity(BizclubActivityM activities);
