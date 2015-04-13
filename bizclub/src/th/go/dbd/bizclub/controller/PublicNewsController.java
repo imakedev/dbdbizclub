@@ -17,6 +17,8 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +33,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.google.gson.Gson;
 
 import th.go.dbd.bizclub.bean.CalendarBean;
+import th.go.dbd.bizclub.domain.MyUserDetails;
 import th.go.dbd.bizclub.form.CalendarActivityForm;
 import th.go.dbd.bizclub.model.BizclubActivityM;
 import th.go.dbd.bizclub.service.BizClubService;
@@ -69,6 +72,7 @@ public class PublicNewsController {
     							HttpServletRequest request,
     							HttpServletResponse response,
     							Model model) {
+		
 		
 		String imgURL = bundle.getString("activityDefaultUrl");
 		logger.debug("listActivityByBcId...."+bcId);
@@ -135,6 +139,53 @@ public class PublicNewsController {
     }
 	
 	
+	@RequestMapping(value={"/editactivity/{bcId}/{baId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+    public String editActivityByBcId(	@PathVariable Integer bcId, @PathVariable Integer baId,
+    							HttpServletRequest request,
+    							HttpServletResponse response,
+    							Model model) {
+		logger.debug("editActivityByBcId...."+bcId);
+		logger.debug("bcId:"+bcId);
+		logger.debug("baId:"+baId);
+		
+		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
+		model.addAttribute("bcId",bcId);
+		
+		BizclubActivityM defaultActivity = bizClubService.findBizclubActivityById(baId);
+		CalendarActivityForm activitiyForm = new CalendarActivityForm();
+		activitiyForm.setBcId(bcId);
+		activitiyForm.setBaId(baId);
+		
+		activitiyForm.setCreateBy(defaultActivity.getCreatedBy());
+		activitiyForm.setCreateDate(defaultActivity.getCreatedDate());
+		
+		if(defaultActivity.getBaTitle()!=null && defaultActivity.getBaTitle().length()>0){
+			activitiyForm.setBaTitle(defaultActivity.getBaTitle());
+		}
+		if(defaultActivity.getBaDetail()!=null && defaultActivity.getBaDetail().length()>0){
+			activitiyForm.setBaDetail(defaultActivity.getBaDetail());
+		}
+		if(defaultActivity.getBaStartTime()!=null){
+			activitiyForm.setBaStartTime(convertTimestampToString2(defaultActivity.getBaStartTime()));
+		}
+		if(defaultActivity.getBaEndTime()!=null){
+			activitiyForm.setBaEndTime(convertTimestampToString2(defaultActivity.getBaEndTime()));
+		}
+		if(defaultActivity.getIsFixed()!=null){
+			activitiyForm.setIsFixed(defaultActivity.getIsFixed());
+		}
+		
+		if(defaultActivity.getBaPicturePath()!=null && defaultActivity.getBaPicturePath().length()>0){
+			activitiyForm.setBaPicturePath(defaultActivity.getBaPicturePath());
+		}
+		if(defaultActivity.getBaPictureName()!=null && defaultActivity.getBaPictureName().length()>0){
+			activitiyForm.setBaPictureName(defaultActivity.getBaPictureName());
+		}
+		model.addAttribute("calendarActivityForm", activitiyForm);
+		return "bizclub/addCalendarActivities";
+    }
+	
 	@RequestMapping(value={"/addactivity/{bcId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
     public String addActivityByBcId(	@PathVariable Integer bcId,
     							HttpServletRequest request,
@@ -158,6 +209,13 @@ public class PublicNewsController {
 			 				@ModelAttribute(value="calendarActivityForm") CalendarActivityForm actForm, 
 			 				BindingResult result, 
 			 				Model model){
+		String currentUser = null;
+		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+		if(authentication.isAuthenticated() && authentication.getPrincipal()!=null && !authentication.getPrincipal().equals("anonymousUser")){
+			MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			currentUser = user.getUsername();
+			logger.debug("username...."+currentUser); 
+		}
 		
 		BizclubActivityM bizclubActivityM = new BizclubActivityM();
 		
@@ -171,6 +229,11 @@ public class PublicNewsController {
 		logger.debug("fix:"+actForm.getIsFixed());
 		
 		bizclubActivityM.setBcId(actForm.getBcId());
+		
+		
+		if(actForm.getBaId()>0){
+			bizclubActivityM.setBaId(actForm.getBaId());
+		}
 		if(actForm.getBaTitle()!=null) bizclubActivityM.setBaTitle(actForm.getBaTitle());
 		
 		if(actForm.getBaStartTime()!=null) {
@@ -191,6 +254,15 @@ public class PublicNewsController {
 		}else{
 			bizclubActivityM.setIsFixed("N");
 		}
+		
+		if(actForm.getBaPicturePath()!=null && actForm.getBaPicturePath().length()>0){
+			bizclubActivityM.setBaPicturePath(actForm.getBaPicturePath());
+		}
+		
+		if(actForm.getBaPictureName()!=null && actForm.getBaPictureName().length()>0){
+			bizclubActivityM.setBaPictureName(actForm.getBaPictureName());
+		}
+		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		MultipartFile multipartFile_profile = multipartRequest.getFile("activity_upload");
 		if(multipartFile_profile!=null){
@@ -237,11 +309,7 @@ public class PublicNewsController {
 				 
 				 bizclubActivityM.setBaPicturePath(actForm.getBaPicturePath());
 				 bizclubActivityM.setBaPictureName(actForm.getBaPictureName());
-				 
-				 if(request.getUserPrincipal()!=null) {
-					 bizclubActivityM.setCreatedBy(request.getUserPrincipal().getName());
-					 bizclubActivityM.setUpdatedBy(request.getUserPrincipal().getName());
-				 }
+				
 				 
 				}
 			}catch (Exception e) {
@@ -257,7 +325,20 @@ public class PublicNewsController {
 				}
 			} 
 		}
-		bizClubService.saveActivity(bizclubActivityM);
+		if(bizclubActivityM.getBaId()>0){
+			//Update activity
+			bizclubActivityM.setCreatedBy(actForm.getCreateBy());
+			bizclubActivityM.setCreatedDate(actForm.getCreateDate());
+			if(currentUser!=null)bizclubActivityM.setUpdatedBy(currentUser);
+			bizClubService.updateActivity(bizclubActivityM);
+		}else{
+			//save Activity
+			if(currentUser!=null){
+				bizclubActivityM.setUpdatedBy(currentUser);
+				bizclubActivityM.setCreatedBy(currentUser);
+			}
+			bizClubService.saveActivity(bizclubActivityM);
+		}
 		return "redirect:/news/activity/"+actForm.getBcId();
 	 }
 	
@@ -308,5 +389,9 @@ public class PublicNewsController {
 	 
 	 private String convertTimestampToString(Timestamp timeDate){
 		return timeDate.getDate()+"/"+(timeDate.getMonth()+1)+"/"+(timeDate.getYear()+1900)+" "+ timeDate.getHours()+":"+timeDate.getMinutes();
+	}
+	 
+	private String convertTimestampToString2(Timestamp timeDate){
+		return timeDate.getDate()+"/"+(timeDate.getMonth()+1)+"/"+(timeDate.getYear()+1900);
 	}
 }
