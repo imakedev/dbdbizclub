@@ -71,4 +71,7 @@ public interface BizClubService {
 	public Integer deleteActivity(BizclubActivityM activities);
 	public List<BizclubActivityM> searchActivityByCenter(BizclubActivityM activities) ;
 	
+	//activity
+	public BizclubActivityM findActivityByBaId(BizclubActivityM activities) ;
+	
 }
