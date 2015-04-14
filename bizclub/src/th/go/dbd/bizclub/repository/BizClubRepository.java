@@ -134,6 +134,24 @@ public class BizClubRepository {
 		return query.getResultList();
 	}
 	
+	public BizclubActivity findActivityByBaId(BizclubActivity activity) {
+		logger.debug("searchBizclubActivity.....");
+		StringBuffer sb=new StringBuffer("select act from BizclubActivity act ");
+		if(activity!=null){
+			if(activity.getBcId()!=0){
+				sb.append("where act.bcId="+activity.getBcId());
+			}if(activity.getBaId()!=0){
+				sb.append(" and act.baId="+activity.getBaId());
+			}
+			
+		}
+		System.out.println(sb.toString());
+		sb.append(" order by act.updatedDate desc ");
+		logger.debug("SQL:"+sb.toString());
+		Query query=entityManager.createQuery(sb.toString(), BizclubActivity.class);
+		BizclubActivity result = (BizclubActivity) query.getSingleResult();
+		return result;
+	}
 	
 	public Integer saveActivity(BizclubActivity act) {
 		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
