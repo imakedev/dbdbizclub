@@ -583,4 +583,15 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		BeanUtils.copyProperties(act , actM);
 		return actM;
 	}
+	
+	@Override
+	public BizclubActivityM findActivityByBaId(BizclubActivityM activitiesM) {
+		BizclubActivity activity =new BizclubActivity();
+		if(activitiesM!=null) BeanUtils.copyProperties(activitiesM , activity);
+		BizclubActivity bizActivity= bizClubRepository.findActivityByBaId(activity);
+		BizclubActivityM actM=new BizclubActivityM();
+		BeanUtils.copyProperties(bizActivity , actM);
+		
+		return actM;
+	}
 }
