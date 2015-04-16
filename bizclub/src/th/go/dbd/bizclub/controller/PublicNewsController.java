@@ -311,11 +311,25 @@ public class PublicNewsController {
 				calBean.setCenterId(bcId);
 				calBean.setActivityId(act.getBaId());
 				calBean.setTitle(act.getBaTitle());
-				calBean.setDetail(act.getBaDetail());
-				calBean.setStart(convertTimestampToJson(act.getBaStartTime().toString()));
-				calBean.setEnd(convertTimestampToJson(act.getBaEndTime().toString()));
-				calBean.setsTime(convertTimestampToString(act.getBaStartTime()));
-				calBean.seteTime(convertTimestampToString(act.getBaEndTime()));
+				if(act.getBaDetail()!=null && act.getBaDetail().length()>0){
+					calBean.setDetail(act.getBaDetail());
+				}else{
+					calBean.setDetail("");
+				}
+				if(act.getBaStartTime()!=null){
+					calBean.setStart(convertTimestampToJson(act.getBaStartTime().toString()));
+					calBean.setsTime(convertTimestampToString(act.getBaStartTime()));
+				}else{
+					calBean.setStart("");
+					calBean.setsTime("");
+				}
+				if(act.getBaEndTime()!=null){
+					calBean.setEnd(convertTimestampToJson(act.getBaEndTime().toString()));
+					calBean.seteTime(convertTimestampToString(act.getBaEndTime()));
+				}else{
+					calBean.setEnd("");
+					calBean.seteTime("");
+				}
 				if(act.getBaPicturePath()!=null && act.getBaPicturePath().length()>0){
 					calBean.setImgPath(imgURL+"/"+act.getBaPicturePath());
 				}
