@@ -33,25 +33,45 @@
         		//$('#startDatepicker').datepicker();
         		//$('#endDatepicker').datepicker();
 
-
-
-
-
-
 				$('#commit').click(function(){
+					var checkValidate = true;
+					var checkFormat = false;
+					var errMsg = '';
+					var errFmt = '';
 					var title = $('#title').val();
 					var detail = $('#detail').val();
 					var sDate = $('#startDatepicker').val();
 					var eDate = $('#endDatepicker').val()
 					var fix = $('input[name="chk1"]:checked');
-					
-					document.activityForm.submit;	
+					var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 
-					/*if(title.length>0 && sDate.length>0 && eDate.length>0 && fix.length>0){
-						document.activityForm.submit;				
+					if(title.length==0) {
+						checkValidate = false;
+						errMsg = ' Title';
+					}
+					if(sDate.length==0){
+						checkValidate = false;
+						errMsg = errMsg + ' StartDate';
 					}else{
+               			if(sDate.match(dateformat)) checkFormat = true;
+               			else errFmt = errFmt + ' StartDate';
+					}
+					if(eDate.length==0){
+						checkValidate = false;
+						errMsg = errMsg + ' EndDate';
+					}else{
+						if(eDate.match(dateformat)) checkFormat = true;
+               			else errFmt = errFmt + ' EndDate';
+					}
+
+					if(checkValidate && checkFormat){
+						document.activityForm.submit;
+					}else{
+						if(!checkValidate) alert(' Please insert'+errMsg);
+						else alert(' Wrong Format'+errFmt);
 						return false;
-					}*/
+					}
+					
 				});
 				$('#cancel').click(function(){
 					var url = '<c:url value="/news/activity/${bcId}" />';
