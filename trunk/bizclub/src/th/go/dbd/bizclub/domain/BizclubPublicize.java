@@ -6,21 +6,17 @@ import java.sql.Timestamp;
 
 
 /**
- * The persistent class for the BIZCLUB_PUBLICIZE database table.
+ * The persistent class for the bizclub_publicize database table.
  * 
  */
 @Entity
-@Table(name="BIZCLUB_PUBLICIZE")
-@NamedQuery(name="BizclubPublicize.findAll", query="SELECT b FROM BizclubPublicize b")
+@Table(name="bizclub_publicize")
 public class BizclubPublicize implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="BP_ID")
 	private int bpId;
-
-	@Column(name="BC_ID")
-	private String bcId;
 
 	@Column(name="BP_DETAIL")
 	private String bpDetail;
@@ -46,14 +42,22 @@ public class BizclubPublicize implements Serializable {
 	@Column(name="CREATED_DATE")
 	private Timestamp createdDate;
 
+	@Column(name="IS_FIXED")
+	private String isFixed;
+
 	@Column(name="UPDATED_BY")
 	private String updatedBy;
 
 	@Column(name="UPDATED_DATE")
 	private Timestamp updatedDate;
 
-	public BizclubPublicize() {
-	}
+	//bi-directional many-to-one association to BizclubCenter
+    @ManyToOne
+	@JoinColumn(name="BC_ID")
+	private BizclubCenter bizclubCenter;
+
+    public BizclubPublicize() {
+    }
 
 	public int getBpId() {
 		return this.bpId;
@@ -61,14 +65,6 @@ public class BizclubPublicize implements Serializable {
 
 	public void setBpId(int bpId) {
 		this.bpId = bpId;
-	}
-
-	public String getBcId() {
-		return this.bcId;
-	}
-
-	public void setBcId(String bcId) {
-		this.bcId = bcId;
 	}
 
 	public String getBpDetail() {
@@ -135,6 +131,14 @@ public class BizclubPublicize implements Serializable {
 		this.createdDate = createdDate;
 	}
 
+	public String getIsFixed() {
+		return this.isFixed;
+	}
+
+	public void setIsFixed(String isFixed) {
+		this.isFixed = isFixed;
+	}
+
 	public String getUpdatedBy() {
 		return this.updatedBy;
 	}
@@ -151,4 +155,12 @@ public class BizclubPublicize implements Serializable {
 		this.updatedDate = updatedDate;
 	}
 
+	public BizclubCenter getBizclubCenter() {
+		return this.bizclubCenter;
+	}
+
+	public void setBizclubCenter(BizclubCenter bizclubCenter) {
+		this.bizclubCenter = bizclubCenter;
+	}
+	
 }
