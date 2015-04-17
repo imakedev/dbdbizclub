@@ -36,16 +36,17 @@ import com.google.gson.Gson;
 
 import th.go.dbd.bizclub.bean.CalendarBean;
 import th.go.dbd.bizclub.bean.NewsActivityBean;
-import th.go.dbd.bizclub.form.ActivityForm;
+import th.go.dbd.bizclub.form.PublicizeForm;
 import th.go.dbd.bizclub.domain.MyUserDetails;
 import th.go.dbd.bizclub.form.CalendarActivityForm;
 import th.go.dbd.bizclub.model.BizclubActivityM;
-import th.go.dbd.bizclub.model.BizclubRegisterM;
+import th.go.dbd.bizclub.model.BizclubCenterM;
+import th.go.dbd.bizclub.model.BizclubPublicizeM;
 import th.go.dbd.bizclub.service.BizClubService;
 
 @Controller 
 @RequestMapping(value={"/news"})
-@SessionAttributes(value={"calendarActivityForm","activityForm"})
+@SessionAttributes(value={"calendarActivityForm","publicizeForm"})
 public class PublicNewsController {
 	
 	
@@ -62,50 +63,105 @@ public class PublicNewsController {
 	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
 	public String listAllNews(HttpServletRequest request,HttpServletResponse response,Model model, @RequestParam(required=false) String message) {
     	logger.debug("publicNews12........");
+    	//get new by zone 1 ภาคกลาง
+    	BizclubPublicizeM bcPublicizeM = new BizclubPublicizeM();
+    	BizclubCenterM bcCenterM = new BizclubCenterM();
+    	bcCenterM.setBcId(0);
+    	bcCenterM.setBcZone(1);
+    	bcPublicizeM.setBizclubCenterM(bcCenterM);
+    	BizclubPublicizeM bcPublicizeM_Zone1 = bizClubService.findPublicizeByZone(bcPublicizeM);
+    	model.addAttribute("zone1",bcPublicizeM_Zone1);
+    	//get new by zone 2 ภาคเหนือ
+    	bcPublicizeM = new BizclubPublicizeM();
+    	bcCenterM = new BizclubCenterM();
+    	bcCenterM.setBcId(0);
+    	bcCenterM.setBcZone(2);
+    	bcPublicizeM.setBizclubCenterM(bcCenterM);
+    	BizclubPublicizeM bcPublicizeM_Zone2 = bizClubService.findPublicizeByZone(bcPublicizeM);
+    	model.addAttribute("zone2",bcPublicizeM_Zone2);
+    	//get new by zone 3 ภาคใต้
+    	bcPublicizeM = new BizclubPublicizeM();
+    	bcCenterM = new BizclubCenterM();
+    	bcCenterM.setBcId(0);
+    	bcCenterM.setBcZone(3);
+    	bcPublicizeM.setBizclubCenterM(bcCenterM);
+    	BizclubPublicizeM bcPublicizeM_Zone3 = bizClubService.findPublicizeByZone(bcPublicizeM);
+    	model.addAttribute("zone3",bcPublicizeM_Zone3);
+    	//get new by zone 4 ภาคตะวันออก
+    	bcPublicizeM = new BizclubPublicizeM();
+    	bcCenterM = new BizclubCenterM();
+    	bcCenterM.setBcId(0);
+    	bcCenterM.setBcZone(4);
+    	bcPublicizeM.setBizclubCenterM(bcCenterM);
+    	BizclubPublicizeM bcPublicizeM_Zone4 = bizClubService.findPublicizeByZone(bcPublicizeM);
+    	model.addAttribute("zone4",bcPublicizeM_Zone4);
+    	//get new by zone 5 ภาคตะวันตก
+    	bcPublicizeM = new BizclubPublicizeM();
+    	bcCenterM = new BizclubCenterM();
+    	bcCenterM.setBcId(0);
+    	bcCenterM.setBcZone(5);
+    	bcPublicizeM.setBizclubCenterM(bcCenterM);
+    	BizclubPublicizeM bcPublicizeM_Zone5 = bizClubService.findPublicizeByZone(bcPublicizeM);
+    	model.addAttribute("zone5",bcPublicizeM_Zone5);
+    	//get new by zone 6 ภาคอีสาน
+    	bcPublicizeM = new BizclubPublicizeM();
+    	bcCenterM = new BizclubCenterM();
+    	bcCenterM.setBcId(0);
+    	bcCenterM.setBcZone(6);
+    	bcPublicizeM.setBizclubCenterM(bcCenterM);
+    	BizclubPublicizeM bcPublicizeM_Zone6 = bizClubService.findPublicizeByZone(bcPublicizeM);
+    	model.addAttribute("zone6",bcPublicizeM_Zone6);
 		return "bizclub/news";
 	}
-	@RequestMapping(value={"/newsActivity/{bcId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
-	public String listNewsActivityByBcId(	@PathVariable Integer bcId,
+	@RequestMapping(value={"/publicize/{bcId}/{bcZone}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+	public String listPublicizeByBcId(	@PathVariable Integer bcId,@PathVariable Integer bcZone,
 			HttpServletRequest request,
 			HttpServletResponse response,
 			Model model) {
 
-		//String imgURL = bundle.getString("activityDefaultUrl");
-		logger.debug("listActivityByBcId...."+bcId);
-		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
-		model.addAttribute("bcId",bcId);
-		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());
-		BizclubActivityM activities = new BizclubActivityM();
-		activities.setBcId(bcId);
-		List<BizclubActivityM> listActivity = bizClubService.searchActivityByCenter(activities);
-		if(listActivity!=null && listActivity.size()>0){
-			logger.debug("listActivity:"+listActivity.size());
+		String imgURL = bundle.getString("activityDefaultUrl");
+		logger.debug("listPublicizeByBcId...."+bcId);
+		if(bcId!=0){
+			model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
+			model.addAttribute("bcId",bcId);
+		}else{
+			BizclubCenterM bcCenterM = bizClubService.findBizclubCenterByZone(bcZone);
+			model.addAttribute("bizclubCenter", bcCenterM);
+			model.addAttribute("bcId",bcCenterM.getBcId());
+		}
+		model.addAttribute("bcZone",bcZone);
+		
+		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter(bcZone));
+		BizclubPublicizeM bcPublicizeM = new BizclubPublicizeM();
+		BizclubCenterM bcCenterM = new BizclubCenterM();
+		bcCenterM.setBcId(bcId);
+		bcCenterM.setBcZone(bcZone);
+		bcPublicizeM.setBizclubCenterM(bcCenterM);
+		List<BizclubPublicizeM> listBizclubPublicize = bizClubService.searchPublicizeByCenter(bcPublicizeM);
+		if(listBizclubPublicize!=null && listBizclubPublicize.size()>0){
+			logger.debug("listActivity:"+listBizclubPublicize.size());
 			List<NewsActivityBean> newsActList = new ArrayList<NewsActivityBean>();
-			for (int i = 0; i < listActivity.size(); i++) {
-			BizclubActivityM act = listActivity.get(i);
-			NewsActivityBean newsActBean = new NewsActivityBean();
-			newsActBean.setCenterId(bcId);
-			newsActBean.setActivityId(act.getBaId());
-			newsActBean.setTitle(act.getBaTitle());
-			newsActBean.setDetail(act.getBaDetail());
-			if(act.getBaStartTime()!=null){
-				newsActBean.setStart(convertTimestampToJson(act.getBaStartTime().toString()));
-				newsActBean.setEnd(convertTimestampToJson(act.getBaStartTime().toString()));
-				newsActBean.setsTime(convertTimestampToString(act.getBaStartTime()));
-				newsActBean.seteTime(convertTimestampToString(act.getBaEndTime()));
+			for (int i = 0; i < listBizclubPublicize.size(); i++) {
+				BizclubPublicizeM act = listBizclubPublicize.get(i);
+				NewsActivityBean newsActBean = new NewsActivityBean();
+				newsActBean.setCenterId(bcId);
+				newsActBean.setActivityId(act.getBpId());
+				newsActBean.setTitle(act.getBpTitle());
+				newsActBean.setDetail(act.getBpDetail());
+				
+				if(act.getBpPicturePath()!=null && act.getBpPicturePath().length()>0){
+					newsActBean.setImgPath(imgURL+"/"+act.getBpPicturePath());
+				}
+				if(act.getBpPictureName()!=null && act.getBpPictureName().length()>0){
+					newsActBean.setImgName(act.getBpPictureName());
+				}
+				newsActList.add(newsActBean);
 			}
-			if(act.getBaPicturePath()!=null && act.getBaPicturePath().length()>0){
-				newsActBean.setImgPath(act.getBaPicturePath());
-			}
-			if(act.getBaPictureName()!=null && act.getBaPictureName().length()>0){
-				newsActBean.setImgName(act.getBaPictureName());
-			}
-			newsActList.add(newsActBean);
-			}
-			ActivityForm activitiyForm = new ActivityForm();
-			activitiyForm.setBcId(bcId);
+			PublicizeForm publicizeForm = new PublicizeForm();
+			publicizeForm.setBcId(bcId);
+			publicizeForm.setBcZone(bcZone);
 			model.addAttribute("newsActList",newsActList);
-			model.addAttribute("activityForm", activitiyForm);
+			model.addAttribute("publicizeForm", publicizeForm);
 		}else{
 		logger.debug("not event.....");
 			model.addAttribute("newsActList",null);
@@ -114,42 +170,43 @@ public class PublicNewsController {
 	}
 	
 	
-	@RequestMapping(value={"/newsActivity/add/{bcId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ActivityForm initAddActivity(@PathVariable Integer bcId,Model model) {
-		ActivityForm act = new ActivityForm();
+	@RequestMapping(value={"/publicize/add/{bcId}/{bcZone}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody PublicizeForm initAddActivity(@PathVariable Integer bcId,@PathVariable Integer bcZone,Model model) {
+		PublicizeForm act = new PublicizeForm();
 		act.setBcId(bcId);
+		act.setBcZone(bcZone);
 		act.setPageMode("add");
 		 return  act;
 	}
 	
-	@RequestMapping(value={"/newsActivity/save"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
+	@RequestMapping(value={"/publicize/save"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
 	public String saveNewsActivity(	HttpServletRequest request,
 			 				HttpServletResponse response,  
-			 				@ModelAttribute(value="activityForm") ActivityForm actForm, 
+			 				@ModelAttribute(value="publicizeForm") PublicizeForm publicizeForm, 
 			 				BindingResult result, 
 			 				Model model){
 		
-		BizclubActivityM bizclubActivityM = new BizclubActivityM();
-		
+		BizclubPublicizeM bizclubPublicizeM = new BizclubPublicizeM();
+		BizclubCenterM bizclubCenterM = new BizclubCenterM();
 		logger.debug("saveActivity....");
 		if(request.getUserPrincipal()!=null) logger.debug(request.getUserPrincipal().getName()+"...");
-		logger.debug("bcId:"+actForm.getBcId());
-		logger.debug("title:"+actForm.getBaTitle());
-		logger.debug("detail:"+actForm.getBaDetail());
-		logger.debug("fix:"+actForm.getIsFixed());
+		logger.debug("bcId:"+publicizeForm.getBcId());
+		logger.debug("title:"+publicizeForm.getBpTitle());
+		logger.debug("detail:"+publicizeForm.getBpDetail());
+		logger.debug("fix:"+publicizeForm.getIsFixed());
+		bizclubCenterM.setBcId(publicizeForm.getBcId());
+		bizclubPublicizeM.setBizclubCenterM(bizclubCenterM);
 		
-		bizclubActivityM.setBcId(actForm.getBcId());
-		
-		if(actForm.getBaTitle()!=null) bizclubActivityM.setBaTitle(actForm.getBaTitle());
-		if(actForm.getBaDetail()!=null) bizclubActivityM.setBaDetail(actForm.getBaDetail());
-		if(actForm.getIsFixed()!=null) {
-			if(actForm.getIsFixed()!="null") {
-				bizclubActivityM.setIsFixed("Y"); 
+		if(publicizeForm.getBpTitle()!=null) bizclubPublicizeM.setBpTitle(publicizeForm.getBpTitle());
+		if(publicizeForm.getBpDetail()!=null) bizclubPublicizeM.setBpDetail(publicizeForm.getBpDetail());
+		if(publicizeForm.getIsFixed()!=null) {
+			if(publicizeForm.getIsFixed()!="null") {
+				bizclubPublicizeM.setIsFixed("Y"); 
 			}else{
-				bizclubActivityM.setIsFixed("N");
+				bizclubPublicizeM.setIsFixed("N");
 			}
 		}else{
-			bizclubActivityM.setIsFixed("N");
+			bizclubPublicizeM.setIsFixed("N");
 		}
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		MultipartFile multipartFile_profile = multipartRequest.getFile("activity_upload");
@@ -189,18 +246,18 @@ public class PublicNewsController {
 				 profilePath=pathFolder_profile;
 				 logger.debug("path->"+profilePath);
 				 fos.write(filesize);
-				 actForm.setBaPicturePath(profilePath);
-				 actForm.setBaPictureName(profileFileName);
+				 publicizeForm.setBpPicturePath(profilePath);
+				 publicizeForm.setBpPictureName(profileFileName);
 				 
 				 logger.debug("profilePath(length)....."+profilePath.length());
 				 logger.debug("profileFileName(length)....."+profileFileName.length());
 				 
-				 bizclubActivityM.setBaPicturePath(actForm.getBaPicturePath());
-				 bizclubActivityM.setBaPictureName(actForm.getBaPictureName());
+				 bizclubPublicizeM.setBpPicturePath(publicizeForm.getBpPicturePath());
+				 bizclubPublicizeM.setBpPictureName(publicizeForm.getBpPictureName());
 				 
 				 if(request.getUserPrincipal()!=null) {
-					 bizclubActivityM.setCreatedBy(request.getUserPrincipal().getName());
-					 bizclubActivityM.setUpdatedBy(request.getUserPrincipal().getName());
+					 bizclubPublicizeM.setCreatedBy(request.getUserPrincipal().getName());
+					 bizclubPublicizeM.setUpdatedBy(request.getUserPrincipal().getName());
 				 }
 				 
 				}
@@ -217,67 +274,73 @@ public class PublicNewsController {
 				}
 			} 
 		}
-		if(actForm.getPageMode()!=null && "add".equals(actForm.getPageMode())){
-			bizClubService.saveActivity(bizclubActivityM);
+		if(publicizeForm.getPageMode()!=null && "add".equals(publicizeForm.getPageMode())){
+			bizClubService.savePublicize(bizclubPublicizeM);
 		}
-		if(actForm.getPageMode()!=null && "edit".equals(actForm.getPageMode())){
-			if(actForm.getBaId()!=0) bizclubActivityM.setBaId(actForm.getBaId());
-			bizClubService.updateActivity(bizclubActivityM);
+		if(publicizeForm.getPageMode()!=null && "edit".equals(publicizeForm.getPageMode())){
+			if(publicizeForm.getBpId()!=0) bizclubPublicizeM.setBpId(publicizeForm.getBpId());
+			bizClubService.updatePublicize(bizclubPublicizeM);
 		}
-		if(actForm.getPageMode()!=null && "delete".equals(actForm.getPageMode())){
-			if(actForm.getBaId()!=0) bizclubActivityM.setBaId(actForm.getBaId());
-			bizClubService.deleteActivity(bizclubActivityM);
+		if(publicizeForm.getPageMode()!=null && "delete".equals(publicizeForm.getPageMode())){
+			if(publicizeForm.getBpId()!=0) bizclubPublicizeM.setBpId(publicizeForm.getBpId());
+			bizClubService.deletePublicize(bizclubPublicizeM);
 		}
-		return "redirect:/news/newsActivity/"+actForm.getBcId();
+		return "redirect:/news/publicize/"+publicizeForm.getBcId()+"/"+publicizeForm.getBcZone();
 	 }
 	
-	@RequestMapping(value={"/newsActivity/moreDetail/{bcId}/{baId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ActivityForm moreDetail(@PathVariable Integer bcId,@PathVariable Integer baId,Model model) {
-		BizclubActivityM activitiesM = new BizclubActivityM();
-		activitiesM.setBcId(bcId);
-		activitiesM.setBaId(baId);
-		BizclubActivityM result = bizClubService.findActivityByBaId(activitiesM);
-		ActivityForm act = new ActivityForm();
-		act.setBcId(result.getBcId());
-		act.setBaId(result.getBaId());
-		act.setBaTitle(result.getBaTitle());
-		act.setBaDetail(result.getBaDetail());
-		act.setIsFixed(result.getIsFixed());
-	
-		 return  act;
+	@RequestMapping(value={"/publicize/moreDetail/{bcId}/{bcZone}/{bpId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody PublicizeForm moreDetail(@PathVariable Integer bcId,@PathVariable Integer bcZone,@PathVariable Integer bpId,Model model) {
+		BizclubPublicizeM bizclubPublicizeM = new BizclubPublicizeM();
+		BizclubCenterM bizclubCenterM = new BizclubCenterM();
+		bizclubCenterM.setBcId(bcId);
+		bizclubPublicizeM.setBpId(bpId);
+		bizclubPublicizeM.setBizclubCenterM(bizclubCenterM);
+		BizclubPublicizeM result = bizClubService.findPublicizeByBpId(bizclubPublicizeM);
+		PublicizeForm form = new PublicizeForm();
+		form.setBcId(result.getBizclubCenterM().getBcId());
+		form.setBcZone(bcZone);
+		form.setBpId(result.getBpId());
+		form.setBpTitle(result.getBpTitle());
+		form.setBpDetail(result.getBpDetail());
+		form.setIsFixed(result.getIsFixed());
+		return  form;
 	}
 	
-	@RequestMapping(value={"/newsActivity/edit/{bcId}/{baId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ActivityForm initEditActivity(@PathVariable Integer bcId,@PathVariable Integer baId,Model model) {
-		BizclubActivityM activitiesM = new BizclubActivityM();
-		activitiesM.setBcId(bcId);
-		activitiesM.setBaId(baId);
-		BizclubActivityM result = bizClubService.findActivityByBaId(activitiesM);
-		ActivityForm act = new ActivityForm();
-		act.setBcId(result.getBcId());
-		act.setBaId(result.getBaId());
-		act.setBaTitle(result.getBaTitle());
-		act.setBaDetail(result.getBaDetail());
-		act.setIsFixed(result.getIsFixed());
-	
-		act.setPageMode("edit");
-		 return  act;
+	@RequestMapping(value={"/publicize/edit/{bcId}/{bcZone}/{bpId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody PublicizeForm initEditActivity(@PathVariable Integer bcId,@PathVariable Integer bcZone,@PathVariable Integer bpId,Model model) {
+		BizclubPublicizeM bizclubPublicizeM = new BizclubPublicizeM();
+		BizclubCenterM bizclubCenterM = new BizclubCenterM();
+		bizclubCenterM.setBcId(bcId);
+		bizclubPublicizeM.setBpId(bpId);
+		bizclubPublicizeM.setBizclubCenterM(bizclubCenterM);
+		BizclubPublicizeM result = bizClubService.findPublicizeByBpId(bizclubPublicizeM);
+		PublicizeForm form = new PublicizeForm();
+		form.setBcId(result.getBizclubCenterM().getBcId());
+		form.setBcZone(bcZone);
+		form.setBpId(result.getBpId());
+		form.setBpTitle(result.getBpTitle());
+		form.setBpDetail(result.getBpDetail());
+		form.setIsFixed(result.getIsFixed());
+		form.setPageMode("edit");
+		 return  form;
 	}
-	@RequestMapping(value={"/newsActivity/delete/{bcId}/{baId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ActivityForm initDeleteActivity(@PathVariable Integer bcId,@PathVariable Integer baId,Model model) {
-		BizclubActivityM activitiesM = new BizclubActivityM();
-		activitiesM.setBcId(bcId);
-		activitiesM.setBaId(baId);
-		BizclubActivityM result = bizClubService.findActivityByBaId(activitiesM);
-		ActivityForm act = new ActivityForm();
-		act.setBcId(result.getBcId());
-		act.setBaId(result.getBaId());
-		act.setBaTitle(result.getBaTitle());
-		act.setBaDetail(result.getBaDetail());
-		act.setIsFixed(result.getIsFixed());
-	
-		act.setPageMode("delete");
-		 return  act;
+	@RequestMapping(value={"/publicize/delete/{bcId}/{bcZone}/{bpId}"}, method={org.springframework.web.bind.annotation.RequestMethod.GET},produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody PublicizeForm initDeleteActivity(@PathVariable Integer bcId,@PathVariable Integer bcZone,@PathVariable Integer bpId,Model model) {
+		BizclubPublicizeM bizclubPublicizeM = new BizclubPublicizeM();
+		BizclubCenterM bizclubCenterM = new BizclubCenterM();
+		bizclubCenterM.setBcId(bcId);
+		bizclubPublicizeM.setBpId(bpId);
+		bizclubPublicizeM.setBizclubCenterM(bizclubCenterM);
+		BizclubPublicizeM result = bizClubService.findPublicizeByBpId(bizclubPublicizeM);
+		PublicizeForm form = new PublicizeForm();
+		form.setBcId(result.getBizclubCenterM().getBcId());
+		form.setBcZone(bcZone);
+		form.setBpId(result.getBpId());
+		form.setBpTitle(result.getBpTitle());
+		form.setBpDetail(result.getBpDetail());
+		form.setIsFixed(result.getIsFixed());
+		form.setPageMode("delete");
+		 return  form;
 	}
 	//------------------------------------------------------- Calendar ------------------------------------------------------------------------//
 	@RequestMapping(value={"/activity"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
