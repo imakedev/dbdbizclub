@@ -10,6 +10,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import th.go.dbd.bizclub.domain.Amphur;
 import th.go.dbd.bizclub.domain.BizclubActivity;
 import th.go.dbd.bizclub.domain.BizclubAsset;
@@ -17,6 +18,7 @@ import th.go.dbd.bizclub.domain.BizclubCenter;
 import th.go.dbd.bizclub.domain.BizclubCorpW;
 import th.go.dbd.bizclub.domain.BizclubPicture;
 import th.go.dbd.bizclub.domain.BizclubProvinceCenter;
+import th.go.dbd.bizclub.domain.BizclubPublicize;
 import th.go.dbd.bizclub.domain.BizclubRegister;
 import th.go.dbd.bizclub.domain.District;
 import th.go.dbd.bizclub.domain.Province;
@@ -31,6 +33,7 @@ import th.go.dbd.bizclub.model.BizclubCenterM;
 import th.go.dbd.bizclub.model.BizclubCorpWM;
 import th.go.dbd.bizclub.model.BizclubPictureM;
 import th.go.dbd.bizclub.model.BizclubProvinceCenterM;
+import th.go.dbd.bizclub.model.BizclubPublicizeM;
 import th.go.dbd.bizclub.model.BizclubRegisterM;
 import th.go.dbd.bizclub.model.DistrictM;
 import th.go.dbd.bizclub.model.ProvinceM;
@@ -584,14 +587,134 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		return actM;
 	}
 	
+	//gimlee code
 	@Override
-	public BizclubActivityM findActivityByBaId(BizclubActivityM activitiesM) {
-		BizclubActivity activity =new BizclubActivity();
-		if(activitiesM!=null) BeanUtils.copyProperties(activitiesM , activity);
-		BizclubActivity bizActivity= bizClubRepository.findActivityByBaId(activity);
-		BizclubActivityM actM=new BizclubActivityM();
-		BeanUtils.copyProperties(bizActivity , actM);
+	public List<BizclubCenterM> listBizclubCenter(Integer bcZone) {
+		// TODO Auto-generated method stub
+		List<BizclubCenter>  provinces= bizClubRepository.listBizclubCenter(bcZone);
+		List<BizclubCenterM>  provinceMList=new ArrayList<BizclubCenterM>(provinces.size());
+		for (BizclubCenter province : provinces) {
+			BizclubCenterM provinceM=new BizclubCenterM();
+			BeanUtils.copyProperties( province, provinceM);
+			provinceMList.add(provinceM);
+		}
+		return provinceMList;
+	}
+	
+	
+	@Override
+	public BizclubCenterM findBizclubCenterByZone(Integer bcZone) {
+		// TODO Auto-generated method stub
+		BizclubCenter bizclubCenter = bizClubRepository.findBizclubCenterById(bcZone);
+		BizclubCenterM bizclubCenterM=new BizclubCenterM();
+		BeanUtils.copyProperties(bizclubCenter , bizclubCenterM,"user");
+		//BeanUtils.copyProperties(BizclubCenterM , BizclubCenter,"user");
 		
+		return bizclubCenterM;
+	}
+	
+	
+	@Override
+	public BizclubPublicizeM findPublicizeByZone(BizclubPublicizeM bcPublicizeM) {
+		BizclubPublicize bcPublicize =new BizclubPublicize();
+		BizclubCenter bcCenter = new BizclubCenter();
+		if(bcPublicizeM!=null) BeanUtils.copyProperties(bcPublicizeM , bcPublicize);
+		if(bcPublicizeM.getBizclubCenterM()!=null){
+			if(bcPublicizeM.getBizclubCenterM().getBcZone()!=null){
+				bcCenter.setBcZone(bcPublicizeM.getBizclubCenterM().getBcZone());
+			}else{
+				bcCenter.setBcZone(0);
+			}
+		}
+		bcPublicize.setBizclubCenter(bcCenter);
+		bcPublicize = bizClubRepository.findPublicizeByZone(bcPublicize);
+		BizclubPublicizeM actM=new BizclubPublicizeM();
+		BeanUtils.copyProperties(bcPublicize , actM);
+		if(bcPublicize.getBizclubCenter()!=null){
+			BizclubCenterM bcCenterM = new BizclubCenterM();
+			BeanUtils.copyProperties(bcPublicize.getBizclubCenter() , bcCenterM);
+			actM.setBizclubCenterM(bcCenterM);
+		}else{
+			BizclubCenterM bcCenterM = new BizclubCenterM();
+			bcCenterM.setBcId(bcPublicizeM.getBizclubCenterM().getBcId());
+			bcCenterM.setBcZone(bcPublicizeM.getBizclubCenterM().getBcZone());
+			actM.setBizclubCenterM(bcCenterM);
+		}
 		return actM;
 	}
+	
+	
+	@Override
+	public List<BizclubPublicizeM> searchPublicizeByCenter(BizclubPublicizeM publicizeM) {
+		BizclubPublicize publicize =new BizclubPublicize();
+		if(publicizeM!=null) BeanUtils.copyProperties(publicizeM , publicize);
+		if(publicizeM.getBizclubCenterM()!=null){
+			BizclubCenter bizclubCenter = new BizclubCenter();
+			if (publicizeM.getBizclubCenterM().getBcId()!=0) {
+				bizclubCenter.setBcId(publicizeM.getBizclubCenterM().getBcId());
+			}if(publicizeM.getBizclubCenterM().getBcZone()!=0) {
+				bizclubCenter.setBcZone(publicizeM.getBizclubCenterM().getBcZone());
+			}
+			publicize.setBizclubCenter(bizclubCenter);
+		}
+		List<BizclubPublicize> bizclubPublicize= bizClubRepository.searchPublicizeByCenter(publicize);
+		List<BizclubPublicizeM> listPublicizeM= new ArrayList<BizclubPublicizeM>(bizclubPublicize.size());
+		for (BizclubPublicize act : bizclubPublicize) {
+			BizclubPublicizeM actM=new BizclubPublicizeM();
+			BeanUtils.copyProperties(act , actM);
+			BizclubCenterM bcCenterM = new BizclubCenterM();
+			BeanUtils.copyProperties(act.getBizclubCenter() , bcCenterM);
+			actM.setBizclubCenterM(bcCenterM);
+			listPublicizeM.add(actM);
+		}
+		return listPublicizeM;
+	}
+
+	@Override
+	public BizclubPublicizeM findPublicizeByBpId(BizclubPublicizeM bizclubPublicizeM) {
+		BizclubPublicize bizclubPublicize =new BizclubPublicize();
+		if(bizclubPublicizeM!=null) BeanUtils.copyProperties(bizclubPublicizeM , bizclubPublicize);
+		BizclubCenter bcCenter = new BizclubCenter();
+		bcCenter.setBcId(bizclubPublicizeM.getBizclubCenterM().getBcId());
+		bizclubPublicize.setBizclubCenter(bcCenter);
+		BizclubPublicize bizPublic= bizClubRepository.findPublicizeByBpId(bizclubPublicize);
+		BizclubPublicizeM actM=new BizclubPublicizeM();
+		BeanUtils.copyProperties(bizPublic , actM);
+		BizclubCenterM bcCenterM = new BizclubCenterM();
+		bcCenterM.setBcId(bizPublic.getBizclubCenter().getBcId());
+		bcCenterM.setBcZone(bizPublic.getBizclubCenter().getBcZone());
+		actM.setBizclubCenterM(bcCenterM);
+		return actM;
+	}
+	
+
+	@Override
+	public Integer savePublicize(BizclubPublicizeM bizclubPublicizeM) {
+		BizclubPublicize bizclubPublicize=new BizclubPublicize();
+		BeanUtils.copyProperties(bizclubPublicizeM , bizclubPublicize);
+		BizclubCenter bizclubCenter = new BizclubCenter();
+		bizclubCenter.setBcId(bizclubPublicizeM.getBizclubCenterM().getBcId());
+		bizclubPublicize.setBizclubCenter(bizclubCenter);
+		return bizClubRepository.savePublicize(bizclubPublicize);
+	}
+
+
+	@Override
+	public Integer updatePublicize(BizclubPublicizeM bizclubPublicizeM) {
+		BizclubPublicize bizclubPublicize=new BizclubPublicize();
+		BeanUtils.copyProperties(bizclubPublicizeM , bizclubPublicize);
+		BizclubCenter bizclubCenter = new BizclubCenter();
+		bizclubCenter.setBcId(bizclubPublicizeM.getBizclubCenterM().getBcId());
+		bizclubPublicize.setBizclubCenter(bizclubCenter);
+		return bizClubRepository.updatePublicize(bizclubPublicize);
+	}
+
+
+	@Override
+	public Integer deletePublicize(BizclubPublicizeM bizclubPublicizeM) {
+		BizclubPublicize bizclubPublicize=new BizclubPublicize();
+		bizclubPublicize.setBpId(bizclubPublicizeM.getBpId());
+		return bizClubRepository.deletePublicize(bizclubPublicize);
+	}
+	
 }
