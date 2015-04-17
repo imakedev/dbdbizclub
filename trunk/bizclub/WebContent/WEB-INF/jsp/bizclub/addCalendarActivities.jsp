@@ -176,7 +176,7 @@
 										                	<span class="material-input"></span></div>
 										            </div>
 										        </div>
-										        <div class="col-md-offset-3">
+										        <%-- <div class="col-md-offset-3">
 										        	<div class="col-md-4 radio radio-primary">
 													    <label class="radio-inline">
 													    	<form:radiobutton path="isFixed" value="fix" /> 
@@ -191,14 +191,19 @@
 													      	<span style="margin-top: -5px; margin-left: 20px; width: 250px;">โพสธรรมดา</span>
 													    </label>
 												    </div>
-										        </div>
+										        </div> --%>
 								        	</fieldset>
 										</span>
       								</div>
 						      		<div class="col-md-4">
-
-
-							        	<img class="img-thumbnail" id="activity" src='<c:url value="/resources/register/images/defult.png" />' alt='<c:url value="/resources/register/images/defult.png" />' data-src="holder.js">
+						      			<c:choose>
+						      				<c:when test="${not empty calendarActivityForm.baPicturePath}">
+						      					<img class="img-thumbnail" id="activity" src='<c:url value="/getfile/CalendarActivities/${calendarActivityForm.baPicturePath}" />' alt='<c:url value="/getfile/CalendarActivities/${calendarActivityForm.baPicturePath}" />' data-src="holder.js">
+						      				</c:when>
+						      				<c:otherwise>
+						      					<img class="img-thumbnail" id="activity" src='<c:url value="/resources/calendar/calender-icon.png" />' alt='<c:url value="/resources/calendar/calender-icon.png" />' data-src="holder.js">	
+						      				</c:otherwise>
+						      			</c:choose>
 							           	<input type="file" id="activity_upload" name="activity_upload" onchange="URLact(this);" style="font-size: 10px; ">
 						      		</div>
                                 </div>
