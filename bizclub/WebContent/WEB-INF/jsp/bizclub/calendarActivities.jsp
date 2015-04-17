@@ -69,6 +69,7 @@
 						var isStaff = '${isStaff}';
 						var isAdmin = '${isAdmin}';
 						var isAuthen = '${isAuthen}';
+                        var currUrl = '<c:url value="/getfile/CalendarActivities/" />';
 						
 						if(isAuthen =='true' && isAdmin=='true'){
 							str = str +'<div class="col-md-12" style="margin: 0px 0px -50px 0px;">';
@@ -80,7 +81,7 @@
                         str = str +'<b>StartDate:</b> '+calEvent.sTime+'<br/>';
                         str = str +'<b>EndDate:</b> '+calEvent.eTime+'<br/>';
                         str = str +'<b>Detail:</b> '+calEvent.detail+'<br/>';
-                        if(calEvent.imgPath!=undefined) str = str +'<img src="./'+calEvent.imgPath+'" alt="'+calEvent.imgName+'"/> </div>';
+                        if(calEvent.imgPath!=undefined) str = str +'<img src="'+currUrl+calEvent.imgPath+'" alt="'+currUrl+calEvent.imgPath+'"/> </div>';
                         $('#actityDetail').html(str);
                     },
                     /* dayClick: function(date, jsEvent, view) {
