@@ -150,7 +150,7 @@ public class PublicNewsController {
 				newsActBean.setDetail(act.getBpDetail());
 				
 				if(act.getBpPicturePath()!=null && act.getBpPicturePath().length()>0){
-					newsActBean.setImgPath(imgURL+"/"+act.getBpPicturePath());
+					newsActBean.setImgPath(act.getBpPicturePath());
 				}
 				if(act.getBpPictureName()!=null && act.getBpPictureName().length()>0){
 					newsActBean.setImgName(act.getBpPictureName());
