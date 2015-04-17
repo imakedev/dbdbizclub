@@ -16,65 +16,103 @@
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
       				<p class="newsText">ข่าวภาคเหนือ
-      				<a href='<c:url value="/news/newsActivity/1" />' class="newsMore">ดูทั้งหมด</a></p>
+      				<a href='<c:url value="/news/publicize/${zone2.bizclubCenterM.bcId }/${zone2.bizclubCenterM.bcZone }" />' class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
-	      		<div class="col-md-12 newsTitlebox">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_6.png" />" height="40px" width="50px"></div>
-	      			<div class="col-md-8 newsBody">หัวข้อ............................................................</div>
-	      		</div>
+	      		<c:if test="${zone2.bpId != 0 }">
+		      		<div class="col-md-12 newsTitlebox">
+		      			<div class="col-md-4">
+			      			<c:when test="${not empty zone2.bpPictureName}">
+			      				<img src="<c:url value="/getfile/News/${zone2.bpPictureName }" />" height="40px" width="50px">
+			      			</c:when>
+		      			</div>
+		      			<div class="col-md-8 newsBody">${zone2.bpTitle }</div>
+		      		</div>
+		      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone2.bpDetail }</div>
+		      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
+	      		</c:if>
+	      		<c:if test="${zone2.bpId == 0 }">
+	      			<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">ไม่มีข้อมูลข่าว</div>
+	      		</c:if>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
       				<p class="newsText">ข่าวภาคกลาง
-      				<a href='<c:url value="/news/newsActivity/1" />' class="newsMore">ดูทั้งหมด</a></p>
+      				<a href='<c:url value="/news/publicize/${zone1.bizclubCenterM.bcId }/${zone1.bizclubCenterM.bcZone }" />' class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
 	      		<div class="col-md-12 newsTitlebox">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_5.png" />" height="40px" width="50px"></div>
-	      			<div class="col-md-8 newsBody">การสัมมนา“การเชื่อมโยงเครือข่ายธุรกิจ Biz Club Thailand”</div>
+	      			<div class="col-md-4">
+	      				<c:when test="${not empty zone1.bpPictureName}">
+			      				<img src="<c:url value="/getfile/News/${zone1.bpPictureName }" />" height="40px" width="50px">
+			      		</c:when>
+	      			</div>
+	      			<div class="col-md-8 newsBody">${zone1.bpTitle }</div>
 	      		</div>
-	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">ผลต่อเนื่องจากการจัดงานสัมมนาเชื่อมโยงเครือข่ายธุรกิจ Biz Club รองรับ AEC ระหว่างวันที่   1-3 สิงหาคม 2557 ผู้ประกอบธุรกิจที่เป็นสมาชิก Biz Club ทั้งส่วนกลาง . . .
-	      		</div>
+	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone1.bpDetail }</div>
 	      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
       				<p class="newsText">ข่าวภาคอีสาน
-      				<a href='<c:url value="/news/newsActivity/1" />' class="newsMore">ดูทั้งหมด</a></p>
+      				<a href='<c:url value="/news/publicize/${zone6.bizclubCenterM.bcId }/${zone6.bizclubCenterM.bcZone }" />' class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
 	      		<div class="col-md-12 newsTitlebox">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_1.png" />" height="40px" width="50px"></div>
-	      			<div class="col-md-8 newsBody">หัวข้อ............................................................</div>
+	      			<div class="col-md-4">
+	      				<c:when test="${not empty zone6.bpPictureName}">
+			      				<img src="<c:url value="/getfile/News/${zone6.bpPictureName }" />" height="40px" width="50px">
+			      		</c:when>
+	      			</div>
+	      			<div class="col-md-8 newsBody">${zone6.bpTitle }</div>
 	      		</div>
+	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone6.bpDetail }</div>
+	      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
       				<p class="newsText">ข่าวภาคใต้
-      				<a href='<c:url value="/news/newsActivity/1" />' class="newsMore">ดูทั้งหมด</a></p>
+      				<a href='<c:url value="/news/publicize/${zone3.bizclubCenterM.bcId }/${zone3.bizclubCenterM.bcZone }" />' class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
 	      		<div class="col-md-12 newsTitlebox">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_2.png" />" height="40px" width="50px"></div>
-	      			<div class="col-md-8 newsBody">หัวข้อ............................................................</div>
+	      			<div class="col-md-4">
+	      				<c:when test="${not empty zone3.bpPictureName}">
+			      				<img src="<c:url value="/getfile/News/${zone3.bpPictureName }" />" height="40px" width="50px">
+			      		</c:when>
+	      			</div>
+	      			<div class="col-md-8 newsBody">${zone3.bpTitle }</div>
 	      		</div>
+	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone3.bpDetail }</div>
+	      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
       				<p class="newsText">ข่าวภาคตะวันออก
-      				<a href='<c:url value="/news/newsActivity/1" />' class="newsMore">ดูทั้งหมด</a></p>
+      				<a href='<c:url value="/news/publicize/${zone4.bizclubCenterM.bcId }/${zone4.bizclubCenterM.bcZone }" />' class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
 	      		<div class="col-md-12 newsTitlebox">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_3.png" />" height="40px" width="50px"></div>
-	      			<div class="col-md-8 newsBody">หัวข้อ............................................................</div>
+	      			<div class="col-md-4">
+	      				<c:when test="${not empty zone4.bpPictureName}">
+			      				<img src="<c:url value="/getfile/News/${zone4.bpPictureName }" />" height="40px" width="50px">
+			      		</c:when>
+	      			</div>
+	      			<div class="col-md-8 newsBody">${zone4.bpTitle }</div>
 	      		</div>
+	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone4.bpDetail }</div>
+	      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
       				<p class="newsText">ข่าวภาคตะวันตก
-      				<a href='<c:url value="/news/newsActivity/1" />' class="newsMore">ดูทั้งหมด</a></p>
+      				<a href='<c:url value="/news/publicize/${zone5.bizclubCenterM.bcId }/${zone5.bizclubCenterM.bcZone }" />' class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
 	      		<div class="col-md-12 newsTitlebox">
-	      			<div class="col-md-4"><img src="<c:url value="/resources/register/images/pix_4.png" />" height="40px" width="50px"></div>
-	      			<div class="col-md-8 newsBody">หัวข้อ............................................................</div>
+	      			<div class="col-md-4">
+	      				<c:when test="${not empty zone5.bpPictureName}">
+			      				<img src="<c:url value="/getfile/News/${zone5.bpPictureName }" />" height="40px" width="50px">
+			      		</c:when>
+	      			</div>
+	      			<div class="col-md-8 newsBody">${zone5.bpTitle }</div>
 	      		</div>
+	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone5.bpDetail }</div>
+	      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
 	      	</div>
       	</div>
    	</div>

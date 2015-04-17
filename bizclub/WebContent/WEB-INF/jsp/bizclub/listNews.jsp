@@ -12,10 +12,10 @@
 					   <c:if test="${not empty provinceCenters}"> 
         	 				<c:forEach items="${provinceCenters}" var="provinceCenter" varStatus="loop"> 
         	 				<c:if test="${provinceCenter.bcId==bcId}">
-        	 					<li class="active"><a href='<c:url value="/news/newsActivity/${provinceCenter.bcId}" />' style="color:#fff;">${provinceCenter.bcProviceName}</a></li>
+        	 					<li class="active"><a href='<c:url value="/news/publicize/${provinceCenter.bcId}/${bcZone}" />' style="color:#fff;">${provinceCenter.bcProviceName}</a></li>
         	 				</c:if>
         	 				<c:if test="${provinceCenter.bcId!=bcId}">
-        	 					<li><a href='<c:url value="/news/newsActivity/${provinceCenter.bcId}" />'>${provinceCenter.bcProviceName}</a></li>
+        	 					<li><a href='<c:url value="/news/publicize/${provinceCenter.bcId}/${bcZone}" />'>${provinceCenter.bcProviceName}</a></li>
         	 				</c:if>
         	 				</c:forEach>
         	 			</c:if>
@@ -26,7 +26,7 @@
 		      <div class="jumbotron">
 		      	<div class="row">
 			      	<div class="col-md-9">
-			      		<button onclick="goToPage('${bizclubCenter.bcFacebook}')"  class="btn btn-material-amber" type="button" style="padding: 10px 150px 10px 150px; float: right;"><img  src="<c:url value="/resources/register/images/fb.gif" />">acebook</button>
+			      		<button onclick="goToPage('${bizclubCenter.bcFacebook}')"  class="btn btn-material-amber" type="button" style="padding: 10px 150px 10px 150px; float: right;"><img  src="<c:url value="/resources/register/images/fb.gif" />">facebook</button>
 					</div>
 		      		<div class="col-md-12">
 		      			<form class="form-inline">
@@ -37,7 +37,7 @@
 						</form>
 						<div class="row">
                              <div class="col-md-12" align="center">
-                                 <button type="button" class="btn btn-default" id="newActivity" onclick="javascript:addNews(${bcId});">Add</button>
+                                 <button type="button" class="btn btn-default" id="newActivity" onclick="javascript:addNews(${bcId},${bcZone});">Add</button>
                              </div>
                          </div>
 						<div class="list-group">
@@ -49,20 +49,22 @@
 		      					<div class="col-md-12" style="margin: -20px 0px -50px 0px;">
 		      					  <c:if test="${isAuthen==true}">
 		      					  	   <c:if test="${isStaff || isAdmin}">
-		      					  	   			<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup" onclick="javascript:delNews(${bcId},${newsActList.activityId });"><i class="mdi-action-delete"></i></button>
-							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#activity-popup" onclick="javascript:editNews(${bcId},${newsActList.activityId });"><i class="mdi-image-edit"></i></button>
+		      					  	   			<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup" onclick="javascript:delNews(${bcId},${bcZone},${newsActList.activityId });"><i class="mdi-action-delete"></i></button>
+							    				<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#activity-popup" onclick="javascript:editNews(${bcId},${bcZone},${newsActList.activityId });"><i class="mdi-image-edit"></i></button>
 									 </c:if>
 		      					  </c:if>
 						    	</div>
 			      				<div class="col-md-12" style="margin: 20px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="col-md-3">
-								            <img src="<c:url value="${newsActList.imgPath }" />" class="img-thumbnail" data-src="holder.js/200x200">
+									        <c:when test="${not empty newsActList.imgPath}">
+									        	<img src="<c:url value="/getfile/News/${newsActList.imgPath }" />" class="img-thumbnail" data-src="holder.js/200x200">
+									        </c:when>
 								        </div>
 								        <div class="col-md-9">
 								            <h4 class="list-group-item-heading">${newsActList.title}</h4>
 								            <p class="list-group-item-text" style="margin-bottom: 5px;"> &nbsp;&nbsp;${newsActList.detail}</p>	
-								            <a href="#" style="color: orange; float: right;" data-toggle="modal" onclick="javascript:moreDetail(${bcId},${newsActList.activityId });">รายละเอียด<i class="mdi-av-play-circle-fill"></i></a>
+								            <a href="#" style="color: orange; float: right;" data-toggle="modal" onclick="javascript:moreDetail(${bcId},${bcZone},${newsActList.activityId });">รายละเอียด<i class="mdi-av-play-circle-fill"></i></a>
 								            			        
 								        </div>
 								    </div>
@@ -94,7 +96,7 @@
       	<div class="row">
       		<div class="col-md-12">
       			<div class="col-md-4" style="padding-left: 20px;">
-      				<img class="img-thumbnail" id="profile" src="<c:url value="/resources/register/images/pix_9.png" />" alt="" data-src="holder.js"/>
+      				<img class="img-thumbnail" id="profile" src="<c:url value="/getfile/News/${newsActList.imgPath }" />" alt="<c:url value="/getfile/News/${newsActList.imgPath }" />" data-src="holder.js"/>
       			</div>
       			<div class="col-md-8" style="padding-left: 0px;">
 	            	<p id="moreDetail" style="font-size: 20px;"> &nbsp;&nbsp;</p>
@@ -107,9 +109,11 @@
  </div>
 <!-- ----------------------------------------------------------------------------------------------------------- -->
 <div id="activity-popup" class="modal fade" tabindex="-1">
-<c:url var="post_url"  value="/news/newsActivity/save" />
-<form:form id="activityForm" name="activityForm" modelAttribute="activityForm"    method="post" action="${post_url}" enctype="multipart/form-data">
-	<form:hidden path="baId" class="form-control textsize empty" id="baId"/>
+<c:url var="post_url"  value="/news/publicize/save" />
+<form:form id="publicizeForm" name="publicizeForm" modelAttribute="publicizeForm"    method="post" action="${post_url}" enctype="multipart/form-data">
+	<form:hidden path="bpId" class="form-control textsize empty" id="bpId"/>
+	<form:hidden path="bcId" class="form-control textsize empty" id="bcId"/>
+	<form:hidden path="bcZone" class="form-control textsize empty" id="bcZone"/>
 	<form:hidden path="pageMode" class="form-control textsize empty" id="pageMode"/>
   <div class="modal-dialog modal-lg">
     <div class="modal-content" style="border-top: 5px solid #f0bb18; border-bottom: 5px solid #7e06b4;">
@@ -122,13 +126,13 @@
 		      				<div class="form-group">
 					        	<label class="col-md-2 control-label">หัวข้อ: </label>
 					            <div class="col-md-10">
-					            	<form:input path="baTitle" class="form-control textsize empty" id="title"/>
+					            	<form:input path="bpTitle" class="form-control textsize empty" id="title"/>
 					            </div>
 					        </div>
 					        <div class="form-group">
 					        	<label class="col-md-2 control-label">เนื่อหา: </label>
 					            <div class="col-md-10">
-					            	<form:textarea path="baDetail" class="form-control textsize empty" id="detail" cols="5" rows="5"/>
+					            	<form:textarea path="bpDetail" class="form-control textsize empty" id="detail" cols="5" rows="5"/>
 					            </div>
 					        </div>
 					        <div class="col-md-offset-3">
@@ -188,8 +192,8 @@
       $(document).ready(function() {
           $.material.init();
           $('#commit').click(function(){
-        	  document.getElementById('activityForm').submit();
-        	 // $('#activityForm').submit;	
+        	  document.getElementById('publicizeForm').submit();
+        	 // $('#publicizeForm').submit;	
 			});
       });
       function goToPage(page){
@@ -217,43 +221,47 @@ function URLact(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-function moreDetail(bcId,baId){
+function moreDetail(bcId,bcZone,bpId){
 	 $.ajax({
 		  type: "GET",
 		  contentType : 'application/json; charset=utf-8',
-		  url: "/bizclub/news/newsActivity/moreDetail/"+bcId+"/"+baId,
+		  url: "/bizclub/news/publicize/moreDetail/"+bcId+"/"+bcZone+"/"+bpId,
 		  dataType : 'json'
 		})
 		  .done(function( msg ) {
 			  $("#more-popup").modal('show');
-			  $("#moreTitle").text(msg.baTitle);
-			  $("#moreDetail").text(msg.baDetail);
+			  $("#moreTitle").text(msg.bpTitle);
+			  $("#moreDetail").text(msg.bpDetail);
 		  });
 }
-function addNews(bcId){
+function addNews(bcId,bcZone){
 	 $.ajax({
 		  type: "GET",
 		  contentType : 'application/json; charset=utf-8',
-		  url: "/bizclub/news/newsActivity/add/"+bcId,
+		  url: "/bizclub/news/publicize/add/"+bcId+"/"+bcZone,
 		  dataType : 'json'
 		})
 		  .done(function( msg ) {
 			  $("#activity-popup").modal('show');
+			  $("#bcId").val(msg.bcId);
+			  $("#bcZone").val(msg.bcZone);
 			  $("#pageMode").val(msg.pageMode);
 		  });
 }
-function editNews(bcId,baId){
+function editNews(bcId,bcZone,bpId){
 	 $.ajax({
 		  type: "GET",
 		  contentType : 'application/json; charset=utf-8',
-		  url: "/bizclub/news/newsActivity/edit/"+bcId+"/"+baId,
+		  url: "/bizclub/news/publicize/edit/"+bcId+"/"+bcZone+"/"+bpId,
 		  dataType : 'json'
 		})
 		  .done(function( msg ) {
 			  $("#activity-popup").modal('show');
-			  $("#baId").val(msg.baId);
-			  $("#title").val(msg.baTitle);
-			  $("#detail").val(msg.baDetail);
+			  $("#bpId").val(msg.bpId);
+			  $("#bcId").val(msg.bcId);
+			  $("#bcZone").val(msg.bcZone);
+			  $("#title").val(msg.bpTitle);
+			  $("#detail").val(msg.bpDetail);
 			  $("#pageMode").val(msg.pageMode);
 			  if(msg.isFixed == 'Y'){
 				  $("input[name=isFixed][value='fix']").prop('checked', true);
@@ -263,23 +271,25 @@ function editNews(bcId,baId){
 			  }
 		  });
 }
-function delNews(bcId,baId){
+function delNews(bcId,bcZone,bpId){
 	 $.ajax({
 		  type: "GET",
 		  contentType : 'application/json; charset=utf-8',
-		  url: "/bizclub/news/newsActivity/delete/"+bcId+"/"+baId,
+		  url: "/bizclub/news/publicize/delete/"+bcId+"/"+bcZone+"/"+bpId,
 		  dataType : 'json'
 		})
 		  .done(function( msg ) {
 			  $("#delete-popup").modal('show');
-			  $("#baId").val(msg.baId);
-			  $("#title").val(msg.baTitle);
-			  $("#detail").val(msg.baDetail);
+			  $("#bpId").val(msg.bpId);
+			  $("#bcId").val(msg.bcId);
+			  $("#bcZone").val(msg.bcZone);
+			  $("#title").val(msg.bpTitle);
+			  $("#detail").val(msg.bpDetail);
 			  $("#pageMode").val(msg.pageMode);
 		  });
 } 
 function confirmDelete(){
-	document.getElementById('activityForm').submit();
+	document.getElementById('publicizeForm').submit();
 }
 </script>
 <style>
