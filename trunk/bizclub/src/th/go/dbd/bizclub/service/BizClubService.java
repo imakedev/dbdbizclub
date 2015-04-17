@@ -7,6 +7,9 @@ package th.go.dbd.bizclub.service;
 
 import java.util.List;
 
+import bizclub.TableA;
+import bizclub.TableB;
+
 import th.go.dbd.bizclub.model.AmphurM;
 import th.go.dbd.bizclub.model.BizclubActivityM;
 import th.go.dbd.bizclub.model.BizclubAssetM;
@@ -14,6 +17,7 @@ import th.go.dbd.bizclub.model.BizclubCenterM;
 import th.go.dbd.bizclub.model.BizclubCorpWM;
 import th.go.dbd.bizclub.model.BizclubPictureM;
 import th.go.dbd.bizclub.model.BizclubProvinceCenterM;
+import th.go.dbd.bizclub.model.BizclubPublicizeM;
 import th.go.dbd.bizclub.model.BizclubRegisterM;
 import th.go.dbd.bizclub.model.DistrictM;
 import th.go.dbd.bizclub.model.ProvinceM;
@@ -71,7 +75,13 @@ public interface BizClubService {
 	public Integer deleteActivity(BizclubActivityM activities);
 	public List<BizclubActivityM> searchActivityByCenter(BizclubActivityM activities) ;
 	
-	//activity
-	public BizclubActivityM findActivityByBaId(BizclubActivityM activities) ;
-	
+	//publicNews
+	public BizclubPublicizeM findPublicizeByBpId(BizclubPublicizeM bizclubPublicizeM) ;
+	public List<BizclubCenterM> listBizclubCenter(Integer bcZone) ;
+	public BizclubCenterM findBizclubCenterByZone(Integer bcZone);
+	public BizclubPublicizeM findPublicizeByZone(BizclubPublicizeM bcPublicizeM);
+	public List<BizclubPublicizeM> searchPublicizeByCenter(BizclubPublicizeM publicizeM) ;
+	public Integer savePublicize(BizclubPublicizeM bizclubPublicizeM) ;
+	public Integer updatePublicize(BizclubPublicizeM bizclubPublicizeM) ;
+	public Integer deletePublicize(BizclubPublicizeM bizclubPublicizeM);
 }
