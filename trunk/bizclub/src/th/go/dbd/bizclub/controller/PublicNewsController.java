@@ -70,7 +70,7 @@ public class PublicNewsController {
 			HttpServletResponse response,
 			Model model) {
 
-		String imgURL = bundle.getString("activityDefaultUrl");
+		//String imgURL = bundle.getString("activityDefaultUrl");
 		logger.debug("listActivityByBcId...."+bcId);
 		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
 		model.addAttribute("bcId",bcId);
@@ -95,7 +95,7 @@ public class PublicNewsController {
 				newsActBean.seteTime(convertTimestampToString(act.getBaEndTime()));
 			}
 			if(act.getBaPicturePath()!=null && act.getBaPicturePath().length()>0){
-				newsActBean.setImgPath(imgURL+"/"+act.getBaPicturePath());
+				newsActBean.setImgPath(act.getBaPicturePath());
 			}
 			if(act.getBaPictureName()!=null && act.getBaPictureName().length()>0){
 				newsActBean.setImgName(act.getBaPictureName());
@@ -294,7 +294,7 @@ public class PublicNewsController {
     							Model model) {
 		
 		
-		String imgURL = bundle.getString("activityDefaultUrl");
+		//String imgURL = bundle.getString("activityDefaultUrl");
 		logger.debug("listActivityByBcId...."+bcId);
 		model.addAttribute("bizclubCenter", bizClubService.findBizclubCenterById(bcId));
 		model.addAttribute("bcId",bcId);
@@ -331,7 +331,7 @@ public class PublicNewsController {
 					calBean.seteTime("");
 				}
 				if(act.getBaPicturePath()!=null && act.getBaPicturePath().length()>0){
-					calBean.setImgPath(imgURL+"/"+act.getBaPicturePath());
+					calBean.setImgPath(act.getBaPicturePath());
 				}
 				if(act.getBaPictureName()!=null && act.getBaPictureName().length()>0){
 					calBean.setImgName(act.getBaPictureName());
@@ -444,6 +444,9 @@ public class PublicNewsController {
 			 				BindingResult result, 
 			 				Model model){
 		String currentUser = null;
+		String sTime = bundle.getString("activityStartTime");
+		String eTime = bundle.getString("activityStartTime");
+		
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
 		if(authentication.isAuthenticated() && authentication.getPrincipal()!=null && !authentication.getPrincipal().equals("anonymousUser")){
 			MyUserDetails user=(MyUserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -471,11 +474,11 @@ public class PublicNewsController {
 		if(actForm.getBaTitle()!=null) bizclubActivityM.setBaTitle(actForm.getBaTitle());
 		
 		if(actForm.getBaStartTime()!=null) {
-			Timestamp baStartTime =  convertStringToTimestamp(actForm.getBaStartTime()+" 08:00:00");
+			Timestamp baStartTime =  convertStringToTimestamp(actForm.getBaStartTime()+" "+sTime);
 			if(baStartTime!=null) bizclubActivityM.setBaStartTime(baStartTime);
 		}
 		if(actForm.getBaEndTime()!=null){
-			Timestamp baEndTime =  convertStringToTimestamp(actForm.getBaEndTime()+" 18:00:00");
+			Timestamp baEndTime =  convertStringToTimestamp(actForm.getBaEndTime()+" "+eTime);
 			if(baEndTime!=null) bizclubActivityM.setBaEndTime(baEndTime);
 		}
 		if(actForm.getBaDetail()!=null) bizclubActivityM.setBaDetail(actForm.getBaDetail());
@@ -520,6 +523,7 @@ public class PublicNewsController {
 					long current = System.currentTimeMillis();
 				  
 				  String path = bundle.getString("activityCalendarPath")+pathFolder;
+				  logger.debug("defaultPath:"+path);
 				  createDirectoryIfNeeded(path);
 				  profileFileName =orgName ;// multipart.getOriginalFilename();
 				  String []filenameSplit  =profileFileName.split("\\.");
@@ -547,7 +551,8 @@ public class PublicNewsController {
 				 
 				}
 			}catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
+				logger.error("File Error xxxxx:"+e.getMessage());
 			}
 			finally{
 				if(fos!=null){
@@ -622,7 +627,7 @@ public class PublicNewsController {
 	 } 
 	 
 	 private String convertTimestampToString(Timestamp timeDate){
-		return timeDate.getDate()+"/"+(timeDate.getMonth()+1)+"/"+(timeDate.getYear()+1900)+" "+ timeDate.getHours()+":"+timeDate.getMinutes();
+		return timeDate.getDate()+"/"+(timeDate.getMonth()+1)+"/"+(timeDate.getYear()+1900)+" "+ timeDate.getHours()+":"+timeDate.getMinutes()+"0";
 	}
 	 
 	private String convertTimestampToString2(Timestamp timeDate){
