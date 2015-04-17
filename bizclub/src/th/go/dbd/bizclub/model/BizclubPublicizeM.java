@@ -3,12 +3,14 @@ package th.go.dbd.bizclub.model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import th.go.dbd.bizclub.domain.BizclubCenter;
+
 
 public class BizclubPublicizeM implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int bpId;
-	private String bcId;
+	private BizclubCenterM bizclubCenterM;
 	private String bpDetail;
 	private Timestamp bpEndTime;
 	private String bpPictureName;
@@ -19,6 +21,7 @@ public class BizclubPublicizeM implements Serializable {
 	private Timestamp createdDate;
 	private String updatedBy;
 	private Timestamp updatedDate;
+	private String isFixed;
 
 	public BizclubPublicizeM() {
 	}
@@ -31,12 +34,21 @@ public class BizclubPublicizeM implements Serializable {
 		this.bpId = bpId;
 	}
 
-	public String getBcId() {
-		return this.bcId;
+
+	public BizclubCenterM getBizclubCenterM() {
+		return bizclubCenterM;
 	}
 
-	public void setBcId(String bcId) {
-		this.bcId = bcId;
+	public void setBizclubCenterM(BizclubCenterM bizclubCenterM) {
+		this.bizclubCenterM = bizclubCenterM;
+	}
+
+	public String getIsFixed() {
+		return isFixed;
+	}
+
+	public void setIsFixed(String isFixed) {
+		this.isFixed = isFixed;
 	}
 
 	public String getBpDetail() {

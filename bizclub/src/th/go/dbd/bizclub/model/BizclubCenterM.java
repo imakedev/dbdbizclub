@@ -24,6 +24,15 @@ public class BizclubCenterM implements Serializable {
 
 	private Timestamp bcUpdatedDate;
 	private Integer bcOrder;
+	private Integer bcZone;
+	
+	public Integer getBcZone() {
+		return bcZone;
+	}
+
+	public void setBcZone(Integer bcZone) {
+		this.bcZone = bcZone;
+	}
 
 	public Integer getBcOrder() {
 		return bcOrder;
