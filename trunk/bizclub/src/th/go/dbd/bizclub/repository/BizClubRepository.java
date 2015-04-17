@@ -1,5 +1,6 @@
 package th.go.dbd.bizclub.repository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import bizclub.TableA;
+
 import th.go.dbd.bizclub.domain.Amphur;
 import th.go.dbd.bizclub.domain.BizclubActivity;
 import th.go.dbd.bizclub.domain.BizclubAsset;
@@ -19,6 +22,7 @@ import th.go.dbd.bizclub.domain.BizclubCenter;
 import th.go.dbd.bizclub.domain.BizclubCorpW;
 import th.go.dbd.bizclub.domain.BizclubPicture;
 import th.go.dbd.bizclub.domain.BizclubProvinceCenter;
+import th.go.dbd.bizclub.domain.BizclubPublicize;
 import th.go.dbd.bizclub.domain.BizclubRegister;
 import th.go.dbd.bizclub.domain.District;
 import th.go.dbd.bizclub.domain.Province;
@@ -134,24 +138,6 @@ public class BizClubRepository {
 		return query.getResultList();
 	}
 	
-	public BizclubActivity findActivityByBaId(BizclubActivity activity) {
-		logger.debug("searchBizclubActivity.....");
-		StringBuffer sb=new StringBuffer("select act from BizclubActivity act ");
-		if(activity!=null){
-			if(activity.getBcId()!=0){
-				sb.append("where act.bcId="+activity.getBcId());
-			}if(activity.getBaId()!=0){
-				sb.append(" and act.baId="+activity.getBaId());
-			}
-			
-		}
-		System.out.println(sb.toString());
-		sb.append(" order by act.updatedDate desc ");
-		logger.debug("SQL:"+sb.toString());
-		Query query=entityManager.createQuery(sb.toString(), BizclubActivity.class);
-		BizclubActivity result = (BizclubActivity) query.getSingleResult();
-		return result;
-	}
 	
 	public Integer saveActivity(BizclubActivity act) {
 		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
@@ -603,5 +589,120 @@ public class BizClubRepository {
 		Query query=entityManager.createQuery( sb.toString(), User.class);
 		query.setParameter("roleId", roleId);
 		return query.getResultList();
+	}
+	
+	//gimlee code
+	public List<BizclubCenter> listBizclubCenter(Integer bcZone) {
+		// TODO Auto-generated method stub
+		StringBuffer sb=new StringBuffer("select u from BizclubCenter u where u.bcZone =:bcZone order by u.bcProviceName desc  ");
+		Query query=entityManager.createQuery( sb.toString(), BizclubCenter.class);
+		query.setParameter("bcZone", bcZone);
+		return query.getResultList();
+	}
+	
+	public BizclubPublicize findPublicizeByZone(BizclubPublicize bcPublicize) {
+		logger.debug("findPublicizeByZone.....");
+		StringBuffer sb=new StringBuffer("select act from BizclubPublicize act ");
+		if(bcPublicize!=null){
+			if(bcPublicize.getBizclubCenter().getBcZone()!=0){
+				sb.append("where act.bizclubCenter.bcZone="+bcPublicize.getBizclubCenter().getBcZone());
+			}
+		}
+		sb.append(" order by act.updatedDate desc ");
+		System.out.println(sb.toString());
+		logger.debug("SQL:"+sb.toString());
+		Query query=entityManager.createQuery(sb.toString(), BizclubPublicize.class);
+		ArrayList<BizclubPublicize> listResult = (ArrayList<BizclubPublicize>) query.getResultList();
+		BizclubPublicize result = new BizclubPublicize();
+		if(listResult!=null && listResult.size()>0){
+			result = (BizclubPublicize) query.getResultList().get(0);
+		}
+		return result;
+	}
+	
+	public List<BizclubPublicize> searchPublicizeByCenter(BizclubPublicize bizclubPublicize) {
+		logger.debug("searchPublicizeByCenter.....");
+		StringBuffer sb=new StringBuffer("select act from BizclubPublicize act ");
+		if(bizclubPublicize!=null){
+			if(bizclubPublicize.getBizclubCenter().getBcId()!=0){
+				chkWhereString(sb);
+				sb.append(" act.bizclubCenter.bcId="+bizclubPublicize.getBizclubCenter().getBcId());
+			}
+			if(bizclubPublicize.getBizclubCenter().getBcZone()!=0){
+				chkWhereString(sb);
+				sb.append(" act.bizclubCenter.bcZone="+bizclubPublicize.getBizclubCenter().getBcZone());
+			}
+		}
+		sb.append(" order by act.updatedDate desc ");
+		Query query=entityManager.createQuery(sb.toString(), BizclubPublicize.class);
+		return query.getResultList();
+	}
+	
+	
+	public BizclubCenter findBizclubCenterByZone(Integer bcZone) {
+		StringBuffer sb=new StringBuffer("select act from BizclubCenter act where act.bcZone = :bcZone ");
+		Query query=entityManager.createQuery( sb.toString(), BizclubCenter.class);
+		query.setParameter("bcZone", bcZone);
+		BizclubCenter result= new BizclubCenter();
+		ArrayList<BizclubCenter> listResult = (ArrayList<BizclubCenter>) query.getResultList();
+		if(listResult!=null && listResult.size()>0){
+			result = (BizclubCenter) query.getResultList().get(0);
+		}
+		return result;
+	}
+	
+	public BizclubPublicize findPublicizeByBpId(BizclubPublicize pub) {
+		logger.debug("searchBizclubActivity.....");
+		StringBuffer sb=new StringBuffer("select act from BizclubPublicize act ");
+		if(pub!=null){
+			if(pub.getBizclubCenter().getBcId()!=0){
+				chkWhereString(sb);
+				sb.append(" act.bizclubCenter.bcId = "+pub.getBizclubCenter().getBcId());
+			}if(pub.getBpId()!=0){
+				chkWhereString(sb);
+				sb.append(" act.bpId = "+pub.getBpId());
+			}
+		}
+		sb.append(" order by act.updatedDate desc ");
+		logger.debug("SQL:"+sb.toString());
+		Query query=entityManager.createQuery(sb.toString(), BizclubPublicize.class);
+		BizclubPublicize result = (BizclubPublicize) query.getSingleResult();
+		return result;
+	}
+	
+	public Integer savePublicize(BizclubPublicize pub) {
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		pub.setUpdatedDate(now);
+		pub.setCreatedDate(now);
+		entityManager.persist(pub);
+		entityManager.flush();
+		return null;
+	}
+	
+	public Integer updatePublicize(BizclubPublicize pub) {
+		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
+		pub.setUpdatedDate(now);
+		entityManager.merge(pub);
+		entityManager.flush();
+		return null;
+	}
+	
+	public Integer deletePublicize(BizclubPublicize pub) {
+		Query query=	entityManager.createQuery( "delete from BizclubPublicize where bpId =:id ");
+		query.setParameter("id",pub.getBpId());
+		Integer reuturnRec=Integer.valueOf(query.executeUpdate());
+		return reuturnRec;
+	}
+	
+	public static StringBuffer chkWhereString(StringBuffer sb){
+		if(sb!=null && !"".equals(sb.toString())){
+			String sbStr = sb.toString();
+			if(sbStr.toLowerCase().indexOf("where")!=-1){
+				sb.append(" and ");
+			}else{
+				sb.append(" where ");
+			}
+		}
+		return sb;
 	}
 }
