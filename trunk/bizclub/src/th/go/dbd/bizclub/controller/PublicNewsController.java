@@ -302,6 +302,8 @@ public class PublicNewsController {
 		form.setBpId(result.getBpId());
 		form.setBpTitle(result.getBpTitle());
 		form.setBpDetail(result.getBpDetail());
+		form.setBpPicturePath(result.getBpPicturePath());
+		form.setBpPictureName(result.getBpPictureName());
 		form.setIsFixed(result.getIsFixed());
 		return  form;
 	}
@@ -320,6 +322,8 @@ public class PublicNewsController {
 		form.setBpId(result.getBpId());
 		form.setBpTitle(result.getBpTitle());
 		form.setBpDetail(result.getBpDetail());
+		form.setBpPicturePath(result.getBpPicturePath());
+		form.setBpPictureName(result.getBpPictureName());
 		form.setIsFixed(result.getIsFixed());
 		form.setPageMode("edit");
 		 return  form;
