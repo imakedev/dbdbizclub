@@ -57,9 +57,9 @@
 			      				<div class="col-md-12" style="margin: 20px 0px 10px 0px; padding-left: 30px;">
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="col-md-3">
-									        <c:when test="${not empty newsActList.imgPath}">
+									        <c:if test="${not empty newsActList.imgPath}">
 									        	<img src="<c:url value="/getfile/News/${newsActList.imgPath }" />" class="img-thumbnail" data-src="holder.js/200x200">
-									        </c:when>
+									        </c:if>
 								        </div>
 								        <div class="col-md-9">
 								            <h4 class="list-group-item-heading">${newsActList.title}</h4>
@@ -96,7 +96,7 @@
       	<div class="row">
       		<div class="col-md-12">
       			<div class="col-md-4" style="padding-left: 20px;">
-      				<img class="img-thumbnail" id="profile" src="<c:url value="/getfile/News/${newsActList.imgPath }" />" alt="<c:url value="/getfile/News/${newsActList.imgPath }" />" data-src="holder.js"/>
+      				<img class="img-thumbnail" id="profile" src="" alt="" data-src="holder.js"/>
       			</div>
       			<div class="col-md-8" style="padding-left: 0px;">
 	            	<p id="moreDetail" style="font-size: 20px;"> &nbsp;&nbsp;</p>
@@ -232,6 +232,10 @@ function moreDetail(bcId,bcZone,bpId){
 			  $("#more-popup").modal('show');
 			  $("#moreTitle").text(msg.bpTitle);
 			  $("#moreDetail").text(msg.bpDetail);
+			  if(msg.bpPictureName!=null){
+				  var scr1 = "/getfile/News/"+msg.bpPictureName;
+				  $("#profile").attr("src", scr1);
+			  }
 		  });
 }
 function addNews(bcId,bcZone){
