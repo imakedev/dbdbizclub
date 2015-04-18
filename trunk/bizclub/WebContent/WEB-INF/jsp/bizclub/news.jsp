@@ -21,9 +21,9 @@
 	      		<c:if test="${zone2.bpId != 0 }">
 		      		<div class="col-md-12 newsTitlebox">
 		      			<div class="col-md-4">
-			      			<c:when test="${not empty zone2.bpPictureName}">
+			      			<c:if test="${not empty zone2.bpPictureName}">
 			      				<img src="<c:url value="/getfile/News/${zone2.bpPictureName }" />" height="40px" width="50px">
-			      			</c:when>
+			      			</c:if>
 		      			</div>
 		      			<div class="col-md-8 newsBody">${zone2.bpTitle }</div>
 		      		</div>
@@ -39,80 +39,105 @@
       				<p class="newsText">ข่าวภาคกลาง
       				<a href='<c:url value="/news/publicize/${zone1.bizclubCenterM.bcId }/${zone1.bizclubCenterM.bcZone }" />' class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
-	      		<div class="col-md-12 newsTitlebox">
-	      			<div class="col-md-4">
-	      				<c:when test="${not empty zone1.bpPictureName}">
-			      				<img src="<c:url value="/getfile/News/${zone1.bpPictureName }" />" height="40px" width="50px">
-			      		</c:when>
-	      			</div>
-	      			<div class="col-md-8 newsBody">${zone1.bpTitle }</div>
-	      		</div>
-	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone1.bpDetail }</div>
-	      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
+	      		<c:if test="${zone1.bpId != 0 }">
+	      			<div class="col-md-12 newsTitlebox">
+		      			<div class="col-md-4">
+		      				<c:if test="${not empty zone1.bpPictureName}">
+				      				<img src="<c:url value="/getfile/News/${zone1.bpPictureName }" />" height="40px" width="50px">
+				      		</c:if>
+		      			</div>
+		      			<div class="col-md-8 newsBody">${zone1.bpTitle }</div>
+		      		</div>
+		      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone1.bpDetail }</div>
+		      		<div style="float: right; padding-right: 10px;"><a href="#" onclick="javascript:moreDetail(${zone1.bizclubCenterM.bcId},${zone1.bizclubCenterM.bcZone},${zone1.bpId });">อ่านเพิ่มเติม </a></div>
+	      		</c:if>
+	      		<c:if test="${zone1.bpId == 0 }">
+	      			<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">ไม่มีข้อมูลข่าว</div>
+	      		</c:if>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
       				<p class="newsText">ข่าวภาคอีสาน
       				<a href='<c:url value="/news/publicize/${zone6.bizclubCenterM.bcId }/${zone6.bizclubCenterM.bcZone }" />' class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
-	      		<div class="col-md-12 newsTitlebox">
-	      			<div class="col-md-4">
-	      				<c:when test="${not empty zone6.bpPictureName}">
-			      				<img src="<c:url value="/getfile/News/${zone6.bpPictureName }" />" height="40px" width="50px">
-			      		</c:when>
-	      			</div>
-	      			<div class="col-md-8 newsBody">${zone6.bpTitle }</div>
-	      		</div>
-	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone6.bpDetail }</div>
-	      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
+	      		<c:if test="${zone6.bpId != 0 }">
+	      			<div class="col-md-12 newsTitlebox">
+		      			<div class="col-md-4">
+		      				<c:if test="${not empty zone6.bpPictureName}">
+				      				<img src="<c:url value="/getfile/News/${zone6.bpPictureName }" />" height="40px" width="50px">
+				      		</c:if>
+		      			</div>
+		      			<div class="col-md-8 newsBody">${zone6.bpTitle }</div>
+		      		</div>
+		      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone6.bpDetail }</div>
+		      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
+	      		</c:if>
+	      		<c:if test="${zone6.bpId == 0 }">
+	      			<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">ไม่มีข้อมูลข่าว</div>
+	      		</c:if>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
       				<p class="newsText">ข่าวภาคใต้
       				<a href='<c:url value="/news/publicize/${zone3.bizclubCenterM.bcId }/${zone3.bizclubCenterM.bcZone }" />' class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
-	      		<div class="col-md-12 newsTitlebox">
-	      			<div class="col-md-4">
-	      				<c:when test="${not empty zone3.bpPictureName}">
-			      				<img src="<c:url value="/getfile/News/${zone3.bpPictureName }" />" height="40px" width="50px">
-			      		</c:when>
-	      			</div>
-	      			<div class="col-md-8 newsBody">${zone3.bpTitle }</div>
-	      		</div>
-	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone3.bpDetail }</div>
-	      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
+	      		<c:if test="${zone3.bpId != 0 }">
+	      			<div class="col-md-12 newsTitlebox">
+		      			<div class="col-md-4">
+		      				<c:if test="${not empty zone3.bpPictureName}">
+				      				<img src="<c:url value="/getfile/News/${zone3.bpPictureName }" />" height="40px" width="50px">
+				      		</c:if>
+		      			</div>
+		      			<div class="col-md-8 newsBody">${zone3.bpTitle }</div>
+		      		</div>
+		      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone3.bpDetail }</div>
+		      		<div style="float: right; padding-right: 10px;"><a href="#" onclick="javascript:moreDetail(${zone3.bizclubCenterM.bcId},${zone3.bizclubCenterM.bcZone},${zone3.bpId });">อ่านเพิ่มเติม </a></div>
+	      		</c:if>
+	      		<c:if test="${zone3.bpId == 0 }">
+	      			<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">ไม่มีข้อมูลข่าว</div>
+	      		</c:if>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
       				<p class="newsText">ข่าวภาคตะวันออก
       				<a href='<c:url value="/news/publicize/${zone4.bizclubCenterM.bcId }/${zone4.bizclubCenterM.bcZone }" />' class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
-	      		<div class="col-md-12 newsTitlebox">
-	      			<div class="col-md-4">
-	      				<c:when test="${not empty zone4.bpPictureName}">
-			      				<img src="<c:url value="/getfile/News/${zone4.bpPictureName }" />" height="40px" width="50px">
-			      		</c:when>
-	      			</div>
-	      			<div class="col-md-8 newsBody">${zone4.bpTitle }</div>
-	      		</div>
-	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone4.bpDetail }</div>
-	      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
+	      		<c:if test="${zone4.bpId != 0 }">
+	      			<div class="col-md-12 newsTitlebox">
+		      			<div class="col-md-4">
+		      				<c:if test="${not empty zone4.bpPictureName}">
+				      				<img src="<c:url value="/getfile/News/${zone4.bpPictureName }" />" height="40px" width="50px">
+				      		</c:if>
+		      			</div>
+		      			<div class="col-md-8 newsBody">${zone4.bpTitle }</div>
+		      		</div>
+		      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone4.bpDetail }</div>
+		      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
+	      		</c:if>
+	      		<c:if test="${zone4.bpId == 0 }">
+	      			<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">ไม่มีข้อมูลข่าว</div>
+	      		</c:if>
 	      	</div>
 	      	<div class="col-md-3 jumbotron" style="height: 250px; margin: 10px 15px 10px 15px; padding: 0px;">
 	      		<div class="col-md-12">
       				<p class="newsText">ข่าวภาคตะวันตก
       				<a href='<c:url value="/news/publicize/${zone5.bizclubCenterM.bcId }/${zone5.bizclubCenterM.bcZone }" />' class="newsMore">ดูทั้งหมด</a></p>
 	      		</div>
-	      		<div class="col-md-12 newsTitlebox">
-	      			<div class="col-md-4">
-	      				<c:when test="${not empty zone5.bpPictureName}">
-			      				<img src="<c:url value="/getfile/News/${zone5.bpPictureName }" />" height="40px" width="50px">
-			      		</c:when>
-	      			</div>
-	      			<div class="col-md-8 newsBody">${zone5.bpTitle }</div>
-	      		</div>
-	      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone5.bpDetail }</div>
-	      		<div style="float: right; padding-right: 10px;"><a href="#">อ่านเพิ่มเติม </a></div>
+	      		<c:if test="${zone5.bpId != 0 }">
+	      			<div class="col-md-12 newsTitlebox">
+		      			<div class="col-md-4">
+		      				<c:if test="${not empty zone5.bpPictureName}">
+				      				<img src="<c:url value="/getfile/News/${zone5.bpPictureName }" />" height="40px" width="50px">
+				      		</c:if>
+		      			</div>
+		      			<div class="col-md-8 newsBody">${zone5.bpTitle }</div>
+		      		</div>
+		      		<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">${zone5.bpDetail }</div>
+		      		<div style="float: right; padding-right: 10px;"><a href="#" onclick="javascript:moreDetail(${zone5.bizclubCenterM.bcId},${zone5.bizclubCenterM.bcZone},${zone5.bpId });">อ่านเพิ่มเติม </a></div>
+	      		</c:if>
+	      		<c:if test="${zone5.bpId == 0 }">
+	      			<div class="col-md-12" style="word-wrap:break-word; text-indent: 1.5em; height: 130px; padding-top: 5px;">ไม่มีข้อมูลข่าว</div>
+	      		</c:if>
 	      	</div>
       	</div>
    	</div>
@@ -270,6 +295,29 @@
     </div>
   </div>
 </div>
+<!-- ------------------------ more-popup ------------------------------------- -->
+<div id="more-popup" class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="border: 5px solid #fbb819;">
+      <div class="modal-header" style="background-color: #fbb819">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <p id="moreTitle" class="modal-title" style="font-size: 26px; font-weight: bold; padding-bottom: 20px;"></p>
+      </div>
+      <div class="modal-body">
+      	<div class="row">
+      		<div class="col-md-12">
+      			<div class="col-md-4" style="padding-left: 20px;">
+      				<img class="img-thumbnail" id="profile" src="" alt="" data-src="holder.js"/>
+      			</div>
+      			<div class="col-md-8" style="padding-left: 0px;">
+	            	<p id="moreDetail" style="font-size: 20px;"> &nbsp;&nbsp;</p>
+	            </div>
+            </div>
+        </div>
+		</div>
+      </div>
+  	</div>
+ </div>
 <!-- ----------------------------------------------------------------------------------------------------------- -->
 <%@ include file="/WEB-INF/jsp/common/footer.jsp" %>
 <script>
@@ -303,9 +351,23 @@ function URLact(input) {
 }
 </script>
 <script>
-	function gotoPage(id){
-		alert(id);
-	}
+function moreDetail(bcId,bcZone,bpId){
+	 $.ajax({
+		  type: "GET",
+		  contentType : 'application/json; charset=utf-8',
+		  url: "/bizclub/news/publicize/moreDetail/"+bcId+"/"+bcZone+"/"+bpId,
+		  dataType : 'json'
+		})
+		  .done(function( msg ) {
+			  $("#more-popup").modal('show');
+			  $("#moreTitle").text(msg.bpTitle);
+			  $("#moreDetail").text(msg.bpDetail);
+			  if(msg.bpPictureName!=null){
+				  var scr1 = "/getfile/News/"+msg.bpPictureName;
+				  $("#profile").attr("src", scr1);
+			  }
+		  });
+}
 </script>
 <style>
 body{
