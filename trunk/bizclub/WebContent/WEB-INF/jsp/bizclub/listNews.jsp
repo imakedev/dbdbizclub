@@ -58,7 +58,7 @@
 								    <div class="list-group-item" style="margin-left: 10px;">
 								        <div class="col-md-3">
 									        <c:if test="${not empty newsActList.imgPath}">
-									        	<img src="<c:url value="/getfile/News/${newsActList.imgPath }" />" class="img-thumbnail" data-src="holder.js/200x200">
+									        	<img src="<c:url value="/getfile/News/${newsActList.imgPath }" />" alt="<c:url value="${newsActList.imgName }" />" class="img-thumbnail" data-src="holder.js/200x200">
 									        </c:if>
 								        </div>
 								        <div class="col-md-9">
@@ -232,9 +232,10 @@ function moreDetail(bcId,bcZone,bpId){
 			  $("#more-popup").modal('show');
 			  $("#moreTitle").text(msg.bpTitle);
 			  $("#moreDetail").text(msg.bpDetail);
-			  if(msg.bpPictureName!=null){
-				  var scr1 = "/getfile/News/"+msg.bpPictureName;
+			  if(msg.bpPicturePath!=null){
+				  var scr1 = "/getfile/News/"+msg.bpPicturePath;
 				  $("#profile").attr("src", scr1);
+				  $("#profile").attr("alt", msg.bpPictureName);
 			  }
 		  });
 }
@@ -272,6 +273,11 @@ function editNews(bcId,bcZone,bpId){
 			  }
 			  if(msg.isFixed == 'N'){
 				  $("input[name=isFixed][value='null']").prop('checked', true);
+			  }
+			  if(msg.bpPicturePath!=null){
+				  var scr1 = "/getfile/News/"+msg.bpPicturePath;
+				  $("#activity").attr("src", scr1);
+				  $("#activity").attr("alt", msg.bpPictureName);
 			  }
 		  });
 }
