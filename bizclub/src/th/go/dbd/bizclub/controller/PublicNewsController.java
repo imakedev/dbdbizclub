@@ -157,15 +157,15 @@ public class PublicNewsController {
 				}
 				newsActList.add(newsActBean);
 			}
-			PublicizeForm publicizeForm = new PublicizeForm();
-			publicizeForm.setBcId(bcId);
-			publicizeForm.setBcZone(bcZone);
 			model.addAttribute("newsActList",newsActList);
-			model.addAttribute("publicizeForm", publicizeForm);
 		}else{
 		logger.debug("not event.....");
 			model.addAttribute("newsActList",null);
 		}
+		PublicizeForm publicizeForm = new PublicizeForm();
+		publicizeForm.setBcId(bcId);
+		publicizeForm.setBcZone(bcZone);
+		model.addAttribute("publicizeForm", publicizeForm);
 		return "bizclub/listNews";
 	}
 	
