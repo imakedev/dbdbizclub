@@ -605,7 +605,7 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 	@Override
 	public BizclubCenterM findBizclubCenterByZone(Integer bcZone) {
 		// TODO Auto-generated method stub
-		BizclubCenter bizclubCenter = bizClubRepository.findBizclubCenterById(bcZone);
+		BizclubCenter bizclubCenter = bizClubRepository.findBizclubCenterByZone(bcZone);
 		BizclubCenterM bizclubCenterM=new BizclubCenterM();
 		BeanUtils.copyProperties(bizclubCenter , bizclubCenterM,"user");
 		//BeanUtils.copyProperties(BizclubCenterM , BizclubCenter,"user");
