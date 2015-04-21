@@ -22,10 +22,18 @@
 		</style>
 		<link href='<c:url value="/resources/calendar/fullcalendar.css" />' rel='stylesheet'/>
 		<link href='<c:url value="/resources/calendar/fullcalendar.print.css" />' rel='stylesheet"'media='print' />
+		
+		<%-- <link href="<c:url value="/resources/register/css/bootstrap.min.css" />" rel="stylesheet">
+		<link href='<c:url value="/resources/calendar/css/bootstrap-datetimepicker.min.css" />' rel="stylesheet"/>
+		<link href='<c:url value="/resources/register/css/bootstrap-combined.min.css" />' rel="stylesheet"> 
+		
+		<script src="<c:url value="/resources/register/js/bootstrap.min.js" />"></script>--%>
+		
 		<script src='<c:url value="/resources/calendar/lib/moment.min.js" />' ></script>
-		<script src="<c:url value="/resources/register/js/jquery.min.js" />"></script>
+		<script src='<c:url value="/resources/register/js/jquery.min.js" />'></script>
 		<script src='<c:url value="/resources/calendar/fullcalendar.min.js" />' ></script>
-		<script src="<c:url value="/resources/register/material/js/material.min.js" />"></script>
+		<script src='<c:url value="/resources/register/material/js/material.min.js" />'></script>
+		<script src='<c:url value="/resources/calendar/js/bootstrap-datetimepicker.min.js" />'></script>
 
 		<script>
       		$(document).ready(function() {
@@ -36,13 +44,19 @@
 				$('#commit').click(function(){
 					var checkValidate = true;
 					var checkFormat = false;
+					var checkSelect = false;
 					var errMsg = '';
 					var errFmt = '';
 					var title = $('#title').val();
 					var detail = $('#detail').val();
 					var sDate = $('#startDatepicker').val();
 					var eDate = $('#endDatepicker').val()
-					var fix = $('input[name="chk1"]:checked');
+					var type = $("input[type='radio']");
+
+					var baType = type.filter(":checked").val();
+					
+					if(baType.length>0) checkSelect = true;
+
 					var dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
 
 					if(title.length==0) {
@@ -64,10 +78,11 @@
                			else errFmt = errFmt + ' EndDate';
 					}
 
-					if(checkValidate && checkFormat){
+					if(checkValidate && checkFormat && checkSelect){
 						document.activityForm.submit;
 					}else{
 						if(!checkValidate) alert(' Please insert'+errMsg);
+						else if (!checkSelect) alert(' Please Select'+errMsg);
 						else alert(' Wrong Format'+errFmt);
 						return false;
 					}
@@ -77,6 +92,9 @@
 					var url = '<c:url value="/news/activity/${bcId}" />';
         			location.href=url;
 				});
+				$('#datetimepicker').datetimepicker({
+		        	format: 'dd/MM/yyyy hh:mm:ss'
+		      	});
       		});
       		function goToPage(page){
 				if(page.length>0){
@@ -142,7 +160,7 @@
 						      			<span class="form-horizontal">
 									    	<fieldset>
 							      				<div class="form-group">
-										        	<label class="col-md-3 control-label">ชื่อกิจกรรม: </label>
+										        	<label class="col-md-3 control-label">ชื่อ: </label>
 										            <div class="col-md-7">
 										                <div class="form-control-wrapper">
 										                 	<form:input path="baTitle" class="form-control textsize empty" id="title"/>
@@ -152,14 +170,14 @@
 										        </div>
 										        
 										        <div class="form-group">
-										        	<label class="col-md-3 control-label">วันที่จัดกิจกรรม: </label>
+										        	<label class="col-md-3 control-label">วันที่เริ่ม: </label>
 										            <div class="col-md-2">
 														<div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd/mm/yyyy">
 															<form:input path="baStartTime" id="startDatepicker" readonly=""/>
 										                	<span class="add-on"><i class="icon-calendar"></i></span>
 										                </div>
 										            </div>   
-										            <label class="col-md-3 control-label">ถึง </label> 
+										            <label class="col-md-3 control-label" style="padding-left:10px;">ถึง: </label> 
 										            <div class="col-md-2">
 										            	<div class="input-append date" id="dp4" data-date="12-02-2012" data-date-format="dd/mm/yyyy">
 															<form:input path="baEndTime" id="endDatepicker" readonly=""/>
@@ -176,22 +194,26 @@
 										                	<span class="material-input"></span></div>
 										            </div>
 										        </div>
-										        <%-- <div class="col-md-offset-3">
-										        	<div class="col-md-4 radio radio-primary">
-													    <label class="radio-inline">
-													    	<form:radiobutton path="isFixed" value="fix" /> 
-													      	<span class="circle"></span><span class="check"></span>
-													      	<span style="margin-top: -5px; margin-left: 20px; width: 250px;">โพสปักหมุด</span>
-													    </label>
-													</div>
-													<div class="col-md-3 radio radio-primary">
-													    <label class="radio-inline">
-													      	<form:radiobutton path="isFixed" value="null" /> 
-													      	<span class="circle"></span><span class="check"></span>
-													      	<span style="margin-top: -5px; margin-left: 20px; width: 250px;">โพสธรรมดา</span>
-													    </label>
-												    </div>
-										        </div> --%>
+
+												<div class="form-group">
+										        	<label class="col-md-3 control-label">ประเภท: </label>
+										            <div class="col-md-7">
+										                <div class="col-md-4 radio radio-primary">
+														    <label class="radio-inline">
+														    	<form:radiobutton path="baType" name="type" value="กิจกรรม" /> 
+														      	<span class="circle"></span><span class="check"></span>
+														      	<span style="margin-top: -5px; margin-left: 20px; width: 250px;">กิจกรรม</span>
+														    </label>
+														</div>
+														<div class="col-md-3 radio radio-primary">
+														    <label class="radio-inline">
+														      	<form:radiobutton path="baType" name="type" value="อบรม" /> 
+														      	<span class="circle"></span><span class="check"></span>
+														      	<span style="margin-top: -5px; margin-left: 20px; width: 250px;">อบรม</span>
+														    </label>
+													    </div>
+										            </div>
+										        </div>
 								        	</fieldset>
 										</span>
       								</div>
@@ -225,6 +247,11 @@
             </div>
          </div>
          </form:form> 
-       
+	       <div id="datetimepicker" class="input-append date">
+	      <input type="text"></input>
+	      <span class="add-on">
+	        <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+	      </span>
+	    </div>
 	</body>
 </html>
