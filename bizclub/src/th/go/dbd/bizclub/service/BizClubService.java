@@ -6,10 +6,6 @@
 package th.go.dbd.bizclub.service;
 
 import java.util.List;
-
-import bizclub.TableA;
-import bizclub.TableB;
-
 import th.go.dbd.bizclub.model.AmphurM;
 import th.go.dbd.bizclub.model.BizclubActivityM;
 import th.go.dbd.bizclub.model.BizclubAssetM;
