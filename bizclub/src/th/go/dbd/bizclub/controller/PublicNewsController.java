@@ -48,16 +48,16 @@ import th.go.dbd.bizclub.service.BizClubService;
 @RequestMapping(value={"/news"})
 @SessionAttributes(value={"calendarActivityForm","publicizeForm"})
 public class PublicNewsController {
-	
-	
 	Logger logger = Logger.getRootLogger();
 	
 	@Autowired
 	@Qualifier("bizClubServiceImpl")
 	private BizClubService bizClubService;
 	private static ResourceBundle bundle;
+	//private String thCurr;
 	static{
-		bundle =  ResourceBundle.getBundle("config");				
+		bundle =  ResourceBundle.getBundle("config");	
+		//thCurr = getThCurrentDate();
 	}
 	
 	@RequestMapping(value={"", "/"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
@@ -378,6 +378,8 @@ public class PublicNewsController {
 				calBean.setCenterId(bcId);
 				calBean.setActivityId(act.getBaId());
 				calBean.setTitle(act.getBaTitle());
+				calBean.setBaType(act.getBaType());
+				
 				if(act.getBaDetail()!=null && act.getBaDetail().length()>0){
 					calBean.setDetail(act.getBaDetail());
 				}else{
@@ -415,6 +417,10 @@ public class PublicNewsController {
 			logger.debug("not event.....");
 			model.addAttribute("calendarJSON",null);
 		}
+		
+		String thCurent = getThCurrentDate();
+		model.addAttribute("thCurent", thCurent);
+		logger.debug("thCurent:"+thCurent);
 		return "bizclub/calendarActivities";
     }
 	
@@ -454,12 +460,19 @@ public class PublicNewsController {
 		model.addAttribute("bcId",bcId);
 		
 		BizclubActivityM defaultActivity = bizClubService.findBizclubActivityById(baId);
+		
+		logger.debug("defaultActivity:"+defaultActivity);
+		
 		CalendarActivityForm activitiyForm = new CalendarActivityForm();
 		activitiyForm.setBcId(bcId);
 		activitiyForm.setBaId(baId);
 		
 		activitiyForm.setCreateBy(defaultActivity.getCreatedBy());
 		activitiyForm.setCreateDate(defaultActivity.getCreatedDate());
+		logger.debug("BaType:"+defaultActivity.getBaType());
+		logger.debug("BaType:"+defaultActivity.getBaType().length());
+		
+		activitiyForm.setBaType(defaultActivity.getBaType());
 		
 		if(defaultActivity.getBaTitle()!=null && defaultActivity.getBaTitle().length()>0){
 			activitiyForm.setBaTitle(defaultActivity.getBaTitle());
@@ -512,7 +525,7 @@ public class PublicNewsController {
 			 				Model model){
 		String currentUser = null;
 		String sTime = bundle.getString("activityStartTime");
-		String eTime = bundle.getString("activityStartTime");
+		String eTime = bundle.getString("activityEndTime");
 		
 		Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
 		if(authentication.isAuthenticated() && authentication.getPrincipal()!=null && !authentication.getPrincipal().equals("anonymousUser")){
@@ -531,9 +544,10 @@ public class PublicNewsController {
 		logger.debug("eDate:"+actForm.getBaEndTime());
 		logger.debug("detail:"+actForm.getBaDetail());
 		logger.debug("fix:"+actForm.getIsFixed());
+		logger.debug("type:"+actForm.getBaType());
 		
 		bizclubActivityM.setBcId(actForm.getBcId());
-		
+		bizclubActivityM.setBaType(actForm.getBaType());
 		
 		if(actForm.getBaId()>0){
 			bizclubActivityM.setBaId(actForm.getBaId());
@@ -694,11 +708,63 @@ public class PublicNewsController {
 	 } 
 	 
 	 private String convertTimestampToString(Timestamp timeDate){
-		return timeDate.getDate()+"/"+(timeDate.getMonth()+1)+"/"+(timeDate.getYear()+1900)+" "+ timeDate.getHours()+":"+timeDate.getMinutes()+"0";
+		return timeDate.getDate()+"/"+(timeDate.getMonth()+1)+"/"+(timeDate.getYear()+1900+543)+" "+ timeDate.getHours()+":"+timeDate.getMinutes()+"0";
 	}
 	 
 	private String convertTimestampToString2(Timestamp timeDate){
 		return timeDate.getDate()+"/"+(timeDate.getMonth()+1)+"/"+(timeDate.getYear()+1900);
+	}
+	
+	private String getThCurrentDate(){
+		logger.debug("getThCurrentDate()....");
+		String thCurr = null;
+		Date date = new Date();
+		int month = date.getMonth()+1;
+		String mmStr =null;
+		switch (month) {
+			case 1:
+				mmStr = "มกราคม";
+				break;
+			case 2:
+				mmStr = "กุมภาพันธ์";
+				break;
+			case 3:
+				mmStr = "มีนาคม";
+				break;
+			case 4:
+				mmStr = "เมษายน";
+				break;
+			case 5:
+				mmStr = "พฤษภาคม";
+				break;
+			case 6:
+				mmStr = "มิถุนายน";
+				break;
+			case 7:
+				mmStr = "กรกฎษาคม";
+				break;
+			case 8:
+				mmStr = "สิงหาคม";
+				break;
+			case 9:
+				mmStr = "กันยายน";
+				break;
+			case 10:
+				mmStr = "ตุลาคม";
+				break;
+			case 11:
+				mmStr = "พฤศจิกายน";
+				break;
+			case 12:
+				mmStr = "ธันวาคม";
+				break;
+			default:
+				break;
+		}
+		int year = date.getYear()+1900+543;
+		thCurr = mmStr +" "+year;
+		logger.debug("thCurr:"+thCurr);
+		return thCurr;
 	}
 }
 
