@@ -37,6 +37,9 @@ public class BizclubActivity implements Serializable {
 	@Column(name="BA_TITLE")
 	private String baTitle;
 
+	@Column(name="BA_TYPE")
+	private String baType;
+
 	@Column(name="BC_ID")
 	private int bcId;
 
@@ -112,6 +115,14 @@ public class BizclubActivity implements Serializable {
 
 	public void setBaTitle(String baTitle) {
 		this.baTitle = baTitle;
+	}
+
+	public String getBaType() {
+		return this.baType;
+	}
+
+	public void setBaType(String baType) {
+		this.baType = baType;
 	}
 
 	public int getBcId() {
