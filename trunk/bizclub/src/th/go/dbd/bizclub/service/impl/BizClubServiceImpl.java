@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 
 import th.go.dbd.bizclub.domain.Amphur;
@@ -46,6 +48,9 @@ import th.go.dbd.bizclub.utils.MapUtils;
 
 @Service("bizClubServiceImpl")
 public class BizClubServiceImpl extends PostCommon implements BizClubService {
+	
+	
+	Logger logger = Logger.getRootLogger();
 	private static SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
 	private static SimpleDateFormat format1 = new SimpleDateFormat("dd/MM/yyyy");
 	private Map<String, String> corpGroupIdMap = MapUtils.asMap(MapUtils.entry("1", "ผู้ผลิต"), MapUtils.entry("2", "ธุรกิจบริการ"),
@@ -543,8 +548,10 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 	@Override
 	public Integer saveActivity(BizclubActivityM activitiesM) {
 		// TODO Auto-generated method stub
+		logger.debug("saveActivity....."+activitiesM.getBaType());
 		BizclubActivity activities=new BizclubActivity();
 		BeanUtils.copyProperties(activitiesM , activities);
+		logger.debug("activities:....."+activities.getBaType());
 		return bizClubRepository.saveActivity(activities);
 	}
 
