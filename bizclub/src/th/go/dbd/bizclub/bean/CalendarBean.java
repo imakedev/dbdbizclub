@@ -15,6 +15,15 @@ public class CalendarBean implements Serializable{
 	private String eTime;
 	private int activityId;
 	private int centerId;
+	private String baType;
+	
+	
+	public String getBaType() {
+		return baType;
+	}
+	public void setBaType(String baType) {
+		this.baType = baType;
+	}
 	
 	
 	public int getCenterId() {
