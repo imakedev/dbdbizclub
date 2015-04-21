@@ -17,8 +17,15 @@ public class ActivityForm implements Serializable{
 	private String baTitle;
 	private String isFixed;
 	private String pageMode;
+	private String baType;
 	
-
+	
+	public String getBaType() {
+		return baType;
+	}
+	public void setBaType(String baType) {
+		this.baType = baType;
+	}
 	public int getBaId() {
 		return baId;
 	}

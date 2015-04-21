@@ -19,10 +19,14 @@ public class CalendarActivityForm implements Serializable{
 	private int baId;
 	private String createBy;
 	private Timestamp createDate;
+	private String baType;
 	
-	
-	
-	
+	public String getBaType() {
+		return baType;
+	}
+	public void setBaType(String baType) {
+		this.baType = baType;
+	}
 	
 	public String getCreateBy() {
 		return createBy;
