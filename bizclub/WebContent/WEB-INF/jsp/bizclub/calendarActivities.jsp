@@ -29,12 +29,10 @@
         <link href='<c:url value="/resources/calendar/fullcalendar.css" />' rel='stylesheet'/>
         <link href='<c:url value="/resources/calendar/fullcalendar.print.css" />' rel='stylesheet"'media='print' />
         <script src='<c:url value="/resources/calendar/lib/moment.min.js" />' ></script>
-        <script src="<c:url value="/resources/register/js/jquery.min.js" />"></script>
+        <script src='<c:url value="/resources/register/js/jquery.min.js" />'></script>
         <script src='<c:url value="/resources/calendar/fullcalendar.min.js" />' ></script>
-        
-         <script src='<c:url value="/resources/calendar/lang-all.js" />' ></script>
-
-        <script src="<c:url value="/resources/register/material/js/material.min.js" />"></script>
+        <script src='<c:url value="/resources/calendar/lang/th.js" />' ></script>
+        <script src='<c:url value="/resources/register/material/js/material.min.js" />'></script>
 
         <script>
             
@@ -51,36 +49,38 @@
             $(document).ready(function() {
                 $.material.init();
                 var obj = '';
+                var thCurr = '${thCurent}';
                 var jsonObj = '${calendarJSON}';
                 if(jsonObj.length>0) obj =  $.parseJSON(jsonObj); 
                 $('#calendar').fullCalendar({
                     header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,agendaWeek,agendaDay'
+                        left: 'prev,next today'
+                        //center:'title',
+                        //right: 'month,agendaWeek,agendaDay'
+                        //right: 'month'
                     },
-                    //defaultDate: '2015-02-12',
                     lang: 'th',
                     editable: true,
                     eventLimit: true, // allow "more" link when too many events
                     selectable: true,
                     eventClick: function(calEvent, jsEvent, view) {
-                    	var str = '';
-						var isStaff = '${isStaff}';
-						var isAdmin = '${isAdmin}';
-						var isAuthen = '${isAuthen}';
+                        var str = '';
+                        var isStaff = '${isStaff}';
+                        var isAdmin = '${isAdmin}';
+                        var isAuthen = '${isAuthen}';
                         var currUrl = '<c:url value="/getfile/CalendarActivities/" />';
-						
-						if(isAuthen =='true' && isAdmin=='true'){
-							str = str +'<div class="col-md-12" style="margin: 0px 0px -50px 0px;">';
-	                        str = str +'<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete" onclick="deleteAct('+calEvent.activityId+','+calEvent.centerId+')"></i></button>';
-	                        str = str +'<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#activity-popup"><i class="mdi-image-edit" onclick="editAct('+calEvent.activityId+','+calEvent.centerId+')"></i></button>';
-	                        str = str +'</div>';
-						}
-                        str = str +'<div><b>Title:</b> '+calEvent.title+'<br/>';
-                        str = str +'<b>StartDate:</b> '+calEvent.sTime+'<br/>';
-                        str = str +'<b>EndDate:</b> '+calEvent.eTime+'<br/>';
-                        str = str +'<b>Detail:</b> '+calEvent.detail+'<br/>';
+                        
+                        if(isAuthen =='true' && isAdmin=='true'){
+                            str = str +'<div class="col-md-12" style="margin: 0px 0px -50px 0px;">';
+                            str = str +'<button class="btn btn-danger btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#delete-popup"><i class="mdi-action-delete" onclick="deleteAct('+calEvent.activityId+','+calEvent.centerId+')"></i></button>';
+                            str = str +'<button class="btn btn-success btn-flat" style="padding: 5px 5px 0px 5px; float: right;" data-toggle="modal" data-target="#activity-popup"><i class="mdi-image-edit" onclick="editAct('+calEvent.activityId+','+calEvent.centerId+')"></i></button>';
+                            str = str +'</div>';
+                        }
+                        str = str +'<div><b>ชื่อ:</b> '+calEvent.title+'<br/>';
+                        str = str +'<b>วันที่เริ่ม:</b> '+calEvent.sTime+'<br/>';
+                        str = str +'<b>วันที่สิ้นสุด:</b> '+calEvent.eTime+'<br/>';
+                        str = str +'<b>ประเภท:</b> '+calEvent.baType+'<br/>';
+                        str = str +'<b>รายละเอียด:</b> '+calEvent.detail+'<br/>';
                         if(calEvent.imgPath!=undefined) str = str +'<img src="'+currUrl+calEvent.imgPath+'" alt="'+currUrl+calEvent.imgPath+'"/> </div>';
                         $('#actityDetail').html(str);
                     },
@@ -94,12 +94,77 @@
                     }, */
                     events: obj
                 });
-                
                 $('#newActivity').click(function(){
                     var url = '<c:url value="/news/addactivity/${bcId}" />';
                     location.href=url;
                 });
+                 $(".fc-right").html('<h2>'+thCurr+'</h2>');
+                
+                $('.fc-today-button').click(function(){
+                    $(".fc-right").html('<h2>'+thCurr+'</h2>');
+                });
+
+                $('.fc-prev-button').click(function(){
+                    var moment =  $('#calendar').fullCalendar('getDate');
+                    var all = moment.format().split('-');
+                    var month = parseInt(all[1]);
+                    var year = parseInt(all[0])+543;
+                    $(".fc-right").html('<h2>'+monthTh(month)+' '+year+'</h2>');
+                });
+
+                $('.fc-next-button').click(function(){
+                   var moment =  $('#calendar').fullCalendar('getDate');
+                    var all = moment.format().split('-');
+                    var month = parseInt(all[1]);
+                    var year = parseInt(all[0])+543;
+                    $(".fc-right").html('<h2>'+monthTh(month)+' '+year+'</h2>');
+                });
             });
+            function monthTh(month){
+                var mmStr = '';
+                switch (month) {
+                    case 1:
+                        mmStr = "มกราคม";
+                        break;
+                    case 2:
+                        mmStr = "กุมภาพันธ์";
+                        break;
+                    case 3:
+                        mmStr = "มีนาคม";
+                        break;
+                    case 4:
+                        mmStr = "เมษายน";
+                        break;
+                    case 5:
+                        mmStr = "พฤษภาคม";
+                        break;
+                    case 6:
+                        mmStr = "มิถุนายน";
+                        break;
+                    case 7:
+                        mmStr = "กรกฎษาคม";
+                        break;
+                    case 8:
+                        mmStr = "สิงหาคม";
+                        break;
+                    case 9:
+                        mmStr = "กันยายน";
+                        break;
+                    case 10:
+                        mmStr = "ตุลาคม";
+                        break;
+                    case 11:
+                        mmStr = "พฤศจิกายน";
+                        break;
+                    case 12:
+                        mmStr = "ธันวาคม";
+                        break;
+                    default:
+                        break;
+                } 
+                return  mmStr;
+            }
+
             function goToPage(page){
                 if(page.length>0){
                     window.open(
@@ -156,14 +221,14 @@
 
                     <div class="col-md-8">
                         <div class="jumbotron">
-                        	<c:if test="${isStaff || isAdmin || isAuthen}">
-					   		<div class="row">
+                            <c:if test="${isStaff || isAdmin || isAuthen}">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <button type="button" class="btn btn-default" id="newActivity">Add</button>
                                 </div>
                             </div>
-					   		</c:if>
-					   		
+                            </c:if>
+                            
                             <div class="row">
                                 <div class="col-md-12">
                                     <div id='calendar'></div>
