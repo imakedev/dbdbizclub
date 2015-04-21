@@ -20,8 +20,17 @@ public class BizclubActivityM implements Serializable {
 	private String isFixed;
 	private String updatedBy;
 	private Timestamp updatedDate;
-
+	private String baType;
+	
 	public BizclubActivityM() {
+	}
+	
+	public String getBaType() {
+		return baType;
+	}
+
+	public void setBaType(String baType) {
+		this.baType = baType;
 	}
 
 	public int getBaId() {
