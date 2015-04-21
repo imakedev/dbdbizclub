@@ -3,18 +3,13 @@ package th.go.dbd.bizclub.repository;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
-import bizclub.TableA;
-
 import th.go.dbd.bizclub.domain.Amphur;
 import th.go.dbd.bizclub.domain.BizclubActivity;
 import th.go.dbd.bizclub.domain.BizclubAsset;
@@ -140,6 +135,7 @@ public class BizClubRepository {
 	
 	
 	public Integer saveActivity(BizclubActivity act) {
+		logger.debug("saveActivity >>>>"+act.getBaType());
 		java.sql.Timestamp now = new java.sql.Timestamp(new Date().getTime());
 		act.setUpdatedDate(now);
 		act.setCreatedDate(now);
