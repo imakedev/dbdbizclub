@@ -11,8 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-
+import th.co.imake.dbd.bizclub.model.MailM;
 import th.go.dbd.bizclub.domain.Amphur;
 import th.go.dbd.bizclub.domain.BizclubActivity;
 import th.go.dbd.bizclub.domain.BizclubAsset;
@@ -45,6 +44,7 @@ import th.go.dbd.bizclub.model.ZipcodeM;
 import th.go.dbd.bizclub.repository.BizClubRepository;
 import th.go.dbd.bizclub.service.BizClubService;
 import th.go.dbd.bizclub.utils.MapUtils;
+
 
 @Service("bizClubServiceImpl")
 public class BizClubServiceImpl extends PostCommon implements BizClubService {
@@ -722,6 +722,19 @@ public class BizClubServiceImpl extends PostCommon implements BizClubService {
 		BizclubPublicize bizclubPublicize=new BizclubPublicize();
 		bizclubPublicize.setBpId(bizclubPublicizeM.getBpId());
 		return bizClubRepository.deletePublicize(bizclubPublicize);
+	}
+
+
+	@Override
+	public MailM sendMail(MailM mailM) {
+		// TODO Auto-generated method stub
+		
+	//	mailM.setServiceName(ServiceConstant.UTILIZATION_ITEM_FIND_BY_ID);
+		th.co.imake.syndome.bpm.xstream.common.ImakeResultMessage imakeMessage =postMessage(mailM,mailM.getClass().getName(),"mail",true);
+		if(imakeMessage.getResultListObj()!=null && imakeMessage.getResultListObj().size()>0)
+			return ((MailM)imakeMessage.getResultListObj().get(0));
+		else
+			return null;
 	}
 	
 }

@@ -25,8 +25,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import th.co.imake.dbd.bizclub.model.MailM;
+import th.co.imake.syndome.bpm.constant.ServiceConstant;
 import th.go.dbd.bizclub.form.RegisterForm;
-import th.go.dbd.bizclub.mail.MailRunnable;
 import th.go.dbd.bizclub.model.BizclubRegisterM;
 import th.go.dbd.bizclub.model.UserM;
 import th.go.dbd.bizclub.service.BizClubService;
@@ -210,14 +211,19 @@ public class RegisterController {
 			String subject="แจ้งการสมัครข้อมูล สมาชิค bizclub";
 			
 			String content=" ได้มีการสมัครเข้าขอใช้ระบบ  ในวันที่ "+dateFormat.format(new Date())+" <br/>";
-			
-			MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdcentralbizclub2015@gmail.com","bizclub2015","1",
+			MailM mail =new MailM();
+			mail.setRecipients(recipients);
+			mail.setSubject(subject);
+			mail.setContent(content);
+			mail.setServiceName(ServiceConstant.MAIL_SEND_TO_STAFF);
+			bizClubService.sendMail(mail);	
+			/*MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdcentralbizclub2015@gmail.com","bizclub2015","1",
 					recipients,subject,
 				    content,
 					"99","BizClub","587",null,null,null,"1");	
 		
 			Thread mailThread = new Thread(mailRunnable);
-			mailThread.start();
+			mailThread.start();*/
 		
 			
 		}

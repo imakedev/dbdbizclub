@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import th.co.imake.dbd.bizclub.model.MailM;
+import th.co.imake.syndome.bpm.constant.ServiceConstant;
 import th.go.dbd.bizclub.form.ApproveForm;
 import th.go.dbd.bizclub.mail.MailRunnable;
 import th.go.dbd.bizclub.model.BizclubRegisterM;
@@ -150,15 +152,23 @@ public class ApproveController {
 			content=	" ข้อมูลของท่านไม่ผ่านการอนุมัติจากเจ้าหน้าที่ ";
 	
 		}
+		
+		
 		List recipients =new ArrayList();
 		recipients.add(bizclubRegister.getEmail());
-		MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdcentralbizclub2015@gmail.com","bizclub2015","1",
+		MailM mail =new MailM();
+		mail.setRecipients(recipients);
+		mail.setSubject(subject);
+		mail.setContent(content);
+		mail.setServiceName(ServiceConstant.MAIL_APPROVE);
+		bizClubService.sendMail(mail);
+	/*	MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdcentralbizclub2015@gmail.com","bizclub2015","1",
 				recipients,subject,
 			    content,
 				"99","BizClub","587",null,null,null,"1");	
 	
 		Thread mailThread = new Thread(mailRunnable);
-		mailThread.start(); 
+		mailThread.start(); */
 		bizclubRegister.setApproveStatus(approveForm.getApproveStatus());
 		bizClubService.updateBizclubRegister(bizclubRegister);
         model.addAttribute("bizclubRegisters", bizClubService.searchBizclubRegister(bizclubRegister)); 
