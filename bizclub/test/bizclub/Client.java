@@ -18,16 +18,12 @@ public class Client {
 		try {
 			//String certPath="/aoe"; // 
 			String certPath="/Users/imake/Desktop";
-			/*System.setProperty("https.proxyHost", "ipAddress");
-			System.setProperty("https.proxyPort", "8080");*/
+		//	System.setProperty("https.proxyHost", "ipAddress");
+		//	System.setProperty("https.proxyPort", "8080");*/
 			System.setProperty("java.protocol.handler.pkgs","com.sun.net.ssl.internal.www.protocol");
 			Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
 			System.setProperty("javax.net.ssl.keyStoreType", "pkcs12");
 			
-			/*System.setProperty("javax.net.ssl.trustStore",
-					"/Users/imake/Desktop/cert/codesignstore");
-			System.setProperty("javax.net.ssl.keyStore",
-					"/Users/imake/Desktop/cert/ca9beda25c.p12");*/
 			System.setProperty("javax.net.ssl.trustStore",
 					""+certPath+"/cert/codesignstore");
 			System.setProperty("javax.net.ssl.keyStore",
