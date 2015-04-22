@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  * 
  */
 @Entity
-@Table(name="bizclub_publicize")
+@Table(name="BIZCLUB_PUBLICIZE")
 public class BizclubPublicize implements Serializable {
 	private static final long serialVersionUID = 1L;
 
