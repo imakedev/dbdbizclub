@@ -49,7 +49,7 @@ public class BizclubCenter implements Serializable {
 
 	@Column(name="BC_UPDATED_BY")
 	private String bcUpdatedBy;
-
+  
 	@Column(name="BC_UPDATED_DATE")
 	private Timestamp bcUpdatedDate;
 
