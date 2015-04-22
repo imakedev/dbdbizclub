@@ -1,9 +1,15 @@
 package th.go.dbd.bizclub.domain;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 /**
@@ -11,14 +17,14 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="bizclub_center")
+@Table(name="BIZCLUB_CENTER")
 @NamedQuery(name="BizclubCenter.findAll", query="SELECT b FROM BizclubCenter b")
 public class BizclubCenter implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="BC_ID")
-	private int bcId;
+	private Integer bcId;
 
 	@Column(name="BC_CREATED_BY")
 	private String bcCreatedBy;
@@ -30,13 +36,13 @@ public class BizclubCenter implements Serializable {
 	private String bcFacebook;
 
 	@Column(name="BC_MEMBER_SIZE")
-	private int bcMemberSize;
+	private Integer bcMemberSize;
 
 	@Column(name="BC_NAME")
 	private String bcName;
 
 	@Column(name="BC_ORDER")
-	private int bcOrder;
+	private Integer bcOrder;
 
 	@Column(name="BC_PROVICE_NAME")
 	private String bcProviceName;
@@ -48,7 +54,7 @@ public class BizclubCenter implements Serializable {
 	private Timestamp bcUpdatedDate;
 
 	@Column(name="BC_ZONE")
-	private int bcZone;
+	private Integer bcZone;
 
 	//bi-directional many-to-one association to BizclubPublicize
 	@OneToMany(mappedBy="bizclubCenter")
@@ -57,11 +63,11 @@ public class BizclubCenter implements Serializable {
     public BizclubCenter() {
     }
 
-	public int getBcId() {
+	public Integer getBcId() {
 		return this.bcId;
 	}
 
-	public void setBcId(int bcId) {
+	public void setBcId(Integer bcId) {
 		this.bcId = bcId;
 	}
 
@@ -89,11 +95,11 @@ public class BizclubCenter implements Serializable {
 		this.bcFacebook = bcFacebook;
 	}
 
-	public int getBcMemberSize() {
+	public Integer getBcMemberSize() {
 		return this.bcMemberSize;
 	}
 
-	public void setBcMemberSize(int bcMemberSize) {
+	public void setBcMemberSize(Integer bcMemberSize) {
 		this.bcMemberSize = bcMemberSize;
 	}
 
@@ -105,11 +111,11 @@ public class BizclubCenter implements Serializable {
 		this.bcName = bcName;
 	}
 
-	public int getBcOrder() {
+	public Integer getBcOrder() {
 		return this.bcOrder;
 	}
 
-	public void setBcOrder(int bcOrder) {
+	public void setBcOrder(Integer bcOrder) {
 		this.bcOrder = bcOrder;
 	}
 
@@ -137,11 +143,11 @@ public class BizclubCenter implements Serializable {
 		this.bcUpdatedDate = bcUpdatedDate;
 	}
 
-	public int getBcZone() {
+	public Integer getBcZone() {
 		return this.bcZone;
 	}
 
-	public void setBcZone(int bcZone) {
+	public void setBcZone(Integer bcZone) {
 		this.bcZone = bcZone;
 	}
 

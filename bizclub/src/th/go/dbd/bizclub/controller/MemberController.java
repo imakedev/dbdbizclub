@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import th.co.imake.dbd.bizclub.model.MailM;
+import th.co.imake.syndome.bpm.constant.ServiceConstant;
 import th.go.dbd.bizclub.domain.MyUserDetails;
 import th.go.dbd.bizclub.form.MemberForm;
 import th.go.dbd.bizclub.mail.MailRunnable;
@@ -234,13 +236,19 @@ public class MemberController {
 				"ได้มีการแก้ไขข้อมูลส่วนตัว  ในวันที่ "+dateFormat.format(new Date());
 		List recipients =new ArrayList();
 		recipients.add(memberForm.getUserM().getEmail());
-		MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdcentralbizclub2015@gmail.com","bizclub2015","1",
+		MailM mail =new MailM();
+		mail.setRecipients(recipients);
+		mail.setSubject(subject);
+		mail.setContent(content);
+		mail.setServiceName(ServiceConstant.MAIL_MEMBER_UPDATE);
+		bizClubService.sendMail(mail);
+		/*MailRunnable mailRunnable = new MailRunnable("smtp","smtp.gmail.com","dbdcentralbizclub2015@gmail.com","bizclub2015","1",
 				recipients,subject,
 			    content,
 				"99","BizClub","587",null,null,null,"1");	
 	
 		Thread mailThread = new Thread(mailRunnable);
-		mailThread.start(); 
+		mailThread.start(); */
 		model.addAttribute("provinces", bizClubService.listProvince());
 		//model.addAttribute("provinceCenters", bizClubService.listProvinceCenter());
 		model.addAttribute("provinceCenters", bizClubService.listBizclubCenter());

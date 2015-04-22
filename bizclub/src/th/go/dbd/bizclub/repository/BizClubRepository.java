@@ -548,7 +548,8 @@ public class BizClubRepository {
 	}
 	public List<BizclubCenter> listBizclubCenter() {
 		// TODO Auto-generated method stub
-		StringBuffer sb=new StringBuffer("select u from BizclubCenter u order by u.bcOrder desc, u.bcProviceName ");
+		//StringBuffer sb=new StringBuffer("select u from BizclubCenter u order by u.bcOrder desc, u.bcProviceName ");
+		StringBuffer sb=new StringBuffer("select u from BizclubCenter u where u.bcOrder!=1 order by u.bcOrder asc, u.bcProviceName  ");
 		Query query=entityManager.createQuery( sb.toString(), BizclubCenter.class);
 		return query.getResultList();
 	}

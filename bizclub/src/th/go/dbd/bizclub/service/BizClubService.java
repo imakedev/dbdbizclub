@@ -6,6 +6,8 @@
 package th.go.dbd.bizclub.service;
 
 import java.util.List;
+
+import th.co.imake.dbd.bizclub.model.MailM;
 import th.go.dbd.bizclub.model.AmphurM;
 import th.go.dbd.bizclub.model.BizclubActivityM;
 import th.go.dbd.bizclub.model.BizclubAssetM;
@@ -80,4 +82,7 @@ public interface BizClubService {
 	public Integer savePublicize(BizclubPublicizeM bizclubPublicizeM) ;
 	public Integer updatePublicize(BizclubPublicizeM bizclubPublicizeM) ;
 	public Integer deletePublicize(BizclubPublicizeM bizclubPublicizeM);
+	
+	// for send mail
+	public MailM sendMail(MailM mailM) ;
 }
